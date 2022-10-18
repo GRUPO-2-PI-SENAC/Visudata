@@ -117,17 +117,71 @@ main{
     text-align: left;
     margin-left: 18px;
     height: 16px;
-    
+    border-radius: 0;
+    border-color: #fff;
+    background-color: transparent;
 }
 
 .MenuInferior .botoesConfig .vibraBut {
     text-align: left;
     margin-left: 18px;
     height: 16px;    
+    border-color: #fff;
+    background-color: transparent;
 }
 
 .MenuInferior .botoesConfig .ruidBut {
     text-align: left;
     margin-left: 18px;
     height: 16px;    
+    border-color: #fff;
+    background-color: transparent;
+}
+
+.menuInfo{
+    margin-top: 20px;
+    margin-left: 25px;
+    color: black;
+    font-size: 18px;
+    text-align: left;
+}
+
+.menuInfo .temp1 {
+    font-size: 20px;
+    text-align: center;
+    background-color: #09427D;
+    color: #d6d6d6;
+    padding: 5px;
+    border-radius: 10px;
+    margin-top: -10px;
+    border-right-width: 15px;
+    border-color: transparent;
+
+
+}
+
+.menuInfo .ruido1 {
+    font-size: 20px;
+    text-align: center;
+    background-color: #09427D;
+    color: #d6d6d6;
+    padding: 5px;
+    border-radius: 10px;
+    margin-top: -10px;
+    border-color: transparent;
+
+
+}
+
+.menuInfo .vibra1 {
+    font-size: 20px;
+    text-align: center;
+    background-color: #09427D;
+    color: #d6d6d6;
+    padding: 5px;
+    border-radius: 10px;
+    margin-top: -10px;
+    border-right-width: 13px;
+    border-color: transparent;
+
 }
