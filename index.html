@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <link rel="stylesheet" href="./style.css" />
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./TelaLogin/style.css">
+
+    <!-- Links pro PWA -->
+    <noscript>
+        <link rel="stylesheet" href="./assets/noscript.css" />
+    </noscript>
+    <link rel="manifest" href="./manifest.json">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="msapplication-TileImage" content="./assets/logos/assetsIcons/AppIcon.appiconset/versoes/144.png">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="theme-color" content="#ffffff" />
+    <link rel="shortcut icon" sizes="192x192"
+        href="./assets/AppIcons/Assets.xcassets/AppIcon.appiconset/_/icon_192.png">
+    <link rel="shortcut icon" sizes="128x128"
+        href="./assets/AppIcons/Assets.xcassets/AppIcon.appiconset/_/icon_128.png">
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="PWA Teste">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="description" content="Aplicativo voltado para o monitoramento de dados da maquina"/>
+    <link rel="apple-touch-icon" href="./assets/AppIcons/appstore.png">
+
+    <title>Login</title>
+</head>
+
+<body>
+    <header class="header">
+        <img class="logoLogin" src="../assets/Logo-Senac.png" alt="Logo da empresa" . />
+    </header>
+    <div class="bodyForms">
+        <label class="labelTexto">CNPJ
+        </label>
+        <br>
+        <input placeholder="Digite seu CNPJ" type="text" id="cnpj" />
+        <br>
+        <label class="labelTexto">Senha
+        </label>
+        <br>
+        <input placeholder="Digite sua senha" type="password" id="senha" />
+    </div>
+    <footer>
+        <div>
+            <a href="./TelaInicio/tela_Inicio.html">
+                <button button class="entrar">Entrar</button>
+            </a>
+        </div>
+        <p class="sCadastro">Não tem cadastro? <a class="linkCadastro"
+                href="./TelaCadastroEmpresa/SingUpEmpresa.html">Cadastre-se</a></p>
+    </footer>
+
+    <script src="./service.worker.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker
+                .register('service.worker.js')
+                .then(serviceWorker => {
+                    console.log('Service Worker registered: ' + serviceWorker);
+                })
+                .catch(error => {
+                    console.log('Error registering the Service Worker: ' + error);
+                });
+        }
+    </script>
+    <script async src="https://cdn.jsdelivr.net/npm/pwacompat@2.0.8/pwacompat.min.js"
+        integrity="sha384-uONtBTCBzHKF84F6XvyC8S0gL8HTkAPeCyBNvfLfsqHh+Kd6s/kaS4BdmNQ5ktp1"
+        crossorigin="anonymous"></script>
+
+</body>
+
+</html>

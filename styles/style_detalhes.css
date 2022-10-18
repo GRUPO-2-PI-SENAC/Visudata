@@ -1,0 +1,133 @@
+html, body{
+    height: 100%;
+}
+
+body{
+    margin: 0;
+    background-color: #d6d6d6;
+    align-items: center;
+}
+
+
+.tituloHeader{
+    position: fixed;
+    width: 100%;
+    color:#09427D;
+    margin: 0;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    padding: 2rem;
+    font-size: 30px;
+    position: fixed;
+    height: 8px;
+    
+    
+}
+
+.seta{
+    width: 30px;
+    height: 30px;
+    padding: 10px;
+    border: none;
+    text-align: left;
+    
+}
+
+main{
+    background-color: white;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    top: 8%;
+}
+
+.tituloHeader .menu {
+    width: 30px;
+    height: 30px;
+    padding: 20px;
+    border: none;
+    text-align: right;
+    
+}
+
+.menuModelo {
+    color:white;
+    background-color: #09427D;
+    text-align: center;
+    height: 40px;
+
+}
+
+.menuModelo .botoesMenu{
+    color: white;
+    font-size: 20px;
+    text-align: center;
+    padding-left: 10px;
+    padding-top: 6px;
+    
+    
+}
+ 
+.menuModelo .realTime{
+    padding: 20px;
+
+}
+
+.menuModelo .hystory{
+    padding: 20px;
+}
+
+.menuModelo .export{
+    padding: 20px;
+}
+
+.grafico1{
+    margin: 0px;
+}
+
+.statusMsg {
+    text-align: left;
+    margin-left: 20px;
+    color: #09427D;
+    font-size: 20px;
+}
+
+.MenuInferior{
+    color:white;
+    background-color: #09427D;
+    text-align: center;
+    height: 40px;
+
+}
+
+.MenuInferior .botoesConfig {
+    color: white;
+    font-size: 20px;
+    text-align: left;
+    padding-left: 10px;
+    padding-top: 6px;
+
+}
+
+.MenuInferior .botoesConfig .tempBut {
+    text-align: left;
+    margin-left: 18px;
+    height: 16px;
+    
+}
+
+.MenuInferior .botoesConfig .vibraBut {
+    text-align: left;
+    margin-left: 18px;
+    height: 16px;    
+}
+
+.MenuInferior .botoesConfig .ruidBut {
+    text-align: left;
+    margin-left: 18px;
+    height: 16px;    
+}

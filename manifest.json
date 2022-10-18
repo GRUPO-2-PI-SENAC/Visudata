@@ -1,0 +1,113 @@
+{
+  "background_color": "#ffffff",
+  "description": "",
+  "dir": "ltr",
+  "display": "standalone",
+  "name": "MONITREC",
+  "orientation": "any",
+  "scope": "/",
+  "short_name": "MONITREC",
+  "start_url": "./index.html",
+  "theme_color": "#ffffff",
+  "categories": [],
+  "screenshots": [],
+  "icons": [
+    {
+      "src": "./assets/AppIcons/playstore.png",
+      "type": "img/png",
+      "sizes": "512x512",
+      "purpose": "any maskable"
+          },
+
+      {
+          "src": "./assets/AppIcons/Assets.xcassets/AppIcon.appiconset/_/100.png",
+          "sizes": "100x100",
+          "type": "image/png"
+        },
+
+        {
+          "src": "./assets/AppIcons/Assets.xcassets/AppIcon.appiconset/_/114.png",
+          "sizes": "114x114",
+          "type": "image/png"
+        },
+
+        {
+          "src": "./assets/AppIcons/Assets.xcassets/AppIcon.appiconset/_/120.png",
+          "sizes": "120x120",
+          "type": "image/png"
+        },
+
+        {
+          "src": "./assets/AppIcons/Assets.xcassets/AppIcon.appiconset/_/128.png",
+          "sizes": "128x128",
+          "type": "image/png"
+        },
+
+        {
+          "src": "./assets/AppIcons/Assets.xcassets/AppIcon.appiconset/_/144.png",
+          "sizes": "144x144",
+          "type": "image/png"
+        },
+
+        {
+          "src": "./assets/AppIcons/Assets.xcassets/AppIcon.appiconset/_/152.png",
+          "sizes": "152x152",
+          "type": "image/png"
+        },
+
+        {
+          "src": "./assets/AppIcons/Assets.xcassets/AppIcon.appiconset/_/167.png",
+          "sizes": "167x167",
+          "type": "image/png"
+        },
+
+        {
+          "src": "./assets/AppIcons/Assets.xcassets/AppIcon.appiconset/_/172.png",
+          "sizes": "172x172",
+          "type": "image/png"
+        },
+
+        {
+          "src": "./assets/AppIcons/Assets.xcassets/AppIcon.appiconset/_/180.png",
+          "sizes": "180x180",
+          "type": "image/png"
+        },
+        
+        {
+          "src": "./assets/AppIcons/Assets.xcassets/AppIcon.appiconset/_/196.png",
+          "sizes": "196x196",
+          "type": "image/png"
+        },
+
+        {
+          "src": "./assets/AppIcons/Assets.xcassets/AppIcon.appiconset/_/196.png",
+          "sizes": "196x196",
+          "type": "image/png"
+        },
+
+        {
+          "src": "./assets/AppIcons/Assets.xcassets/AppIcon.appiconset/_/216.png",
+          "sizes": "216x216",
+          "type": "image/png"
+        },
+
+        {
+          "src": "./assets/AppIcons/Assets.xcassets/AppIcon.appiconset/_/256.png",
+          "sizes": "256x256",
+          "type": "image/png"
+        },
+
+        {
+          "src": "./assets/AppIcons/Assets.xcassets/AppIcon.appiconset/_/512.png",
+          "sizes": "512x512",
+          "type": "image/png"
+        },
+
+        {
+          "src": "./assets/AppIcons/Assets.xcassets/AppIcon.appiconset/_/1024.png",
+          "sizes": "1024x1024",
+          "type": "image/png"
+        }
+  ],
+  "shortcuts": []
+}

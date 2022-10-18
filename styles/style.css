@@ -1,0 +1,87 @@
+body{
+    margin: 0%;
+}
+header{
+
+    position: fixed;
+    left: 0pt;
+    right: 0;
+    top: 0;
+    padding: 15%;
+    /* flex: 1; */
+    display: flex;
+    justify-content: center;
+    background-color: #09427D;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+}
+.logoLogin{
+    width: 50% ;
+    height: 50% ;
+    border-radius: 50%;
+}
+.bodyForms{
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 35%;
+    background-color: #fff;
+    padding: 0 10% 0 10%;
+    margin: 20% 0 0 0;
+}
+
+input{
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid #09427D;
+    outline: none;
+    
+}
+
+
+.labelTexto{
+    display: flex;
+    color: #474747;
+    font-size: 20px;
+    margin-top: 5%;
+}
+
+footer{
+    padding: 0 10% 0 10%;
+    margin-top: auto;
+    position: fixed;
+    bottom: 0pt;
+    left: 0pt;
+    right: 0pt;
+    margin-bottom: 5%;
+    
+}
+
+.entrar{
+    /* display: flex; */
+    background-color: #09427D;
+    color: #fff;
+    font-size: 20px;
+    width: 100%;
+    border: none;
+    border-radius: 10px;
+    padding: 5% 0 5% 0;
+    
+}
+.entrar:hover{
+    background-color: #003333;
+    animation-delay: 5s;
+}
+
+.sCadastro{
+
+    text-align: center;
+    margin-bottom: 1%;
+}
+
+.linkCadastro{
+
+    text-decoration: none;
+    color: #09427D;
+}
+
