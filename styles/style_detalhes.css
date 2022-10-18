@@ -1,3 +1,5 @@
+
+
 html, body{
     height: 100%;
 }
@@ -9,40 +11,30 @@ body{
 }
 
 
-.tituloHeader{
-    position: fixed;
-    width: 100%;
+
+.tituloHeader {
+    background-color: #fff;
     color:#09427D;
-    margin: 0;
-    text-align: center;
     display: flex;
+    margin: auto;
+    flex-direction: row;
+    flex-wrap: nowrap;
     align-items: center;
+    justify-content: center;
     padding: 2rem;
     font-size: 30px;
     position: fixed;
-    height: 8px;
-    
-    
+    height: 0px;
+    width: 100%;
+
 }
 
-.seta{
+.seta {
     width: 30px;
     height: 30px;
-    padding: 10px;
+    padding-right: 20px;
     border: none;
-    text-align: left;
-    
-}
 
-main{
-    background-color: white;
-    border-top-left-radius: 30px;
-    border-top-right-radius: 30px;
-    position: fixed;
-    bottom: 0;
-    right: 0;
-    left: 0;
-    top: 8%;
 }
 
 .tituloHeader .menu {
@@ -50,8 +42,18 @@ main{
     height: 30px;
     padding: 20px;
     border: none;
-    text-align: right;
-    
+
+}
+
+main{
+    background-color: white;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    position: relative;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    top: 8%;
 }
 
 .menuModelo {
@@ -89,6 +91,11 @@ main{
     margin: 0px;
 }
 
+.grafico {
+    position: relative;
+    text-align: center;
+}
+
 .statusMsg {
     text-align: left;
     margin-left: 20px;
@@ -107,11 +114,10 @@ main{
 .MenuInferior .botoesConfig {
     color: white;
     font-size: 20px;
-    text-align: left;
-    padding-left: 10px;
     padding-top: 6px;
 
 }
+
 
 .MenuInferior .botoesConfig .tempBut {
     text-align: left;
@@ -120,6 +126,7 @@ main{
     border-radius: 0;
     border-color: #fff;
     background-color: transparent;
+    border-radius: 5px;
 }
 
 .MenuInferior .botoesConfig .vibraBut {
@@ -128,6 +135,8 @@ main{
     height: 16px;    
     border-color: #fff;
     background-color: transparent;
+    border-radius: 5px;
+
 }
 
 .MenuInferior .botoesConfig .ruidBut {
@@ -136,7 +145,10 @@ main{
     height: 16px;    
     border-color: #fff;
     background-color: transparent;
+    border-radius: 5px;
+
 }
+
 
 .menuInfo{
     margin-top: 20px;
