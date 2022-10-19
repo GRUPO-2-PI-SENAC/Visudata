@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../styles/style_cadastro.css">
+
+    <!-- Links pro PWA -->
+    <noscript><link rel="stylesheet" href="../styles\style_cad_maquina.css" /></noscript>
+    <link rel="manifest" href="/manifest.json">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="msapplication-TileImage" content="/assets/AppIcons/Assets.xcassets/AppIcon.appiconset/_/144.png">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="theme-color" content="#ffffff" />
+    <link rel="shortcut icon" sizes="192x192" href="/assets/logos/assetsIcons/AppIcon.appiconset/versoes/192.png">
+    <link rel="shortcut icon" sizes="128x128" href="/assets/logos/assetsIcons/AppIcon.appiconset/versoes/128.png">
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="PWA Teste">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    
+    <link rel="apple-touch-icon" href="/assets/logos/appstore.png">
+
+  <title>Document</title>
+</head>
+
+<body>
+
+  <header>
+    <div class=containerHeader>
+      <h2 class=primeiroTitulo>Digite as principais informações da sua
+        <p class=segundoTitulo>máquina</p>
+      </h2>
+    </div>
+
+  </header>
+  <main>
+    <div class=containerForm>
+      <p class="marca">Marca</p>
+      <input class=inputTexto placeholder=""/>
+      <label class="categoria">Categoria
+        <select name="categoria" id="categoria">
+            <option value="ejetoras">Injetora</option>
+            <option value="moteres">Motores</option>
+        </select>
+    </label>
+      <p class="modelo">Modelo</p>
+      <input class=inputTexto placeholder=""/>
+
+      <p class="numSerie">Número de Série</p>
+      <input class=inputTexto placeholder=""/>
+
+      <p class=title>Temperatura</p>
+      <input class=inputTexto placeholder="Máxima"/>ºC
+      <input class=inputTexto placeholder="Mínima"/>ºC
+
+      <h3 class=title>Vibração</h3>
+      <input class=inputTexto placeholder="Máxima"/>Hz
+      <input class=inputTexto placeholder="Mínima"/>Hz
+
+      <h3 class=title>Ruído</h3>
+      <input class=inputTexto placeholder="Máximo"/>dB
+      <input class=inputTexto placeholder="Mínimo"/>dB
+
+
+    </div>
+    <div class="divButao">
+      <a href="../index.html" class=buttonCadastrar><button class=buttonCadastrarText>Cadastrar</button></a>
+    </div>
+  </main>
+
+</html>
