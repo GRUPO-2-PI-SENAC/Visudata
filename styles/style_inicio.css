@@ -13,13 +13,16 @@ header {
 .logo {
     border-radius: 50%;
     padding: 10px;
-    width: 20%;
-    height: 20%;
+    width: 30%;
+    height: 30%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .tituloHeader{
     display: flex;
-    margin: 0;
+    margin: auto;
     align-items: center;
     color: #FFFFFF
 }
@@ -29,6 +32,7 @@ ul li{
     display: inline;
     right: 0;
     left: 0;
+    margin: auto;
 }
 
 a{
@@ -47,7 +51,7 @@ a{
 }
 .paragrafo{
     padding-right: 10%;
-    color: #474747;
+    color: #B0B0B0;
     margin:0;
 }
 
@@ -56,7 +60,23 @@ a{
     left: 0;
     right: 0;
     width: 90%;
-    padding-left: 5%;
+    margin-top: 90px;
+    margin-left: 20px;
+    border-radius: 20px;
+    border-top-left-radius: 20px;
+}
+
+.visaoGeral {
+    position: fixed;
+    margin-top: -370px;
+    margin-left: 25px;
+    color: #09427D;
+
+}
+.paragrafod {
+    padding-right: 10%;
+    color: #09427D;
+    margin:0;
 }
 
 .principal {
@@ -84,17 +104,30 @@ a{
     display:flex;
     margin: 0;
     align-items: center;
-    color: #474747;
+    color: #09427D;
     padding-left: 5%;
-    margin-top: 2%;
+    margin-top: 10%;
 }
 
-.imgCategoria{
-    width: 40%;
-    height:40%;
+.imgCategoria1{
+    width: 160px;
+    height:100px;
     padding: 0;
     background-color: #09427D;
+    border-radius: 10px;
 }
+
+.imgCategoria2{
+    width: 160px;
+    height:100px;
+    padding: 0;
+    background-color: #09427D;
+    border-radius: 10px;
+
+}
+
+
+
 
 
 #opcoes{
