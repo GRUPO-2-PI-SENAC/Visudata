@@ -1,0 +1,14 @@
+C:\Users\davim\source\repos\daviifreitas\PI-Grupo-02\PI\PI.Domain\bin\Debug\net6.0\PI.Domain.deps.json
+C:\Users\davim\source\repos\daviifreitas\PI-Grupo-02\PI\PI.Domain\bin\Debug\net6.0\PI.Domain.runtimeconfig.json
+C:\Users\davim\source\repos\daviifreitas\PI-Grupo-02\PI\PI.Domain\bin\Debug\net6.0\PI.Domain.dll
+C:\Users\davim\source\repos\daviifreitas\PI-Grupo-02\PI\PI.Domain\bin\Debug\net6.0\PI.Domain.pdb
+C:\Users\davim\source\repos\daviifreitas\PI-Grupo-02\PI\PI.Domain\obj\Debug\net6.0\PI.Domain.csproj.AssemblyReference.cache
+C:\Users\davim\source\repos\daviifreitas\PI-Grupo-02\PI\PI.Domain\obj\Debug\net6.0\PI.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\davim\source\repos\daviifreitas\PI-Grupo-02\PI\PI.Domain\obj\Debug\net6.0\PI.Domain.AssemblyInfoInputs.cache
+C:\Users\davim\source\repos\daviifreitas\PI-Grupo-02\PI\PI.Domain\obj\Debug\net6.0\PI.Domain.AssemblyInfo.cs
+C:\Users\davim\source\repos\daviifreitas\PI-Grupo-02\PI\PI.Domain\obj\Debug\net6.0\PI.Domain.csproj.CoreCompileInputs.cache
+C:\Users\davim\source\repos\daviifreitas\PI-Grupo-02\PI\PI.Domain\obj\Debug\net6.0\PI.Domain.dll
+C:\Users\davim\source\repos\daviifreitas\PI-Grupo-02\PI\PI.Domain\obj\Debug\net6.0\refint\PI.Domain.dll
+C:\Users\davim\source\repos\daviifreitas\PI-Grupo-02\PI\PI.Domain\obj\Debug\net6.0\PI.Domain.pdb
+C:\Users\davim\source\repos\daviifreitas\PI-Grupo-02\PI\PI.Domain\obj\Debug\net6.0\PI.Domain.genruntimeconfig.cache
+C:\Users\davim\source\repos\daviifreitas\PI-Grupo-02\PI\PI.Domain\obj\Debug\net6.0\ref\PI.Domain.dll

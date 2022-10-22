@@ -1,0 +1,36 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v6.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v6.0": {
+      "PI.Application/1.0.0": {
+        "dependencies": {
+          "PI.Domain": "1.0.0"
+        },
+        "runtime": {
+          "PI.Application.dll": {}
+        }
+      },
+      "PI.Domain/1.0.0": {
+        "runtime": {
+          "PI.Domain.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "PI.Application/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "PI.Domain/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
