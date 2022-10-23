@@ -65,4 +65,27 @@ public class EnterpriseService : IEnterpriseService
 
 
     }
+
+    public async Task<bool> Update(UpdateEnterpriseViewModel model)
+    {
+
+        Enterprise? enterpriseForUpdate = await _enterpriseRepository.GetById(model.Id);
+
+        if(enterpriseForUpdate != null)
+        {
+            if(model.Password == model.ConfirmPassword)
+            {
+                enterpriseForUpdate.Password = model.Password;
+
+                await _enterpriseRepository.Update(enterpriseForUpdate);
+
+                return true; 
+
+            }
+
+            return false;
+        }
+
+        return false;
+    }
 }
