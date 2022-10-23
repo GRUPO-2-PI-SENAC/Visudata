@@ -10,7 +10,7 @@ public class MachineServices : IMachineService
     private readonly IMachineRepository _machineRepository;
     private readonly IEnterpriseRepository _enterpriseRepository;
     private readonly ILogsRepository _logRepository;
-    private readonly IMachineCategoryRepository _categoryRepository;
+    private readonly  IMachineCategoryRepository _categoryRepository;
     private readonly IMachineStatusRepository _machineStatusRepository;
 
     public MachineServices(IMachineRepository machineRepository, IEnterpriseRepository enterpriseRepository, ILogsRepository logRepository, IMachineCategoryRepository categoryRepository, IMachineStatusRepository machineStatusRepository)
@@ -51,7 +51,7 @@ public class MachineServices : IMachineService
                     Noise = logOfMachine.Noise , 
                     Temp = logOfMachine.Temp ,
                     Vibration = logOfMachine.Vibration,
-                    category = machine.Category.Name
+                    category =  machine.Category.Name
                 });
             }
 
@@ -89,7 +89,7 @@ public class MachineServices : IMachineService
         {
             Brand = model.Brand,
             Id = model.Id,
-            Category = AddCategoryInMachine(model.Category),
+            Category = await AddCategoryInMachine(model.Category),
             TempMax = model.MaxTemp,
             TempMim = model.MimTemp,
             NoiseMax = model.MaxNoise,
@@ -114,9 +114,9 @@ public class MachineServices : IMachineService
         return firstOrDefault;
     }
 
-    private MachineCategory AddCategoryInMachine(string modelCategory)
+    private async Task<MachineCategory> AddCategoryInMachine(string modelCategory)
     {
-        MachineCategory byName = _categoryRepository.GetByName(modelCategory);
+        MachineCategory byName = await  _categoryRepository.GetByName(modelCategory);
         return byName;
     }
 } 

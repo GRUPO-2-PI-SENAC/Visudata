@@ -25,8 +25,10 @@ public static class DependencyInjection
         services.AddScoped<ILogsRepository, LogsRepository>();
         services.AddScoped<IMachineRepository, MachineRepository>();
         services.AddScoped<IOutlierRegisterRepository, OutlierRegisterRepository>();
+        services.AddScoped<IMachineCategoryRepository, MachineCategoryRepository>();
         services.AddScoped<IOutlierRegisterRepository, OutlierRegisterRepository>();
-        services.AddScoped<IMachineCategoryRepository, CategoryRepository>();
+        //services.AddScoped<IMachineCategoryRepository, CategoryRepository>();
+        
         services.AddScoped<IUserSupportRepository, UserSupportRepository>();
         services.AddScoped<IEnterpriseStatusRepository, EnterpriseStatusRepository>();
         services.AddScoped<IMachineStatusRepository, MachineStatusRepository>();

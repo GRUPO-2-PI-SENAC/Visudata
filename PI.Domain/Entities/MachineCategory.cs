@@ -1,17 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PI.Domain.Entities
 {
-    [Table("Machine_category")]
+    [Table("Machine_Category")]
     public class MachineCategory : EntityBase
     {
+        [Required(ErrorMessage = "Campo obrigatório")]
         public string Name { get; set; }
-        public IEnumerable<Enterprise> Enterprises {get; set;}
-
+        [Required(ErrorMessage = "Required enterprise for associate category")]
+        public virtual Enterprise Enterprise { get; set; }
+        public virtual IEnumerable<Machine> Machines { get; set; }
     }
 }

@@ -5,7 +5,7 @@ namespace PI.Infra.Data.Repositories;
 
 public class BaseRepository<T> : IBaseRepository<T>  where T : class
 {
-    private readonly ApplicationContext _context;
+    protected readonly ApplicationContext _context;
 
     public BaseRepository(ApplicationContext applicationContext)
     {

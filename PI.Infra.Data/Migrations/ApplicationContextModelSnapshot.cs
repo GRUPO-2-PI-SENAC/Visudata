@@ -19,21 +19,6 @@ namespace PI.Infra.Data.Migrations
                 .HasAnnotation("ProductVersion", "6.0.9")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
-            modelBuilder.Entity("EnterpriseMachineCategory", b =>
-                {
-                    b.Property<int>("EnterprisesId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("MachineCategoriesId")
-                        .HasColumnType("int");
-
-                    b.HasKey("EnterprisesId", "MachineCategoriesId");
-
-                    b.HasIndex("MachineCategoriesId");
-
-                    b.ToTable("EnterpriseMachineCategory");
-                });
-
             modelBuilder.Entity("PI.Domain.Entities.Enterprise", b =>
                 {
                     b.Property<int>("Id")
@@ -125,12 +110,6 @@ namespace PI.Infra.Data.Migrations
                     b.Property<double>("Temp")
                         .HasColumnType("double");
 
-                    b.Property<DateTime>("Time")
-                        .HasColumnType("datetime(6)");
-
-                    b.Property<DateTime>("Updated_at")
-                        .HasColumnType("datetime(6)");
-
                     b.Property<double>("Vibration")
                         .HasColumnType("double");
 
@@ -151,9 +130,6 @@ namespace PI.Infra.Data.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<int>("CategoryId")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("Created_at")
                         .HasColumnType("datetime(6)");
 
@@ -163,6 +139,9 @@ namespace PI.Infra.Data.Migrations
                     b.Property<string>("Location")
                         .IsRequired()
                         .HasColumnType("longtext");
+
+                    b.Property<int>("MachineCategoryId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Model")
                         .IsRequired()
@@ -198,9 +177,9 @@ namespace PI.Infra.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CategoryId");
-
                     b.HasIndex("EnterpriseId");
+
+                    b.HasIndex("MachineCategoryId");
 
                     b.HasIndex("StatusId");
 
@@ -216,6 +195,9 @@ namespace PI.Infra.Data.Migrations
                     b.Property<DateTime>("Created_at")
                         .HasColumnType("datetime(6)");
 
+                    b.Property<int>("EnterpriseId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("longtext");
@@ -225,7 +207,9 @@ namespace PI.Infra.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Machine_category");
+                    b.HasIndex("EnterpriseId");
+
+                    b.ToTable("Machine_Category");
                 });
 
             modelBuilder.Entity("PI.Domain.Entities.MachineStatus", b =>
@@ -309,6 +293,10 @@ namespace PI.Infra.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
+                    b.Property<string>("AddressEmailOfRepresentativeEmployee")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
                     b.Property<DateTime>("Created_at")
                         .HasColumnType("datetime(6)");
 
@@ -322,10 +310,6 @@ namespace PI.Infra.Data.Migrations
                     b.Property<int>("ProblemsCategoryId")
                         .HasColumnType("int");
 
-                    b.Property<string>("RepresentativoOfEnterpriseAddress")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
                     b.Property<DateTime>("Updated_at")
                         .HasColumnType("datetime(6)");
 
@@ -336,21 +320,6 @@ namespace PI.Infra.Data.Migrations
                     b.HasIndex("ProblemsCategoryId");
 
                     b.ToTable("UserSupports");
-                });
-
-            modelBuilder.Entity("EnterpriseMachineCategory", b =>
-                {
-                    b.HasOne("PI.Domain.Entities.Enterprise", null)
-                        .WithMany()
-                        .HasForeignKey("EnterprisesId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("PI.Domain.Entities.MachineCategory", null)
-                        .WithMany()
-                        .HasForeignKey("MachineCategoriesId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("PI.Domain.Entities.Enterprise", b =>
@@ -377,15 +346,15 @@ namespace PI.Infra.Data.Migrations
 
             modelBuilder.Entity("PI.Domain.Entities.Machine", b =>
                 {
-                    b.HasOne("PI.Domain.Entities.MachineCategory", "Category")
-                        .WithMany()
-                        .HasForeignKey("CategoryId")
+                    b.HasOne("PI.Domain.Entities.Enterprise", "Enterprise")
+                        .WithMany("Machines")
+                        .HasForeignKey("EnterpriseId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("PI.Domain.Entities.Enterprise", "Enterprise")
-                        .WithMany()
-                        .HasForeignKey("EnterpriseId")
+                    b.HasOne("PI.Domain.Entities.MachineCategory", "MachineCategory")
+                        .WithMany("Machines")
+                        .HasForeignKey("MachineCategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -395,11 +364,22 @@ namespace PI.Infra.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Category");
-
                     b.Navigation("Enterprise");
 
+                    b.Navigation("MachineCategory");
+
                     b.Navigation("Status");
+                });
+
+            modelBuilder.Entity("PI.Domain.Entities.MachineCategory", b =>
+                {
+                    b.HasOne("PI.Domain.Entities.Enterprise", "Enterprise")
+                        .WithMany("EnterpriseMachineCategories")
+                        .HasForeignKey("EnterpriseId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Enterprise");
                 });
 
             modelBuilder.Entity("PI.Domain.Entities.OutlierRegister", b =>
@@ -438,6 +418,18 @@ namespace PI.Infra.Data.Migrations
                     b.Navigation("Enterprise");
 
                     b.Navigation("ProblemsCategory");
+                });
+
+            modelBuilder.Entity("PI.Domain.Entities.Enterprise", b =>
+                {
+                    b.Navigation("EnterpriseMachineCategories");
+
+                    b.Navigation("Machines");
+                });
+
+            modelBuilder.Entity("PI.Domain.Entities.MachineCategory", b =>
+                {
+                    b.Navigation("Machines");
                 });
 #pragma warning restore 612, 618
         }

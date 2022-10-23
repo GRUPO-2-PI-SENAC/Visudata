@@ -1,4 +1,5 @@
-﻿using PI.Domain.Entities;
+﻿using Microsoft.EntityFrameworkCore;
+using PI.Domain.Entities;
 using PI.Domain.Interfaces;
 using PI.Infra.Data.Context;
 
@@ -9,11 +10,17 @@ public class EnterpriseRepository : BaseRepository<Enterprise>, IEnterpriseRepos
     public EnterpriseRepository(ApplicationContext applicationContext) : base(applicationContext)
     {
     }
-    
+
+    public async Task<IEnumerable<Enterprise>> GetAllWithRelationships()
+    {
+        List<Enterprise> enterprises = _context.Enterprises.Include(enterprise => enterprise.EnterpriseMachineCategories).Include(enterprise => enterprise.Machines).Include(enterprise => enterprise.EnterpriseStatus).ToList();
+        return enterprises;
+    }
+
     public bool Login(string username, string password) => GetAll().
                             Result.
-                            Where(enterprises => enterprises.Cnpj == username 
+                            Where(enterprises => enterprises.Cnpj == username
                              && enterprises.Password == password).Any();
-    
-    
+
+
 }

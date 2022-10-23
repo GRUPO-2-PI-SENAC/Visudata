@@ -1,4 +1,5 @@
-﻿using PI.Domain.Entities;
+﻿using Microsoft.EntityFrameworkCore;
+using PI.Domain.Entities;
 using PI.Domain.Interfaces;
 using PI.Infra.Data.Context;
 
@@ -8,5 +9,12 @@ public class MachineStatusRepository : BaseRepository<MachineStatus>, IMachineSt
 {
     public MachineStatusRepository(ApplicationContext applicationContext) : base(applicationContext)
     {
+    }
+
+    public async Task<IEnumerable<Machine>?> GetMachinesByStatus(int statusId)
+    {
+        List<Machine>? machinesByStatus = _context.Machines.Include(machine => machine.Status).Where(machine => machine.Status.Id == statusId).ToList();
+
+        return machinesByStatus;
     }
 }

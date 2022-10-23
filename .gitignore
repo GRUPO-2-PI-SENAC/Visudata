@@ -131,3 +131,4 @@ PI.Application/bin/Debug/net6.0/PI.Application.deps.json
 *.vsidx
 .vs/PI/v17/.futdcache.v2
 .vs/PI/DesignTimeBuild/.dtbcache.v2
+*.vs

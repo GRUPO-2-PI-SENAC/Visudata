@@ -4,5 +4,5 @@ namespace PI.Domain.Interfaces;
 
 public interface IMachineStatusRepository : IBaseRepository<MachineStatus>
 {
-    
+    Task<IEnumerable<Machine>> GetMachinesByStatus(int statusId);
 }

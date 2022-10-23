@@ -27,13 +27,13 @@ public class EnterpriseService : IEnterpriseService
 
     public async Task<bool> Remove(int enterpriseId)
     {
-        Enterprise? enter = await _enterpriseRepository.GetById(enterpriseId);
+        Enterprise? enterpriseForRemove = await _enterpriseRepository.GetById(enterpriseId);
 
-        if (enter != null)
+        if (enterpriseForRemove != null)
         {
             try
             {
-                await _enterpriseRepository.RemoveById(enter.Id);
+                await _enterpriseRepository.RemoveById(enterpriseForRemove.Id);
                 return true;
             }
             catch

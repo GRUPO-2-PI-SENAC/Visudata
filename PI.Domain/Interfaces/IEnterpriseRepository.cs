@@ -10,5 +10,6 @@ namespace PI.Domain.Interfaces
     public interface IEnterpriseRepository : IBaseRepository<Enterprise>
     {
         bool Login(string username, string password);
+        Task<IEnumerable<Enterprise>> GetAllWithRelationships();
     }
 }

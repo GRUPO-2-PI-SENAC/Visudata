@@ -12,7 +12,11 @@
         public string State { get; set; }
         public string NumberOfLocation { get; set; }
 
-        public IEnumerable<MachineCategory>? MachineCategories {get; set;}
+        #region Relationships
+        public ICollection<MachineCategory> EnterpriseMachineCategories { get; set; }
+        public IEnumerable<Machine> Machines { get; set; }
         public EnterpriseStatus EnterpriseStatus { get; set; }
+
+        #endregion
     }
 }

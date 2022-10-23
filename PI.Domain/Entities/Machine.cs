@@ -1,27 +1,36 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Transactions;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace PI.Domain.Entities
 {
     public class Machine : EntityBase
     {
+        [Required(ErrorMessage = "Campo obrigatório")]
         public string SerialNumber { get; set; }
+        [Required(ErrorMessage = "Campo obrigatório")]
         public string Brand { get; set; }
+        [Required(ErrorMessage = "Campo obrigatório")]
         public string Model { get; set; }
+        [Required(ErrorMessage = "Campo obrigatório")]
         public double TempMim { get; set; }
+        [Required(ErrorMessage = "Campo obrigatório")]
         public double TempMax { get; set; }
+        [Required(ErrorMessage = "Campo obrigatório")]
         public double NoiseMin { get; set; }
+        [Required(ErrorMessage = "Campo obrigatório")]
         public double NoiseMax { get; set; }
+        [Required(ErrorMessage = "Campo obrigatório")]
         public double VibrationMin { get; set; }
+        [Required(ErrorMessage = "Campo obrigatório")]
         public double VibrationMax { get; set; }
-        public MachineStatus Status { get; set; }
-        public MachineCategory Category { get; set; }
-        public Enterprise Enterprise { get; set; }
+        [Required(ErrorMessage = "Campo obrigatório")]
         public string Location { get; set; }
+
+        #region Relationship
+        public MachineCategory Category { get; set; }
+        public MachineStatus Status { get; set; }
+        public Enterprise Enterprise { get; set; }
+
+        #endregion
 
     }
 }

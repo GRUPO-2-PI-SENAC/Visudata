@@ -11,6 +11,8 @@ public class ApplicationContext : DbContext
     }
     
     public DbSet<Enterprise> Enterprises { get; set; }
+    public DbSet<EnterpriseStatus> EnterpriseStatus { get; set; }
+    public DbSet<ProblemsCategory> ProblemsCategories { get; set; }
     public DbSet<Machine> Machines { get; set; }
     public DbSet<OutlierRegister> OutlierRegisters { get; set; }
     public DbSet<Log> Logs { get; set; }
