@@ -8,4 +8,7 @@ public interface IEnterpriseService
     Task<bool> SignUp(CreateEnterpriseViewModel model);
     Task<bool> Update(UpdateEnterpriseViewModel model);
     Task<bool> Remove(int enterpriseId);
+
+    //TODO : Create enterprise profile view and update. 
+
 }

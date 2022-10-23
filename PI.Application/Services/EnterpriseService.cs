@@ -100,12 +100,10 @@ public class EnterpriseService : IEnterpriseService
                 await _enterpriseRepository.Update(enterpriseForUpdate);
 
                 return true;
-
             }
 
             return false;
         }
-
         return false;
     }
 }

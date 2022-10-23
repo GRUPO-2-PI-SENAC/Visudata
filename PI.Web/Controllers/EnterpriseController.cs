@@ -14,11 +14,6 @@ namespace PI.Web.Controllers
             _enterpriseService = enterpriseService;
         }
 
-        public IActionResult Index()
-        {
-            return View();
-        }
-
         [HttpGet]
         public async Task<IActionResult> SignUp()
         {
