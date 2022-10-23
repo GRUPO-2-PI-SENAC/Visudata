@@ -7,4 +7,5 @@ public interface IEnterpriseService
     Task<bool> Login(EnterpriseLoginViewModel model);
     Task<bool> SignUp(CreateEnterpriseViewModel model);
     Task<bool> Update(UpdateEnterpriseViewModel model);
+    Task<bool> Remove(int enterpriseId);
 }

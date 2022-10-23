@@ -16,13 +16,33 @@ public class EnterpriseService : IEnterpriseService
         _enterpriseStatusRepository = enterpriseStatusRepository;
     }
 
-    public async Task<bool> Login(EnterpriseLoginViewModel model )
+    public async Task<bool> Login(EnterpriseLoginViewModel model)
     {
         IEnumerable<Enterprise> enterprises = await _enterpriseRepository.GetAll();
 
         bool isInDb = enterprises.Any(enterprise => enterprise.Cnpj == model.Login && enterprise.Password == model.Password && enterprise.EnterpriseStatus.Name == "ACTIVE");
 
         return isInDb;
+    }
+
+    public async Task<bool> Remove(int enterpriseId)
+    {
+        Enterprise? enter = await _enterpriseRepository.GetById(enterpriseId);
+
+        if (enter != null)
+        {
+            try
+            {
+                await _enterpriseRepository.RemoveById(enter.Id);
+                return true;
+            }
+            catch
+            {
+                return false; 
+            }
+
+        }
+        return false;
     }
 
     public async Task<bool> SignUp(CreateEnterpriseViewModel model)
@@ -71,15 +91,15 @@ public class EnterpriseService : IEnterpriseService
 
         Enterprise? enterpriseForUpdate = await _enterpriseRepository.GetById(model.Id);
 
-        if(enterpriseForUpdate != null)
+        if (enterpriseForUpdate != null)
         {
-            if(model.Password == model.ConfirmPassword)
+            if (model.Password == model.ConfirmPassword)
             {
                 enterpriseForUpdate.Password = model.Password;
 
                 await _enterpriseRepository.Update(enterpriseForUpdate);
 
-                return true; 
+                return true;
 
             }
 

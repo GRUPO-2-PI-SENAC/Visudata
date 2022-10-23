@@ -127,3 +127,7 @@ PI.Application/bin/Debug/net6.0/PI.Application.deps.json
 .vs/PI/FileContentIndex/c59c5a39-c00c-4e1e-bee8-f5c1361265a8.vsidx
 .vs/PI/FileContentIndex/1d3eceda-9732-4a8f-ad9e-0bb9ae425a10.vsidx
 .vs/PI/FileContentIndex/4d5dff4a-63cd-47a9-a22e-b03b4efb45bf.vsidx
+.vs/PI/FileContentIndex/7b64defa-89a9-4208-a1bc-4eb2084ebff5.vsidx
+*.vsidx
+.vs/PI/v17/.futdcache.v2
+.vs/PI/DesignTimeBuild/.dtbcache.v2
