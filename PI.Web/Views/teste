@@ -1,0 +1,19 @@
+<div class="container-categories container-fluid" id="categorias-container">
+    <h3>Categorias</h3>
+         <div class="row row-cols-2 row-cols-md-4 g-3">
+          <div class="col d-flex">
+            <div class="card rounded-3 w-100">
+              <div class="card-body text-center">
+                <p class="fw-bold mb-0 text-dark">Maquinas</p>
+              </div>
+            </div>
+          </div>
+          <div class="col d-flex">
+            <div class="card rounded-3 w-100">
+              <div class="card-body text-center">
+                <p class="fw-bold mb-0 text-dark">Maquinas</p>
+              </div>
+            </div>
+          </div>
+        </div>
+</div>

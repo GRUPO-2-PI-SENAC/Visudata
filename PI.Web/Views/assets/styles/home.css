@@ -6,7 +6,8 @@
 }
 
 .header{
-    height: 80px;
+    height: 70px;
+    background-color: #F7F7F7;
 
 }
 
@@ -20,17 +21,16 @@ header .name-app{
 }
 
 
-main .content-main{
-    position: fixed;
-    left: 0px;
-    bottom: 0;
-    border-radius: 30px 30px 0px 0px;
-}
-
 .container-categories{
     padding: 20px;
     right: 0;
     left: 0;
+}
+
+.text-div{
+    background-color: #09427D;
+    border-radius: 8px;
+    
 }
 
 #navbar {

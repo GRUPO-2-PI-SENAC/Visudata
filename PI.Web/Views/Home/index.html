@@ -5,18 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="../assets/styles/home.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-    <title>Bootstrap demo</title>
+    <title>VisuDara</title>
   </head>
   <body>
      <!-- Header (Logo+Nome) -->
     <header class="navbar header p-2 "> 
         <div class="container-fluid">
             <a class="navbar-brand name-app" href="#">
-            <img src="../assets/Logo.png" alt="Logo" width="60" height="60" class="d-inline-block align-text-center">
+            <img src="../assets/Logo.png" alt="Logo" width="50" height="50" class="d-inline-block align-text-center">
             VisuData
             </a>
         </div>
     </header>
+
     <main>
         <div class="container-cards" id="status-container">
             <h3> Visão Geral</h3>
@@ -52,35 +53,36 @@
         </div>
 
          <!-- Container categorias -->
-        <div class="container-categories container-fluid" id="categorias-container">
-            <h3>Categorias</h3>
-            <div class="card-group ">
-                <div class="card text-bg-light mb-3" style="max-width: 18rem;">
-                    <div class="card-header">Header</div>
-                    <div class="card-body">
-                      <h5 class="card-title">Light card title</h5>
-                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+         <div class="container-categories container-fluid" id="categorias-container">
+          <h3>Categorias</h3>
+               <div class="row row-cols-2 row-cols-md-4 g-3">
+                <div class="col d-flex">
+                  <div class="card rounded-3 w-100">
+                    <div class="card-body text-center text-div">
+                      <p class="text-light mb-0">Motores</p>
+                    </div>
+                  </div>
                 </div>
-                <div class="card text-bg-light mb-3" style="max-width: 18rem;">
-                    <div class="card-header">Header</div>
-                    <div class="card-body">
-                      <h5 class="card-title">Light card title</h5>
-                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <div class="col d-flex ">
+                  <div class="card rounded-3 w-100 ">
+                    <div class="card-body text-center text-div">
+                      <p class="text-light mb-0">Injetoras</p>
+                    </div>
+                  </div>
                 </div>
-            </div>
-        </div>
-    </div>
-    </div>
+              </div>
+      </div>
+    
         
     </main>
 
      <!-- Navbar/Menu navegação -->
    <footer>
-        <nav class="nav nav-pills nav-fill fixed-bottom" id="navbar">
+        <nav class="nav fixed-bottom nav-fill" id="navbar">
             <li class="nav-item" id="home_button">
                 <button class="btn  me-2" type="button"> <img  src="../assets/Icons/home.png"> </button>
             </li>
-            <li class="nav-item" id="create_button">
+            <li class="nav-item navbar-active-color" id="create_button">
                 <button class="btn  me-2" type="button"> <img  src="../assets/Icons/Cad_maquina.png"> </button>
             </li>
             <li class="nav-item" id="list_button">
