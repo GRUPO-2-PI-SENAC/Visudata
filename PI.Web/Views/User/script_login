@@ -31,3 +31,41 @@
             });
         });
     </script>
+
+
+
+@section Scripts {
+    <script lang="javascript">
+        $("#tester").click(function () {
+            var valor = $('#EnterpriseCNPJ').val();
+            $.ajax({
+                url: 'https://receitaws.com.br/v1/cnpj/' + valor,
+                type: 'GET',
+                dataType: 'jsonp',
+                success: function (dado) {
+                    if (dado.nome == undefined) {
+                        alert("CNPJ inválido");
+                    } else {
+                        var dataForDb = { Id: Math.round(Math.random() * 10000), CNPJ: valor, SocialReason: dado.nome, FantasyName: dado.fantasia, Password: document.getElementById('password').value, ConfirmPassword: document.getElementById('confirmPassword').value, Address: dado.logradouro + '' + dado.numero, City: dado.municipio, State: dado.uf, NumberOfLocation: dado.cep, Sector: dado.atividade_principal[0].text };
+                        var f = JSON.stringify({ Id: Math.round(Math.random() * 10000), CNPJ: valor, SocialReason: dado.nome, FantasyName: dado.fantasia, Password: document.getElementById('password').value, ConfirmPassword: document.getElementById('confirmPassword').value, Address: dado.logradouro + '' + dado.numero, City: dado.municipio, State: dado.uf, NumberOfLocation: dado.cep, Sector: dado.atividade_principal[0].text });
+
+                        //console.log(dataForDb);
+                        console.log(f);
+                        $.ajax({
+                            url: '/Enterprise/SignUp/',
+                            type: 'POST',
+                            data: { dado: f },
+                            dataType: 'string',
+                            success: function () {
+                                alert('criada com sucesso');
+                            }
+                        });
+
+                    }
+                    console.log(dado);
+
+                }
+            });
+        });
+    </script>
+}
