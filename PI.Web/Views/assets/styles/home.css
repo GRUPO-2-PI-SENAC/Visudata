@@ -7,12 +7,14 @@ body{
 
 .header{
     height: 70px;
-    background-color: #F7F7F7;
+    background-color: #09417d2d;
+    border-radius: 0px 0px 5px 5px;
 
 }
 
 header .name-app{
     font-size: 25px;
+    
 }
 
 #status-container{
@@ -39,5 +41,9 @@ header .name-app{
 
 #navbar {
     background-color: #09427D;
+}
+
+#home_bt:hover{
+    background-image: url("/PI.Web/Views/assets/Icons/home_active.png");
 }
 
