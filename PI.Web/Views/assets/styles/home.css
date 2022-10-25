@@ -1,5 +1,5 @@
 
-*{
+body{
     margin: 0;
     padding: 0;
     text-decoration: none;
@@ -22,9 +22,13 @@ header .name-app{
 
 
 .container-categories{
-    padding: 20px;
-    right: 0;
-    left: 0;
+    padding: 0px 20px 40px 20px;
+    width: 18rem;
+    
+}
+
+.categories-group{
+    padding: 10px;
 }
 
 .text-div{
