@@ -6,8 +6,11 @@
 #logo {
     text-align: right;
     padding-right: 0;
+    margin-top: -20px;
     margin-bottom: 20px;
+    align-items: center;
 }
+
 
 .col-2 {
     padding-top: 20px;
