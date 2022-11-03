@@ -16,6 +16,36 @@ public class EnterpriseService : IEnterpriseService
         _enterpriseStatusRepository = enterpriseStatusRepository;
     }
 
+    public async Task<EnterpriseProfileViewModel> GetEnterpriseForProfileById(int enterpriseId)
+    {
+        try
+        {
+
+
+            Enterprise? enterpriseForView = await _enterpriseRepository.GetById(enterpriseId);
+
+            if (enterpriseForView == null)
+                return null;
+
+            EnterpriseProfileViewModel enterpriseViewModelForProfile = new EnterpriseProfileViewModel
+            {
+                Id = enterpriseForView.Id,
+                FantasyName = enterpriseForView.FantasyName,
+                City = enterpriseForView.City,
+                State = enterpriseForView.State,
+                Sector = enterpriseForView.Sector,
+                Address = enterpriseForView.Address
+            };
+
+            return enterpriseViewModelForProfile;
+
+        }catch
+        {
+            return null; 
+        }
+
+    }
+
     public async Task<bool> Login(EnterpriseLoginViewModel model)
     {
         IEnumerable<Enterprise> enterprises = await _enterpriseRepository.GetAll();
