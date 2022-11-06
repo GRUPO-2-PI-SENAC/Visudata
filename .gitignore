@@ -146,3 +146,4 @@ PI.Application/bin/Debug/net6.0/PI.Application.deps.json
 /Visudata.Infra.Data/obj
 /Visudata.Application/obj
 /Visudata.Domain/obj
+/Visudata.Infra.Data/Migrations
