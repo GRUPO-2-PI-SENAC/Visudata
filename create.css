@@ -1,0 +1,46 @@
+* {
+    /*box-shadow: inset 0px 0px 2px rgba(0, 0, 0, 0.8);*/
+    font-family: Roboto;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+}
+main {
+    width: 90%;
+}
+header {
+    margin-bottom: 5%;
+}
+
+
+#navbar {
+    background-color: #09427D;
+}
+
+.maxnmin .namesMax, .modelName, .brandName {
+    font-weight: bold;
+    float: left;
+    width: 40%;
+}
+
+.maxnmin .namesMin, .tagName, .categoryName, #categoryName {
+    font-weight: bold;
+    float: right;
+    width: 40%;
+
+}
+
+ .noiseName, .vibraName, .tempName {
+    float: right;
+    width: 35%;
+    align-items: center;
+    margin-top: 2.8px;
+    
+} 
+
+#sendButton {
+    margin-bottom: 50px;
+}

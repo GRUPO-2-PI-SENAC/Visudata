@@ -1,0 +1,115 @@
+* {
+    /*box-shadow: inset 0px 0px 2px rgba(0, 0, 0, 0.8);*/
+    font-family: Roboto;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+}
+
+.card, .aCard {
+    margin: 7% 7% 7%;
+    height: 80px;
+    width: 85%;
+    background-color: #E9F0F8;
+    border-color: transparent;
+}
+
+.model {
+    float: left;
+    margin-top: 2%;
+    margin-left: 3%;
+    font-weight: bold;
+    color: #09427D;
+
+}
+
+.tag {
+    float: right;
+    margin-top: 2%;
+    margin-right: 3%;
+    font-weight: bold;
+    color: #09427D;
+
+}
+
+.tempStt {
+    float: left;
+    width: 30%;
+    margin-right: 8%;
+    margin-left: 3%;
+}
+
+.vibStt {
+    float: right;
+    margin-top: -0.9%;
+    margin-left: 10%;
+    margin-right: 2%;
+    width: 20%;
+
+}
+
+
+.redBt, .yellowBt, .greenBt {
+    border-radius: 100%;
+    height: 15px
+}
+
+.redBt {
+    float: left;
+    background-color: #FF0A0A;
+    border-color: transparent;
+    margin-left: 1%;
+}
+
+.tempValue {
+    float: right;
+    margin-top: -19%;
+    margin-right: 40%;
+    font-weight: bold;
+    color: #474747;
+
+}
+
+.yellowBt {
+    margin-top: 0%;
+    margin-right: 2%;
+    float: left;
+    background-color: #FFDD15;
+    border-color: transparent;
+}
+.noiseValue {
+    font-weight: bold;
+    color: #474747;
+    margin-top: -1.4%;
+}
+
+
+
+.greenBt {
+    margin-bottom: 10%;
+    background-color: #00FF29;
+    border-color: transparent;
+}
+.vibValue {
+    font-weight: bold;
+    color: #474747;
+    margin-left: 20px;
+    margin-top: -39%;
+}
+
+
+
+#navbar {
+    position: fixed;
+    background-color: #09427D;
+}
+
+.mt-4 {
+    text-align: center;
+    margin-bottom: 1.5em;
+    font-weight: bold;
+    color: #09427D;
+}
