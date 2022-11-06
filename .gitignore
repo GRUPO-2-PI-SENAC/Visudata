@@ -133,3 +133,9 @@ PI.Application/bin/Debug/net6.0/PI.Application.deps.json
 .vs/PI/DesignTimeBuild/.dtbcache.v2
 *.vs
 /PI.Web/obj/Debug/net6.0
+/Visudata.Application/obj/Debug/net6.0
+/Visudata.Domain/obj/Debug/net6.0
+/Visudata.Application/obj/Release/net6.0
+/Visudata.Domain/obj/Release/net6.0
+/Visudata.Infra.Data/obj/Release/net6.0
+/Visudata.Infra.IoC/obj/Release/net6.0

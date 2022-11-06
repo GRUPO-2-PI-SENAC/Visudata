@@ -16,9 +16,11 @@ public static class DependencyInjection
     {
         //Local connection !!!
         services.AddDbContext<VisudataDbContext>(options => options.UseMySql(
-            "Server=localhost;Port=3306;Database=pi_db;User=root;Password=root;",
+            "Server=localhost;Port=3306;Database=visudata_db;User=root;Password=root;",
             ServerVersion.Parse("8.0.30-mysql" , ServerType.MySql), m => m.MigrationsAssembly(typeof(VisudataDbContext).Assembly.FullName)));
 
+        services.AddDbContext<VisudataDbContext>();
+        
         #region repositories 
         
         services.AddScoped<IEnterpriseRepository, EnterpriseRepository>();
@@ -34,7 +36,6 @@ public static class DependencyInjection
         services.AddScoped<IMachineStatusRepository, MachineStatusRepository>();
 
         #endregion
-
 
         #region services
 

@@ -46,39 +46,46 @@ public class VisudataDbContext : DbContext
             }
         );
 
-        modelBuilder.Entity<UserProblemsCategory>().HasData(
-            new UserProblemsCategory
-            {
-                Id = 1,
-                Name = "",
-                Created_at = DateTime.Now
-            },
-            new UserProblemsCategory
-            {
-                Id = 2,
-                Name = "",
-                Created_at = DateTime.Now
-            },
-            new UserProblemsCategory
-            {
-                Id = 3,
-                Name = "",
-                Created_at = DateTime.Now
-            },
-            new UserProblemsCategory
-            {
-                Id = 4 ,
-                Name = "", 
-                Created_at = DateTime.Now 
-            },
-            new UserProblemsCategory
-            {
-                Id = 5 ,
-                Name = "",
-                Created_at = DateTime.Now 
-            }
-        );
+        // modelBuilder.Entity<UserProblemsCategory>().HasData(
+        //     new UserProblemsCategory
+        //     {
+        //         Id = 1,
+        //         Name = "",
+        //         Created_at = DateTime.Now
+        //     },
+        //     new UserProblemsCategory
+        //     {
+        //         Id = 2,
+        //         Name = "",
+        //         Created_at = DateTime.Now
+        //     },
+        //     new UserProblemsCategory
+        //     {
+        //         Id = 3,
+        //         Name = "",
+        //         Created_at = DateTime.Now
+        //     },
+        //     new UserProblemsCategory
+        //     {
+        //         Id = 4,
+        //         Name = "",
+        //         Created_at = DateTime.Now
+        //     },
+        //     new UserProblemsCategory
+        //     {
+        //         Id = 5,
+        //         Name = "",
+        //         Created_at = DateTime.Now
+        //     }
+        // );
+        //
+        // modelBuilder.Entity<MachineCategory>().HasData(
+        //     new MachineCategory
+        //     {
+        //         
+        //     }
+        // );
 
-        modelBuilder.HasDefaultSchema("Visudata_db");
+        //modelBuilder.HasDefaultSchema("Visudata_db");
     }
 }
