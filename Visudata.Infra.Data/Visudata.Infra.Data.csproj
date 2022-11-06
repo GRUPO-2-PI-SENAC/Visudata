@@ -26,4 +26,8 @@
       <ProjectReference Include="..\Visudata.Domain\Visudata.Domain.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Context" />
+    </ItemGroup>
+
 </Project>

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace PI.Domain.Entities
 {
     [Table("us_problems_category")]
-    public class ProblemsCategory : EntityBase
+    public class UserProblemsCategory : EntityBase
     {
         [Required(ErrorMessage = "Required field")]
         public string Name { get; set; }

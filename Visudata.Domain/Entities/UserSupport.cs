@@ -11,6 +11,6 @@ namespace PI.Domain.Entities
         [Required(ErrorMessage = "Email Address of representative employee is required field for sent email of soluction procedures")]
         public string AddressEmailOfRepresentativeEmployee { get; set; }
         [Required(ErrorMessage = "Need the type of problem !")]
-        public ProblemsCategory ProblemsCategory { get; set; }
+        public UserProblemsCategory UserProblemsCategory { get; set; }
     }
 }

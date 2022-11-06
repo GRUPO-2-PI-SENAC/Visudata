@@ -292,7 +292,6 @@ public class MachineServices : IMachineService
 
                 return true;
             }
-
             return false;
         }
         catch (Exception e)
