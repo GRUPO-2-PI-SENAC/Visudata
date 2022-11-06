@@ -139,3 +139,10 @@ PI.Application/bin/Debug/net6.0/PI.Application.deps.json
 /Visudata.Domain/obj/Release/net6.0
 /Visudata.Infra.Data/obj/Release/net6.0
 /Visudata.Infra.IoC/obj/Release/net6.0
+/Visudata.Web/bin/Debug/net6.0
+/Visudata.Web/obj/Debug/net6.0
+/Visudata.Web/obj
+/Visudata.Infra.IoC/obj
+/Visudata.Infra.Data/obj
+/Visudata.Application/obj
+/Visudata.Domain/obj
