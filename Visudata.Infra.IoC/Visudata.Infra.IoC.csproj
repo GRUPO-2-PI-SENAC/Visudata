@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <RootNamespace>PI.Infra.IoC</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
+      <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="6.0.2" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Visudata.Application\Visudata.Application.csproj" />
+      <ProjectReference Include="..\Visudata.Domain\Visudata.Domain.csproj" />
+      <ProjectReference Include="..\Visudata.Infra.Data\Visudata.Infra.Data.csproj" />
+    </ItemGroup>
+
+</Project>

@@ -1,0 +1,17 @@
+C:\Users\davim\OneDrive\Área de Trabalho\Visudata\Visudata.Infra.Data\bin\Debug\net6.0\Visudata.Infra.Data.deps.json
+C:\Users\davim\OneDrive\Área de Trabalho\Visudata\Visudata.Infra.Data\bin\Debug\net6.0\Visudata.Infra.Data.runtimeconfig.json
+C:\Users\davim\OneDrive\Área de Trabalho\Visudata\Visudata.Infra.Data\bin\Debug\net6.0\Visudata.Infra.Data.dll
+C:\Users\davim\OneDrive\Área de Trabalho\Visudata\Visudata.Infra.Data\bin\Debug\net6.0\Visudata.Infra.Data.pdb
+C:\Users\davim\OneDrive\Área de Trabalho\Visudata\Visudata.Infra.Data\bin\Debug\net6.0\Visudata.Domain.dll
+C:\Users\davim\OneDrive\Área de Trabalho\Visudata\Visudata.Infra.Data\bin\Debug\net6.0\Visudata.Domain.pdb
+C:\Users\davim\OneDrive\Área de Trabalho\Visudata\Visudata.Infra.Data\obj\Debug\net6.0\Visudata.Infra.Data.csproj.AssemblyReference.cache
+C:\Users\davim\OneDrive\Área de Trabalho\Visudata\Visudata.Infra.Data\obj\Debug\net6.0\Visudata.Infra.Data.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\davim\OneDrive\Área de Trabalho\Visudata\Visudata.Infra.Data\obj\Debug\net6.0\Visudata.Infra.Data.AssemblyInfoInputs.cache
+C:\Users\davim\OneDrive\Área de Trabalho\Visudata\Visudata.Infra.Data\obj\Debug\net6.0\Visudata.Infra.Data.AssemblyInfo.cs
+C:\Users\davim\OneDrive\Área de Trabalho\Visudata\Visudata.Infra.Data\obj\Debug\net6.0\Visudata.Infra.Data.csproj.CoreCompileInputs.cache
+C:\Users\davim\OneDrive\Área de Trabalho\Visudata\Visudata.Infra.Data\obj\Debug\net6.0\Visudata.Infra.Data.csproj.CopyComplete
+C:\Users\davim\OneDrive\Área de Trabalho\Visudata\Visudata.Infra.Data\obj\Debug\net6.0\Visudata.Infra.Data.dll
+C:\Users\davim\OneDrive\Área de Trabalho\Visudata\Visudata.Infra.Data\obj\Debug\net6.0\refint\Visudata.Infra.Data.dll
+C:\Users\davim\OneDrive\Área de Trabalho\Visudata\Visudata.Infra.Data\obj\Debug\net6.0\Visudata.Infra.Data.pdb
+C:\Users\davim\OneDrive\Área de Trabalho\Visudata\Visudata.Infra.Data\obj\Debug\net6.0\Visudata.Infra.Data.genruntimeconfig.cache
+C:\Users\davim\OneDrive\Área de Trabalho\Visudata\Visudata.Infra.Data\obj\Debug\net6.0\ref\Visudata.Infra.Data.dll

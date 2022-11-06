@@ -1,0 +1,15 @@
+C:\Users\davim\OneDrive\Área de Trabalho\Visudata\PI.Application\bin\Debug\net6.0\PI.Application.deps.json
+C:\Users\davim\OneDrive\Área de Trabalho\Visudata\PI.Application\bin\Debug\net6.0\PI.Application.dll
+C:\Users\davim\OneDrive\Área de Trabalho\Visudata\PI.Application\bin\Debug\net6.0\PI.Application.pdb
+C:\Users\davim\OneDrive\Área de Trabalho\Visudata\PI.Application\bin\Debug\net6.0\PI.Domain.dll
+C:\Users\davim\OneDrive\Área de Trabalho\Visudata\PI.Application\bin\Debug\net6.0\PI.Domain.pdb
+C:\Users\davim\OneDrive\Área de Trabalho\Visudata\PI.Application\obj\Debug\net6.0\PI.Application.csproj.AssemblyReference.cache
+C:\Users\davim\OneDrive\Área de Trabalho\Visudata\PI.Application\obj\Debug\net6.0\PI.Application.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\davim\OneDrive\Área de Trabalho\Visudata\PI.Application\obj\Debug\net6.0\PI.Application.AssemblyInfoInputs.cache
+C:\Users\davim\OneDrive\Área de Trabalho\Visudata\PI.Application\obj\Debug\net6.0\PI.Application.AssemblyInfo.cs
+C:\Users\davim\OneDrive\Área de Trabalho\Visudata\PI.Application\obj\Debug\net6.0\PI.Application.csproj.CoreCompileInputs.cache
+C:\Users\davim\OneDrive\Área de Trabalho\Visudata\PI.Application\obj\Debug\net6.0\PI.Application.csproj.CopyComplete
+C:\Users\davim\OneDrive\Área de Trabalho\Visudata\PI.Application\obj\Debug\net6.0\PI.Application.dll
+C:\Users\davim\OneDrive\Área de Trabalho\Visudata\PI.Application\obj\Debug\net6.0\refint\PI.Application.dll
+C:\Users\davim\OneDrive\Área de Trabalho\Visudata\PI.Application\obj\Debug\net6.0\PI.Application.pdb
+C:\Users\davim\OneDrive\Área de Trabalho\Visudata\PI.Application\obj\Debug\net6.0\ref\PI.Application.dll

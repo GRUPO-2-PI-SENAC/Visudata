@@ -1,0 +1,17 @@
+C:\Users\davim\OneDrive\Área de Trabalho\Visudata\PI.Infra.Data\bin\Debug\net6.0\PI.Infra.Data.deps.json
+C:\Users\davim\OneDrive\Área de Trabalho\Visudata\PI.Infra.Data\bin\Debug\net6.0\PI.Infra.Data.runtimeconfig.json
+C:\Users\davim\OneDrive\Área de Trabalho\Visudata\PI.Infra.Data\bin\Debug\net6.0\PI.Infra.Data.dll
+C:\Users\davim\OneDrive\Área de Trabalho\Visudata\PI.Infra.Data\bin\Debug\net6.0\PI.Infra.Data.pdb
+C:\Users\davim\OneDrive\Área de Trabalho\Visudata\PI.Infra.Data\bin\Debug\net6.0\PI.Domain.dll
+C:\Users\davim\OneDrive\Área de Trabalho\Visudata\PI.Infra.Data\bin\Debug\net6.0\PI.Domain.pdb
+C:\Users\davim\OneDrive\Área de Trabalho\Visudata\PI.Infra.Data\obj\Debug\net6.0\PI.Infra.Data.csproj.AssemblyReference.cache
+C:\Users\davim\OneDrive\Área de Trabalho\Visudata\PI.Infra.Data\obj\Debug\net6.0\PI.Infra.Data.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\davim\OneDrive\Área de Trabalho\Visudata\PI.Infra.Data\obj\Debug\net6.0\PI.Infra.Data.AssemblyInfoInputs.cache
+C:\Users\davim\OneDrive\Área de Trabalho\Visudata\PI.Infra.Data\obj\Debug\net6.0\PI.Infra.Data.AssemblyInfo.cs
+C:\Users\davim\OneDrive\Área de Trabalho\Visudata\PI.Infra.Data\obj\Debug\net6.0\PI.Infra.Data.csproj.CoreCompileInputs.cache
+C:\Users\davim\OneDrive\Área de Trabalho\Visudata\PI.Infra.Data\obj\Debug\net6.0\PI.Infra.Data.csproj.CopyComplete
+C:\Users\davim\OneDrive\Área de Trabalho\Visudata\PI.Infra.Data\obj\Debug\net6.0\PI.Infra.Data.dll
+C:\Users\davim\OneDrive\Área de Trabalho\Visudata\PI.Infra.Data\obj\Debug\net6.0\refint\PI.Infra.Data.dll
+C:\Users\davim\OneDrive\Área de Trabalho\Visudata\PI.Infra.Data\obj\Debug\net6.0\PI.Infra.Data.pdb
+C:\Users\davim\OneDrive\Área de Trabalho\Visudata\PI.Infra.Data\obj\Debug\net6.0\PI.Infra.Data.genruntimeconfig.cache
+C:\Users\davim\OneDrive\Área de Trabalho\Visudata\PI.Infra.Data\obj\Debug\net6.0\ref\PI.Infra.Data.dll
