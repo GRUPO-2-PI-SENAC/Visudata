@@ -1,0 +1,214 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" GroupingSetting="Access" MembersFormat="FullSignature">
+  <Class Name="PI.Infra.IoC.DependencyInjection" Collapsed="true">
+    <Position X="39" Y="1.5" Width="1.75" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="PI.Infra.Data.Repositories.BaseRepository&lt;T&gt;" Collapsed="true">
+    <Position X="15" Y="4.5" Width="1.75" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="PI.Infra.Data.Repositories.EnterpriseRepository" Collapsed="true">
+    <Position X="10" Y="5.75" Width="1.75" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="PI.Infra.Data.Repositories.EnterpriseStatusRepository" Collapsed="true">
+    <Position X="17.75" Y="5.75" Width="2.25" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="PI.Infra.Data.Repositories.LogsRepository" Collapsed="true">
+    <Position X="23.5" Y="5.75" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="PI.Infra.Data.Repositories.MachineCategoryRepository" Collapsed="true">
+    <Position X="3.75" Y="5.75" Width="2.25" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="PI.Infra.Data.Repositories.MachineRepository" Collapsed="true">
+    <Position X="12.5" Y="5.75" Width="1.75" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="PI.Infra.Data.Repositories.MachineStatusRepository" Collapsed="true">
+    <Position X="20.75" Y="5.75" Width="2" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="PI.Infra.Data.Repositories.OutlierRegisterRepository" Collapsed="true">
+    <Position X="25.75" Y="5.75" Width="2" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="PI.Infra.Data.Repositories.UserProblemsCategoryRepository" Collapsed="true">
+    <Position X="6.75" Y="5.75" Width="2.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="PI.Infra.Data.Repositories.UserSupportRepository" Collapsed="true">
+    <Position X="15" Y="5.75" Width="2" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="PI.Infra.Data.Context.VisudataDbContext" Collapsed="true">
+    <Position X="31.5" Y="4.5" Width="1.75" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="PI.Domain.Entities.Enterprise" Collapsed="true">
+    <Position X="3.25" Y="8.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="PI.Domain.Entities.EnterpriseStatus" Collapsed="true">
+    <Position X="36" Y="2.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="PI.Domain.Entities.EntityBase" Collapsed="true">
+    <Position X="9" Y="7.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="PI.Domain.Entities.Log" Collapsed="true">
+    <Position X="37.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="PI.Domain.Entities.Machine" Collapsed="true">
+    <Position X="5.5" Y="8.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="PI.Domain.Entities.MachineCategory" Collapsed="true">
+    <Position X="10.5" Y="8.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="PI.Domain.Entities.MachineStatus" Collapsed="true">
+    <Position X="33.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="PI.Domain.Entities.OutlierRegister" Collapsed="true">
+    <Position X="15" Y="8.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="PI.Domain.Entities.UserProblemsCategory" Collapsed="true">
+    <Position X="7.75" Y="8.75" Width="2" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="PI.Domain.Entities.UserSupport" Collapsed="true">
+    <Position X="12.75" Y="8.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="PI.Application.Services.EnterpriseService" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="34.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="PI.Application.Services.MachineServices" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="29.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="PI.Application.Services.OutlierRegisterService" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="35.25" Y="3.5" Width="1.75" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="PI.Application.Services.UserSupportService" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="29.25" Y="4.5" Width="1.75" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="PI.Application.ViewModel.Enterprise.CreateEnterpriseViewModel" Collapsed="true">
+    <Position X="36.5" Y="1.5" Width="2.25" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="PI.Application.ViewModel.Enterprise.EnterpriseLoginViewModel" Collapsed="true">
+    <Position X="29" Y="2.5" Width="2.25" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="PI.Application.ViewModel.Enterprise.EnterpriseProfileViewModel" Collapsed="true">
+    <Position X="31.5" Y="2.5" Width="2.25" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="PI.Application.ViewModel.Enterprise.UpdateEnterpriseViewModel" Collapsed="true">
+    <Position X="37.25" Y="3.5" Width="2.25" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="PI.Application.ViewModel.UserSupport.AddUserSupportViewModel" Collapsed="true">
+    <Position X="31" Y="1.5" Width="2.25" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="PI.Application.ViewModel.Machine.AddMachineViewModel" Collapsed="true">
+    <Position X="28.75" Y="1.5" Width="2" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="PI.Application.ViewModel.Machine.AmountOfMachineByStatusViewModel" Collapsed="true">
+    <Position X="33.5" Y="1.5" Width="2.75" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="PI.Application.ViewModel.Machine.MachinesForListViewModel" Collapsed="true">
+    <Position X="31" Y="3.5" Width="2.25" />
+    <TypeIdentifier />
+  </Class>
+  <Interface Name="PI.Domain.Interfaces.IBaseRepository&lt;T&gt;" Collapsed="true">
+    <Position X="15.25" Y="1.5" Width="1.75" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="PI.Domain.Interfaces.IEnterpriseRepository" Collapsed="true">
+    <Position X="10" Y="2.75" Width="2" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="PI.Domain.Interfaces.IEnterpriseStatusRepository" Collapsed="true">
+    <Position X="18" Y="2.75" Width="2.25" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="PI.Domain.Interfaces.ILogsRepository" Collapsed="true">
+    <Position X="23.75" Y="2.75" Width="1.5" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="PI.Domain.Interfaces.IMachineCategoryRepository" Collapsed="true">
+    <Position X="3.75" Y="2.75" Width="2.25" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="PI.Domain.Interfaces.IMachineRepository" Collapsed="true">
+    <Position X="12.75" Y="2.75" Width="1.75" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="PI.Domain.Interfaces.IMachineStatusRepository" Collapsed="true">
+    <Position X="21" Y="2.75" Width="2" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="PI.Domain.Interfaces.IOutlierRegisterRepository" Collapsed="true">
+    <Position X="26" Y="2.75" Width="2.25" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="PI.Domain.Interfaces.IUserProblemsCategoryRepository" Collapsed="true">
+    <Position X="6.75" Y="2.75" Width="2.5" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="PI.Domain.Interfaces.IUserSupportRepository" Collapsed="true">
+    <Position X="15.25" Y="2.75" Width="2" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="PI.Application.Intefaces.IEnterpriseService" Collapsed="true">
+    <Position X="29.25" Y="5.75" Width="1.5" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="PI.Application.Intefaces.ILogsService" Collapsed="true">
+    <Position X="31" Y="5.75" Width="1.5" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="PI.Application.Intefaces.IMachineService" Collapsed="true">
+    <Position X="32.75" Y="5.75" Width="1.5" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="PI.Application.Intefaces.IOutlierRegisterService" Collapsed="true">
+    <Position X="34.5" Y="5.75" Width="2" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="PI.Application.Intefaces.IUserSupportService" Collapsed="true">
+    <Position X="36.75" Y="5.75" Width="1.75" />
+    <TypeIdentifier />
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

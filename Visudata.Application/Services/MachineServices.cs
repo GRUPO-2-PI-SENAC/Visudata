@@ -156,7 +156,7 @@ public class MachineServices : IMachineService
                 return false;
             }
 
-            await _machineRepository.RemoveById(machineForRemove.Id);
+            await _machineRepository.RemoveById(machineForRemove.Id);   
 
             return true;
         }
@@ -182,6 +182,7 @@ public class MachineServices : IMachineService
             {
                 values.Add(new KeyValuePair<int, double>(log.Created_at.Hour, log.Temp));
             }
+
 
             return new JsonResult(values);
         }
