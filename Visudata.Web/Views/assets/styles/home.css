@@ -12,7 +12,7 @@ body{
 }
 
 .header{
-    height: 70px;
+    height: 80px;
     background-color: #2b5690;
     
     /* border-radius: 0px 0px 10px 10px; */
@@ -33,6 +33,9 @@ header .name-app{
   margin-top: 10px;
 }
 
+.visao-card .card{
+    border-width: 0px 0px 0px 5px;
+}
 
 .container-categories{
     padding: 0px 20px 40px 20px;
