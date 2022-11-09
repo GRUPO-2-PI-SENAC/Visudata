@@ -15,7 +15,7 @@ body{
     height: 80px;
     background-color: #2b5690;
     
-    /* border-radius: 0px 0px 10px 10px; */
+    border-radius: 0px 0px 10px 10px; 
 }
 
 .header img {
