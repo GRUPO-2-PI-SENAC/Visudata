@@ -20,23 +20,29 @@ header {
     background-color: #09427D;
 }
 
-.forms-content{
+.forms-content-infos{
     margin-left: 2%;
-    margin-right: -5%;
+    margin-right: -4%;
 }
 
-.forms-content label{
+.forms-content-infos label{
     font-weight: 100;
     margin-bottom: 2%;
 }
 
-.maxnmin .namesMax, .modelName, .brandName {
+.maxnmin .max-container, .modelName, .brandName {
     font-weight: bold;
     float: left;
     width: 40%;
 }
 
-.maxnmin .namesMin, .tagName, .categoryName, #categoryName {
+.maxnmin input{
+    width: 40px; 
+    margin-bottom: 5%; 
+    border-color: transparent white black transparent;
+}
+
+.maxnmin .min-container, .tagName, .categoryName, #categoryName {
     font-weight: bold;
     float: right;
     width: 40%;
