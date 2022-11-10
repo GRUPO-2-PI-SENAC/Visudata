@@ -7,7 +7,7 @@
 body{
     margin: 0;
     padding: 0;
-    text-decoration: none;
+    text-decoration: none !important;
     font-family: var(--font-secondary);
 }
 
@@ -33,8 +33,10 @@ header .name-app{
   margin-top: 10px;
 }
 
+
 .visao-card .card{
     border-width: 0px 0px 0px 5px;
+    color: black !important;
 }
 
 .container-categories{
