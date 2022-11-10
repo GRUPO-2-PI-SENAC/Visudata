@@ -20,6 +20,16 @@ header {
     background-color: #09427D;
 }
 
+.forms-content{
+    margin-left: 2%;
+    margin-right: -5%;
+}
+
+.forms-content label{
+    font-weight: 100;
+    margin-bottom: 2%;
+}
+
 .maxnmin .namesMax, .modelName, .brandName {
     font-weight: bold;
     float: left;
