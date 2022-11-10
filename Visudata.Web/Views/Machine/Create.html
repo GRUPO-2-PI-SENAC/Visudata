@@ -21,14 +21,14 @@
         <a href="../home/index.html">
             <img src="../assets/icons/volta-2.svg" alt="voltar">
         </a>
-        <div class="machineText" style="font-size: 35px; text-align:center">
+        <div class="machineText" style="font-size: 30px; text-align:center">
             Digite as principais informações da sua
-            <div style="font-size: 35px; color: #09427D; text-align:center; font-weight: bold;">máquina</div>
+            <div style="font-size: 35px; color: #2b5690; text-align:center; font-weight: bold;">máquina</div>
         </div>
     </header>
     <!-- main - forms -->
     <main>
-        <div class="forms" style="width: 80%; justify-content: center; align-items: center; display:contents;">
+        <div class="forms">
             <div class="container-fluid">
                 <div class="row row-cols-md-4 g-3 forms-content-infos">
                     <div class="btn-group">
@@ -53,47 +53,56 @@
                     </div>
                 </div>
                 
-                <div class="maxnmin">
-                    <div class="max-container" style="margin-left: 6%">
-                        <label class="maxTemp" style="margin: 10% 0% 10% 0%">Máx</label> <br>
-                        <div class="maxtemp">
-                            <input type="number">ºC
-                        </div>
-                        <div class="maxfreq">
-                            <input type="number"> Hz
-                        </div>
-                        <div class="maxnoise">
-                            <input type="number"> dB
-                        </div>
-                    </div>
-                    <div class="min-container" style="margin-right: 10%">
-                        <label class="minTemp" style="margin: 10% 0% 10% 0%">Mín</label> <br>
-                        <div class="mintemp">
-                            <input type="number"> ºC
+                <div class="row maxnmin justify-content-center">
+                    <div class="col tipos-container">
                             <div class="tempName">
                                 <h6>Temperatura</h6>
                             </div>
-                        </div>
-                        <div class="minfreq">
-                            <input type="number"> Hz
                             <div class="vibraName">
                                 <h6>Vibração</h6>
                             </div>
-                        </div>
-                        <div class="minnoise">
-                            <input type="number"> dB
                             <div class="noiseName">
                                 <h6>Ruído</h6>
                             </div>
+                       
+                        
+                    </div>
+                    <div class="col max-container" style="margin-left: 6%">
+                        <label class="maxTemp">Máx</label> <br>
+                        <div class="maxtemp">
+                            <input type="number"> <label>ºC</label>
+                            
                         </div>
-
+                        <div class="maxfreq">
+                            <input type="number"> <label>Hz</label>
+                            
+                        </div>
+                        <div class="maxnoise">
+                            <input type="number"> <label>dB</label>
+                            
+                        </div>
+                    </div>
+                    <div class="col min-container" >
+                        <label class="minTemp">Mín</label> <br>
+                        <div class="mintemp">
+                            <input type="number"> <label>ºC</label>
+                            
+                        </div>
+                        <div class="minfreq">
+                            <input type="number"> <label>Hz</label>
+                            
+                        </div>
+                        <div class="minnoise">
+                            <input type="number"> <label>dB</label>
+                            
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
 
         <!-- botão cadastrar -->
-        <button class="mt-5 w-100 btn btn-primary btn-lg" type="submit" id="sendButton" style="font-weight: bold; font-size: 20px; background-color: #09427D !important; margin-left: 5%;">Cadastrar</button>
+        <button class="mt-5 w-100 btn btn-primary btn-lg btn-cad" type="submit" id="sendButton">Cadastrar</button>
 
     </main>
     <!-- footer -->
