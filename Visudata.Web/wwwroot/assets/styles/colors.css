@@ -1,0 +1,27 @@
+
+:root{
+
+    /*Azul*/
+    --blue-color-bg: #09427D;
+    --blue-second-bg: #2b5690;
+    --blue-light-color-second: #4e73df;
+    --blue-light-color: #0E56A0cc;
+    --blue-dark-color: #1F2E35;
+    --blue-ciano-color: #81D8F7;
+
+    /*Cinza*/
+    --grey-color-50: #F0F0F0;
+    --grey-color-60-bg: #F7F7F7;
+    --grey-color-100: #E9E9E9;
+    --grey-color-150: #D9D9D9;
+    --grey-color-200: #CCCCCC;
+    --grey-color-300: #B0B0B0;
+    --grey-color-dark: #474747;
+    
+
+    --white-color: #fff;
+
+}
+
+
+

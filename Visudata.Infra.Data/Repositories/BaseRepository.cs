@@ -26,7 +26,7 @@ public class BaseRepository<T> : IBaseRepository<T>  where T : class
 
     public async Task<T> GetById(int entityId)
     {
-        return _context.Set<T>().Find(entityId);
+        return await _context.Set<T>().FindAsync(entityId);
     }
 
     public async Task<IEnumerable<T>> GetAll()

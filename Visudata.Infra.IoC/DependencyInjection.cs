@@ -16,7 +16,7 @@ public static class DependencyInjection
     {
         //Local connection !!!
         services.AddDbContext<VisudataDbContext>(options => options.UseMySql(
-            "Server=localhost;Port=3306;Database=visudata_db;User=root;Password=root;",
+            "Server=localhost;Port=3306;Database=pi_db;User=root;Password=root;",
             ServerVersion.Parse("8.0.30-mysql" , ServerType.MySql), m => m.MigrationsAssembly(typeof(VisudataDbContext).Assembly.FullName)));
 
         services.AddDbContext<VisudataDbContext>();
@@ -30,10 +30,10 @@ public static class DependencyInjection
         services.AddScoped<IMachineCategoryRepository, MachineCategoryRepository>();
         services.AddScoped<IOutlierRegisterRepository, OutlierRegisterRepository>();
         //services.AddScoped<IMachineCategoryRepository, CategoryRepository>();
-        
         services.AddScoped<IUserSupportRepository, UserSupportRepository>();
         services.AddScoped<IEnterpriseStatusRepository, EnterpriseStatusRepository>();
         services.AddScoped<IMachineStatusRepository, MachineStatusRepository>();
+        services.AddScoped<IUserProblemsCategoryRepository, UserProblemsCategoryRepository>();
 
         #endregion
 
@@ -41,6 +41,8 @@ public static class DependencyInjection
 
         services.AddScoped<IEnterpriseService, EnterpriseService>();
         services.AddScoped<IMachineService, MachineServices>();
+        services.AddScoped<IUserProblemsCategoryService, UserProblemsCategoryService>();
+        services.AddScoped<IUserSupportService, UserSupportService>();
 
         #endregion
     }

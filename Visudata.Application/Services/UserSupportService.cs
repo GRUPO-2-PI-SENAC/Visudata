@@ -19,7 +19,7 @@ public class UserSupportService : IUserSupportService
         _UserProblemsCategoryRepository = userProblemsCategoryRepository;
     }
 
-    public async Task<bool> CreateUserReport(AddUserSupportViewModel model, int enterpriseId)
+    public async Task<bool> CreateUserReport(AddUserSupportViewModel model)
     {
         try
         {
@@ -33,7 +33,7 @@ public class UserSupportService : IUserSupportService
             if (isAlreadTheSameProblemInTheDatabase)
                 return false;
 
-            Enterprise? enterpriseWhichCreateProblemReport = await _EnterpriseRepository.GetById(enterpriseId);
+            Enterprise? enterpriseWhichCreateProblemReport = await _EnterpriseRepository.GetById(model.EnterpriseId);
 
             if (enterpriseWhichCreateProblemReport.Equals(null))
                 return false;

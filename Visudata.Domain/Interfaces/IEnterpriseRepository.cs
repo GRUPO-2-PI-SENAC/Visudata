@@ -11,5 +11,6 @@ namespace PI.Domain.Interfaces
     {
         bool Login(string username, string password);
         Task<IEnumerable<Enterprise>> GetAllWithRelationships();
+        Enterprise GetEnterpriseByIdWithoutAsync(int enterpriseId);
     }
 }

@@ -9,5 +9,6 @@ public interface IEnterpriseService
     Task<bool> Update(UpdateEnterpriseViewModel model);
     Task<bool> Remove(int enterpriseId);
     Task<EnterpriseProfileViewModel> GetEnterpriseForProfileById(int enterpriseId);
+    Task<EnterpriseProfileViewModel> GetEnterpriseByCnpj(string enterpriseCnpj);
 
 }

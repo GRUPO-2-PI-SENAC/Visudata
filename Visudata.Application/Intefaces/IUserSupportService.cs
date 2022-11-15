@@ -4,5 +4,5 @@ namespace PI.Application.Intefaces;
 
 public interface IUserSupportService
 {
-    Task<bool> CreateUserReport(AddUserSupportViewModel model, int enterpriseId);
+    Task<bool> CreateUserReport(AddUserSupportViewModel model);
 }

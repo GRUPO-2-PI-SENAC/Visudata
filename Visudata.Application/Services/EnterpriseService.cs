@@ -16,13 +16,41 @@ public class EnterpriseService : IEnterpriseService
         _enterpriseStatusRepository = enterpriseStatusRepository;
     }
 
+    public async Task<EnterpriseProfileViewModel> GetEnterpriseByCnpj(string enterpriseCnpj)
+    {
+        try
+        {
+            List<Enterprise> enterprisesInDb = _enterpriseRepository.GetAll().Result.ToList();
+
+            Enterprise enterpriseFromCnpj = enterprisesInDb.FirstOrDefault(enterprise => enterprise.Cnpj == enterpriseCnpj);
+
+            if (enterpriseFromCnpj == null)
+                return new EnterpriseProfileViewModel();
+
+            return new EnterpriseProfileViewModel()
+            {
+                Id = enterpriseFromCnpj.Id,
+                Address = enterpriseFromCnpj.Address,
+                City = enterpriseFromCnpj.City,
+                FantasyName = enterpriseFromCnpj.FantasyName,
+                Sector = enterpriseFromCnpj.Sector,
+                State = enterpriseFromCnpj.State
+            };
+        }
+        catch
+        {
+            return new EnterpriseProfileViewModel();
+        }
+
+    }
+
     public async Task<EnterpriseProfileViewModel> GetEnterpriseForProfileById(int enterpriseId)
     {
         try
         {
+            List<Enterprise> enterprises = _enterpriseRepository.GetAll().Result.ToList();
 
-
-            Enterprise? enterpriseForView = await _enterpriseRepository.GetById(enterpriseId);
+            Enterprise? enterpriseForView =  await _enterpriseRepository.GetById(enterpriseId);
 
             if (enterpriseForView == null)
                 return null;
@@ -39,9 +67,10 @@ public class EnterpriseService : IEnterpriseService
 
             return enterpriseViewModelForProfile;
 
-        }catch
+        }
+        catch
         {
-            return null; 
+            return null;
         }
 
     }
@@ -68,7 +97,7 @@ public class EnterpriseService : IEnterpriseService
             }
             catch
             {
-                return false; 
+                return false;
             }
 
         }

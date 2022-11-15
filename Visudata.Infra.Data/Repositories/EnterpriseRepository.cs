@@ -17,6 +17,11 @@ public class EnterpriseRepository : BaseRepository<Enterprise>, IEnterpriseRepos
         return enterprises;
     }
 
+    public Enterprise GetEnterpriseByIdWithoutAsync(int enterpriseId)
+    {
+        return _context.Enterprises.FirstOrDefault(enterprise => enterprise.Id == enterpriseId);
+    }
+
     public bool Login(string username, string password) => GetAll().
                             Result.
                             Where(enterprises => enterprises.Cnpj == username

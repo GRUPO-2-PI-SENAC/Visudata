@@ -1,17 +1,22 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Razor.TagHelpers;
 using Newtonsoft.Json;
 using PI.Application.Intefaces;
 using PI.Application.ViewModel.Enterprise;
+using PI.Application.ViewModel.UserSupport;
 
 namespace PI.Web.Controllers
 {
     public class EnterpriseController : Controller
     {
         private IEnterpriseService _enterpriseService;
-
-        public EnterpriseController(IEnterpriseService enterpriseService)
+        private readonly IUserSupportService _userSupportService;
+        private readonly IUserProblemsCategoryService _userProblemsCategoryService;
+        public EnterpriseController(IEnterpriseService enterpriseService, IUserSupportService userSupportService, IUserProblemsCategoryService userProblemsCategoryService)
         {
             _enterpriseService = enterpriseService;
+            _userSupportService = userSupportService;
+            _userProblemsCategoryService = userProblemsCategoryService;
         }
 
         public async Task<IActionResult> Settings()
@@ -103,6 +108,24 @@ namespace PI.Web.Controllers
             }
 
             return View();
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Support(int enterpriseId)
+        {
+
+            //string enterpriseCnpjAsString = Request.Cookies["enterpriseCnpj"].ToString();
+
+            //EnterpriseProfileViewModel model = await _enterpriseService.GetEnterpriseByCnpj(enterpriseCnpjAsString);
+
+            EnterpriseProfileViewModel model = await _enterpriseService.GetEnterpriseForProfileById(enterpriseId);
+
+            ViewBag.userProblemsCategoriesAsString = await _userProblemsCategoryService.GetNameOfAllAsString();
+
+            AddUserSupportViewModel modelForView = new AddUserSupportViewModel() { EnterpriseId = model.Id, NameOfEnterprise = model.FantasyName };
+
+            return View(modelForView);
+
         }
     }
 }

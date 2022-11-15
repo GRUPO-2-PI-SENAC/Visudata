@@ -1,0 +1,65 @@
+:root {
+    --font-default: "Open Sans", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    --font-primary: "Montserrat", sans-serif;
+    --font-secondary: "Poppins", sans-serif;
+  }
+
+body{
+    margin: 0;
+    padding: 0;
+    text-decoration: none !important;
+    font-family: var(--font-secondary);
+}
+
+.header{
+    height: 80px;
+    background-color: #2b5690;
+    
+    border-radius: 0px 0px 10px 10px; 
+}
+
+.header img {
+    margin-top: -5px;
+}
+
+header .name-app{
+    font-size: 25px;
+    color: white !important;
+    
+}
+
+#status-container{
+  padding: 15px;
+  margin-top: 10px;
+}
+
+
+.visao-card .card{
+    border-width: 0px 0px 0px 5px;
+    color: black !important;
+}
+
+.container-categories{
+    padding: 0px 20px 40px 20px;
+    width: 18rem;
+    
+}
+
+.categories-group{
+    padding: 10px;
+}
+
+.text-div{
+    background-color: #2b5690;
+    border-radius: 8px;
+    
+}
+
+#navbar {
+    background-color: #2b5690;
+}
+
+#home_bt:hover{
+    background-image: url("/PI.Web/Views/assets/Icons/home_active.png");
+}
+

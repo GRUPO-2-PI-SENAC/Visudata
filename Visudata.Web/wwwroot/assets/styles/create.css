@@ -1,0 +1,91 @@
+* {
+    /*box-shadow: inset 0px 0px 2px rgba(0, 0, 0, 0.8);*/
+    font-family: system-ui;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+}
+main {
+    width: 90%;
+}
+header {
+    margin-bottom: 5%;
+}
+
+#navbar {
+    background-color: #09427D;
+}
+
+.forms{
+    width: 80%; 
+    justify-content: center; 
+    align-items: center; 
+    display:contents;
+}
+
+.forms-content-infos{
+    margin-left: 2%;
+    margin-right: -4%;
+}
+
+.forms-content-infos label{
+    font-weight: 400;
+    margin-bottom: 2%;
+}
+
+.maxnmin .max-container, .modelName, .brandName {
+    font-weight: bold;
+    float: left;
+    width: 40%;
+}
+
+.maxnmin {
+    margin: 5% 5% 0% 5%;
+}
+
+.min-container{
+    margin-left: -10%;
+}
+
+.maxnmin input{
+    width: 40px; 
+    margin-bottom: 5%; 
+    border-color: transparent white rgb(200, 198, 198) transparent;
+    
+}
+
+.maxnmin label{
+    font-weight: 400;
+}
+
+.maxnmin .min-container, .tagName, .categoryName, #categoryName {
+    font-weight: bold;
+    float: right;
+    width: 40%;
+
+}
+
+.tipos-container{
+    margin-top: 8%;
+}
+
+ .noiseName, .vibraName, .tempName {
+    width: 35%;
+    align-items: center;
+    margin-top: 15%;
+    
+} 
+
+#sendButton {
+    margin-bottom: 50px;
+    font-weight: bold; 
+    font-size: 20px; 
+    background-color: #2b5690 !important; 
+    border: none;
+    margin-left: 5%;
+}
+
+
