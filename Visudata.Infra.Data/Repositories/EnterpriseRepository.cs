@@ -17,6 +17,14 @@ public class EnterpriseRepository : BaseRepository<Enterprise>, IEnterpriseRepos
         return enterprises;
     }
 
+    public async Task<Enterprise> GetEnterpriseByCnpj(string cnpj)
+    {
+        List<Enterprise> enterprisesInDb = _context.Enterprises.ToList();
+        Enterprise? enterpriseFromCnpj = enterprisesInDb.FirstOrDefault(enterprise => enterprise.Cnpj == cnpj);
+
+        return enterpriseFromCnpj == null ? new Enterprise() : enterpriseFromCnpj;
+    }
+
     public Enterprise GetEnterpriseByIdWithoutAsync(int enterpriseId)
     {
         return _context.Enterprises.FirstOrDefault(enterprise => enterprise.Id == enterpriseId);

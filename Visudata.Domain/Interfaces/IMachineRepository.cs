@@ -11,5 +11,6 @@ namespace PI.Domain.Interfaces
     {
         Task<IEnumerable<Machine>> GetMachinesWithRelationShips();
         Task<IEnumerable<Machine>> GetMachinesByEnterpriseId(int enterpriseId);
+        Task<List<Machine>> GetMachinesByEnterpriseCnpj(string enterpriseCnpj);
     }
 }

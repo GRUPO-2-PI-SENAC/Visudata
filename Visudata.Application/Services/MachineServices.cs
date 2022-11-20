@@ -3,6 +3,7 @@ using PI.Application.Intefaces;
 using PI.Application.ViewModel.Machine;
 using PI.Domain.Entities;
 using PI.Domain.Interfaces;
+using System.Reflection.Metadata.Ecma335;
 
 namespace PI.Application.Services;
 
@@ -74,32 +75,39 @@ public class MachineServices : IMachineService
         return machinesWithCateogry;
     }
 
-    public async Task<bool> CreateNewMachine(AddMachineViewModel model, int enterpriseId)
+    public async Task<bool> Add(AddMachineViewModel model, string enterpriseCnpj)
     {
-        Machine byId = await _machineRepository.GetById(model.Id);
-
-        if (byId != null) return false;
-
-        Machine machineForAddInDb = new Machine()
+        try
         {
-            Brand = model.Brand,
-            Id = model.Id,
-            Category = await AddCategoryInMachine(model.Category),
-            TempMax = model.MaxTemp,
-            TempMim = model.MimTemp,
-            NoiseMax = model.MaxNoise,
-            NoiseMin = model.MimNoise,
-            VibrationMax = model.MaxVibration,
-            VibrationMin = model.MimVibration,
-            Created_at = DateTime.Now,
-            Status = AddStatusInMachine(model.Status),
-            Enterprise = await _enterpriseRepository.GetById(model.EnterpriseId),
-            Location = model.Location
-        };
+            Machine byId = await _machineRepository.GetById(model.Id);
 
-        await _machineRepository.Add(machineForAddInDb);
+            if (byId != null) return false;
 
-        return true;
+            Machine machineForAddInDb = new Machine()
+            {
+                Brand = model.Brand,
+                Id = model.Id,
+                Category = await AddCategoryInMachine(model.Category),
+                TempMax = model.MaxTemp,
+                TempMim = model.MimTemp,
+                NoiseMax = model.MaxNoise,
+                NoiseMin = model.MimNoise,
+                VibrationMax = model.MaxVibration,
+                VibrationMin = model.MimVibration,
+                Created_at = DateTime.Now,
+                Status = AddStatusInMachine(model.Status),
+                Enterprise = await _enterpriseRepository.GetEnterpriseByCnpj(enterpriseCnpj),
+                Location = model.Location
+            };
+
+            await _machineRepository.Add(machineForAddInDb);
+            return true;
+
+        }
+        catch
+        {
+            return false;
+        }
     }
 
     private MachineStatus AddStatusInMachine(string modelStatus)
@@ -156,7 +164,7 @@ public class MachineServices : IMachineService
                 return false;
             }
 
-            await _machineRepository.RemoveById(machineForRemove.Id);   
+            await _machineRepository.RemoveById(machineForRemove.Id);
 
             return true;
         }
@@ -234,7 +242,7 @@ public class MachineServices : IMachineService
 
             if (enterpriseForViewMachineStatus == null)
                 return new AmountOfMachineByStatusViewModel()
-                    { AmountOfAttentionStatus = 0, AmountOfGoodStatus = 0, AmountOfCriticalStatus = 0 };
+                { AmountOfAttentionStatus = 0, AmountOfGoodStatus = 0, AmountOfCriticalStatus = 0 };
 
             IEnumerable<Machine> machinesForGroupByStatus =
                 await _machineRepository.GetMachinesByEnterpriseId(enterpriseId);
@@ -271,9 +279,9 @@ public class MachineServices : IMachineService
         {
             return new AmountOfMachineByStatusViewModel()
             {
-                AmountOfAttentionStatus = 0 ,
-                AmountOfGoodStatus = 0 ,
-                AmountOfCriticalStatus = 0 
+                AmountOfAttentionStatus = 0,
+                AmountOfGoodStatus = 0,
+                AmountOfCriticalStatus = 0
             };
         }
     }
@@ -299,5 +307,80 @@ public class MachineServices : IMachineService
         {
             return false;
         }
+    }
+
+    public async Task<List<MachinesForListViewModel>> GetMachinesByEnterpriseId(int enterpriseId)
+    {
+        try
+        {
+            List<Machine> machinesOfEnterprise = _machineRepository.GetAll().Result.Where(machine => machine.Enterprise.Id == enterpriseId).ToList();
+            List<MachinesForListViewModel> modelForView = new List<MachinesForListViewModel>();
+
+            foreach (Machine machine in machinesOfEnterprise)
+            {
+                Log currentlyLogOfMachine = await _logRepository.CurrentlyLogOfMachine(machine.Id);
+
+                modelForView.Add(new MachinesForListViewModel
+                {
+                    Brand = machine.Brand,
+                    Id = machine.Id,
+                    category = machine.Category.Name,
+                    Model = machine.Model,
+                    Noise = currentlyLogOfMachine.Noise,
+                    Temp = currentlyLogOfMachine.Temp,
+                    Vibration = currentlyLogOfMachine.Vibration,
+                    SerialNumber = machine.SerialNumber,
+                    Status = GetMachineStatusByMachine(machine),
+                });
+            }
+
+            return modelForView;
+        }
+        catch
+        {
+            return new List<MachinesForListViewModel>();
+        }
+    }
+
+    private string GetMachineStatusByMachine(Machine machineForextractStatus)
+    {
+        MachineStatus? machineStatusOfMachineGetById = _machineStatusRepository.GetAll().Result.ToList().FirstOrDefault(machineStatus => machineStatus.Id == machineForextractStatus.Status.Id);
+
+        if (machineStatusOfMachineGetById.Name == "Atênçäo")
+            return "Atênçäo";
+
+        if (machineStatusOfMachineGetById.Name == "Perigo")
+            return "Perigo";
+
+        else
+            return "Bom";
+    }
+
+    public async Task<bool> AddRegisterOfMachineFromJson(MachineDataRecieveFromSensorsJsonModel model)
+    {
+        try
+        {
+            Machine? machineForAddLog = await _machineRepository.GetById(model.MachineId); 
+
+            if (machineForAddLog.Equals(null))
+                return false;
+
+            await _logRepository.Add(new Log
+            {
+                Created_at = DateTime.Now,
+                Machine = machineForAddLog,
+                Noise = model.Noise,
+                Temp = model.Temp,
+                Vibration = model.Vibration
+            });
+
+            return true;
+
+        }
+        catch
+        {
+            return false;
+        }
+
     }
 }

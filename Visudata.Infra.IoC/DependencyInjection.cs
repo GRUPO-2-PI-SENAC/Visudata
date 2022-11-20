@@ -43,6 +43,7 @@ public static class DependencyInjection
         services.AddScoped<IMachineService, MachineServices>();
         services.AddScoped<IUserProblemsCategoryService, UserProblemsCategoryService>();
         services.AddScoped<IUserSupportService, UserSupportService>();
+        services.AddScoped<IMachineCategoryService, MachineCategoryService>();
 
         #endregion
     }

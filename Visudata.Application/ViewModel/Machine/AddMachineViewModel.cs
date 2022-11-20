@@ -12,7 +12,6 @@ public class AddMachineViewModel
     public double MaxVibration { get; set; }
     public double MimVibration { get; set; }
     public string Category { get; set; }
-    public int EnterpriseId { get; set; }
     public string Brand { get; set; }
     public string Status { get; set; }
     public string Location { get; set; }

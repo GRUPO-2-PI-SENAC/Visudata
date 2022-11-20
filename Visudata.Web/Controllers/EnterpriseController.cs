@@ -9,14 +9,30 @@ namespace PI.Web.Controllers
 {
     public class EnterpriseController : Controller
     {
+        #region Properties
         private IEnterpriseService _enterpriseService;
         private readonly IUserSupportService _userSupportService;
         private readonly IUserProblemsCategoryService _userProblemsCategoryService;
+        #endregion
+
+        #region DIP
         public EnterpriseController(IEnterpriseService enterpriseService, IUserSupportService userSupportService, IUserProblemsCategoryService userProblemsCategoryService)
         {
             _enterpriseService = enterpriseService;
             _userSupportService = userSupportService;
             _userProblemsCategoryService = userProblemsCategoryService;
+        }
+        #endregion
+
+        #region Actions 
+
+        [HttpGet]
+        public async Task<IActionResult> Home()
+        {
+            string enterpriseCnpj = Request.Cookies["enterpriseCnpj"].ToString();
+            AmountOfMachinesStatusByEnterpriseViewModel model = await _enterpriseService.GetMachinesStatusByEnterpriseCnpj(enterpriseCnpj);
+
+            return View(model);
         }
 
         public async Task<IActionResult> Settings()
@@ -98,16 +114,17 @@ namespace PI.Web.Controllers
                 bool isLogin = await _enterpriseService.Login(login);
                 if (isLogin)
                 {
+                    TempData["message"] = "Usuario adicionado com sucesso!";
                     Response.Cookies.Append("enterpriseCnpj", login.Login);
-                    return View();
+                    return RedirectToAction("Home");
                 }
 
                 ModelState.AddModelError(nameof(login.Password), "Senha ou usuário incorretos");
 
                 return View();
             }
-
-            return View();
+            TempData["message"] = "Senha ou usuario invalidos";
+            return View(login);
         }
 
         [HttpGet]
@@ -127,5 +144,25 @@ namespace PI.Web.Controllers
             return View(modelForView);
 
         }
+        public async Task<IActionResult> Support(AddUserSupportViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                bool isCreated = await _userSupportService.CreateUserReport(model);
+
+                if (isCreated)
+                {
+                    TempData["message"] = "Relato enviado com sucesso!";
+                    return View();
+                }
+                TempData["message"] = "Näo foi possível adicionar esse relato , tente novamente mais tarde ou entre em contato aocm o administrador";
+
+                return View(); // see what's pages will be recieve this content about this problem 
+            }
+
+            return View(model);
+        }
+        #endregion
+
     }
 }

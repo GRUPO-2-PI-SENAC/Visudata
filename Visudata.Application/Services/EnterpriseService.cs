@@ -9,11 +9,19 @@ public class EnterpriseService : IEnterpriseService
 {
     private readonly IEnterpriseRepository _enterpriseRepository;
     private readonly IEnterpriseStatusRepository _enterpriseStatusRepository;
+    private readonly ILogsRepository _logsRepository;
+    private readonly IOutlierRegisterRepository _outlierRegisterRepository;
+    private readonly IMachineService _machineService;
+    private readonly IMachineRepository _machineRepository;
 
-    public EnterpriseService(IEnterpriseRepository enterpriseRepository, IEnterpriseStatusRepository enterpriseStatusRepository)
+    public EnterpriseService(IEnterpriseRepository enterpriseRepository, IEnterpriseStatusRepository enterpriseStatusRepository, ILogsRepository logsRepository, IOutlierRegisterRepository outlierRegisterRepository, IMachineService machineService, IMachineRepository machineRepository)
     {
         _enterpriseRepository = enterpriseRepository;
         _enterpriseStatusRepository = enterpriseStatusRepository;
+        _logsRepository = logsRepository;
+        _outlierRegisterRepository = outlierRegisterRepository;
+        _machineService = machineService;
+        _machineRepository = machineRepository;
     }
 
     public async Task<EnterpriseProfileViewModel> GetEnterpriseByCnpj(string enterpriseCnpj)
@@ -50,7 +58,7 @@ public class EnterpriseService : IEnterpriseService
         {
             List<Enterprise> enterprises = _enterpriseRepository.GetAll().Result.ToList();
 
-            Enterprise? enterpriseForView =  await _enterpriseRepository.GetById(enterpriseId);
+            Enterprise? enterpriseForView = await _enterpriseRepository.GetById(enterpriseId);
 
             if (enterpriseForView == null)
                 return null;
@@ -73,6 +81,88 @@ public class EnterpriseService : IEnterpriseService
             return null;
         }
 
+    }
+
+    public async Task<AmountOfMachinesStatusByEnterpriseViewModel> GetMachinesStatusByEnterpriseCnpj(string enterpriseCnpj)
+    {
+        AmountOfMachinesStatusByEnterpriseViewModel model = new AmountOfMachinesStatusByEnterpriseViewModel();
+
+        // for initialize the property in object for incremented later in for loop 
+        model.AmountOfCriticalStateMachines = 0;
+
+        List<Machine> machinesOfEnterprise = await _machineRepository.GetMachinesByEnterpriseCnpj(enterpriseCnpj);
+        IEnumerable<OutlierRegister> outlierRegistersInDb = await _outlierRegisterRepository.GetAll();
+        IEnumerable<Log> LogsInDb = await _logsRepository.GetAll();
+        List<Log> logsOfEnterprise = LogsInDb.Where(log => log.Machine.Enterprise.Cnpj == enterpriseCnpj).Where(log => log.Created_at.Hour >= DateTime.Now.Hour - 6).ToList();
+        List<OutlierRegister> outlierRegisterOfEnterpriseRelatedAtLog = new List<OutlierRegister>();
+
+        List<Log> logsOfGoodMachines = new List<Log>();
+        List<Log> logsOfWarningsMachines = new List<Log>();
+        List<Log> logsOfCriticalMachines = new List<Log>();
+
+        //For identify logs of warning or good machines
+        foreach (Log log in logsOfEnterprise)
+        {
+            int amountOfRegister = outlierRegisterOfEnterpriseRelatedAtLog.Count;
+
+            foreach (OutlierRegister register in outlierRegistersInDb)
+            {
+                if (register.Log.Id == log.Id)
+                {
+                    outlierRegisterOfEnterpriseRelatedAtLog.Add(register);
+                }
+            }
+            if (amountOfRegister == outlierRegisterOfEnterpriseRelatedAtLog.Count)
+            {
+                Machine machine = log.Machine;
+
+                if (machine.NoiseMax < log.Noise || machine.NoiseMin > log.Noise)
+                {
+                    logsOfWarningsMachines.Add(log);
+                }
+                else
+                {
+                    if (machine.TempMax < log.Temp || machine.TempMim > log.Temp)
+                    {
+                        logsOfWarningsMachines.Add(log);
+                    }
+                    else
+                    {
+                        if (machine.VibrationMax < log.Vibration || machine.VibrationMin > log.Temp)
+                        {
+                            logsOfWarningsMachines.Add(log);
+                        }
+                        else
+                        {
+                            logsOfGoodMachines.Add(log);
+                        }
+                    }
+                }
+            }
+        }
+
+        foreach (Machine machine in machinesOfEnterprise)
+        {
+            int amountOfMachinePresenceInOutlierRegister = 0;
+
+            foreach (OutlierRegister register in outlierRegisterOfEnterpriseRelatedAtLog)
+            {
+                if (register.Log.Machine.Id == machine.Id)
+                    amountOfMachinePresenceInOutlierRegister++;
+            }
+
+            if (amountOfMachinePresenceInOutlierRegister > 1)
+            {
+                model.AmountOfCriticalStateMachines++;
+                logsOfWarningsMachines.RemoveAll(log => log.Machine.Id == machine.Id);
+            }
+        }
+
+        model.AmountOfGoodStateMachines = logsOfGoodMachines.Count;
+        model.AmountOfWarningStateMachines = logsOfWarningsMachines.Count;
+        model.AmountOfMachines = machinesOfEnterprise.Count;
+
+        return model;
     }
 
     public async Task<bool> Login(EnterpriseLoginViewModel model)

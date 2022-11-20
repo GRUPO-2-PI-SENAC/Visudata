@@ -5,10 +5,18 @@ using PI.Infra.Data.Context;
 
 namespace PI.Infra.Data.Repositories;
 
-public class MachineRepository : BaseRepository<Machine> , IMachineRepository
+public class MachineRepository : BaseRepository<Machine>, IMachineRepository
 {
     public MachineRepository(VisudataDbContext visudataDbContext) : base(visudataDbContext)
     {
+    }
+
+    public async Task<List<Machine>> GetMachinesByEnterpriseCnpj(string enterpriseCnpj)
+    {
+        List<Machine> machinesInDb = _context.Machines.ToList();
+        List<Machine> machinesOfEnterpriseFromCnpj = machinesInDb.Where(machine => machine.Enterprise.Cnpj == enterpriseCnpj).ToList();
+
+        return machinesOfEnterpriseFromCnpj;
     }
 
     public async Task<IEnumerable<Machine>> GetMachinesByEnterpriseId(int enterpriseId)
