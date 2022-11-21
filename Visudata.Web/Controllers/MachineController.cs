@@ -29,7 +29,7 @@ public class MachineController : Controller
     [HttpGet]
     public async Task<IActionResult> List(int id)
     {
-        List<MachinesForListViewModel> model = await _machineService.GetMachinesByEnterpriseId(id);
+        List<MachineForListViewModel> model = await _machineService.GetMachinesByEnterpriseId(id);
         return View(model);
     }
 

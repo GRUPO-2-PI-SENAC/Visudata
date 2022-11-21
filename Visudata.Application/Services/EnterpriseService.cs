@@ -122,7 +122,7 @@ public class EnterpriseService : IEnterpriseService
                 }
                 else
                 {
-                    if (machine.TempMax < log.Temp || machine.TempMim > log.Temp)
+                    if (machine.TempMax < log.Temp || machine.TempMin > log.Temp)
                     {
                         logsOfWarningsMachines.Add(log);
                     }

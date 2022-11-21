@@ -11,7 +11,7 @@ namespace PI.Domain.Entities
         [Required(ErrorMessage = "Campo obrigatório")]
         public string Model { get; set; }
         [Required(ErrorMessage = "Campo obrigatório")]
-        public double TempMim { get; set; }
+        public double TempMin { get; set; }
         [Required(ErrorMessage = "Campo obrigatório")]
         public double TempMax { get; set; }
         [Required(ErrorMessage = "Campo obrigatório")]

@@ -7,12 +7,12 @@ public interface IMachineService
 {
     #region CRUD
 
-    Task<List<MachinesForListViewModel>> GetAll(int enterpriseId);
-    Task<List<MachinesForListViewModel>> GetMachinesForSpecificCategory(int enterpriseId, string categoryName);
+    Task<List<MachineForListViewModel>> GetAll(int enterpriseId);
+    Task<List<MachineForListViewModel>> GetMachinesForSpecificCategory(int enterpriseId, string categoryName);
     Task<bool> Add(AddMachineViewModel model, string enterpriseCnpj);
     Task<bool> UpdateMachine(EditMachineViewModel model);
     Task<bool> RemoveMachine(int machineId);
-    Task<List<MachinesForListViewModel>> GetMachinesByEnterpriseId(int enterpriseId);
+    Task<List<MachineForListViewModel>> GetMachinesByEnterpriseId(int enterpriseId);
 
     #endregion
 

@@ -24,7 +24,7 @@ public class MachineServices : IMachineService
         _categoryRepository = categoryRepository;
     }
 
-    public async Task<List<MachinesForListViewModel>> GetAll(int enterpriseId)
+    public async Task<List<MachineForListViewModel>> GetAll(int enterpriseId)
     {
         bool any = _enterpriseRepository.GetAll().Result.Any(enterprise => enterprise.Id == enterpriseId);
 
@@ -35,14 +35,14 @@ public class MachineServices : IMachineService
             IEnumerable<Machine> machines = _machineRepository.GetAll().Result
                 .Where(machine => machine.Enterprise.Id == enterpriseId);
 
-            List<MachinesForListViewModel> machinesforView = new List<MachinesForListViewModel>();
+            List<MachineForListViewModel> machinesforView = new List<MachineForListViewModel>();
 
             foreach (Machine machine in machines)
             {
                 Log logOfMachine = _logRepository.GetAll().Result
                     .Where(log => log.Machine.Id == machine.Id).MaxBy(log => log.Created_at);
 
-                machinesforView.Add(new MachinesForListViewModel()
+                machinesforView.Add(new MachineForListViewModel()
                 {
                     Id = machine.Id,
                     Brand = machine.Brand,
@@ -59,15 +59,15 @@ public class MachineServices : IMachineService
             return machinesforView;
         }
 
-        return new List<MachinesForListViewModel>();
+        return new List<MachineForListViewModel>();
     }
 
-    public async Task<List<MachinesForListViewModel>> GetMachinesForSpecificCategory(int enterpriseId,
+    public async Task<List<MachineForListViewModel>> GetMachinesForSpecificCategory(int enterpriseId,
         string categoryName)
     {
-        List<MachinesForListViewModel> task = await GetAll(enterpriseId);
+        List<MachineForListViewModel> task = await GetAll(enterpriseId);
 
-        List<MachinesForListViewModel> machinesWithCateogry =
+        List<MachineForListViewModel> machinesWithCateogry =
             task.Where(machine => machine.category == categoryName).ToList();
 
         return machinesWithCateogry;
@@ -87,7 +87,7 @@ public class MachineServices : IMachineService
                 Id = model.Id,
                 Category = await AddCategoryInMachine(model.Category),
                 TempMax = model.MaxTemp,
-                TempMim = model.MimTemp,
+                TempMin = model.MimTemp,
                 NoiseMax = model.MaxNoise,
                 NoiseMin = model.MimNoise,
                 VibrationMax = model.MaxVibration,
@@ -123,7 +123,7 @@ public class MachineServices : IMachineService
             machineForUpdate.NoiseMax = model.NoiseMax;
             machineForUpdate.NoiseMin = model.NoiseMin;
             machineForUpdate.TempMax = model.TempMax;
-            machineForUpdate.TempMim = model.TempMin;
+            machineForUpdate.TempMin = model.TempMin;
             machineForUpdate.VibrationMax = model.VibrationMax;
             machineForUpdate.VibrationMin = model.VibrationMin;
             machineForUpdate.Brand = model.Brand;
@@ -260,18 +260,22 @@ public class MachineServices : IMachineService
         }
     }
 
-    public async Task<List<MachinesForListViewModel>> GetMachinesByEnterpriseId(int enterpriseId)
+    public async Task<List<MachineForListViewModel>> GetMachinesByEnterpriseId(int enterpriseId)
     {
         try
         {
             List<Machine> machinesOfEnterprise = _machineRepository.GetAll().Result.Where(machine => machine.Enterprise.Id == enterpriseId).ToList();
-            List<MachinesForListViewModel> modelForView = new List<MachinesForListViewModel>();
+            List<MachineForListViewModel> modelForView = new List<MachineForListViewModel>();
 
             foreach (Machine machine in machinesOfEnterprise)
             {
                 Log currentlyLogOfMachine = await _logRepository.CurrentlyLogOfMachine(machine.Id);
 
-                modelForView.Add(new MachinesForListViewModel
+                List<Log> lastLogsAbout6HoursOfMachine = _logRepository.GetAll().Result
+                    .Where(log => log.Machine.Id == machine.Id)
+                    .Where(log => log.Created_at.Hour > DateTime.Now.Hour - 6).ToList();
+
+                MachineForListViewModel model = new MachineForListViewModel()
                 {
                     Brand = machine.Brand,
                     Id = machine.Id,
@@ -282,14 +286,41 @@ public class MachineServices : IMachineService
                     Vibration = currentlyLogOfMachine.Vibration,
                     SerialNumber = machine.SerialNumber,
                     Status = GetStatusForViewFromMachineStatusEnum(machine.Status),
-                });
+                };
+                List<Log> logsWithVibration = lastLogsAbout6HoursOfMachine.Where(log => log.Vibration > machine.VibrationMax || log.Vibration < machine.VibrationMin).ToList();
+                List<Log> logsWithNoise = lastLogsAbout6HoursOfMachine.Where(log => log.Noise > machine.NoiseMax || log.Vibration < machine.NoiseMin).ToList();
+                List<Log> logsWithTemp = lastLogsAbout6HoursOfMachine.Where(log => log.Temp > machine.TempMax || log.Temp < machine.TempMin).ToList();
+
+                if (logsWithNoise.Any())
+                {
+                    model.NoiseStyle = logsWithNoise.Count() > 1 ? "redBt" : "yellowBt";
+                }
+                else
+                    model.NoiseStyle = "greenBt";
+
+                if (logsWithVibration.Any())
+                {
+                    model.VibrationStyle = logsWithVibration.Count() > 1 ? "redBt" : "yellowBt";
+                }
+                else
+                    model.VibrationStyle = "greenBt";
+
+                if (logsWithTemp.Any())
+                {
+                    model.TempStyle = logsWithTemp.Count() > 1 ? "redBt" : "yellowBt";
+                }
+                else
+                    model.TempStyle = "greenBt";
+                
+
+                modelForView.Add(model);
             }
 
             return modelForView;
         }
         catch
         {
-            return new List<MachinesForListViewModel>();
+            return new List<MachineForListViewModel>();
         }
     }
 
@@ -303,14 +334,14 @@ public class MachineServices : IMachineService
                 return false;
 
             if (machineForAddLog.NoiseMax < model.Noise || machineForAddLog.NoiseMin > model.Noise
-                || machineForAddLog.TempMax < model.Temp || machineForAddLog.TempMim > model.Temp
+                || machineForAddLog.TempMax < model.Temp || machineForAddLog.TempMin > model.Temp
                 || machineForAddLog.VibrationMax < model.Vibration || machineForAddLog.VibrationMin > model.Vibration)
 
             {
                 if (machineForAddLog.Status == MachineStatus.Warning)
                     machineForAddLog.Status = MachineStatus.Critical;
                 else
-                    machineForAddLog.Status = MachineStatus.Warning; 
+                    machineForAddLog.Status = MachineStatus.Warning;
 
                 await _machineRepository.Update(machineForAddLog);
             }
@@ -360,7 +391,7 @@ public class MachineServices : IMachineService
             MachineId = machineForEditViewModel.Id,
             SerialNumber = machineForEditViewModel.SerialNumber,
             TempMax = machineForEditViewModel.TempMax,
-            TempMin = machineForEditViewModel.TempMim,
+            TempMin = machineForEditViewModel.TempMin,
             VibrationMax = machineForEditViewModel.VibrationMax,
             VibrationMin = machineForEditViewModel.VibrationMin,
             NoiseMax = machineForEditViewModel.NoiseMax,
