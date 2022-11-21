@@ -27,9 +27,9 @@ public class MachineController : Controller
     #region Actions
 
     [HttpGet]
-    public async Task<IActionResult> List(int enterpriseId)
+    public async Task<IActionResult> List(int id)
     {
-        List<MachinesForListViewModel> model = await _machineService.GetMachinesByEnterpriseId(enterpriseId);
+        List<MachinesForListViewModel> model = await _machineService.GetMachinesByEnterpriseId(id);
         return View(model);
     }
 
@@ -46,18 +46,51 @@ public class MachineController : Controller
         string? enterpriseCnpj = Request.Cookies["enterpriseCnpj"].ToString();
         bool isAdded = await _machineService.Add(model, enterpriseCnpj);
 
-        TempData["message"] = isAdded ? "Máquian adicionada com sucesso!!" 
+        TempData["message"] = isAdded ? "Máquian adicionada com sucesso!!"
             : "Occorreu um erro tente novamente mais tarde ou entre em contato com o administrador";
 
         return View("Enterprise", "Home");
     }
 
+    [HttpGet]
+    public async Task<IActionResult> Edit(int id)
+    {
+        EditMachineViewModel modelForEditDataOfMachine = await _machineService.GetMachineDataForEdit(id);
+
+        TempData["categories"] = await _machineCategoryService.GetNameOfCategoriesAsString();
+
+        return View(modelForEditDataOfMachine);
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> Edit(EditMachineViewModel model)
+    {
+        bool isUpdated = await _machineService.UpdateMachine(model);
+
+        TempData["message"] = isUpdated ? "Máquina atualizada com sucesso!" :
+            "Occoreu um erro tente novamente mais tarde ou envie uma mensagem para a nossa equipe";
+
+        return RedirectToAction("List");
+    }
+
+    [HttpDelete]
+    public async Task<IActionResult> Delete(int id)
+    {
+        bool isDeleted = await _machineService.RemoveMachine(id);
+
+        TempData["message"] = isDeleted ? "Máquina apagada com sucesso!" :
+            "Não foi possível deletar a máquina ,tente novamente mais tarde ou nos envie uma mensagem na tela de suporte";
+
+        return RedirectToAction("List");
+    }
     public async Task<IActionResult> SendDataFromSensors([FromBody] MachineDataRecieveFromSensorsJsonModel model)
     {
         bool isRegisted = await _machineService.AddRegisterOfMachineFromJson(model);
 
         return isRegisted ? Ok("Added with success!") : BadRequest("Register dosen't added with expected , contact the administrator for more details");
     }
+
+
     #endregion
 
 }

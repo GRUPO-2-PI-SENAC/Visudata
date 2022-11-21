@@ -14,7 +14,7 @@ public class AddMachineViewModel
     public string Category { get; set; }
     public string Brand { get; set; }
     public string Status { get; set; }
-    public string Location { get; set; }
+    public string Tag { get; set; }
 
     public AddMachineViewModel()
     {

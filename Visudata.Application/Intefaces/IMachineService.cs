@@ -10,7 +10,7 @@ public interface IMachineService
     Task<List<MachinesForListViewModel>> GetAll(int enterpriseId);
     Task<List<MachinesForListViewModel>> GetMachinesForSpecificCategory(int enterpriseId, string categoryName);
     Task<bool> Add(AddMachineViewModel model, string enterpriseCnpj);
-    Task<bool> UpdateMachine(int MachineId, AddMachineViewModel model);
+    Task<bool> UpdateMachine(EditMachineViewModel model);
     Task<bool> RemoveMachine(int machineId);
     Task<List<MachinesForListViewModel>> GetMachinesByEnterpriseId(int enterpriseId);
 
@@ -23,6 +23,7 @@ public interface IMachineService
     Task<JsonResult> GetStatusAboutNoise(int machineId, int enterpriseId);
     Task<AmountOfMachineByStatusViewModel> GetAmountOfMachinesByStatusWithEnterpriseId(int enterpriseId);
     Task<bool> AddRegisterOfMachineFromJson(MachineDataRecieveFromSensorsJsonModel model);
+    Task<EditMachineViewModel> GetMachineDataForEdit(int machineId);
 
     #endregion
 

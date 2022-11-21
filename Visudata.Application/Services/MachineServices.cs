@@ -95,7 +95,7 @@ public class MachineServices : IMachineService
                 Created_at = DateTime.Now,
                 Status = MachineStatus.Undefined,
                 Enterprise = await _enterpriseRepository.GetEnterpriseByCnpj(enterpriseCnpj),
-                Location = model.Location
+                Tag = model.Tag
             };
 
             await _machineRepository.Add(machineForAddInDb);
@@ -114,23 +114,23 @@ public class MachineServices : IMachineService
         return byName;
     }
 
-    public async Task<bool> UpdateMachine(int MachineId, AddMachineViewModel model)
+    public async Task<bool> UpdateMachine(EditMachineViewModel model)
     {
         try
         {
-            Machine machineForUpdate = await _machineRepository.GetById(MachineId);
+            Machine machineForUpdate = await _machineRepository.GetById(model.MachineId);
 
-            machineForUpdate.NoiseMax = model.MaxNoise;
-            machineForUpdate.NoiseMin = model.MimNoise;
-            machineForUpdate.TempMax = model.MaxTemp;
-            machineForUpdate.TempMim = model.MimTemp;
-            machineForUpdate.VibrationMax = model.MaxVibration;
-            machineForUpdate.VibrationMin = model.MimVibration;
+            machineForUpdate.NoiseMax = model.NoiseMax;
+            machineForUpdate.NoiseMin = model.NoiseMin;
+            machineForUpdate.TempMax = model.TempMax;
+            machineForUpdate.TempMim = model.TempMin;
+            machineForUpdate.VibrationMax = model.VibrationMax;
+            machineForUpdate.VibrationMin = model.VibrationMin;
             machineForUpdate.Brand = model.Brand;
             machineForUpdate.Category = await _categoryRepository.GetByName(model.Category);
             machineForUpdate.Updated_at = DateTime.Now;
             machineForUpdate.Model = model.Model;
-            machineForUpdate.Location = model.Location;
+            machineForUpdate.Tag = model.Tag;
             machineForUpdate.SerialNumber = model.SerialNumber;
 
             await _machineRepository.Update(machineForUpdate);
@@ -349,5 +349,28 @@ public class MachineServices : IMachineService
             default:
                 return "Indeterminado";
         }
+    }
+
+    public async Task<EditMachineViewModel> GetMachineDataForEdit(int machineId)
+    {
+        Machine machineForEditViewModel = await _machineRepository.GetById(machineId);
+
+        EditMachineViewModel model = new EditMachineViewModel()
+        {
+            MachineId = machineForEditViewModel.Id,
+            SerialNumber = machineForEditViewModel.SerialNumber,
+            TempMax = machineForEditViewModel.TempMax,
+            TempMin = machineForEditViewModel.TempMim,
+            VibrationMax = machineForEditViewModel.VibrationMax,
+            VibrationMin = machineForEditViewModel.VibrationMin,
+            NoiseMax = machineForEditViewModel.NoiseMax,
+            NoiseMin = machineForEditViewModel.NoiseMin,
+            Brand = machineForEditViewModel.Brand,
+            Category = machineForEditViewModel.Category.Name,
+            Model = machineForEditViewModel.Model,
+            Tag = machineForEditViewModel.Tag
+        };
+
+        return model;
     }
 }

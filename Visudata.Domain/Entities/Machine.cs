@@ -23,7 +23,7 @@ namespace PI.Domain.Entities
         [Required(ErrorMessage = "Campo obrigatório")]
         public double VibrationMax { get; set; }
         [Required(ErrorMessage = "Campo obrigatório")]
-        public string Location { get; set; }
+        public string Tag { get; set; }
 
         #region Relationship
         public MachineCategory Category { get; set; }
