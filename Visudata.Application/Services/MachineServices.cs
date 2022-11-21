@@ -4,6 +4,7 @@ using PI.Application.ViewModel.Machine;
 using PI.Domain.Entities;
 using PI.Domain.Interfaces;
 using System.Reflection.Metadata.Ecma335;
+using System.Runtime.CompilerServices;
 
 namespace PI.Application.Services;
 
@@ -13,17 +14,14 @@ public class MachineServices : IMachineService
     private readonly IEnterpriseRepository _enterpriseRepository;
     private readonly ILogsRepository _logRepository;
     private readonly IMachineCategoryRepository _categoryRepository;
-    private readonly IMachineStatusRepository _machineStatusRepository;
 
     public MachineServices(IMachineRepository machineRepository, IEnterpriseRepository enterpriseRepository,
-        ILogsRepository logRepository, IMachineCategoryRepository categoryRepository,
-        IMachineStatusRepository machineStatusRepository)
+        ILogsRepository logRepository, IMachineCategoryRepository categoryRepository)
     {
         _machineRepository = machineRepository;
         _enterpriseRepository = enterpriseRepository;
         _logRepository = logRepository;
         _categoryRepository = categoryRepository;
-        _machineStatusRepository = machineStatusRepository;
     }
 
     public async Task<List<MachinesForListViewModel>> GetAll(int enterpriseId)
@@ -39,7 +37,7 @@ public class MachineServices : IMachineService
 
             List<MachinesForListViewModel> machinesforView = new List<MachinesForListViewModel>();
 
-            foreach (var machine in machines)
+            foreach (Machine machine in machines)
             {
                 Log logOfMachine = _logRepository.GetAll().Result
                     .Where(log => log.Machine.Id == machine.Id).MaxBy(log => log.Created_at);
@@ -50,7 +48,7 @@ public class MachineServices : IMachineService
                     Brand = machine.Brand,
                     Model = machine.Model,
                     SerialNumber = machine.SerialNumber,
-                    Status = machine.Status.Name,
+                    Status = GetStatusForViewFromMachineStatusEnum(machine.Status),
                     Noise = logOfMachine.Noise,
                     Temp = logOfMachine.Temp,
                     Vibration = logOfMachine.Vibration,
@@ -95,7 +93,7 @@ public class MachineServices : IMachineService
                 VibrationMax = model.MaxVibration,
                 VibrationMin = model.MimVibration,
                 Created_at = DateTime.Now,
-                Status = AddStatusInMachine(model.Status),
+                Status = MachineStatus.Undefined,
                 Enterprise = await _enterpriseRepository.GetEnterpriseByCnpj(enterpriseCnpj),
                 Location = model.Location
             };
@@ -108,14 +106,6 @@ public class MachineServices : IMachineService
         {
             return false;
         }
-    }
-
-    private MachineStatus AddStatusInMachine(string modelStatus)
-    {
-        MachineStatus? firstOrDefault = _machineStatusRepository.GetAll().Result
-            .FirstOrDefault(machineStatus => machineStatus.Name == modelStatus);
-
-        return firstOrDefault;
     }
 
     private async Task<MachineCategory> AddCategoryInMachine(string modelCategory)
@@ -244,28 +234,12 @@ public class MachineServices : IMachineService
                 return new AmountOfMachineByStatusViewModel()
                 { AmountOfAttentionStatus = 0, AmountOfGoodStatus = 0, AmountOfCriticalStatus = 0 };
 
-            IEnumerable<Machine> machinesForGroupByStatus =
+            IEnumerable<Machine> machineFromEnterprise =
                 await _machineRepository.GetMachinesByEnterpriseId(enterpriseId);
 
-            int amountOfMachinesWithGoodStatus = 0;
-            int amountOfMachinesWithAttentionStatus = 0;
-            int amountOfMachinesWithCriticalStatus = 0;
-
-            machinesForGroupByStatus.ToList().ForEach(machine =>
-            {
-                if (machine.Status.Name == "Bom Estado")
-                {
-                    amountOfMachinesWithGoodStatus++;
-                }
-                else if (machine.Status.Name == "Alerta")
-                {
-                    amountOfMachinesWithAttentionStatus++;
-                }
-                else if (machine.Status.Name == "Estado crítico")
-                {
-                    amountOfMachinesWithCriticalStatus++;
-                }
-            });
+            int amountOfMachinesWithGoodStatus = machineFromEnterprise.Where(machine => machine.Status == MachineStatus.Good).Count();
+            int amountOfMachinesWithAttentionStatus = machineFromEnterprise.Where(machine => machine.Status == MachineStatus.Warning).Count();
+            int amountOfMachinesWithCriticalStatus = machineFromEnterprise.Where(machine => machine.Status == MachineStatus.Critical).Count();
 
 
             return new AmountOfMachineByStatusViewModel()
@@ -283,29 +257,6 @@ public class MachineServices : IMachineService
                 AmountOfGoodStatus = 0,
                 AmountOfCriticalStatus = 0
             };
-        }
-    }
-
-    public async Task<bool> UpdateMachineStatus(int machineId, int enterpriseId, int statusId)
-    {
-        try
-        {
-            Machine? machineForUpdateStatus = _machineRepository.GetAll().Result
-                .Where(machine => machine.Id == machineId && machine.Enterprise.Id == enterpriseId).FirstOrDefault();
-
-            if (machineForUpdateStatus != null)
-            {
-                machineForUpdateStatus.Status = await _machineStatusRepository.GetById(statusId);
-
-                await _machineRepository.Update(machineForUpdateStatus);
-
-                return true;
-            }
-            return false;
-        }
-        catch (Exception e)
-        {
-            return false;
         }
     }
 
@@ -330,7 +281,7 @@ public class MachineServices : IMachineService
                     Temp = currentlyLogOfMachine.Temp,
                     Vibration = currentlyLogOfMachine.Vibration,
                     SerialNumber = machine.SerialNumber,
-                    Status = GetMachineStatusByMachine(machine),
+                    Status = GetStatusForViewFromMachineStatusEnum(machine.Status),
                 });
             }
 
@@ -342,28 +293,29 @@ public class MachineServices : IMachineService
         }
     }
 
-    private string GetMachineStatusByMachine(Machine machineForextractStatus)
-    {
-        MachineStatus? machineStatusOfMachineGetById = _machineStatusRepository.GetAll().Result.ToList().FirstOrDefault(machineStatus => machineStatus.Id == machineForextractStatus.Status.Id);
-
-        if (machineStatusOfMachineGetById.Name == "Atênçäo")
-            return "Atênçäo";
-
-        if (machineStatusOfMachineGetById.Name == "Perigo")
-            return "Perigo";
-
-        else
-            return "Bom";
-    }
-
     public async Task<bool> AddRegisterOfMachineFromJson(MachineDataRecieveFromSensorsJsonModel model)
     {
         try
         {
-            Machine? machineForAddLog = await _machineRepository.GetById(model.MachineId); 
+            Machine? machineForAddLog = await _machineRepository.GetById(model.MachineId);
 
             if (machineForAddLog.Equals(null))
                 return false;
+
+            if (machineForAddLog.NoiseMax < model.Noise || machineForAddLog.NoiseMin > model.Noise
+                || machineForAddLog.TempMax < model.Temp || machineForAddLog.TempMim > model.Temp
+                || machineForAddLog.VibrationMax < model.Vibration || machineForAddLog.VibrationMin > model.Vibration)
+
+            {
+                if (machineForAddLog.Status == MachineStatus.Warning)
+                    machineForAddLog.Status = MachineStatus.Critical;
+                else
+                    machineForAddLog.Status = MachineStatus.Warning; 
+
+                await _machineRepository.Update(machineForAddLog);
+            }
+
+
 
             await _logRepository.Add(new Log
             {
@@ -382,5 +334,20 @@ public class MachineServices : IMachineService
             return false;
         }
 
+    }
+
+    private string GetStatusForViewFromMachineStatusEnum(MachineStatus status)
+    {
+        switch (status)
+        {
+            case MachineStatus.Good:
+                return "Bom";
+            case MachineStatus.Warning:
+                return "Cuidado";
+            case MachineStatus.Critical:
+                return "Critico";
+            default:
+                return "Indeterminado";
+        }
     }
 }

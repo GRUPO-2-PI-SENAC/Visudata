@@ -128,14 +128,14 @@ namespace PI.Web.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Support(int enterpriseId)
+        public async Task<IActionResult> Support()
         {
 
-            //string enterpriseCnpjAsString = Request.Cookies["enterpriseCnpj"].ToString();
+            string enterpriseCnpjAsString = Request.Cookies["enterpriseCnpj"].ToString();
 
-            //EnterpriseProfileViewModel model = await _enterpriseService.GetEnterpriseByCnpj(enterpriseCnpjAsString);
+            EnterpriseProfileViewModel model = await _enterpriseService.GetEnterpriseByCnpj(enterpriseCnpjAsString);
 
-            EnterpriseProfileViewModel model = await _enterpriseService.GetEnterpriseForProfileById(enterpriseId);
+            //EnterpriseProfileViewModel model = await _enterpriseService.GetEnterpriseForProfileById(enterpriseId);
 
             ViewBag.userProblemsCategoriesAsString = await _userProblemsCategoryService.GetNameOfAllAsString();
 
@@ -144,6 +144,8 @@ namespace PI.Web.Controllers
             return View(modelForView);
 
         }
+
+        [HttpPost]
         public async Task<IActionResult> Support(AddUserSupportViewModel model)
         {
             if (ModelState.IsValid)

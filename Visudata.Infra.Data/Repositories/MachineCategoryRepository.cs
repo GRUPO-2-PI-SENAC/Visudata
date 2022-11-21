@@ -11,18 +11,9 @@ namespace PI.Infra.Data.Repositories
         {
         }
 
-        public async Task<IEnumerable<MachineCategory>?> GetAllByEnterprise(int enterpriseId)
+        public async Task<MachineCategory> GetByName(string name)
         {
-            List<MachineCategory> machineCategories = _context.MachineCategories.Include(mach => mach.Enterprise).ToList();
-
-            List<MachineCategory>? machineCategoriesByEnterpriseId = machineCategories.Where(mc => mc.Enterprise.Id == enterpriseId).ToList();
-
-            return machineCategoriesByEnterpriseId == null ? machineCategoriesByEnterpriseId : new List<MachineCategory>();
-        }
-
-        public async Task<MachineCategory?> GetByName(string name)
-        {
-            MachineCategory? machineCategoryByName = _context.MachineCategories.FirstOrDefault(machineCategories => machineCategories.Name == name);
+            MachineCategory machineCategoryByName = _context.MachineCategories.FirstOrDefault(machineCategories => machineCategories.Name == name);
 
             return machineCategoryByName == null ? machineCategoryByName : new MachineCategory();
         }

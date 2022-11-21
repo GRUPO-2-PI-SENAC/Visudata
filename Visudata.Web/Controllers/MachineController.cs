@@ -40,6 +40,7 @@ public class MachineController : Controller
         return View();
     }
 
+    [HttpPost]
     public async Task<IActionResult> Add(AddMachineViewModel model)
     {
         string? enterpriseCnpj = Request.Cookies["enterpriseCnpj"].ToString();

@@ -8,8 +8,6 @@ namespace PI.Domain.Entities
     {
         [Required(ErrorMessage = "Campo obrigatório")]
         public string Name { get; set; }
-        //THis property is for create any categories for specific enterprise in business logic
-        public virtual Enterprise? Enterprise { get; set; }
         public virtual IEnumerable<Machine> Machines { get; set; }
     }
 }

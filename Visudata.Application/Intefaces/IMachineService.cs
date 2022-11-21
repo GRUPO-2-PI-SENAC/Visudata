@@ -18,7 +18,6 @@ public interface IMachineService
 
     #region MachineStatus
 
-    Task<bool> UpdateMachineStatus(int machineId, int enterpriseId, int statusId);
     Task<JsonResult> GetStatusAboutTemp(int machineId, int enterpriseId);
     Task<JsonResult> GetStatusAboutVibration(int machineId, int enterpriseId);
     Task<JsonResult> GetStatusAboutNoise(int machineId, int enterpriseId);

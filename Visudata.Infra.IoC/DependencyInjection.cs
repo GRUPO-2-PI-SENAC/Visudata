@@ -32,7 +32,6 @@ public static class DependencyInjection
         //services.AddScoped<IMachineCategoryRepository, CategoryRepository>();
         services.AddScoped<IUserSupportRepository, UserSupportRepository>();
         services.AddScoped<IEnterpriseStatusRepository, EnterpriseStatusRepository>();
-        services.AddScoped<IMachineStatusRepository, MachineStatusRepository>();
         services.AddScoped<IUserProblemsCategoryRepository, UserProblemsCategoryRepository>();
 
         #endregion

@@ -18,74 +18,78 @@ public class VisudataDbContext : DbContext
     public DbSet<OutlierRegister> OutlierRegisters { get; set; }
     public DbSet<Log> Logs { get; set; }
     public DbSet<MachineCategory> MachineCategories { get; set; }
-    public DbSet<MachineStatus> MachineStatus { get; set; }
     public DbSet<UserSupport> UserSupports { get; set; }
 
     #endregion
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<MachineStatus>().HasData(
-            new MachineStatus
+
+        modelBuilder.Entity<MachineCategory>().HasData(
+            new MachineCategory
             {
-                Id = 1,
-                Name = "Bom Estado",
+                Created_at = DateTime.Now,
+                Name = "Injetoras",
+            },
+            new MachineCategory
+            {
+                Created_at = DateTime.Now,
+                Name = "Sensores"
+            },
+            new MachineCategory
+            {
+                Created_at = DateTime.Now,
+                Name = "Extratoras"
+            },
+            new MachineCategory
+            {
+                Created_at = DateTime.Now,
+                Name = "Empilhadeiras"
+            },
+            new MachineCategory
+            {
+                Created_at = DateTime.Now,
+                Name = "Esteiras"
+            },
+            new MachineCategory
+            {
+                Created_at = DateTime.Now,
+                Name = "Motores"
+            }
+            );
+
+        modelBuilder.Entity<UserProblemsCategory>().HasData(
+            new UserProblemsCategory
+            {
+                Name = "Visualizaçäo de gráfico",
                 Created_at = DateTime.Now
             },
-            new MachineStatus
+            new UserProblemsCategory
             {
-                Id = 2,
-                Name = "Alerta",
+                Name = "Exportaçäo de dados",
                 Created_at = DateTime.Now
             },
-            new MachineStatus
+            new UserProblemsCategory
             {
-                Id = 3,
-                Name = "Estado crítico",
+                Name = "Cadastro de máquinas",
+                Created_at = DateTime.Now
+            },
+            new UserProblemsCategory
+            {
+                Name = "Ediçäo de máquinas",
+                Created_at = DateTime.Now
+            },
+            new UserProblemsCategory
+            {
+                Name = "Fechamento de programas",
+                Created_at = DateTime.Now
+            },
+            new UserProblemsCategory
+            {
+                Name = "Conexäo com sensores",
                 Created_at = DateTime.Now
             }
         );
 
-        // modelBuilder.Entity<UserProblemsCategory>().HasData(
-        //     new UserProblemsCategory
-        //     {
-        //         Id = 1,
-        //         Name = "",
-        //         Created_at = DateTime.Now
-        //     },
-        //     new UserProblemsCategory
-        //     {
-        //         Id = 2,
-        //         Name = "",
-        //         Created_at = DateTime.Now
-        //     },
-        //     new UserProblemsCategory
-        //     {
-        //         Id = 3,
-        //         Name = "",
-        //         Created_at = DateTime.Now
-        //     },
-        //     new UserProblemsCategory
-        //     {
-        //         Id = 4,
-        //         Name = "",
-        //         Created_at = DateTime.Now
-        //     },
-        //     new UserProblemsCategory
-        //     {
-        //         Id = 5,
-        //         Name = "",
-        //         Created_at = DateTime.Now
-        //     }
-        // );
-        //
-        // modelBuilder.Entity<MachineCategory>().HasData(
-        //     new MachineCategory
-        //     {
-        //         
-        //     }
-        // );
-
-        //modelBuilder.HasDefaultSchema("Visudata_db");
     }
 }
