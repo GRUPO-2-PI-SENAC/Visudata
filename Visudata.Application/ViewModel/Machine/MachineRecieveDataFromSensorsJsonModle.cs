@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace PI.Application.ViewModel.Machine
+﻿namespace PI.Application.ViewModel.Machine
 {
     public class MachineDataRecieveFromSensorsJsonModel
     {

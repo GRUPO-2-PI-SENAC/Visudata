@@ -1,11 +1,6 @@
 ﻿using PI.Application.Intefaces;
 using PI.Domain.Entities;
 using PI.Domain.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PI.Application.Services
 {

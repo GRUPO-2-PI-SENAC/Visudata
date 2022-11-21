@@ -3,8 +3,6 @@ using PI.Application.Intefaces;
 using PI.Application.ViewModel.Machine;
 using PI.Domain.Entities;
 using PI.Domain.Interfaces;
-using System.Reflection.Metadata.Ecma335;
-using System.Runtime.CompilerServices;
 
 namespace PI.Application.Services;
 

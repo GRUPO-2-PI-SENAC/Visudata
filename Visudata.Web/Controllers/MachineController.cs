@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using PI.Application.Intefaces;
 using PI.Application.ViewModel.Machine;
-using System.Net;
 
 namespace PI.Web.Controllers;
 
