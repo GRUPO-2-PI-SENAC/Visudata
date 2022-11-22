@@ -16,8 +16,7 @@ public interface IMachineService
 
     #endregion
 
-    #region MachineStatus
-
+    
     Task<JsonResult> GetStatusAboutTemp(int machineId, int enterpriseId);
     Task<JsonResult> GetStatusAboutVibration(int machineId, int enterpriseId);
     Task<JsonResult> GetStatusAboutNoise(int machineId, int enterpriseId);
@@ -26,7 +25,8 @@ public interface IMachineService
     Task<EditMachineViewModel> GetMachineDataForEdit(int machineId);
     Task<List<MachineForListViewModel>> GetMachinesByEnterpriseCnpj(string? enterpriseOfCurrentSessionCnpj);
     Task<string> GetHistoryDataByCsvByMachineId(int machineId);
+    Task<MachineDetailsViewModel> GetMachineForDetails(int id);
+    Task<string> GetJsonForDetailsAboutMachineAjaxHandler(int id, string status);
 
-    #endregion
 
 }

@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using PI.Application.Intefaces;
 using PI.Application.ViewModel.Machine;
-using System.Diagnostics.CodeAnalysis;
 
 namespace PI.Web.Controllers;
 
@@ -93,13 +92,27 @@ public class MachineController : Controller
         return isRegisted ? Ok("Added with success!") : BadRequest("Register dosen't added with expected , contact the administrator for more details");
     }
 
-    public async Task<IActionResult> DownloadDataAsCsv(int machineId)
+    public async Task<IActionResult> DownloadLogDataOfMachine(int id)
     {
-        string dataAsCsv = await _machineService.GetHistoryDataByCsvByMachineId(machineId);
-        EditMachineViewModel machineForEdit = await  _machineService.GetMachineDataForEdit(machineId);
+        string dataAsCsv = await _machineService.GetHistoryDataByCsvByMachineId(id);
+        EditMachineViewModel machineForEdit = await  _machineService.GetMachineDataForEdit(id);
 
         return File(System.Text.Encoding.UTF8.GetBytes(dataAsCsv), "text/csv", "data_da_maquina_" + machineForEdit.Model + ".csv");
     }
+
+    public async Task<IActionResult> DetailsAboutMachine(int id)
+    {
+        MachineDetailsViewModel model = await _machineService.GetMachineForDetails(id);
+
+        return View(model); 
+    }
+
+    public async Task<JsonResult> DetailsAboutMachineAjaxHandler(int id , string status)
+    {
+        string result = await _machineService.GetJsonForDetailsAboutMachineAjaxHandler(id, status);
+
+        return Json(result);
+    } 
 
     #endregion
 

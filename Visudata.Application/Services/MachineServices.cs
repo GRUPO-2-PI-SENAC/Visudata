@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using PI.Application.Intefaces;
 using PI.Application.ViewModel.Machine;
 using PI.Domain.Entities;
@@ -460,6 +461,98 @@ public class MachineServices : IMachineService
             csv += log.Vibration.ToString() + ";" + log.Noise.ToString() + ";" + log.Temp.ToString() + "\n";
         }
 
-        return csv; 
+        return csv;
+    }
+
+    public async Task<MachineDetailsViewModel> GetMachineForDetails(int id)
+    {
+        IEnumerable<Machine> machinesInDb = await _machineRepository.GetAll();
+
+        Machine machineForExtractDataForViewModel = machinesInDb.FirstOrDefault(machine => machine.Id == id);
+        IEnumerable<Log> logsOfMachines = await _logRepository.GetLogsWithMachines();
+
+        Log lastLogOfMachine = logsOfMachines.Where(log => log.Machine.Id == id).OrderBy(log => log.Created_at).FirstOrDefault();
+
+        if (machineForExtractDataForViewModel == null)
+            return new MachineDetailsViewModel();
+
+        MachineDetailsViewModel model = new MachineDetailsViewModel();
+
+        model.Brand = machineForExtractDataForViewModel.Brand;
+        model.SerialNumber = machineForExtractDataForViewModel.SerialNumber;
+        model.Id = machineForExtractDataForViewModel.Id;
+        model.Category = machineForExtractDataForViewModel.Category.Name;
+        model.StatusName = ExtractStatusNameByMachineStatus(machineForExtractDataForViewModel.Status);
+        model.Model = machineForExtractDataForViewModel.Model;
+        model.RealTimeNoise = lastLogOfMachine.Noise;
+        model.RealTimeTemp = lastLogOfMachine.Temp;
+        model.RealTimeVibration = lastLogOfMachine.Vibration;
+
+        return model;
+    }
+
+    private string ExtractStatusNameByMachineStatus(MachineStatus status)
+    {
+        switch (status)
+        {
+            case MachineStatus.Good:
+                return "Bom";
+            case MachineStatus.Warning:
+                return "Atênção";
+            case MachineStatus.Critical:
+                return "Crítico";
+            case MachineStatus.Undefined:
+                return "Indefinido";
+            default:
+                return "Não identificado";
+        }
+    }
+
+    public async Task<string> GetJsonForDetailsAboutMachineAjaxHandler(int id, string status)
+    {
+        try
+        {
+            IEnumerable<Machine> machinesInDb = await _machineRepository.GetAll();
+            Machine machineForExtractData = machinesInDb.FirstOrDefault(machine => machine.Id == id);
+            List<Log> logsOfMachineOrderByCreatedAt = _logRepository.GetAll().Result.OrderBy(log => log.Created_at).ToList();
+            List<Log> lastSixLogsAboutMachine = new List<Log>();
+
+            for (int i = 0; logsOfMachineOrderByCreatedAt.Count >= 6 ? i < 6 : i < logsOfMachineOrderByCreatedAt.Count; i++)
+            {
+                lastSixLogsAboutMachine.Add(logsOfMachineOrderByCreatedAt[i]);
+            }
+
+            Dictionary<int, double> hourWithValueOfMagnitude = new Dictionary<int, double>();
+
+            foreach (Log log in lastSixLogsAboutMachine)
+            {
+                if (status == "temperatura")
+                {
+                    hourWithValueOfMagnitude.Add(log.Created_at.Hour, log.Temp);
+                }
+                else
+                {
+                    if (status == "vibracao")
+                    {
+                        hourWithValueOfMagnitude.Add(log.Created_at.Hour, log.Vibration);
+                    }
+                    else
+                    {
+                        hourWithValueOfMagnitude.Add(log.Created_at.Hour, log.Noise);
+                    }
+                }
+            }
+
+            string lastSixLogsAboutMachineAsJsonString = JsonConvert.SerializeObject(hourWithValueOfMagnitude).ToString();
+
+            return lastSixLogsAboutMachineAsJsonString;
+        }
+        catch
+        {
+            return "";
+        }
+
+
+
     }
 }
