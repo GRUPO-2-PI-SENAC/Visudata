@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using PI.Application.Intefaces;
 using PI.Application.ViewModel.Machine;
+using System.Diagnostics.CodeAnalysis;
 
 namespace PI.Web.Controllers;
 
@@ -26,9 +27,12 @@ public class MachineController : Controller
     #region Actions
 
     [HttpGet]
-    public async Task<IActionResult> List(int id)
+    public async Task<IActionResult> List()
     {
-        List<MachineForListViewModel> model = await _machineService.GetMachinesByEnterpriseId(id);
+        string enterpriseOfCurrentSessionCnpj = Request.Cookies["enterpriseCnpj"];
+
+       List<MachineForListViewModel> model = await  _machineService.GetMachinesByEnterpriseCnpj(enterpriseOfCurrentSessionCnpj);
+
         return View(model);
     }
 
@@ -89,6 +93,13 @@ public class MachineController : Controller
         return isRegisted ? Ok("Added with success!") : BadRequest("Register dosen't added with expected , contact the administrator for more details");
     }
 
+    public async Task<IActionResult> DownloadDataAsCsv(int machineId)
+    {
+        string dataAsCsv = await _machineService.GetHistoryDataByCsvByMachineId(machineId);
+        EditMachineViewModel machineForEdit = await  _machineService.GetMachineDataForEdit(machineId);
+
+        return File(System.Text.Encoding.UTF8.GetBytes(dataAsCsv), "text/csv", "data_da_maquina_" + machineForEdit.Model + ".csv");
+    }
 
     #endregion
 

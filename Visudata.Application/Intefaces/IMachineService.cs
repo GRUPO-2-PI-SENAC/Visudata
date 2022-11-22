@@ -24,6 +24,8 @@ public interface IMachineService
     Task<AmountOfMachineByStatusViewModel> GetAmountOfMachinesByStatusWithEnterpriseId(int enterpriseId);
     Task<bool> AddRegisterOfMachineFromJson(MachineDataRecieveFromSensorsJsonModel model);
     Task<EditMachineViewModel> GetMachineDataForEdit(int machineId);
+    Task<List<MachineForListViewModel>> GetMachinesByEnterpriseCnpj(string? enterpriseOfCurrentSessionCnpj);
+    Task<string> GetHistoryDataByCsvByMachineId(int machineId);
 
     #endregion
 

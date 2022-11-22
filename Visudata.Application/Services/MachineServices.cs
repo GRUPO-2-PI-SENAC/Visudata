@@ -309,7 +309,7 @@ public class MachineServices : IMachineService
                 }
                 else
                     model.TempStyle = "greenBt";
-                
+
 
                 modelForView.Add(model);
             }
@@ -401,5 +401,65 @@ public class MachineServices : IMachineService
         };
 
         return model;
+    }
+
+    public async Task<List<MachineForListViewModel>> GetMachinesByEnterpriseCnpj(string? enterpriseOfCurrentSessionCnpj)
+    {
+        try
+        {
+            IEnumerable<Machine> machinesInDb = await _machineRepository.GetAll();
+            List<Machine> machinesOfCurrentEnterpriseSession = machinesInDb.Where(machine => machine.Enterprise.Cnpj == enterpriseOfCurrentSessionCnpj).ToList();
+
+            List<MachineForListViewModel> machinesForView = new List<MachineForListViewModel>();
+
+            if (machinesOfCurrentEnterpriseSession.Any())
+            {
+                foreach (Machine machine in machinesOfCurrentEnterpriseSession)
+                {
+                    Log logOfMachine = _logRepository.GetAll().Result
+                   .Where(log => log.Machine.Id == machine.Id).MaxBy(log => log.Created_at);
+
+                    machinesForView.Add(new MachineForListViewModel()
+                    {
+                        Id = machine.Id,
+                        Brand = machine.Brand,
+                        Model = machine.Model,
+                        SerialNumber = machine.SerialNumber,
+                        Status = GetStatusForViewFromMachineStatusEnum(machine.Status),
+                        Noise = logOfMachine.Noise,
+                        Temp = logOfMachine.Temp,
+                        Vibration = logOfMachine.Vibration,
+                        category = machine.Category.Name
+                    });
+                }
+
+                return machinesForView;
+            }
+
+            return new List<MachineForListViewModel>();
+
+        }
+        catch
+        {
+            return new List<MachineForListViewModel>();
+        }
+    }
+
+    public async Task<string> GetHistoryDataByCsvByMachineId(int machineId)
+    {
+        IEnumerable<Log> logsInDb = await _logRepository.GetAll();
+
+        IEnumerable<Log> logsOfMachine = logsInDb.Where(log => log.Machine.Id == machineId);
+
+        string csv = "";
+
+        csv += "VIBRACAO;BARULHO;TEMPERATURA\n";
+
+        foreach (Log log in logsOfMachine)
+        {
+            csv += log.Vibration.ToString() + ";" + log.Noise.ToString() + ";" + log.Temp.ToString() + "\n";
+        }
+
+        return csv; 
     }
 }
