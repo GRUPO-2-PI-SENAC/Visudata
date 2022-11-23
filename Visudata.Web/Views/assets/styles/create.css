@@ -20,6 +20,7 @@ header {
 
 label{
     font-weight: 400;
+    margin-bottom: 1%;
 }
 
 .itens{
@@ -59,11 +60,9 @@ input{
 
 #sendButton {
     margin-bottom: 50px;
-    font-weight: bold; 
     font-size: 20px; 
-    background-color: #2b5690 !important; 
+    background-color: #0E56A0cc !important; 
     border: none;
-    margin-left: 5%;
 }
 
 
