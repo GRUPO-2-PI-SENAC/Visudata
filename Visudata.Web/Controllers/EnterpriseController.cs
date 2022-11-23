@@ -61,7 +61,6 @@ namespace PI.Web.Controllers
                         return View();
                     }
 
-
                     bool isValid = await _enterpriseService.SignUp(create);
 
                     if (isValid)
