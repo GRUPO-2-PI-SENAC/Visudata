@@ -9,8 +9,18 @@ namespace PI.Application.ViewModel.Enterprise
 {
     public class UpdateEnterpriseViewModel
     {
-        [Required(ErrorMessage  = "Campo obrigatório")]
+        [Required(ErrorMessage = "Campo obrigatório")]
         public int Id { get; set; }
+        [Required(ErrorMessage = "Campo obrigatório")]
+        public string FantasyName { get; set; }
+        [Required(ErrorMessage = "Campo obrigatório")]
+        public string Scctor { get; set; }
+        [Required(ErrorMessage = "Campo obrigatório")]
+        public string State { get; set; }
+        [Required(ErrorMessage = "Campo obrigatório")]
+        public string City { get; set; }
+        [Required(ErrorMessage = "Campo obrigatório")]
+        public string Address { get; set; }
         [Required(ErrorMessage = "Campo obrigatório")]
         public string Password { get; set; }
         [Compare("Password", ErrorMessage = "As senhas devem ser iguais !")]

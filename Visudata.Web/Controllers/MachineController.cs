@@ -99,7 +99,7 @@ public class MachineController : Controller
 
         return File(System.Text.Encoding.UTF8.GetBytes(dataAsCsv), "text/csv", "data_da_maquina_" + machineForEdit.Model + ".csv");
     }
-
+    [HttpGet]
     public async Task<IActionResult> DetailsAboutMachine(int id)
     {
         MachineDetailsViewModel model = await _machineService.GetMachineForDetails(id);
@@ -107,6 +107,7 @@ public class MachineController : Controller
         return View(model); 
     }
 
+    [HttpGet]
     public async Task<JsonResult> DetailsAboutMachineAjaxHandler(int id , string status)
     {
         string result = await _machineService.GetJsonForDetailsAboutMachineAjaxHandler(id, status);
