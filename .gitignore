@@ -149,3 +149,6 @@ PI.Application/bin/Debug/net6.0/PI.Application.deps.json
 /Visudata.Infra.Data/Migrations
 /.idea/.idea.Visudata/.idea
 /.idea/.idea.PI/.idea/workspace.xml
+/Visudata.Test/obj/Debug/net6.0
+/Visudata.Test/bin
+/Visudata.Test/obj
