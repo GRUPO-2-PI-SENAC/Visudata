@@ -1,0 +1,18 @@
+
+body {
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    
+}
+
+.forms input{
+    border-radius: 0px 0px 5px 5px;
+    border: none;
+    box-shadow: 0px 2px 0px 0px  rgba(0, 0, 0, 0.8);
+}
+
+.form-check-input{
+    border-color: #09427D !important;
+    border: 10px;
+}
