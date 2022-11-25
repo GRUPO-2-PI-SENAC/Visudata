@@ -42,7 +42,7 @@ body{
     }
 
     .rowStyle{
-        height: 300px;
+        height: 290px;
     }
 
     .button{
@@ -56,3 +56,11 @@ body{
     }
 }
 
+@media (width:360px) and (height: 740px)  {
+    .rowStyle{
+        height: 240px;
+    }
+    .chartArea{
+        height: 300px;
+    }
+}
