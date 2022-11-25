@@ -10,7 +10,7 @@
     <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-    <link href="../assets/Icons/bootstrap-icons/bootstrap-icons.css" rel="stylesheet" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
     <!-- CSS -->
     <link rel="stylesheet" href="../assets/styles/create.css">
 
@@ -24,15 +24,16 @@
         <a href="../home/index.html">
             <img src="../assets/icons/volta-2.svg" alt="voltar">
         </a>
-        <div class="machineText" style="font-size: 30px; text-align:center">
+        <div class="machineText container">
             Digite as principais informações da sua
-            <div style="font-size: 35px; color: #2b5690; text-align:center; font-weight: bold;">máquina</div>
+            <span style="font-size: 25px; color: #2b5690; text-align:center; font-weight: bold;">máquina</span>
         </div>
     </header>
     <!-- main - forms -->
     <main>
         
-        <div class="container-fluid row">
+       <div class="container">
+        <div class="container-fluid row forms-container">
             <div class="forms forms-content-infos">
                     <div class="col">
                         <div class="brandName itens" style="margin-left: 6%">
@@ -69,7 +70,7 @@
             </div>
         </div>
 
-        <div class="container-fluid ">
+        <div class="container-fluid maxemin">
             <div class=" d-flex flex-row mb-2 ms-3">
                 <div class="flex-column p-2 flex-fill">
                     <label class="maxTemp">Máx</label> <br>
@@ -114,14 +115,13 @@
                 </div> 
             </div>
         </div>
-
-
         
         <!-- botão cadastrar -->
-        <div class="d-grid gap-2 col-8 mx-auto mt-5 mb-5">
-            <button class=" btn btn-primary btn-cad" type="submit" id="sendButton">Cadastrar</button>
+        <div class="divButton container d-grid col-6 mx-auto mt-3 mb-3 ">
+            <a class="btn btn-primary btn-cad" id="sendButton">Cadastrar</a>
         </div>
         
+       </div>
 
     </main>
 <!-- Navbar/Menu navegação -->
