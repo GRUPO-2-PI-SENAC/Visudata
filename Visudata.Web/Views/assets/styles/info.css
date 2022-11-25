@@ -56,6 +56,7 @@ body{
     }
 }
 
+/* Galaxy S8+ */
 @media (width:360px) and (height: 740px)  {
     .rowStyle{
         height: 240px;
