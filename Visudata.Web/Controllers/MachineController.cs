@@ -30,7 +30,7 @@ public class MachineController : Controller
     {
         string enterpriseOfCurrentSessionCnpj = Request.Cookies["enterpriseCnpj"];
 
-       List<MachineForListViewModel> model = await  _machineService.GetMachinesByEnterpriseCnpj(enterpriseOfCurrentSessionCnpj);
+        List<MachineForListViewModel> model = await _machineService.GetMachinesByEnterpriseCnpj(enterpriseOfCurrentSessionCnpj);
 
         return View(model);
     }
@@ -95,7 +95,7 @@ public class MachineController : Controller
     public async Task<IActionResult> DownloadLogDataOfMachine(int id)
     {
         string dataAsCsv = await _machineService.GetHistoryDataByCsvByMachineId(id);
-        EditMachineViewModel machineForEdit = await  _machineService.GetMachineDataForEdit(id);
+        EditMachineViewModel machineForEdit = await _machineService.GetMachineDataForEdit(id);
 
         return File(System.Text.Encoding.UTF8.GetBytes(dataAsCsv), "text/csv", "data_da_maquina_" + machineForEdit.Model + ".csv");
     }
@@ -104,17 +104,16 @@ public class MachineController : Controller
     {
         MachineDetailsViewModel model = await _machineService.GetMachineForDetails(id);
 
-        return View(model); 
+        return View(model);
     }
 
     [HttpGet]
-    public async Task<JsonResult> DetailsAboutMachineAjaxHandler(int id , string status)
+    public async Task<JsonResult> DetailsAboutMachineAjaxHandler(int id, string status)
     {
         string result = await _machineService.GetJsonForDetailsAboutMachineAjaxHandler(id, status);
 
         return Json(result);
-    } 
+    }
 
     #endregion
-
 }
