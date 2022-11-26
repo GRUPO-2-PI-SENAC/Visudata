@@ -1,26 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visudata</title>
+
+    <!-- Icone da aba -->
+  <link rel="shortcut icon" href="../assets/Img/favicon-white.ico" type="image/x-icon" />
+
+    <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
+
+    <!-- CSS -->
     <link rel="stylesheet" href="../assets/styles/list.css">
-    <title>Lista de Máquinas</title>
+
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/dfbf29b648.js" crossorigin="anonymous"></script>
+
+    <!-- Fonts -->
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Raleway:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+        rel="stylesheet">
+
 </head>
+
 <body>
     <!-- header -->
     <header>
         <a href="../home/index.html">
-            <img src="../assets/icons/volta-2.svg" alt="voltar">
+            <img src="../assets/icons/SVGIcons/volta-2.svg" alt="voltar">
         </a>
-        <div class="machineText" style="font-size: 35px; text-align:center">
-            <div style="font-size: 30px; color: #09427D; text-align:left; font-weight: bold; margin: 2% 0% 0% 7%">Lista de Máquinas</div>
+        <div class="machineText ms-4 mt-3">
+            <span>Lista de Máquinas</span>
         </div>
     </header>
     <main>
-        <div class="card">
+        <!-- <div class="card-b">
             <div class="topPart">
                 <h2 class="model">HT-670M</h2>
                 <h2 class="tag"> B516X54566</h2>
@@ -38,139 +60,72 @@
                 <div class="noiseStt">
                     <button class="yellowBt"></button>
                     <h5 class="noiseValue">220 dB</h5>
+                </div>
+            </div>
+        </div> -->
+
+        <div class="container-fluid">
+            <div class="card container maquinasSelect shadow-lg mt-4 mx-auto">
+                <div class="card-header">
+                    Selecione a Maquina
+                </div>
+                <div class="row card-body d-flex align-content-between">
+                    <h2 class="col model card-title">HT-670M</h2>
+                    <h2 class="col tag card-title">B516X54566</h2>
+                </div>
+                <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+                <div class="row card-footer statusMaquina">
+                    <div class="col pe-4">
+                        <div class="row">
+                            <h5 class="col num">35ºC</h5>
+                            <span class=" col badge text-bg-success"> </span>
+                        </div>
+                    </div>
+                    <div class="col pe-4">
+                        <div class="row">
+                            <h5 class="col num">74Hz</h5>
+                            <span class="col badge text-bg-danger"> </span>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="row">
+                            <h5 class="col num">220dB</h5>
+                            <span class="col badge text-bg-warning"> </span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <!-- preencher  com os cards tela para exemplos... (até linha 146) -->
-        <div class="card">
-            <div class="topPart">
-                <h2 class="model">HT-670M</h2>
-                <h2 class="tag"> B516X54566</h2>
-            </div>
-            <div class="botpart">
-                <div class="tempStt">
-                    <button class="redBt"></button>
-                    <h5 class="tempValue">75 ºC</h5>
-                </div>
-                <div class="vibStt">
-                    <button class="greenBt"></button>
-                    <h5 class="vibValue">64 Hz</h5>
-                </div>
 
-                <div class="noiseStt">
-                    <button class="yellowBt"></button>
-                    <h5 class="noiseValue">220 dB</h5>
-                </div>
-            </div>
-        </div><div class="card">
-            <div class="topPart">
-                <h2 class="model">HT-670M</h2>
-                <h2 class="tag"> B516X54566</h2>
-            </div>
-            <div class="botpart">
-                <div class="tempStt">
-                    <button class="redBt"></button>
-                    <h5 class="tempValue">75 ºC</h5>
-                </div>
-                <div class="vibStt">
-                    <button class="greenBt"></button>
-                    <h5 class="vibValue">64 Hz</h5>
-                </div>
+    </main>
 
-                <div class="noiseStt">
-                    <button class="yellowBt"></button>
-                    <h5 class="noiseValue">220 dB</h5>
-                </div>
-            </div>
-        </div><div class="card">
-            <div class="topPart">
-                <h2 class="model">HT-670M</h2>
-                <h2 class="tag"> B516X54566</h2>
-            </div>
-            <div class="botpart">
-                <div class="tempStt">
-                    <button class="redBt"></button>
-                    <h5 class="tempValue">75 ºC</h5>
-                </div>
-                <div class="vibStt">
-                    <button class="greenBt"></button>
-                    <h5 class="vibValue">64 Hz</h5>
-                </div>
-
-                <div class="noiseStt">
-                    <button class="yellowBt"></button>
-                    <h5 class="noiseValue">220 dB</h5>
-                </div>
-            </div>
-        </div><div class="card">
-            <div class="topPart">
-                <h2 class="model">HT-670M</h2>
-                <h2 class="tag"> B516X54566</h2>
-            </div>
-            <div class="botpart">
-                <div class="tempStt">
-                    <button class="redBt"></button>
-                    <h5 class="tempValue">75 ºC</h5>
-                </div>
-                <div class="vibStt">
-                    <button class="greenBt"></button>
-                    <h5 class="vibValue">64 Hz</h5>
-                </div>
-
-                <div class="noiseStt">
-                    <button class="yellowBt"></button>
-                    <h5 class="noiseValue">220 dB</h5>
-                </div>
-            </div>
-        </div><div class="card">
-            <div class="topPart">
-                <h2 class="model">HT-670M</h2>
-                <h2 class="tag"> B516X54566</h2>
-            </div>
-            <div class="botpart">
-                <div class="tempStt">
-                    <button class="redBt"></button>
-                    <h5 class="tempValue">75 ºC</h5>
-                </div>
-                <div class="vibStt">
-                    <button class="greenBt"></button>
-                    <h5 class="vibValue">64 Hz</h5>
-                </div>
-
-                <div class="noiseStt">
-                    <button class="yellowBt"></button>
-                    <h5 class="noiseValue">220 dB</h5>
-                </div>
-            </div>
-        </div>
-
-    </main>   
-     <!-- footer -->
-
-     <footer>
+    <!-- Navbar/Menu navegação -->
+    <footer>
         <nav class="nav fixed-bottom nav-fill" id="navbar">
             <li class="nav-item" id="home_button">
-                <a class="btn me-2" href="#">
-                    <img id="home_bt" src="../assets/Icons/home.png">
-                </a>
+                <a class="btn me-2 " href="../Home/index.html"> <i class="icone bi bi-house-door text-light"></i> </a>
             </li>
             <li class="nav-item " id="create_button">
-                <a class="btn  me-2" href="../Machine/Create.html">
-                    <img src="../assets/Icons/Cad_maquina.png">
+                <a class="btn  me-2" href="#"><i class="bi bi-plus-circle text-light icone"></i>
                 </a>
             </li>
             <li class="nav-item" id="list_button">
-                <a class="btn  me-2" href="../Machine/List.html">
-                    <img src="../assets/Icons/List.png">
-                </a>
+                <a class="btn  me-2" href="../Machine/List.html"><i class="bi bi-list-ul text-light icone"></i></a>
             </li>
             <li class="nav-item" id="profile_button">
-                <a class="btn  me-2" href="../User/Menu_profile.html">
-                    <img src="../assets/Icons/User.png">
-                </a>
+                <a class="btn  me-2" href="../User/Menu_profile.html"><i class="bi bi-person text-light icone"></i></a>
             </li>
         </nav>
-    </footer> 
+    </footer>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+        integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js"
+        integrity="sha384-IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk"
+        crossorigin="anonymous"></script>
 </body>
+
 </html>

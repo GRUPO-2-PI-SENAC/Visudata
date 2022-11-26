@@ -63,7 +63,4 @@ header .name-app{
     font-size: 25px;
 }
 
-#home_bt:hover{
-    background-image: url("/PI.Web/Views/assets/Icons/home_active.png");
-}
 
