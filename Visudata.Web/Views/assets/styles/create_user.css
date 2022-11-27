@@ -17,6 +17,12 @@
 
 @media (min-width:390px){
     .container-form, .btn, .container-link{
-        margin-top: 20%;
+        margin-top: 25%;
+    }
+}
+
+@media (min-width:359px) and  (max-width:360px){
+    .container-form, .btn, .container-link{
+        margin-top: 15%;
     }
 }
