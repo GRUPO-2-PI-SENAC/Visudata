@@ -14,12 +14,14 @@ public static class DependencyInjection
 {
     public static void AddInfrastructure(this IServiceCollection services, ConfigurationManager config)
     {
+        #region Connectiondb
 
         services.AddDbContext<VisudataDbContext>(options => options.UseMySql(
             "Server=recnplay-server.mysql.database.azure.com;UserID = davifmelo;Password=password13258046A@;Database=visudata_db;;",
             ServerVersion.Parse("8.0.30-mysql", ServerType.MySql), m => m.MigrationsAssembly(typeof(VisudataDbContext).Assembly.FullName)));
-
         services.AddDbContext<VisudataDbContext>();
+
+        #endregion
 
         #region repositories 
 
