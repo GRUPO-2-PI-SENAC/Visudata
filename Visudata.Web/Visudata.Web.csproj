@@ -8,6 +8,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Views\Functions\**" />
+    <Content Remove="Views\Functions\**" />
+    <EmbeddedResource Remove="Views\Functions\**" />
+    <None Remove="Views\Functions\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Remove="wwwroot\assets\AppLogo\android\mipmap-hdpi\logo.png" />
     <Content Remove="wwwroot\assets\AppLogo\android\mipmap-mdpi\logo.png" />
     <Content Remove="wwwroot\assets\AppLogo\android\mipmap-xhdpi\logo.png" />
@@ -598,10 +605,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Visudata.Infra.IoC\Visudata.Infra.IoC.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Views\Functions\" />
   </ItemGroup>
 
   <ItemGroup>
