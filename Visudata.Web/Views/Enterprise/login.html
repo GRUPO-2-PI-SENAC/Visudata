@@ -7,8 +7,8 @@
   <title>VisuData</title>
 
   <!-- CSS -->
-  <link rel="stylesheet" href="../assets/styles/home.css">
-  <link rel="stylesheet" href="../assets/styles/users.css">
+  <link rel="stylesheet" href="../assets/styles/home.css"> <!--Font-->
+  <link rel="stylesheet" href="../assets/styles/login.css">
 
   <!-- Bootstrap -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -43,23 +43,25 @@
 
     <main>
         <div class="container mt-4 main">
-            <div class="forms ms-2">
+            <div class="form-container container-fluid"> 
+              <div class="forms">
                 <div class="mb-3">
                     <label for="cnpjEnterprise" class="form-label">CNPJ da Empresa</label>
                     <input type="cnpjEmpresa" class="form-control" id="cnpjInput" placeholder="CNPJ">
                 </div>
                 <div class="mb-3">
                     <label for="cnpjEnterprise" class="form-label">Senha</label>
-                    <input type="senhaEmpresa" class="form-control" id="senhaInput" placeholder="Senha de login">
+                    <input type="senhaEmpresa" class="form-control" id="senhaInput" placeholder="Senha do login">
                 </div>
             </div>
             <div class="form-check-lembrar">
-                <div class="form-check ms-2 mt-4">
+                <div class="form-check mt-4">
                     <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
                     <label class="form-check-label" for="flexCheckDefault">
                       Lembrar de mim nos próximos 30 dias
                     </label>
                   </div>   
+            </div>
             </div>
 
         <!-- botão cadastrar -->
@@ -67,7 +69,7 @@
             <a class="btn btn-primary fs-4" style="background-color: #0E56A0;" href="../Home/index.html">Cadastrar</a>
         </div>
 
-        <div class="container d-grid justify-content-center ">
+        <div class="container links-container d-grid justify-content-center ">
             <a>Esqueceu sua senha?</a>
             <a>Não tem cadastro? <span style="color: #0E56A0;">Cadastre-se</span></a>
         </div>
