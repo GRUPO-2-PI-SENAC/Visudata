@@ -13,10 +13,11 @@
                     <div class="categoryName itens" style="margin-left: 6%">
                         <label for="exampleFormControlInput1"> Categoria</label>
                         <select class="form-select" id="inputGroupSelect01">
-                            <option selected>Choose...</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
+                            <option selected>Escolha uma opção</option>
+                            @foreach (string name in (List<string>)ViewBag.MachineCategoriesAsStringList)
+                            {
+                                <option value="@name">@name</option>
+                            }
                         </select>
                     </div>
                 </div>

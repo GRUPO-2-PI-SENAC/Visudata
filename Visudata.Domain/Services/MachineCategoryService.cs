@@ -17,7 +17,7 @@ namespace PI.Application.Services
         {
             try
             {
-                List<MachineCategory> machinesCategoriesInDb = (List<MachineCategory>)await _machineCategoryRepository.GetAll();
+                List<MachineCategory> machinesCategoriesInDb = _machineCategoryRepository.GetAll().Result.ToList();
 
                 List<string> namesOfMachinesCategories = new List<string>();
 
