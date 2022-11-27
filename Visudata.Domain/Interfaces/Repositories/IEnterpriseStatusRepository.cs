@@ -1,8 +1,8 @@
 ﻿using PI.Domain.Entities;
 
-namespace PI.Domain.Interfaces;
+namespace PI.Domain.Interfaces.Repositories;
 
 public interface IEnterpriseStatusRepository : IBaseRepository<EnterpriseStatus>
 {
-    Task<List<String>> GetNameOfAllStatus();
+    Task<List<string>> GetNameOfAllStatus();
 }

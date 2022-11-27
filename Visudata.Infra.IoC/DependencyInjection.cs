@@ -3,7 +3,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using PI.Application.Intefaces;
 using PI.Application.Services;
-using PI.Domain.Interfaces;
+using PI.Domain.Interfaces.Repositories;
 using PI.Infra.Data.Context;
 using PI.Infra.Data.Repositories;
 using Pomelo.EntityFrameworkCore.MySql.Infrastructure;

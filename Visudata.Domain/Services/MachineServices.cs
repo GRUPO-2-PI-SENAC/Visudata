@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 using PI.Application.Intefaces;
 using PI.Application.ViewModel.Machine;
 using PI.Domain.Entities;
-using PI.Domain.Interfaces;
+using PI.Domain.Interfaces.Repositories;
 
 namespace PI.Application.Services;
 

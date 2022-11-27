@@ -1,4 +1,5 @@
 ﻿using PI.Domain.Interfaces;
+using PI.Domain.Interfaces.Repositories;
 using PI.Infra.Data.Context;
 
 namespace PI.Infra.Data.Repositories;

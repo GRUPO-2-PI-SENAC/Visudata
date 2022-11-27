@@ -8,7 +8,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <None Remove="Services\MachineServices.cs~RF3a869f06.TMP" />
+      <None Remove="AppServices\MachineServices.cs~RF3a869f06.TMP" />
       <None Remove="Util\**" />
     </ItemGroup>
 

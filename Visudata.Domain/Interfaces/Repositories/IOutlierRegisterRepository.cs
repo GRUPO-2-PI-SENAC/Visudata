@@ -1,6 +1,6 @@
 ﻿using PI.Domain.Entities;
 
-namespace PI.Domain.Interfaces
+namespace PI.Domain.Interfaces.Repositories
 {
     public interface IOutlierRegisterRepository : IBaseRepository<OutlierRegister>
     {
