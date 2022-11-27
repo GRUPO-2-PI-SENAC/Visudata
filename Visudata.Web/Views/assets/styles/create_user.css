@@ -12,6 +12,10 @@
     margin-bottom: -10px
 }
 
+.link{
+    text-decoration: none;
+    color: black;
+}
 
 
 
@@ -19,10 +23,15 @@
     .container-form, .btn, .container-link{
         margin-top: 25%;
     }
+
+    .text, .spanText{
+        font-size: 30px;
+    }
 }
 
 @media (min-width:359px) and  (max-width:360px){
     .container-form, .btn, .container-link{
         margin-top: 15%;
     }
+
 }
