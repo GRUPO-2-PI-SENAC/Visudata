@@ -1,0 +1,37 @@
+.text{
+    font-size: 25px; 
+    text-align:left; 
+}
+
+.spanText{
+    font-size: 24px; 
+    color: #2b5690; 
+}
+
+.btn{
+    margin-bottom: -10px
+}
+
+.link{
+    text-decoration: none;
+    color: black;
+}
+
+
+
+@media (min-width:390px){
+    .container-form, .btn, .container-link{
+        margin-top: 25%;
+    }
+
+    .text, .spanText{
+        font-size: 30px;
+    }
+}
+
+@media (min-width:359px) and  (max-width:360px){
+    .container-form, .btn, .container-link{
+        margin-top: 15%;
+    }
+
+}
