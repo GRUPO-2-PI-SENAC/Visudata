@@ -1,4 +1,9 @@
 
+.link{
+    text-decoration: none;
+    color: black;
+}
+
 @media (min-width:389px) and (max-width:414px) {
     .logo, .form-container, .btn, .links-container{
         margin-top: 15%;
