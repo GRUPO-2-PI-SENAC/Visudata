@@ -1,10 +1,10 @@
 ﻿using FakeItEasy;
 using PI.Application.Intefaces;
-using PI.Application.ViewModel.Enterprise;
-using PI.Application.ViewModel.UserSupport;
 using PI.Domain.Entities;
 using System.Runtime.CompilerServices;
 using System.Web.Http.ModelBinding;
+using PI.Domain.ViewModel.Enterprise;
+using PI.Domain.ViewModel.UserSupport;
 
 namespace Visudata.Test.Controllers
 {

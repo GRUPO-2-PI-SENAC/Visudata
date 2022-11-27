@@ -1,4 +1,5 @@
-﻿using PI.Application.ViewModel.Enterprise;
+﻿using PI.Domain.ViewModel.Enterpriqse;
+using PI.Domain.ViewModel.Enterprise;
 
 namespace PI.Application.Intefaces
 {

@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace PI.Application.ViewModel.Enterprise;
+namespace PI.Domain.ViewModel.Enterprise;
 
 public class CreateEnterpriseViewModel
 {

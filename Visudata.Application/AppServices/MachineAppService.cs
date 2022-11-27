@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using PI.Application.Intefaces;
-using PI.Application.ViewModel.Machine;
+using PI.Domain.ViewModel.Machine;
 
 namespace PI.Application.AppServices
 {

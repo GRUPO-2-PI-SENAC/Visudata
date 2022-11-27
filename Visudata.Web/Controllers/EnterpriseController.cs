@@ -1,8 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using PI.Application.Intefaces;
-using PI.Application.ViewModel.Enterprise;
-using PI.Application.ViewModel.UserSupport;
+using PI.Domain.ViewModel.Enterpriqse;
+using PI.Domain.ViewModel.Enterprise;
+using PI.Domain.ViewModel.UserSupport;
 
 namespace PI.Web.Controllers
 {

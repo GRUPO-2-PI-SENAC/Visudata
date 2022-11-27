@@ -1,7 +1,8 @@
 ﻿using PI.Application.Intefaces;
-using PI.Application.ViewModel.Enterprise;
 using PI.Domain.Entities;
 using PI.Domain.Interfaces.Repositories;
+using PI.Domain.ViewModel.Enterpriqse;
+using PI.Domain.ViewModel.Enterprise;
 
 namespace PI.Application.Services;
 

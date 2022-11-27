@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace PI.Application.ViewModel.Machine;
+namespace PI.Domain.ViewModel.Machine;
 
 public class AddMachineViewModel
 {

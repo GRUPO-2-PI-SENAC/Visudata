@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using PI.Application.Intefaces;
-using PI.Application.ViewModel.Machine;
 using PI.Domain.Entities;
 using PI.Domain.Interfaces.Repositories;
+using PI.Domain.ViewModel.Machine;
 
 namespace PI.Application.Services;
 

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PI.Application.ViewModel.Enterprise
+namespace PI.Domain.ViewModel.Enterprise
 {
     public class AmountOfMachinesStatusByEnterpriseViewModel
     {

@@ -5,7 +5,7 @@ using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PI.Application.ViewModel.Enterprise
+namespace PI.Domain.ViewModel.Enterprise
 {
     public class EnterpriseProfileViewModel
     {

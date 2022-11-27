@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
-namespace PI.Application.ViewModel.Enterprise;
+namespace PI.Domain.ViewModel.Enterprise;
 
 public class EnterpriseLoginViewModel
 {

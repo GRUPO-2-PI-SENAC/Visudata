@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace PI.Application.ViewModel.UserSupport;
+namespace PI.Domain.ViewModel.UserSupport;
 
 public class AddUserSupportViewModel
 {

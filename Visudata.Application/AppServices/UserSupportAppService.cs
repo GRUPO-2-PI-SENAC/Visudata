@@ -1,5 +1,6 @@
 ﻿using PI.Application.Intefaces;
-using PI.Application.ViewModel.UserSupport;
+using PI.Domain.ViewModel.Enterpriqse;
+using PI.Domain.ViewModel.UserSupport;
 
 namespace PI.Application.AppServices
 {

@@ -1,4 +1,4 @@
-﻿using PI.Application.ViewModel.UserSupport;
+﻿using PI.Domain.ViewModel.UserSupport;
 
 namespace PI.Application.Intefaces
 {
