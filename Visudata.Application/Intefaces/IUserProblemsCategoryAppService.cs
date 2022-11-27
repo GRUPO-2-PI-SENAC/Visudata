@@ -2,5 +2,7 @@
 {
     public interface IUserProblemsCategoryAppService
     {
+        Task<List<string>> GetNameOfAllAsString();
+
     }
 }

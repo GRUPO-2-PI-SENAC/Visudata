@@ -2,5 +2,6 @@
 {
     public interface IMachineCategoryAppService
     {
+        Task<List<string>> GetNameOfCategoriesAsString();
     }
 }

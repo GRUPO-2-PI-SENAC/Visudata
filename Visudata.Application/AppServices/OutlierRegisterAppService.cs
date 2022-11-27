@@ -1,6 +1,8 @@
-﻿namespace PI.Application.AppServices
+﻿using PI.Application.Intefaces;
+
+namespace PI.Application.AppServices
 {
-    public class OutlierRegisterAppService
+    public class OutlierRegisterAppService : IOutlierRegisterAppService
     {
     }
 }

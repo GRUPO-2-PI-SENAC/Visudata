@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using PI.Application.AppServices;
 using PI.Application.Intefaces;
 using PI.Application.Services;
 using PI.Domain.Interfaces.Repositories;
@@ -44,6 +45,17 @@ public static class DependencyInjection
         services.AddScoped<IUserProblemsCategoryService, UserProblemsCategoryService>();
         services.AddScoped<IUserSupportService, UserSupportService>();
         services.AddScoped<IMachineCategoryService, MachineCategoryService>();
+
+        #endregion
+
+        #region AppService
+
+        services.AddScoped<IEnterpriseAppService, IEnterpriseAppService>();
+        services.AddScoped<IMachineCategoryAppService, MachineCategoryAppService>();
+        services.AddScoped<IMachineAppService, MachineAppService>();
+        services.AddScoped<IOutlierRegisterAppService, OutlierRegisterAppService>();
+        services.AddScoped<IUserProblemsCategoryAppService, UserProblemsCategoryAppService>();
+        services.AddScoped<IUserSupportAppService, UserSupportAppService>();
 
         #endregion
     }
