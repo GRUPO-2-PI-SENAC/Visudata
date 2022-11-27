@@ -129,15 +129,15 @@ namespace PI.Web.Controllers
         public async Task<IActionResult> Support()
         {
 
-            string enterpriseCnpjAsString = Request.Cookies["enterpriseCnpj"].ToString();
+            //string enterpriseCnpjAsString = Request.Cookies["enterpriseCnpj"].ToString();
 
-            EnterpriseProfileViewModel model = await _enterpriseService.GetEnterpriseByCnpj(enterpriseCnpjAsString);
+            //EnterpriseProfileViewModel model = await _enterpriseService.GetEnterpriseByCnpj(enterpriseCnpjAsString);
 
             //EnterpriseProfileViewModel model = await _enterpriseService.GetEnterpriseForProfileById(enterpriseId);
 
             ViewBag.userProblemsCategoriesAsString = await _userProblemsCategoryService.GetNameOfAllAsString();
 
-            AddUserSupportViewModel modelForView = new AddUserSupportViewModel() { EnterpriseId = model.Id, NameOfEnterprise = model.FantasyName };
+            AddUserSupportViewModel modelForView = new AddUserSupportViewModel() { EnterpriseId = 2,  NameOfEnterprise = "Rolo doido produções"};
 
             return View(modelForView);
 
