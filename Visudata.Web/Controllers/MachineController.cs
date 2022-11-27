@@ -8,14 +8,14 @@ public class MachineController : Controller
 {
     #region Properties
 
-    private readonly IMachineService _machineService;
-    private readonly IMachineCategoryService _machineCategoryService;
+    private readonly IMachineAppService _machineService;
+    private readonly IMachineCategoryAppService _machineCategoryService;
 
     #endregion
 
     #region DIP 
 
-    public MachineController(IMachineService machineService, IMachineCategoryService machineCategoryService)
+    public MachineController(IMachineAppService machineService, IMachineCategoryAppService machineCategoryService)
     {
         _machineService = machineService;
         _machineCategoryService = machineCategoryService;

@@ -9,13 +9,13 @@ namespace PI.Web.Controllers
     public class EnterpriseController : Controller
     {
         #region Properties
-        private IEnterpriseService _enterpriseService;
-        private readonly IUserSupportService _userSupportService;
-        private readonly IUserProblemsCategoryService _userProblemsCategoryService;
+        private IEnterpriseAppService _enterpriseService;
+        private readonly IUserSupportAppService _userSupportService;
+        private readonly IUserProblemsCategoryAppService _userProblemsCategoryService;
         #endregion
 
         #region DIP
-        public EnterpriseController(IEnterpriseService enterpriseService, IUserSupportService userSupportService, IUserProblemsCategoryService userProblemsCategoryService)
+        public EnterpriseController(IEnterpriseAppService enterpriseService, IUserSupportAppService userSupportService, IUserProblemsCategoryAppService userProblemsCategoryService)
         {
             _enterpriseService = enterpriseService;
             _userSupportService = userSupportService;
@@ -137,7 +137,7 @@ namespace PI.Web.Controllers
 
             ViewBag.userProblemsCategoriesAsString = await _userProblemsCategoryService.GetNameOfAllAsString();
 
-            AddUserSupportViewModel modelForView = new AddUserSupportViewModel() { EnterpriseId = 2,  NameOfEnterprise = "Rolo doido produções"};
+            AddUserSupportViewModel modelForView = new AddUserSupportViewModel() { EnterpriseId = 2, NameOfEnterprise = "Rolo doido produções" };
 
             return View(modelForView);
 

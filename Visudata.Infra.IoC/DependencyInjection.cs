@@ -50,7 +50,7 @@ public static class DependencyInjection
 
         #region AppService
 
-        services.AddScoped<IEnterpriseAppService, IEnterpriseAppService>();
+        services.AddScoped<IEnterpriseAppService, EnterpriseAppService>();
         services.AddScoped<IMachineCategoryAppService, MachineCategoryAppService>();
         services.AddScoped<IMachineAppService, MachineAppService>();
         services.AddScoped<IOutlierRegisterAppService, OutlierRegisterAppService>();
