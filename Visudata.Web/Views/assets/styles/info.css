@@ -5,23 +5,39 @@
     
 }
 
+.titleInfo{
+    display: inline; 
+    font-size: 20px; 
+    color: #09427D; 
+    text-align:center; 
+    font-weight: bold;
+}
+
+#imgEdit{
+    display: flex;
+    text-align: right;
+}
+
+.chartArea{
+    height: 220px;
+}
+
 .title{
     font-size: 20px;
 }
 
 .statusAction{
-    padding: 10% 0 10% 0; 
+    padding: 5% 0 5% 0; 
 }
 
 .statusEspe{
-    padding: 6% 5% 6% 0%;
+    padding: 3% 0% 3% 0%;
     text-align: center;
-    width: 50%;
 }
 
 .button{
     width: 110px;
-    padding: 7% 0 7% 0;
+    padding: 10% 0 10% 0;
     background-color: #2b5690;
 }
 
@@ -32,8 +48,19 @@ body{
     max-height: 915px;
 }
 
-.chartArea{
-    height: 220px;
+#linkEdit{
+    text-decoration: none;
+    color: aliceblue;
+
+}
+
+.buttonEdit{
+    width: 100%;
+    background-color: #2b5690;
+    padding: 2% 0 2% 0;
+    bottom: 0;
+    border-radius: 5px;
+
 }
 
 @media (min-height: 680px) and (max-height:915px) {
