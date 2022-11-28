@@ -1,23 +1,24 @@
-@model PI.Domain.ViewModel.Machine.AddMachineViewModel
-<link href="lib/bootstrap/dist/css/bootstrap-grid.min.css" />
+@{
+    Layout = "_appLayout";
+}
+<main>
 
-<div>
-    <form>
-        <div class="container">
-            <div class="form-group">
+    <div class="container">
+        <div class="container-fluid row forms-container">
+            <div class="forms forms-content-infos">
                 <div class="col">
                     <div class="brandName itens" style="margin-left: 6%">
                         <label for="exampleFormControlInput1" class="texto">Marca</label>
                         <input class="form-control" placeholder="  " type="text">
                     </div>
+
                     <div class="categoryName itens" style="margin-left: 6%">
                         <label for="exampleFormControlInput1"> Categoria</label>
                         <select class="form-select" id="inputGroupSelect01">
-                            <option selected>Escolha uma opção</option>
-                            @foreach (string name in (List<string>)ViewBag.MachineCategoriesAsStringList)
-                            {
-                                <option value="@name">@name</option>
-                            }
+                            <option selected>Choose...</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
                         </select>
                     </div>
                 </div>
@@ -39,5 +40,58 @@
 
             </div>
         </div>
-    </form>
-</div>
+
+        <div class="container-fluid maxemin">
+            <div class=" d-flex flex-row mb-2 ms-3">
+                <div class="flex-column p-2 flex-fill">
+                    <label class="maxTemp">Máx</label> <br>
+                    <div class="maxtemp">
+                        <input type="number"> <label>ºC</label>
+
+                    </div>
+                    <div class="maxfreq ">
+                        <input type="number"> <label>Hz</label>
+
+                    </div>
+                    <div class="maxnoise">
+                        <input type="number"> <label>dB</label>
+
+                    </div>
+                </div>
+                <div class="flex-column p-2 flex-fill">
+                    <label class="minTemp">Mín</label> <br>
+                    <div class="mintemp">
+                        <input type="number"> <label>ºC</label>
+
+                    </div>
+                    <div class="minfreq">
+                        <input type="number"> <label>Hz</label>
+
+                    </div>
+                    <div class="minnoise">
+                        <input type="number"> <label>dB</label>
+
+                    </div>
+                </div>
+                <div class="flex-column p-2 flex-fill tipos-container">
+                    <div class="tempName">
+                        <h6>Temperatura</h6>
+                    </div>
+                    <div class="vibraName">
+                        <h6>Vibração</h6>
+                    </div>
+                    <div class="noiseName">
+                        <h6>Ruído</h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- botão cadastrar -->
+        <div class="divButton container mt-3">
+            <a class="btn btn-primary btn-cad" id="sendButton">Cadastrar</a>
+        </div>
+
+    </div>
+
+</main>
