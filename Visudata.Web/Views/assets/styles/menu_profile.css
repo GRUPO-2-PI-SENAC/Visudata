@@ -51,3 +51,11 @@
     
 }
 
+@media (min-width:390px){
+    .logo{
+        height: 250px;
+        width: 300px;
+        margin-bottom: 12%;
+    }
+}
+
