@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VisuData</title>
+
+    <!-- Icone da aba -->
+    <link rel="shortcut icon" href="../assets/Img/favicon-white.ico" type="image/x-icon" />
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link rel="stylesheet" href="../assets/Icons/bootstrap-icons/bootstrap-icons.css">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="../assets/styles/create.css">
+
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/dfbf29b648.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <!-- header -->
+    <header>
+        <a href="../Machine/Info.html">
+            <img src="../assets/icons/SVGIcons/volta-2.svg" alt="voltar">
+        </a>
+        <div class="machineText container">
+            Edite as principais informações da sua
+            <span class="maquinaSpan">máquina</span>
+        </div>
+    </header>
+    <!-- main - forms -->
+    <main>
+        
+        <div class="container">
+        <div class="container-fluid row forms-container">
+            <div class="forms forms-content-infos">
+                    <div class="col">
+                        <div class="brandName itens" style="margin-left: 6%">
+                            <label for="exampleFormControlInput1" class="texto">Marca</label>
+                            <input class="form-control" placeholder="  " type="text">
+                        </div>
+                        
+                        <div class="categoryName itens" style="margin-left: 6%">
+                            <label for="exampleFormControlInput1"> Categoria</label>
+                            <select class="form-select" id="inputGroupSelect01">
+                                <option selected>Choose...</option>
+                                <option value="1">One</option>
+                                <option value="2">Two</option>
+                                <option value="3">Three</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col pb-5">
+                        <div class="modelName itens" style="margin-left: 6%">
+                            <label for="exampleFormControlInput1"> Modelo</label>
+                            <input class="form-control" type="text">
+                        </div>
+                        <div class="tagName itens" style="margin-left: 6%">
+                            <label for="exampleFormControlInput1">Tag</label>
+                            <input class="form-control" type="text">
+                        </div>
+                    </div>
+
+                    <div class="serieNum itens" style="margin-left: 6%">
+                        <label for="exampleFormControlInput1" class="texto">Número de Série</label>
+                        <input class="form-control" placeholder="  " type="text">
+                    </div>
+                
+            </div>
+        </div>
+
+        <div class="container-fluid maxemin">
+            <div class=" d-flex flex-row mb-2 ms-3">
+                <div class="flex-column p-2 flex-fill">
+                    <label class="maxTemp">Máx</label> <br>
+                    <div class="maxtemp">
+                        <input type="number"> <label>ºC</label>
+                        
+                    </div>
+                    <div class="maxfreq ">
+                        <input type="number"> <label>Hz</label>
+                        
+                    </div>
+                    <div class="maxnoise">
+                        <input type="number"> <label>dB</label>
+                        
+                    </div>
+                </div>
+                <div class="flex-column p-2 flex-fill">
+                    <label class="minTemp">Mín</label> <br>
+                    <div class="mintemp">
+                        <input type="number"> <label>ºC</label>
+                        
+                    </div>
+                    <div class="minfreq">
+                        <input type="number"> <label>Hz</label>
+                        
+                    </div>
+                    <div class="minnoise">
+                        <input type="number"> <label>dB</label>
+                        
+                    </div>
+                </div>
+                <div class="flex-column p-2 flex-fill tipos-container">
+                    <div class="tempName">
+                        <h6>Temperatura</h6>
+                    </div>
+                    <div class="vibraName">
+                        <h6>Vibração</h6>
+                    </div>
+                    <div class="noiseName">
+                        <h6>Ruído</h6>
+                    </div>
+                </div> 
+            </div>
+        </div>
+        
+        <!-- botão cadastrar -->
+        <div class="divButton container mt-3">
+            <a href="./Info.html" class="btn btn-primary btn-cad" id="sendButton">Editar</a>
+        </div>
+        
+        </div>
+
+    </main>
+<!-- Navbar/Menu navegação -->
+<footer>
+    <nav class="nav fixed-bottom nav-fill" id="navbar">
+        <li class="nav-item" id="home_button">
+        <a class="btn me-2 " href="../Home/index.html"> <i class="icone bi bi-house-door text-light"></i> </a>
+        </li>
+        <li class="nav-item " id="create_button">
+        <a class="btn  me-2" href="#"><i class="bi bi-plus-circle text-light icone"></i> </a>
+        </li>
+        <li class="nav-item" id="list_button">
+        <a class="btn  me-2" href="../Machine/List.html"><i class="bi bi-list-ul text-light icone"></i></a>
+        </li>
+        <li class="nav-item" id="profile_button">
+        <a class="btn  me-2" href="../User/Menu_profile.html"><i class="bi bi-person text-light icone"></i></a>
+        </li>
+
+    </nav>
+</footer>
+
+</body>
