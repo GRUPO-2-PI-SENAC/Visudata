@@ -15,10 +15,10 @@ body {
 }
 
 .machineText span{
-    font-size: 30px; 
-    color: #09427D; 
+    font-size: 30px;  
     font-weight: bold; 
 }
+
 
 .maquinasSelect .card-header{
     font-weight: 500;
@@ -33,105 +33,20 @@ body {
     max-width: 90px;
 }
 
-/* .card-b, .aCard {
-    margin: 7% 7% 7%;
-    height: 80px;
-    width: 85%;
-    background-color: #E9F0F8;
-    border-color: transparent;
+/* .card-header{
+    background-color: #e5f0ff !important;
+    border-color: #8dc0f7;
+} */
+
+.card-header{
+    background-color: #2b5690 !important;
+    border-color: #8dc0f7;
+    color: white;
 }
 
-.model {
-    float: left;
-    margin-top: 2%;
-    margin-left: 3%;
-    font-weight: bold;
-    color: #09427D;
-
+.card-footer{
+    background-color: white !important;
 }
-
-.tag {
-    float: right;
-    margin-top: 2%;
-    margin-right: 3%;
-    font-weight: bold;
-    color: #09427D;
-
-}
-
-.tempStt {
-    float: left;
-    width: 30%;
-    margin-right: 5%;
-    margin-left: 3%;
-}
-
-.vibStt {
-    float: right;
-    margin-top: -0.9%;
-    margin-left: 5%;
-    margin-right: 2%;
-    width: 20%;
-
-}
-
-
-.redBt, .yellowBt, .greenBt {
-    border-radius: 100%;
-    height: 15px
-}
-
-.redBt {
-    float: left;
-    background-color: #FF0A0A;
-    border-color: transparent;
-    margin-left: 1%;
-}
-
-.tempValue {
-    float: right;
-    margin-top: -19%;
-    margin-right: 35%;
-    font-weight: bold;
-    color: #474747;
-
-}
-
-.yellowBt {
-    margin-top: 0%;
-    margin-right: 2%;
-    float: left;
-    background-color: #FFDD15;
-    border-color: transparent;
-}
-.noiseValue {
-    font-weight: bold;
-    color: #474747;
-    margin-top: -1.4%;
-}
-
-
-
-.greenBt {
-    margin-bottom: 10%;
-    background-color: #00FF29;
-    border-color: transparent;
-}
-.vibValue {
-    font-weight: bold;
-    color: #474747;
-    margin-left: 25px;
-    margin-top: -39%;
-
-    .mt-4 {
-    text-align: center;
-    margin-bottom: 1.5em;
-    font-weight: bold;
-    color: #09427D;
-}
-}
- */
-
 
 #navbar {
     background-color: #2b5690;
@@ -141,10 +56,23 @@ body {
     font-size: 25px;
 }
 
-@media (max-width:393px) and (max-height:851px){
-
+@media (max-width:376px) {
+    h2 {
+        font-size: 20px;
+    }
+    h5 {
+        font-size: 16px;
+    }
 }
 
+@media (min-width:390px) and (max-width:394px){
+    h2 {
+        font-size: 22px;
+    }
+    h5 {
+        font-size: 18px;
+    }
+}
 
 /* 375 667 bug
 360 740 bug
