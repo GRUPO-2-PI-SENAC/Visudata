@@ -20,10 +20,10 @@ body{
     text-align: right;
 }
 
-#linkEdit{
-    text-decoration: none;
-    color: aliceblue;
-
+#imgEdit{
+    display: flex;
+    text-align: right;
+    margin: 3% 0 0 60%;
 }
 
 .buttonEdit{
