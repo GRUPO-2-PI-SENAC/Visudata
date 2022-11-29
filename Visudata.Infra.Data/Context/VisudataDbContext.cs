@@ -103,5 +103,15 @@ public class VisudataDbContext : DbContext
             }
         );
 
+        modelBuilder.Entity<EnterpriseStatus>().HasData(new EnterpriseStatus
+        {
+            Id = 1,
+            Name = "ACTIVE",
+        },
+        new EnterpriseStatus
+        {
+            Id = 2,
+            Name = "DISABLE"
+        });
     }
 }

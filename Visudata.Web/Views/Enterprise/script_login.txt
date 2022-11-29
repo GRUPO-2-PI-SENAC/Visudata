@@ -34,7 +34,7 @@
 
 
 
-@section Scripts {
+<!--@section Scripts {
     <script lang="javascript">
         $("#tester").click(function () {
             var valor = $('#EnterpriseCNPJ').val();
@@ -68,4 +68,4 @@
             });
         });
     </script>
-}
+}-->

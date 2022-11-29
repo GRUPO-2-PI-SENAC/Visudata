@@ -1,75 +1,79 @@
+@model PI.Domain.ViewModel.Machine.AddMachineViewModel
 @{
     Layout = "_appLayout";
 }
-<main>
-
-    <div class="container">
+<link rel="stylesheet" href="~/assets/styles/create.css">
+<header>
+    <div class="machineText container">
+        Digite as principais informações da sua
+        <span class="maquinaSpan">máquina</span>
+    </div>
+</header>
+<div class="container">
+    <form asp-action="Add" asp-controller="Machine" method="post">
         <div class="container-fluid row forms-container">
             <div class="forms forms-content-infos">
                 <div class="col">
                     <div class="brandName itens" style="margin-left: 6%">
-                        <label for="exampleFormControlInput1" class="texto">Marca</label>
-                        <input class="form-control" placeholder="  " type="text">
+                        <label class="texto" asp-for="Brand">Marca</label>
+                        <input class="form-control" asp-for="Brand" type="text">
                     </div>
-
                     <div class="categoryName itens" style="margin-left: 6%">
-                        <label for="exampleFormControlInput1"> Categoria</label>
-                        <select class="form-select" id="inputGroupSelect01">
-                            <option selected>Choose...</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
+                        <label asp-for="Category"> Categoria</label>
+                        <select class="form-select" asp-for="Category" id="inputGroupSelect01">
+                            <option selected>Escolha uma opção</option>
+                            @foreach (string name in (List<string>)ViewBag.MachineCategoriesAsStringList)
+                            {
+                                <option value="@name">@name</option>
+                            }
                         </select>
                     </div>
                 </div>
                 <div class="col pb-5">
                     <div class="modelName itens" style="margin-left: 6%">
-                        <label for="exampleFormControlInput1"> Modelo</label>
-                        <input class="form-control" type="text">
+                        <label asp-for="Model"> Modelo</label>
+                        <input class="form-control" asp-for="Model" type="text">
                     </div>
                     <div class="tagName itens" style="margin-left: 6%">
-                        <label for="exampleFormControlInput1">Tag</label>
-                        <input class="form-control" type="text">
+                        <label asp-for="Tag">Tag</label>
+                        <input class="form-control" asp-for="Tag" type="text">
                     </div>
                 </div>
-
                 <div class="serieNum itens" style="margin-left: 6%">
-                    <label for="exampleFormControlInput1" class="texto">NÃºmero de SÃ©rie</label>
-                    <input class="form-control" placeholder="  " type="text">
+                    <label class="texto" asp-for="SerialNumber">Número de Série</label>
+                    <input class="form-control" asp-for="SerialNumber" type="text">
                 </div>
-
             </div>
         </div>
-
         <div class="container-fluid maxemin">
             <div class=" d-flex flex-row mb-2 ms-3">
                 <div class="flex-column p-2 flex-fill">
-                    <label class="maxTemp">MÃ¡x</label> <br>
+                    <label class="maxTemp">Máx</label> <br>
                     <div class="maxtemp">
-                        <input type="number"> <label>ÂºC</label>
+                        <input type="number" asp-for="MaxTemp"> <label>ºC</label>
 
                     </div>
                     <div class="maxfreq ">
-                        <input type="number"> <label>Hz</label>
+                        <input type="number" asp-for="MaxVibration"> <label>Hz</label>
 
                     </div>
                     <div class="maxnoise">
-                        <input type="number"> <label>dB</label>
+                        <input type="number" asp-for="MaxNoise"> <label>dB</label>
 
                     </div>
                 </div>
                 <div class="flex-column p-2 flex-fill">
-                    <label class="minTemp">MÃ­n</label> <br>
+                    <label class="minTemp">Mín</label> <br>
                     <div class="mintemp">
-                        <input type="number"> <label>ÂºC</label>
+                        <input type="number" asp-for="MinTemp"> <label>ºC</label>
 
                     </div>
                     <div class="minfreq">
-                        <input type="number"> <label>Hz</label>
+                        <input type="number" asp-for="MinVibration"> <label>Hz</label>
 
                     </div>
                     <div class="minnoise">
-                        <input type="number"> <label>dB</label>
+                        <input type="number" asp-for="MinNoise"> <label>dB</label>
 
                     </div>
                 </div>
@@ -78,20 +82,16 @@
                         <h6>Temperatura</h6>
                     </div>
                     <div class="vibraName">
-                        <h6>VibraÃ§Ã£o</h6>
+                        <h6>Vibração</h6>
                     </div>
                     <div class="noiseName">
-                        <h6>RuÃ­do</h6>
+                        <h6>Ruído</h6>
                     </div>
                 </div>
             </div>
         </div>
-
-        <!-- botÃ£o cadastrar -->
         <div class="divButton container mt-3">
-            <a class="btn btn-primary btn-cad" id="sendButton">Cadastrar</a>
+            <input class=" btn btn-primary btn-cad" type="submit" id="sendButton" value="Salvar" />
         </div>
-
-    </div>
-
-</main>
+    </form>
+</div>

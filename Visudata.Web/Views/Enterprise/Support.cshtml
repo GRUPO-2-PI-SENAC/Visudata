@@ -36,7 +36,6 @@
         </a>
         <div class="container" id="logo">
             <img src="~/assets/icons/Logo.svg" alt="logo">
-            <img src="/"
         </div>
     </header>
 
@@ -45,50 +44,43 @@
             <div class="col-md-7 col-lg-8">
                 <h2 class="mt-4"></h2>
                 <h4>Suporte Técnico</h4>
-                    <div class="forms">
-                        <div class="row g-3">
-                            <div class="col-sm-6">
-                                <label for="company" class="form-label">Empresa</label>
-                                <input type="text" class="form-control" value="@Model.NameOfEnterprise" id="company" required>
-                                <div class="invalid-feedback">
-                                    Valid first name is required.
-                                </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <label for="email" class="form-label">E-mail do representante</label>
-                                <input type="text" class="form-control" id="email" required>
-                                <div class="invalid-feedback">
-                                    Valid first name is required.
-                                </div>
-                            </div>
-                            <div class="col-sm-5">
-                                <label for="category" class="form-label">Categoria</label>
-                                <select class="selectpicker" >
-                                    <option selected>Selecione uma opção</option>
-                                    @foreach (string item in ViewBag.userProblemsCategoriesAsString)
-                                    {
-                                        <option value="@item">@item</option>                                    
-                                    }
-                                </select>
-                            </div>
-                            <div class="form-check" style="margin-left: 8px;">
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                <label class="form-check-label" for="flexCheckDefault">
-                                    Enviar uma cópia
-                                </label>
-                            </div>
-                            <div class="mb-3">
-                                <label for="exampleFormControlTextarea1" class="form-label">
-                                    Detalhe o
-                                    problema
-                                </label>
-                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="6"
-                                          style="margin-bottom: 10px;"></textarea>
-                            </div>
-                            <button class="mt-5 w-100 btn btn-primary btn-lg" type="submit" id="sendButton">Enviar</button>
+                <div class="forms">
+                    <div class="row g-3">
+                        <div class="col-sm-6">
+                            <label for="company" class="form-label">Empresa</label>
+                            <input type="text" class="form-control" value="@Model.NameOfEnterprise" id="company" required>
                         </div>
+                        <div class="col-sm-6">
+                            <label for="email" class="form-label">E-mail do representante</label>
+                            <input type="text" class="form-control" id="email" required>
+                        </div>
+                        <div class="col-sm-5">
+                            <label for="category" class="form-label">Categoria</label>
+                            <select class="selectpicker">
+                                <option selected>Selecione uma opção</option>
+                                @foreach (string item in ViewBag.userProblemsCategoriesAsString)
+                                {
+                                    <option value="@item">@item</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="form-check" style="margin-left: 8px;">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                            <label class="form-check-label" for="flexCheckDefault">
+                                Enviar uma cópia
+                            </label>
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleFormControlTextarea1" class="form-label">
+                                Detalhe o
+                                problema
+                            </label>
+                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="6"
+                                      style="margin-bottom: 10px;"></textarea>
+                        </div>
+                        <button class="mt-5 w-100 btn btn-primary btn-lg" type="submit" id="sendButton">Enviar</button>
                     </div>
-                </form>
+                </div>
             </div>
         </form>
     </main>

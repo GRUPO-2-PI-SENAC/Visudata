@@ -15,20 +15,20 @@ public class AddMachineViewModel
     public double MaxTemp { get; set; }
     [Required(ErrorMessage = "Campo obrigatório")]
     [Range(1, int.MaxValue, ErrorMessage = "Não é permitido valores negativos")]
-    public double MimTemp { get; set; }
+    public double MinTemp { get; set; }
     [Required(ErrorMessage = "Campo obrigatório")]
     public double MaxNoise { get; set; }
     [Required(ErrorMessage = "Campo obrigatório")]
-    [Range(1 , int.MaxValue, ErrorMessage = "Não é permitido valores negativos")]
-    public double MimNoise { get; set; }
+    [Range(1, int.MaxValue, ErrorMessage = "Não é permitido valores negativos")]
+    public double MinNoise { get; set; }
     [Required(ErrorMessage = "Campo obrigatório")]
     public double MaxVibration { get; set; }
     [Required(ErrorMessage = "Campo obrigatório")]
     [Range(1, int.MaxValue, ErrorMessage = "Não é permitido valores negativos")]
-    public double MimVibration { get; set; }
+    public double MinVibration { get; set; }
     [Required(ErrorMessage = "Campo obrigatório")]
     public string Category { get; set; }
-
+    [Required(ErrorMessage = "Campo obrigatório")]
     public string Brand { get; set; }
     public string Status { get; set; }
     [Required(ErrorMessage = "Campo obrigatório")]
@@ -39,5 +39,5 @@ public class AddMachineViewModel
     {
         Id = new Random().Next(1000, 100000);
     }
-    
+
 }

@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using PI.Application.Intefaces;
-using PI.Domain.ViewModel.Enterpriqse;
 using PI.Domain.ViewModel.Machine;
 
 namespace PI.Web.Controllers;
@@ -46,8 +45,8 @@ public class MachineController : Controller
     [HttpPost]
     public async Task<IActionResult> Add(AddMachineViewModel model)
     {
-        string? enterpriseCnpj = Request.Cookies["enterpriseCnpj"].ToString();
-        bool isAdded = await _machineService.Add(model, enterpriseCnpj);
+        //string? enterpriseCnpj = Request.Cookies["enterpriseCnpj"].ToString();
+        bool isAdded = await _machineService.Add(model, "01616929000102");
 
         TempData["message"] = isAdded ? "Máquian adicionada com sucesso!!"
             : "Occorreu um erro tente novamente mais tarde ou entre em contato com o administrador";
@@ -90,7 +89,7 @@ public class MachineController : Controller
     {
         bool isRegisted = await _machineService.AddRegisterOfMachineFromJson(model);
 
-        return isRegisted ? Ok("Added with success!") : BadRequest("Register dosen't added with expected , contact the administrator for more details");
+        return isRegisted ? Ok("Added with success!") : BadRequest("Register doesn't added with expected, contact the administrator for more details");
     }
 
     public async Task<IActionResult> DownloadLogDataOfMachine(int id)
