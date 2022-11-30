@@ -1,4 +1,7 @@
-﻿namespace PI.Domain.Entities
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using PI.Domain.Util;
+
+namespace PI.Domain.Entities
 {
     public class Enterprise : EntityBase
     {
@@ -15,7 +18,8 @@
         #region Relationships
         public ICollection<MachineCategory> EnterpriseMachineCategories { get; set; }
         public IEnumerable<Machine> Machines { get; set; }
-        public EnterpriseStatus EnterpriseStatus { get; set; }
+        [Column("EnterpriseStatusId")]
+        public Enterprise_Status Status { get; set; }
 
         #endregion
     }
