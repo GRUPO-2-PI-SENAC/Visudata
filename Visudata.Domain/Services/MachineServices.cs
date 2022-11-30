@@ -560,4 +560,25 @@ public class MachineServices : IMachineService
 
 
     }
+
+    public async Task<List<MachineForListViewModel>> GetMachinesOfSpecificCategory(string? currentSessionEnterpriseCnpj, string nameOfCategory)
+    {
+        try
+        {
+            IEnumerable<Enterprise> enterprises = await _enterpriseRepository.GetAll();
+            Enterprise enterpriseCurretnSession = enterprises
+                .Where(enterprise => enterprise.Cnpj == currentSessionEnterpriseCnpj).FirstOrDefault();
+            List<MachineForListViewModel>
+                machinesForView = await GetMachinesByEnterpriseId(enterpriseCurretnSession.Id);
+
+            return machinesForView.Where(machine => machine.category == nameOfCategory).ToList();
+        }
+        catch
+        {
+            return new List<MachineForListViewModel>();
+        }
+
+
+
+    }
 }

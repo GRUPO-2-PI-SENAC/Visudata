@@ -92,5 +92,11 @@ namespace PI.Application.AppServices
         {
             return _machineService.GetJsonForDetailsAboutMachineAjaxHandler(id, status);
         }
+
+        public Task<List<MachineForListViewModel>> GetMachineOfSpecificCategory(string? currentSessionEnterpriseCnpj,
+            string nameOfcategory)
+        {
+            return _machineService.GetMachinesOfSpecificCategory(currentSessionEnterpriseCnpj, nameOfcategory);
+        }
     }
 }

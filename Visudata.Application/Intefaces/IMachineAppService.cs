@@ -27,5 +27,7 @@ namespace PI.Application.Intefaces
         Task<string> GetHistoryDataByCsvByMachineId(int machineId);
         Task<MachineDetailsViewModel> GetMachineForDetails(int id);
         Task<string> GetJsonForDetailsAboutMachineAjaxHandler(int id, string status);
+        Task<List<MachineForListViewModel>> GetMachineOfSpecificCategory(string? currentSessionEnterpriseCnpj,
+            string nameOfcategory);
     }
 }

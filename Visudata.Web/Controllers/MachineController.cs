@@ -37,6 +37,16 @@ public class MachineController : Controller
     }
 
     [HttpGet]
+    public async Task<IActionResult> GetMachinesForSpecificCategory(string nameOfCategory)
+    {
+        string enterpriseOfCurrentSessionCnpj = Request.Cookies["enterpriseCnpj"];
+        List<MachineForListViewModel> model = await _machineService.GetMachineOfSpecificCategory(enterpriseOfCurrentSessionCnpj, nameOfCategory);
+
+        return View("List", model);
+
+    }
+
+    [HttpGet]
     public async Task<IActionResult> Add()
     {
         List<string> nameOfCategoriesAsStringList = await _machineCategoryService.GetNameOfCategoriesAsString();

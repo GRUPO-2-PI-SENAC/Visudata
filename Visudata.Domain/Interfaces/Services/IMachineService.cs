@@ -29,4 +29,5 @@ public interface IMachineService
     Task<string> GetJsonForDetailsAboutMachineAjaxHandler(int id, string status);
 
 
+    Task<List<MachineForListViewModel>> GetMachinesOfSpecificCategory(string? currentSessionEnterpriseCnpj, string nameOfCategory);
 }
