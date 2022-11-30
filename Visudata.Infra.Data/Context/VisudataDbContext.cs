@@ -12,7 +12,6 @@ public class VisudataDbContext : DbContext
     #region DbSet
 
     public DbSet<Enterprise> Enterprises { get; set; }
-    public DbSet<EnterpriseStatus> EnterpriseStatus { get; set; }
     public DbSet<UserProblemsCategory> UserProblemsCategories { get; set; }
     public DbSet<Machine> Machines { get; set; }
     public DbSet<OutlierRegister> OutlierRegisters { get; set; }
@@ -102,16 +101,5 @@ public class VisudataDbContext : DbContext
                 Created_at = DateTime.Now
             }
         );
-
-        modelBuilder.Entity<EnterpriseStatus>().HasData(new EnterpriseStatus
-        {
-            Id = 1,
-            Name = "ACTIVE",
-        },
-        new EnterpriseStatus
-        {
-            Id = 2,
-            Name = "DISABLE"
-        });
     }
 }

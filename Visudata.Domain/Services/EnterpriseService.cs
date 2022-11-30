@@ -1,6 +1,7 @@
 ﻿using PI.Application.Intefaces;
 using PI.Domain.Entities;
 using PI.Domain.Interfaces.Repositories;
+using PI.Domain.Util;
 using PI.Domain.ViewModel.Enterpriqse;
 using PI.Domain.ViewModel.Enterprise;
 
@@ -9,16 +10,14 @@ namespace PI.Application.Services;
 public class EnterpriseService : IEnterpriseService
 {
     private readonly IEnterpriseRepository _enterpriseRepository;
-    private readonly IEnterpriseStatusRepository _enterpriseStatusRepository;
     private readonly ILogsRepository _logsRepository;
     private readonly IOutlierRegisterRepository _outlierRegisterRepository;
     private readonly IMachineService _machineService;
     private readonly IMachineRepository _machineRepository;
 
-    public EnterpriseService(IEnterpriseRepository enterpriseRepository, IEnterpriseStatusRepository enterpriseStatusRepository, ILogsRepository logsRepository, IOutlierRegisterRepository outlierRegisterRepository, IMachineService machineService, IMachineRepository machineRepository)
+    public EnterpriseService(IEnterpriseRepository enterpriseRepository, ILogsRepository logsRepository, IOutlierRegisterRepository outlierRegisterRepository, IMachineService machineService, IMachineRepository machineRepository)
     {
         _enterpriseRepository = enterpriseRepository;
-        _enterpriseStatusRepository = enterpriseStatusRepository;
         _logsRepository = logsRepository;
         _outlierRegisterRepository = outlierRegisterRepository;
         _machineService = machineService;
@@ -170,7 +169,7 @@ public class EnterpriseService : IEnterpriseService
     {
         IEnumerable<Enterprise> enterprises = await _enterpriseRepository.GetAll();
 
-        bool isInDb = enterprises.Any(enterprise => enterprise.Cnpj == model.Login && enterprise.Password == model.Password && enterprise.EnterpriseStatus.Name == "ACTIVE");
+        bool isInDb = enterprises.Any(enterprise => enterprise.Cnpj == model.Login && enterprise.Password == model.Password && enterprise.Status == Enterprise_Status.ACTIVE);
 
         return isInDb;
     }
@@ -219,7 +218,7 @@ public class EnterpriseService : IEnterpriseService
                 NumberOfLocation = model.NumberOfLocation,
                 Sector = model.Sector,
                 Cnpj = model.CNPJ,
-                EnterpriseStatus = _enterpriseStatusRepository.GetAll().Result.FirstOrDefault(status => status.Name == "ACTIVE"),
+                Status = Enterprise_Status.ACTIVE,
                 State = model.State,
                 Created_at = DateTime.Now
             };

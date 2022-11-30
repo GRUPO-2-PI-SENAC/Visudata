@@ -13,7 +13,7 @@ public class EnterpriseRepository : BaseRepository<Enterprise>, IEnterpriseRepos
 
     public async Task<IEnumerable<Enterprise>> GetAllWithRelationships()
     {
-        List<Enterprise> enterprises = _context.Enterprises.Include(enterprise => enterprise.EnterpriseMachineCategories).Include(enterprise => enterprise.Machines).Include(enterprise => enterprise.EnterpriseStatus).ToList();
+        List<Enterprise> enterprises = _context.Enterprises.Include(enterprise => enterprise.Machines).ToList();
         return enterprises;
     }
 
