@@ -106,24 +106,24 @@ namespace PI.Web.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Login(EnterpriseLoginViewModel login)
+        public async Task<IActionResult> Login(EnterpriseLoginViewModel enterpriseForLogin)
         {
             if (ModelState.IsValid)
             {
-                bool isLogin = await _enterpriseService.Login(login);
+                bool isLogin = await _enterpriseService.Login(enterpriseForLogin);
                 if (isLogin)
                 {
                     TempData["message"] = "Usuario adicionado com sucesso!";
-                    Response.Cookies.Append("enterpriseCnpj", login.Login);
+                    Response.Cookies.Append("enterpriseCnpj", enterpriseForLogin.Login);
                     return RedirectToAction("Home");
                 }
 
-                ModelState.AddModelError(nameof(login.Password), "Senha ou usuário incorretos");
+                ModelState.AddModelError(nameof(enterpriseForLogin.Password), "Senha ou usuário incorretos");
 
                 return View();
             }
             TempData["message"] = "Senha ou usuario invalidos";
-            return View(login);
+            return View(enterpriseForLogin);
         }
 
         [HttpGet]
