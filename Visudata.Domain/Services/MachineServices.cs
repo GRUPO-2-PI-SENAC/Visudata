@@ -84,17 +84,19 @@ public class MachineServices : IMachineService
             {
                 Brand = model.Brand,
                 Id = model.Id,
+                Tag = model.Tag,
+                SerialNumber = model.SerialNumber,
                 Category = await AddCategoryInMachine(model.Category),
-                TempMax = model.MaxTemp,
-                TempMin = model.MinTemp,
+                Model = model.Model,
+                Created_at = DateTime.Now,
+                Status = MachineStatus.Undefined,
+                Enterprise = await _enterpriseRepository.GetEnterpriseByCnpj(enterpriseCnpj),
                 NoiseMax = model.MaxNoise,
                 NoiseMin = model.MinNoise,
                 VibrationMax = model.MaxVibration,
                 VibrationMin = model.MinVibration,
-                Created_at = DateTime.Now,
-                Status = MachineStatus.Undefined,
-                Enterprise = await _enterpriseRepository.GetEnterpriseByCnpj(enterpriseCnpj),
-                Tag = model.Tag
+                TempMin = model.MinTemp,
+                TempMax = model.MaxTemp,
             };
 
             await _machineRepository.Add(machineForAddInDb);
@@ -109,8 +111,11 @@ public class MachineServices : IMachineService
 
     private async Task<MachineCategory> AddCategoryInMachine(string modelCategory)
     {
-        MachineCategory byName = await _categoryRepository.GetByName(modelCategory);
-        return byName;
+        IEnumerable<MachineCategory> machineCategoriesInDb = await _categoryRepository.GetAll();
+        MachineCategory machineCategoryForAddInmachine = machineCategoriesInDb.FirstOrDefault(machineCategory =>
+            machineCategory.Name.ToLower() == modelCategory.ToLower());
+
+        return machineCategoryForAddInmachine;
     }
 
     public async Task<bool> UpdateMachine(EditMachineViewModel model)

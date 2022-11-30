@@ -5,34 +5,17 @@ namespace PI.Domain.ViewModel.Machine;
 public class AddMachineViewModel
 {
     public int Id { get; set; }
-    [Required(ErrorMessage = "Campo obrigatório")]
-    [MaxLength(30, ErrorMessage = "Você ultrapassou a quantidade máxima de caracteres")]
     public string Model { get; set; }
-    [Required(ErrorMessage = "Campo obrigatório")]
-    [MaxLength(80, ErrorMessage = "Você ultrapassou a quantidade máxima de caracteres")]
     public string SerialNumber { get; set; }
-    [Required(ErrorMessage = "Campo obrigatório")]
     public double MaxTemp { get; set; }
-    [Required(ErrorMessage = "Campo obrigatório")]
-    [Range(1, int.MaxValue, ErrorMessage = "Não é permitido valores negativos")]
     public double MinTemp { get; set; }
-    [Required(ErrorMessage = "Campo obrigatório")]
     public double MaxNoise { get; set; }
-    [Required(ErrorMessage = "Campo obrigatório")]
-    [Range(1, int.MaxValue, ErrorMessage = "Não é permitido valores negativos")]
     public double MinNoise { get; set; }
-    [Required(ErrorMessage = "Campo obrigatório")]
     public double MaxVibration { get; set; }
-    [Required(ErrorMessage = "Campo obrigatório")]
-    [Range(1, int.MaxValue, ErrorMessage = "Não é permitido valores negativos")]
     public double MinVibration { get; set; }
-    [Required(ErrorMessage = "Campo obrigatório")]
     public string Category { get; set; }
-    [Required(ErrorMessage = "Campo obrigatório")]
     public string Brand { get; set; }
     public string Status { get; set; }
-    [Required(ErrorMessage = "Campo obrigatório")]
-    [MaxLength(30, ErrorMessage = "Você ultrapassou a quantidade máxima de caracteres")]
     public string Tag { get; set; }
 
     public AddMachineViewModel()

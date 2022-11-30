@@ -1,6 +1,6 @@
 @model PI.Domain.ViewModel.Machine.AddMachineViewModel
 @{
-    Layout = "_appLayout";
+    Layout = "_Layout";
 }
 <link rel="stylesheet" href="~/assets/styles/create.css">
 <header>
@@ -9,89 +9,94 @@
         <span class="maquinaSpan">máquina</span>
     </div>
 </header>
-<div class="container">
-    <form asp-action="Add" asp-controller="Machine" method="post">
-        <div class="container-fluid row forms-container">
-            <div class="forms forms-content-infos">
-                <div class="col">
-                    <div class="brandName itens" style="margin-left: 6%">
-                        <label class="texto" asp-for="Brand">Marca</label>
-                        <input class="form-control" asp-for="Brand" type="text">
-                    </div>
-                    <div class="categoryName itens" style="margin-left: 6%">
-                        <label asp-for="Category"> Categoria</label>
-                        <select class="form-select" asp-for="Category" id="inputGroupSelect01">
-                            <option selected>Escolha uma opção</option>
-                            @foreach (string name in (List<string>)ViewBag.MachineCategoriesAsStringList)
-                            {
-                                <option value="@name">@name</option>
-                            }
-                        </select>
-                    </div>
+<form asp-controller="Machine" asp-action="Add" method="POST">
+    <div class="container-fluid row forms-container">
+        <div class="forms">
+            <div class="col">
+                <div class="brandName itens" style="margin-left: 6%">
+                    <label class="texto">Marca</label>
+                    @Html.TextBoxFor(m => m.Brand, new {@type ="text", @placeHolder="Marca da máquina", @class = "form-control"})
                 </div>
-                <div class="col pb-5">
-                    <div class="modelName itens" style="margin-left: 6%">
-                        <label asp-for="Model"> Modelo</label>
-                        <input class="form-control" asp-for="Model" type="text">
-                    </div>
-                    <div class="tagName itens" style="margin-left: 6%">
-                        <label asp-for="Tag">Tag</label>
-                        <input class="form-control" asp-for="Tag" type="text">
-                    </div>
+                <div class="categoryName itens" style="margin-left: 6%">
+                    <label> Categoria</label>
+                    @Html.DropDownList("Category", (IEnumerable<SelectListItem>)ViewBag.MachineCategoriesAsStringList, new {@class = "form-select"})
+@*                    <select class="form-select" asp-for="Category" id="inputGroupSelect01">
+                        <option selected>Escolha uma opção</option>
+                        @foreach (string name in (List<string>)ViewBag.MachineCategoriesAsStringList)
+                        {
+                            <option value="@name">@name</option>
+                        }
+                    </select>*@
                 </div>
-                <div class="serieNum itens" style="margin-left: 6%">
-                    <label class="texto" asp-for="SerialNumber">Número de Série</label>
-                    <input class="form-control" asp-for="SerialNumber" type="text">
+            </div>
+            <div class="col pb-5">
+                <div class="modelName itens" style="margin-left: 6%">
+                    <label> Modelo</label>
+                    @Html.TextBoxFor(m => m.Model, new {@class="form-control", @type="text", @placeholder="Digite o modelo"})
+                </div>
+                <div class="tagName itens" style="margin-left: 6%">
+                    <label>Tag</label>
+                    @Html.TextBoxFor(m => m.Tag, new {@class="form-control", type="text", @placeholder="Digite a Tag"})
+                </div>
+            </div>
+            <div class="itens" style="margin-left: 6%">
+                <label class="texto">Número de Série</label>
+                @Html.TextBoxFor(m => m.SerialNumber, new {@class="form-control", @type="text", @placeholder="Digite o número de série"})
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid maxemin">
+        <div class=" d-flex flex-row mb-2 ms-3">
+            <div class="flex-column p-2 flex-fill">
+                <label class="">Máx</label> <br>
+                <div class="">
+                    @Html.TextBoxFor(m =>m.MaxTemp, new {@type="number"})
+                    <label>ºC</label>
+
+                </div>
+                <div class=" ">
+                    @Html.TextBoxFor(model => model.MaxVibration, new {@type = "number"})
+                    <label>Hz</label>
+
+                </div>
+                <div class="">
+                    @Html.TextBoxFor(m => m.MaxNoise, new {@type="number"})
+                    <label>dB</label>
+
+                </div>
+            </div>
+            <div class="flex-column p-2 flex-fill">
+                <label class="">Mín</label> <br>
+                <div class="">
+                    @Html.TextBoxFor(m => m.MinTemp, new {@type="number"})
+                    <label>ºC</label>
+
+                </div>
+                <div class="">
+                    @Html.TextBoxFor(m => m.MinVibration, new {@type="number"})
+                    <label>Hz</label>
+
+                </div>
+                <div class="">
+                    @Html.TextBoxFor(m => m.MinNoise, new {@type = "number"})
+                    <label>dB</label>
+
+                </div>
+            </div>
+            <div class="flex-column p-2 flex-fill tipos-container">
+                <div class="tempName">
+                    <h6>Temperatura</h6>
+                </div>
+                <div class="vibraName">
+                    <h6>Vibração</h6>
+                </div>
+                <div class="noiseName">
+                    <h6>Ruído</h6>
                 </div>
             </div>
         </div>
-        <div class="container-fluid maxemin">
-            <div class=" d-flex flex-row mb-2 ms-3">
-                <div class="flex-column p-2 flex-fill">
-                    <label class="maxTemp">Máx</label> <br>
-                    <div class="maxtemp">
-                        <input type="number" asp-for="MaxTemp"> <label>ºC</label>
-
-                    </div>
-                    <div class="maxfreq ">
-                        <input type="number" asp-for="MaxVibration"> <label>Hz</label>
-
-                    </div>
-                    <div class="maxnoise">
-                        <input type="number" asp-for="MaxNoise"> <label>dB</label>
-
-                    </div>
-                </div>
-                <div class="flex-column p-2 flex-fill">
-                    <label class="minTemp">Mín</label> <br>
-                    <div class="mintemp">
-                        <input type="number" asp-for="MinTemp"> <label>ºC</label>
-
-                    </div>
-                    <div class="minfreq">
-                        <input type="number" asp-for="MinVibration"> <label>Hz</label>
-
-                    </div>
-                    <div class="minnoise">
-                        <input type="number" asp-for="MinNoise"> <label>dB</label>
-
-                    </div>
-                </div>
-                <div class="flex-column p-2 flex-fill tipos-container">
-                    <div class="tempName">
-                        <h6>Temperatura</h6>
-                    </div>
-                    <div class="vibraName">
-                        <h6>Vibração</h6>
-                    </div>
-                    <div class="noiseName">
-                        <h6>Ruído</h6>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="divButton container mt-3">
-            <input class=" btn btn-primary btn-cad" type="submit" id="sendButton" value="Salvar" />
-        </div>
-    </form>
-</div>
+    </div>
+    <div class="divButton container mt-3">
+        <button class="btn btn-primary" type="submit" id="sendButton">Salvar</button>
+    </div>
+</form>

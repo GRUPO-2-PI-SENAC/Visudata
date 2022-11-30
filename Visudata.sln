@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Visudata.Application", "Vis
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Visudata.Web", "Visudata.Web\Visudata.Web.csproj", "{ADE7065D-81D6-4C07-87A5-D19C002022C4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Visudata.Test", "Visudata.Test\Visudata.Test.csproj", "{D9A3317F-2F3A-4D5C-B4E7-A77B5C269CDD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Visudata.Test", "Visudata.Test\Visudata.Test.csproj", "{D9A3317F-2F3A-4D5C-B4E7-A77B5C269CDD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

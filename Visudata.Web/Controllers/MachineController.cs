@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using PI.Application.Intefaces;
 using PI.Domain.ViewModel.Machine;
 
@@ -38,20 +39,29 @@ public class MachineController : Controller
     [HttpGet]
     public async Task<IActionResult> Add()
     {
-        ViewBag.MachineCategoriesAsStringList = await _machineCategoryService.GetNameOfCategoriesAsString();
-        return View();
+        List<string> nameOfCategoriesAsStringList = await _machineCategoryService.GetNameOfCategoriesAsString();
+
+        List<SelectListItem> item = new List<SelectListItem>();
+
+        foreach (string variable in nameOfCategoriesAsStringList)
+        {
+            item.Add(new SelectListItem(variable, variable));
+        }
+
+        ViewBag.MachineCategoriesAsStringList = item;
+        return View(new AddMachineViewModel());
     }
 
     [HttpPost]
-    public async Task<IActionResult> Add(AddMachineViewModel model)
+    public async Task<IActionResult> Add(AddMachineViewModel machineForAddInDb)
     {
-        //string? enterpriseCnpj = Request.Cookies["enterpriseCnpj"].ToString();
-        bool isAdded = await _machineService.Add(model, "01616929000102");
+        string? enterpriseCnpj = Request.Cookies["enterpriseCnpj"].ToString();
+        bool isAdded = await _machineService.Add(machineForAddInDb, enterpriseCnpj);
 
         TempData["message"] = isAdded ? "Máquian adicionada com sucesso!!"
             : "Occorreu um erro tente novamente mais tarde ou entre em contato com o administrador";
 
-        return View("Enterprise", "Home");
+        return RedirectToAction("Home", "Enterprise");
     }
 
     [HttpGet]
