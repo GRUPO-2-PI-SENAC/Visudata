@@ -25,40 +25,49 @@ public class MachineServices : IMachineService
 
     public async Task<List<MachineForListViewModel>> GetAll(int enterpriseId)
     {
-        bool any = _enterpriseRepository.GetAll().Result.Any(enterprise => enterprise.Id == enterpriseId);
 
-        if (any)
+        try
         {
-            IEnumerable<Log> logs = await _logRepository.GetAll();
+            bool any = _enterpriseRepository.GetAll().Result.Any(enterprise => enterprise.Id == enterpriseId);
 
-            IEnumerable<Machine> machines = _machineRepository.GetAll().Result
-                .Where(machine => machine.Enterprise.Id == enterpriseId);
-
-            List<MachineForListViewModel> machinesforView = new List<MachineForListViewModel>();
-
-            foreach (Machine machine in machines)
+            if (any)
             {
-                Log logOfMachine = _logRepository.GetAll().Result
-                    .Where(log => log.Machine.Id == machine.Id).MaxBy(log => log.Created_at);
+                IEnumerable<Log> logs = await _logRepository.GetAll();
 
-                machinesforView.Add(new MachineForListViewModel()
+                IEnumerable<Machine> machines = _machineRepository.GetAll().Result
+                    .Where(machine => machine.Enterprise.Id == enterpriseId);
+
+                List<MachineForListViewModel> machinesforView = new List<MachineForListViewModel>();
+
+                foreach (Machine machine in machines)
                 {
-                    Id = machine.Id,
-                    Brand = machine.Brand,
-                    Model = machine.Model,
-                    SerialNumber = machine.SerialNumber,
-                    Status = GetStatusForViewFromMachineStatusEnum(machine.Status),
-                    Noise = logOfMachine.Noise,
-                    Temp = logOfMachine.Temp,
-                    Vibration = logOfMachine.Vibration,
-                    category = machine.Category.Name
-                });
+                    Log logOfMachine = _logRepository.GetAll().Result
+                        .Where(log => log.Machine.Id == machine.Id).MaxBy(log => log.Created_at);
+
+                    machinesforView.Add(new MachineForListViewModel()
+                    {
+                        Id = machine.Id,
+                        Brand = machine.Brand,
+                        Model = machine.Model,
+                        SerialNumber = machine.SerialNumber,
+                        Status = GetStatusForViewFromMachineStatusEnum(machine.Status),
+                        Noise = logOfMachine.Noise,
+                        Temp = logOfMachine.Temp,
+                        Vibration = logOfMachine.Vibration,
+                        category = machine.Category.Name
+                    });
+                }
+
+                return machinesforView;
             }
 
-            return machinesforView;
+            return new List<MachineForListViewModel>();
+        }
+        catch
+        {
+            return new List<MachineForListViewModel>();
         }
 
-        return new List<MachineForListViewModel>();
     }
 
     public async Task<List<MachineForListViewModel>> GetMachinesForSpecificCategory(int enterpriseId,

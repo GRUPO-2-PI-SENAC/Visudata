@@ -20,13 +20,6 @@
                 <div class="categoryName itens" style="margin-left: 6%">
                     <label> Categoria</label>
                     @Html.DropDownList("Category", (IEnumerable<SelectListItem>)ViewBag.MachineCategoriesAsStringList, new {@class = "form-select"})
-@*                    <select class="form-select" asp-for="Category" id="inputGroupSelect01">
-                        <option selected>Escolha uma opção</option>
-                        @foreach (string name in (List<string>)ViewBag.MachineCategoriesAsStringList)
-                        {
-                            <option value="@name">@name</option>
-                        }
-                    </select>*@
                 </div>
             </div>
             <div class="col pb-5">

@@ -5,7 +5,15 @@
 
 
 <link rel="stylesheet" href="~/assets/styles/home.css">
-
+<!-- Header (Logo+Nome) MUDAR LOGO-->
+<header class="navbar header p-2">
+    <div class="container-fluid">
+        <a class="navbar-brand name-app" href="#">
+            <img src="../assets/Img/Logo-branco.png" alt="Logo" width="70" height="60" class="d-inline-block align-text-center">
+            VisuData
+        </a>
+    </div>
+</header>
 <!-- Container Status maquinas -->
 <div class="container-cards" id="status-container">
     <h3> Visão Geral</h3>
@@ -140,3 +148,11 @@
         </div>
     </div>
 </div>
+<script>
+    window.onload = teste ; 
+
+    function teste () {
+        let botao = document.getElementById('botaoVoltar');
+        botao.setAttribute("hidden", "hidden");
+    }
+</script>

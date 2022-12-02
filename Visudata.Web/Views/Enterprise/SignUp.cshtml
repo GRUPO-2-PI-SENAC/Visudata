@@ -53,15 +53,18 @@
                     <div class="mb-3">
                         <label for="inputCNPJ" class="form-label">CNPJ</label>
                         <input type="number" class="form-control" id="inputCNPJ">
+                        <span asp-validation-for="CNPJ"></span>
                     </div>
                     <div class="mb-3">
                         <label for="inputSenha" class="form-label">Senha</label>
                         <input type="password" class="form-control" id="inputSenha" aria-describedby="senhaHelp">
+                        <span asp-validation-for="Password"></span>
                         <div id="senhaHelp" class="form-text">Sua senha deve ter 6 a 8 caracteres</div>
                     </div>
                     <div class="mb-3">
                         <label for="inputConfirm" class="form-label">Confirmar Senha</label>
                         <input type="password" class="form-control" id="inputConfirm">
+                        <span asp-validation-for="ConfirmPassword"></span>
                         <div id="senhaHelp" class="form-text">A confirmação deve ser igual a senha</div>
                     </div>
                 </div>

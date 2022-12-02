@@ -64,10 +64,12 @@
                         <div class="mb-3">
                             <label for="cnpjEnterprise" class="form-label">CNPJ da Empresa</label>
                             @Html.TextBoxFor(m => m.Login, new {@class="form-control", @placeholder="Digite o CNPJ"})
+                            <span asp-asp-validation-for="Login"></span>
                         </div>
                         <div class="mb-3">
                             <label for="cnpjEnterprise" class="form-label">Senha</label>
-                            @Html.TextBoxFor(m => m.Password, new {@class="form-control", @placeholder="Digite a senha"})
+                            @Html.TextBoxFor(m => m.Password, new {@class="form-control", @placeholder="Digite a senha" , @type = "password"})
+                            <span asp-asp-validation-for="Password"></span>
                         </div>
                     </div>
                     <div class="form-check-lembrar">
