@@ -1,0 +1,110 @@
+﻿@using PI.Domain.ViewModel.Machine;
+@model EditMachineViewModel
+
+@{
+    Layout = "_Layout";
+}
+<!-- header -->
+<header>
+    <div class="machineText container">
+        Edite as principais informações da sua
+        <span class="maquinaSpan">máquina</span>
+    </div>
+</header>
+<!-- main - forms -->
+
+<form asp-controller="Machine" asp-action="Edit" method="POST">
+    <div class="container-fluid row forms-container">
+        <div class="forms">
+            <div class="col">
+                <div class="brandName itens" style="margin-left: 6%">
+                    <label class="texto">Marca</label>
+                    @Html.TextBoxFor(m => m.Brand, new {@type ="text", @placeHolder="Marca da máquina", @class = "form-control"})
+                    <span asp-validation-for="Brand"></span>
+                </div>
+                <div class="categoryName itens" style="margin-left: 6%">
+                    <label> Categoria</label>
+                    @Html.DropDownList("Category", (IEnumerable<SelectListItem>)ViewBag.MachineCategoriesAsStringList, new {@class = "form-select"})
+                    <span asp-validation-for="Category"></span>
+                </div>
+            </div>
+            <div class="col pb-5">
+                <div class="modelName itens" style="margin-left: 6%">
+                    <label> Modelo</label>
+                    @Html.TextBoxFor(m => m.Model, new {@class="form-control", @type="text", @placeholder="Digite o modelo"})
+                    <span asp-validation-for="Model"></span>
+                </div>
+                <div class="tagName itens" style="margin-left: 6%">
+                    <label>Tag</label>
+                    @Html.TextBoxFor(m => m.Tag, new {@class="form-control", type="text", @placeholder="Digite a Tag"})
+                    <span asp-validation-for="Tag"></span>
+                </div>
+            </div>
+            <div class="itens" style="margin-left: 6%">
+                <label class="texto">Número de Série</label>
+                @Html.TextBoxFor(m => m.SerialNumber, new {@class="form-control", @type="text", @placeholder="Digite o número de série"})
+                <span asp-validation-for="SerialNumber"></span>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid maxemin">
+        <div class=" d-flex flex-row mb-2 ms-3">
+            <div class="flex-column p-2 flex-fill">
+                <label class="">Máx</label> <br>
+                <div class="">
+                    @Html.TextBoxFor(m =>m.MaxTemp, new {@type="number"})
+                    <span asp-validation-for="MaxTemp"></span>
+                    <label>ºC</label>
+
+                </div>
+                <div class=" ">
+                    @Html.TextBoxFor(model => model.MaxVibration, new {@type = "number"})
+                    <span asp-validation-for="MaxVibration"></span>
+                    <label>Hz</label>
+
+                </div>
+                <div class="">
+                    @Html.TextBoxFor(m => m.MaxNoise, new {@type="number"})
+                    <span asp-validation-for="MaxNoise">S</span>
+                    <label>dB</label>
+
+                </div>
+            </div>
+            <div class="flex-column p-2 flex-fill">
+                <label class="">Mín</label> <br>
+                <div class="">
+                    @Html.TextBoxFor(m => m.MinTemp, new {@type="number"})
+                    <span asp-validation-for="MinTemp"></span>
+                    <label>ºC</label>
+
+                </div>
+                <div class="">
+                    @Html.TextBoxFor(m => m.MinVibration, new {@type="number"})
+                    <span asp-validation-for="MinVibration"></span>
+                    <label>Hz</label>
+
+                </div>
+                <div class="">
+                    @Html.TextBoxFor(m => m.MinNoise, new {@type = "number"})
+                    <span asp-validation-for="MinNoise"></span>
+                    <label>dB</label>
+
+                </div>
+            </div>
+            <div class="flex-column p-2 flex-fill tipos-container">
+                <div class="tempName">
+                    <h6>Temperatura</h6>
+                </div>
+                <div class="vibraName">
+                    <h6>Vibração</h6>
+                </div>
+                <div class="noiseName">
+                    <h6>Ruído</h6>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="divButton container mt-3">
+        <button class="btn btn-primary" type="submit" id="sendButton">Salvar</button>
+    </div>
+</form>
