@@ -39,16 +39,16 @@
     <footer>
         <nav class="nav fixed-bottom nav-fill" id="navbar">
             <li class="nav-item" id="home_button">
-                <a class="btn me-2 " href="~/Home/index.html"> <i class="icone bi bi-house-door text-light"></i> </a>
+                <a class="btn me-2 " asp-action="Home" asp-controller="Enterprise"> <i class="icone bi bi-house-door text-light"></i> </a>
             </li>
             <li class="nav-item " id="create_button">
-                <a class="btn  me-2" href="#"><i class="bi bi-plus-circle text-light icone"></i> </a>
+                <a class="btn  me-2" asp-action="Add" asp-controller="Machine"><i class="bi bi-plus-circle text-light icone"></i> </a>
             </li>
             <li class="nav-item" id="list_button">
-                <a class="btn  me-2" href="~/Machine/List.html"><i class="bi bi-list-ul text-light icone"></i></a>
+                <a class="btn  me-2" asp-action="List" asp-controller="Machine"><i class="bi bi-list-ul text-light icone"></i></a>
             </li>
             <li class="nav-item" id="profile_button">
-                <a class="btn  me-2" href="~/User/Menu_profile.html"><i class="bi bi-person text-light icone"></i></a>
+                <a class="btn  me-2" asp-action="ViewProfile" asp-controller="Enterprise"><i class="bi bi-person text-light icone"></i></a>
             </li>
 
         </nav>
