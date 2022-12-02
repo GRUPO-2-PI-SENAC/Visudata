@@ -1,4 +1,6 @@
-﻿@{
+﻿@using PI.Domain.ViewModel.Enterprise;
+@model CreateEnterpriseViewModel
+@{
     Layout = "";
 }
 <head>
@@ -77,7 +79,7 @@
             </div>
 
             <div class="container d-flex justify-content-center">
-                <a class="link" href="./login.html">Já tem cadastro? <span style="color: #0E56A0; font-weight: 500;">Login</span></a>
+                <a class="link" asp-action="Login" asp-controller="Enterprise">Já tem cadastro? <span style="color: #0E56A0; font-weight: 500;">Login</span></a>
             </div>
         </div>
     </main>
