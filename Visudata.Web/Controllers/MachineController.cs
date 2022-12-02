@@ -95,6 +95,13 @@ public class MachineController : Controller
         return RedirectToAction("List");
     }
 
+    [HttpGet]
+    public async Task<IActionResult> Details(int id)
+    {
+        MachineDetailsViewModel model = await _machineService.GetMachineForDetails(id);
+        return View(model);
+    }
+
     [HttpDelete]
     public async Task<IActionResult> Delete(int id)
     {
