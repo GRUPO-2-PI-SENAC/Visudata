@@ -6,14 +6,17 @@ namespace PI.Domain.ViewModel.Machine
     {
         public int MachineId { get; set; }
         [Required(ErrorMessage = "Campo obrigatório")]
+        [RegularExpression(@"^((?!^City$)[a-zA-Z '])+$", ErrorMessage = "Caracteres inválidos!")]
         public string Brand { get; set; }
         [Required(ErrorMessage = "Campo obrigatório")]
+        [RegularExpression(@"^((?!^City$)[a-zA-Z '])+$", ErrorMessage = "Caracteres inválidos!")]
         public string Model { get; set; }
         [Required(ErrorMessage = "Campo obrigatório")]
         public string SerialNumber { get; set; }
         [Required(ErrorMessage = "Campo obrigatório")]
         public string Category { get; set; }
         [Required(ErrorMessage = "Campo obrigatório")]
+        [RegularExpression(@"^((?!^City$)[a-zA-Z '])+$", ErrorMessage = "Caracteres inválidos!")]
         public string Tag { get; set; }
         [Required(ErrorMessage = "Campo obrigatório")]
         public double MinTemp { get; set; }
