@@ -16,17 +16,17 @@ namespace PI.Domain.ViewModel.Machine
         [Required(ErrorMessage = "Campo obrigatório")]
         public string Tag { get; set; }
         [Required(ErrorMessage = "Campo obrigatório")]
-        public double TempMin { get; set; }
+        public double MinTemp { get; set; }
         [Required(ErrorMessage = "Campo obrigatório")]
-        public double TempMax { get; set; }
+        public double MaxTemp { get; set; }
         [Required(ErrorMessage = "Campo obrigatório")]
-        public double VibrationMin { get; set; }
+        public double MinVibration { get; set; }
         [Required(ErrorMessage = "Campo obrigatório")]
-        public double VibrationMax { get; set; }
+        public double MaxVibration { get; set; }
         [Required(ErrorMessage = "Campo obrigatório")]
-        public double NoiseMax { get; set; }
+        public double MaxNoise { get; set; }
         [Required(ErrorMessage = "Campo obrigatório")]
-        public double NoiseMin { get; set; }
+        public double MinNoise { get; set; }
 
     }
 }
