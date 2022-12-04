@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../wwwroot/assets/support.css">
+    <link rel="stylesheet" href="../../wwwroot/assets/styles/main.css">
+    <style>
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+            }
+        }
+
+        .nav-scroller .nav {
+            display: flex;
+            flex-wrap: nowrap;
+            padding-bottom: 1rem;
+            margin-top: -1px;
+            overflow-x: auto;
+            text-align: center;
+            white-space: nowrap;
+            -webkit-overflow-scrolling: touch;
+        }
+    </style>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <title>Suporte técnico</title>
+</head>
+
+<body>
+
+    <!-- menu superior -->
+    <header>
+        <a href="./menu_profile.html">
+            <img src="../../wwwroot/assets/icons/volta-2.svg" alt="voltar">
+        </a>
+        <div class="container" id="logo">
+            <img src="../../wwwroot/assets/icons/Logo.svg" alt="logo">
+        </div>
+    </header>
+
+    <main>
+        <form class="card p-2">
+            <div class="col-md-7 col-lg-8">
+                <h2 class="mt-4"></h2>
+                <h4>Suporte Técnico</h4>
+                <div class="forms">
+                    <div class="row g-3">
+                        <div class="col-sm-6">
+                            <label for="company" class="form-label">Empresa</label>
+                            <input type="text" class="form-control" value="@Model.NameOfEnterprise" id="company" required>
+                        </div>
+                        <div class="col-sm-6">
+                            <label for="email" class="form-label">E-mail do representante</label>
+                            <input type="text" class="form-control" id="email" required>
+                        </div>
+                        <div class="col-sm-5">
+                            <label for="category" class="form-label">Categoria</label>
+                            <select class="selectpicker">
+                                <option selected>Selecione uma opção</option>
+                                
+                            </select>
+                        </div>
+                        <div class="form-check" style="margin-left: 8px;">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                            <label class="form-check-label" for="flexCheckDefault">
+                                Enviar uma cópia
+                            </label>
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleFormControlTextarea1" class="form-label">
+                                Detalhe o
+                                problema
+                            </label>
+                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="6"
+                                      style="margin-bottom: 10px;"></textarea>
+                        </div>
+                        <button class="mt-5 w-100 btn btn-primary btn-lg" type="submit" id="sendButton">Enviar</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </main>
