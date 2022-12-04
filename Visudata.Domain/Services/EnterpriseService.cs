@@ -168,9 +168,7 @@ public class EnterpriseService : IEnterpriseService
     public async Task<bool> Login(EnterpriseLoginViewModel model)
     {
         IEnumerable<Enterprise> enterprises = await _enterpriseRepository.GetAll();
-
-        bool isInDb = enterprises.Any(enterprise => enterprise.Cnpj == model.Login && enterprise.Password == model.Password && enterprise.Status == Enterprise_Status.ACTIVE);
-
+        bool isInDb = enterprises.Any(enterprise => enterprise.Cnpj == model.Login && Encrypt.DecryptPassword(enterprise.Password) == model.Password && enterprise.Status == Enterprise_Status.ACTIVE);
         return isInDb;
     }
 
@@ -206,6 +204,7 @@ public class EnterpriseService : IEnterpriseService
 
         try
         {
+            string passwordEncrypted = Encrypt.EncryptPassword(model.ConfirmPassword);
 
             Enterprise enterpriseForAddInDb = new Enterprise()
             {
@@ -213,7 +212,7 @@ public class EnterpriseService : IEnterpriseService
                 FantasyName = model.FantasyName,
                 SocialReason = model.SocialReason,
                 Address = model.Address,
-                Password = model.Password,
+                Password = passwordEncrypted,
                 City = model.City,
                 NumberOfLocation = model.NumberOfLocation,
                 Sector = model.Sector,
