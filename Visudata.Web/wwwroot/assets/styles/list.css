@@ -56,6 +56,10 @@ h5 {
     background-color: white !important;
 }
 
+.list-container{
+    margin-bottom: 30%;
+}
+
 #navbar {
     background-color: #2b5690;
 }
@@ -69,16 +73,23 @@ h5 {
         font-size: 16px;
     }
     h5 {
-        font-size: 12px;
+        font-size: 14px;
+    }
+    .maquinasSelect i {
+        font-size: 14px;
+    }
+
+    .maquinasSelect span { 
+        height: 15px;
     }
 }
 
-@media (min-width:390px) and (max-width:394px){
+@media (min-width:390px) and (max-width:414px){
     h2 {
         font-size: 18px;
     }
     h5 {
-        font-size: 14px;
+        font-size: 16px;
     }
 }
 
