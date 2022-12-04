@@ -55,9 +55,38 @@
         </div>
 
         <!-- Chart -->
-        <div class="col-xl-8 col-lg-7 " >
+        <div>
+            <canvas id="myChart"></canvas>
+        </div>
+
+        <script> src="https://cdn.jsdelivr.net/npm/chart.js"</script>
+            <script>
+                const ctx = document.getElementById('myChart');
+                
+                new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                    datasets: [{
+                    label: '# of Votes',
+                    data: [12, 19, 3, 5, 2, 3],
+                    borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                    }
+                }
+                });
+            </script>
+        
+        
+        <!-- <div class="col-xl-8 col-lg-7 " >
             <div class="card shadow mb-4">
-                <!-- Card Body -->
+                Card Body 
                 <div class="card-body" >
                     <div class="chart-area chartArea">
                         <div class="chartjs-size-monitor">
@@ -74,7 +103,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
 
         <div class="container text-center">
             <div class="row input-group-text" style="background-color: #CCCCCC;">
