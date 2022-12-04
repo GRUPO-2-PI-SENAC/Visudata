@@ -9,6 +9,14 @@ body {
     font-family: var(--font-primary) !important;
 }
 
+h2 {
+    font-size: 22px;
+}
+
+h5 {
+    font-size: 18px;
+}
+
 .machineText{
     font-size: 35px; 
     text-align: left;
@@ -58,19 +66,19 @@ body {
 
 @media (max-width:376px) {
     h2 {
-        font-size: 20px;
+        font-size: 16px;
     }
     h5 {
-        font-size: 16px;
+        font-size: 12px;
     }
 }
 
 @media (min-width:390px) and (max-width:394px){
     h2 {
-        font-size: 22px;
+        font-size: 18px;
     }
     h5 {
-        font-size: 18px;
+        font-size: 14px;
     }
 }
 
