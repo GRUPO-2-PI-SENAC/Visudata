@@ -38,6 +38,10 @@ label{
     margin-bottom: 1%;
 }
 
+input::placeholder {
+    font-size: 14px;
+}
+
 .itens{
     padding-bottom: 10px;
 }
@@ -109,21 +113,38 @@ input{
 }
 
 @media (min-width: 342px) and (max-width: 360px){
-    .machineText{
-        font-size: 25px;
+    .machineText {
+        font-size: 30px;
+        margin-top: -5%;
     }
 
     .machineText span{
-        font-size: 25px;
+        font-size: 28px;
     }
 
-    .divButton{
+    .forms-container, .maxemin {
+        margin-top: 2%;
+    }
+
+    .divButton {
         height: 80px;
+        margin-bottom: 10%;
     }
 
     .divButton a{
         padding: 8px !important;
     }
+ 
 
+}
+
+
+@media (min-width: 361px) and (max-width: 376px){
+    .divButton {
+        margin-bottom: 10%;
+    }
+    .machineText{
+        margin-top: -5%;
+    }
 
 }

@@ -5,7 +5,6 @@
 
 
 <link rel="stylesheet" href="~/assets/styles/home.css">
-<!-- Header (Logo+Nome) MUDAR LOGO-->
 <header class="navbar header p-2">
     <div class="container-fluid">
         <a class="navbar-brand name-app" href="#">
@@ -14,140 +13,147 @@
         </a>
     </div>
 </header>
-<!-- Container Status maquinas -->
-<div class="container-cards" id="status-container">
-    <h3> Visão Geral</h3>
-    <!-- Content dos status-->
-    <div class="row row-cols-2 row-cols-md-4 g-3 visao-card categories-group">
-        <!-- Bom estado -->
-        <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card border-left-primary shadow-lg h-100 py-2" style="border-left-color: #0d9b5b;">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <a href="~/Machine/list.html" class="text-decoration-none text-dark">
-                            <div class="col mr-2">
-                                <div class="text-xs font-weight-bold text-uppercase mb-1">
-                                    Funcionando
-                                </div>
-                                <div class="h5 mb-0 font-weight-bold ">@Model.AmountOfGoodStateMachines</div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
 
-        <!-- Em alerta -->
-        <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card border-left-success shadow-lg h-100 py-2" style="border-left-color: #f6c23e;">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <a href="~/Machine/list.html" class="text-decoration-none text-dark">
-                            <div class="col mr-2">
-                                <div class="text-xs font-weight-bold text-uppercase mb-1">
-                                    Funcionando Em alerta
-                                </div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800">@Model.AmountOfWarningStateMachines</div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
 
-        <!-- Estado crítico -->
-        <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card border-left-info shadow-lg h-100 py-2" style="border-left-color: #e74a3b;">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <a href="~/Machine/list.html" class="text-decoration-none text-dark">
-                            <div class="col mr-2">
-                                <div class="text-xs font-weight-bold text-uppercase mb-1">
-                                    Em estado crítico
-                                </div>
-                                <div class="row no-gutters align-items-center">
-                                    <div class="col-auto">
-                                        <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">@Model.AmountOfCriticalStateMachines</div>
+<main> 
+    <!-- Container Status maquinas -->
+    <div class="container-cards" id="status-container">
+        <h3> Visão Geral</h3>
+        <!-- Content dos status-->
+        <div class="row row-cols-2 row-cols-md-4 g-3 visao-card categories-group">
+            <!-- Bom estado -->
+            <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card border-left-primary shadow-lg h-100 py-2" style="border-left-color: #0d9b5b;">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <a href="~/Machine/list.html" class="text-decoration-none text-dark">
+                                <div class="col mr-2">
+                                    <div class="text-xs font-weight-bold text-uppercase mb-1">
+                                        Funcionando
                                     </div>
-                                    <!-- Caso queira colocar icones -->
-                                    <!-- <div class="col">
-                                    </div> -->
+                                    <div class="h5 mb-0 font-weight-bold ">@Model.AmountOfGoodStateMachines</div>
                                 </div>
-                            </div>
-                        </a>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Em alerta -->
+            <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card border-left-success shadow-lg h-100 py-2" style="border-left-color: #f6c23e;">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <a href="~/Machine/list.html" class="text-decoration-none text-dark">
+                                <div class="col mr-2">
+                                    <div class="text-xs font-weight-bold text-uppercase mb-1">
+                                        Funcionando Em alerta
+                                    </div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">@Model.AmountOfWarningStateMachines</div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Estado crítico -->
+            <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card border-left-info shadow-lg h-100 py-2" style="border-left-color: #e74a3b;">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <a href="~/Machine/list.html" class="text-decoration-none text-dark">
+                                <div class="col mr-2">
+                                    <div class="text-xs font-weight-bold text-uppercase mb-1">
+                                        Em estado crítico
+                                    </div>
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col-auto">
+                                            <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">@Model.AmountOfCriticalStateMachines</div>
+                                        </div>
+                                        <!-- Caso queira colocar icones -->
+                                        <!-- <div class="col">
+                                        </div> -->
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Total de maquinas -->
+            <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card border-left-warning shadow-lg h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <a href="~/Machine/list.html" class="text-decoration-none text-dark">
+                                <div class="col mr-2">
+                                    <div class="text-xs font-weight-bold text-uppercase mb-1">
+                                        Todas as maquinas
+                                    </div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">@Model.AmountOfMachines</div>
+                                </div>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Total de maquinas -->
-        <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card border-left-warning shadow-lg h-100 py-2">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <a href="~/Machine/list.html" class="text-decoration-none text-dark">
-                            <div class="col mr-2">
-                                <div class="text-xs font-weight-bold text-uppercase mb-1">
-                                    Todas as maquinas
-                                </div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800">@Model.AmountOfMachines</div>
-                            </div>
-                        </a>
+    </div>
+
+    <div class="container-categories container-fluid mb-4" id="categorias-container">
+        <h3>Categorias</h3>
+        <div class="row row-cols-2 row-cols-md-4 g-3 categories-group align-items-stretch">
+            <div class="col d-flex">
+                <div class="card rounded-3 w-100 ">
+                    <div class="card-body text-center text-div">
+                        <a asp-controller="Machine" asp-action="GetMachinesForSpecificCategory" asp-route-nameOfCategory="Motores"><p class="text-light mb-0">Motores</p></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col d-flex ">
+                <div class="card rounded-3 w-100 ">
+                    <div class="card-body text-center text-div">
+                        <a asp-controller="Machine" asp-action="GetMachinesForSpecificCategory" asp-route-nameOfCategory="Injetoras"><p class="text-light mb-0">Injetoras</p></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col d-flex ">
+                <div class="card rounded-3 w-100 ">
+                    <div class="card-body text-center text-div">
+                        <a asp-controller="Machine" asp-action="GetMachinesForSpecificCategory" asp-route-nameOfCategory="Sensores"><p class="text-light mb-0">Sensores</p></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col d-flex ">
+                <div class="card rounded-3 w-100 ">
+                    <div class="card-body text-center text-div">
+                        <a asp-controller="Machine" asp-action="GetMachinesForSpecificCategory" asp-route-nameOfCategory="Extratoras"><p class="text-light mb-0" >Extratoras</p></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col d-flex ">
+                <div class="card rounded-3 w-100 ">
+                    <div class="card-body text-center text-div">
+                        <a asp-controller="Machine" asp-action="GetMachinesForSpecificCategory" asp-route-nameOfCategory="Empilhadeiras"><p class="text-light mb-0">Empilhadeiras</p></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col d-flex ">
+                <div class="card rounded-3 w-100 ">
+                    <div class="card-body text-center text-div">
+                        <a asp-controller="Machine" asp-action="GetMachinesForSpecificCategory" asp-route-nameOfCategory="Exteiras"><p class="text-light mb-0">Esteiras</p></a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-</div>
+</main>
 
-<div class="container-categories container-fluid mb-4" id="categorias-container">
-    <h3>Categorias</h3>
-    <div class="row row-cols-2 row-cols-md-4 g-3 categories-group align-items-stretch">
-        <div class="col d-flex">
-            <div class="card rounded-3 w-100 ">
-                <div class="card-body text-center text-div">
-                    <a asp-controller="Machine" asp-action="GetMachinesForSpecificCategory" asp-route-nameOfCategory="Motores"><p class="text-light mb-0">Motores</p></a>
-                </div>
-            </div>
-        </div>
-        <div class="col d-flex ">
-            <div class="card rounded-3 w-100 ">
-                <div class="card-body text-center text-div">
-                    <a asp-controller="Machine" asp-action="GetMachinesForSpecificCategory" asp-route-nameOfCategory="Injetoras"><p class="text-light mb-0">Injetoras</p></a>
-                </div>
-            </div>
-        </div>
-        <div class="col d-flex ">
-            <div class="card rounded-3 w-100 ">
-                <div class="card-body text-center text-div">
-                    <a asp-controller="Machine" asp-action="GetMachinesForSpecificCategory" asp-route-nameOfCategory="Sensores"><p class="text-light mb-0">Sensores</p></a>
-                </div>
-            </div>
-        </div>
-        <div class="col d-flex ">
-            <div class="card rounded-3 w-100 ">
-                <div class="card-body text-center text-div">
-                    <a asp-controller="Machine" asp-action="GetMachinesForSpecificCategory" asp-route-nameOfCategory="Extratoras"><p class="text-light mb-0">Extratoras</p></a>
-                </div>
-            </div>
-        </div>
-        <div class="col d-flex ">
-            <div class="card rounded-3 w-100 ">
-                <div class="card-body text-center text-div">
-                    <a asp-controller="Machine" asp-action="GetMachinesForSpecificCategory" asp-route-nameOfCategory="Empilhadeiras"><p class="text-light mb-0">Empilhadeiras</p></a>
-                </div>
-            </div>
-        </div>
-        <div class="col d-flex ">
-            <div class="card rounded-3 w-100 ">
-                <div class="card-body text-center text-div">
-                    <a asp-controller="Machine" asp-action="GetMachinesForSpecificCategory" asp-route-nameOfCategory="Exteiras"><p class="text-light mb-0">Esteiras</p></a>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+
 <script>
     window.onload = teste ; 
 

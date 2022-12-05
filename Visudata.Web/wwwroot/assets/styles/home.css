@@ -11,6 +11,10 @@ body {
     font-family: var(--font-primary) !important;
 }
 
+a {
+    text-decoration: none !important;
+}
+
 .header {
     height: 80px;
     background-color: #2b5690;
@@ -48,11 +52,11 @@ header .name-app {
 
 .text-div {
     background-color: #2b5690;
-    border-radius: 8px;
+    border-radius: 8px; 
 }
 
 #navbar {
-    background-color: #2b5690;
+    background-color: #2b5690 !important;
 }
 
 .icone {
