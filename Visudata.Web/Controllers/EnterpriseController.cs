@@ -163,6 +163,14 @@ namespace PI.Web.Controllers
 
             return View(model);
         }
+
+        [HttpGet]
+        public async Task<IActionResult> Profile(int id)
+        {
+            EnterpriseProfileViewModel currentEnterpriseForProfile = await _enterpriseService.GetEnterpriseForProfileById(id);
+
+            return View(currentEnterpriseForProfile);
+        }
         #endregion
 
     }

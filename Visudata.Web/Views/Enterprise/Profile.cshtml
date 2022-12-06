@@ -1,0 +1,104 @@
+﻿@using PI.Domain.ViewModel.Enterprise;
+@model EnterpriseProfileViewModel
+@{
+    Layout = "_Layout";
+}
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="~/assets/styles/profile.css">
+    <title>Perfil do usuário</title>
+
+</head>
+<body>
+    <header>
+        <div class="text-end" id="editar">
+            <a href="~/Views/Enterprise/edit_profile.html">
+                <img src="~/wwwroot/assets/Icons/edit-svgrepo-com 1.svg" alt="editar">
+            </a>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6 offset-sm-3" id="formulario">
+                <!--Formulário-->
+                <form>
+                    <div class="mb-2">
+                        <label for="empresa"><b>Empresa</b></label>
+                        <input class="form-control" type="text" name="empresa" value="@Model.FantasyName" disabled />
+                    </div>
+
+                    <div class="mb-2">
+                        <label for="setor"><b>Setor</b></label>
+                        <input class="form-control" value="@Model.Sector" disabled />
+                        @* <select class="form-select" name="setor" disabled>
+                        <option value="1">Agropecuário</option>
+                        <option value="2">Alimentício </option>
+                        <option value="3">Automobilístico </option>
+                        <option value="4">Imobiliário</option>
+                        <option value="5" selected>Tecnologia da Informação (TI)</option>
+                        </select>*@
+                    </div>
+
+                    <div class="row g-3 mb-2">
+                        <div class="col">
+                            <label for="estado"><b>Estado</b></label>
+                            <input class="form-control" type="text" value="@Model.State" disabled />
+                            @*<select class="form-select" name="estado" disabled>
+                            <option value="AC">Acre</option>
+                            <option value="AL">Alagoas</option>
+                            <option value="AP">Amapá</option>
+                            <option value="AM">Amazonas</option>
+                            <option value="BA">Bahia</option>
+                            <option value="CE">Ceará</option>
+                            <option value="DF">Distrito Federal</option>
+                            <option value="ES">Espirito Santo</option>
+                            <option value="GO">Goiás</option>
+                            <option value="MA">Maranhão</option>
+                            <option value="MT">Mato Grosso</option>
+                            <option value="MS">Mato Grosso do Sul</option>
+                            <option value="MG">Minas Gerais</option>
+                            <option value="PA">Pará</option>
+                            <option value="PB">Paraibá</option>
+                            <option value="PR">Oaraná</option>
+                            <option value="PE" selected>Pernambuco</option>
+                            <option value="PI">Piauí</option>
+                            <option value="RJ">Rio de Janeiro</option>
+                            <option value="RN">Rio Grande do Norte</option>
+                            <option value="RS">Rio Grande do Sul</option>
+                            <option value="RO">Rondônia</option>
+                            <option value="RR">Roraima</option>
+                            <option value="SC">Santa Catarina</option>
+                            <option value="SP">São Paulo</option>
+                            <option value="SE">Sergipe</option>
+                            <option value="TO">Tocantis</option>
+                            </select>*@
+                        </div>
+                        <div class="col">
+                            <label class="form-label" for="cidade"><b>Cidade</b></label>
+                            <input class="form-control" value="@Model.City" disabled />
+                            @*<select class="form-select" name="cidade" disabled>
+                            <option value="RE">Recife</option>
+                            </select>*@
+                        </div>
+                    </div>
+
+                    <div class="mb-2">
+                        <label class="form-label" for="endereco"><b>Endereço</b></label>
+                        <input class="form-control" type="text" name="endereco" value="@Model.Address" disabled />
+                    </div>
+                </form>
+                <!--Fim do formulário-->
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+</body>
