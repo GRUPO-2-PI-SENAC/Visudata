@@ -1,0 +1,23 @@
+* {
+    /*box-shadow: inset 0px 0px 2px rgba(0, 0, 0, 0.8);*/
+    font-style: bold;
+    overflow: hidden;
+}
+
+.logo {
+    max-height: 160px;
+    max-width: 160px;
+    margin-bottom: 10%;
+}
+
+.row{
+    color: #09427D;
+}
+
+#voltar {
+    padding: 0;
+}
+
+#editar {
+    padding-right: 12px;
+}
