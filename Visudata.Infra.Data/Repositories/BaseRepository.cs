@@ -13,29 +13,29 @@ public class BaseRepository<T> : IBaseRepository<T>  where T : class
         _context = visudataDbContext;
     }
 
-    public async Task Add(T entity)
+    public virtual async Task Add(T entity)
     {
         _context.Set<T>().Add(entity);
         _context.SaveChanges();
     }
 
-    public async Task RemoveById(int entityId)
+    public virtual async Task RemoveById(int entityId)
     {
         _context.Set<T>().Remove(await GetById(entityId));
         _context.SaveChanges();
     }
 
-    public async Task<T> GetById(int entityId)
+    public virtual async Task<T> GetById(int entityId)
     {
         return await _context.Set<T>().FindAsync(entityId);
     }
 
-    public async Task<IEnumerable<T>> GetAll()
+    public virtual async Task<IEnumerable<T>> GetAll()
     {
         return _context.Set<T>().AsEnumerable();
     }
 
-    public async Task Update(T entity)
+    public virtual async Task Update(T entity)
     {
         _context.Set<T>().Update(entity);
         _context.SaveChanges();

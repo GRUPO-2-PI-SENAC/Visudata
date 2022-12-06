@@ -142,7 +142,14 @@
     
     const ctx = document.getElementById('chart-line');
     console.log(ctx);
-    
+    $.ajax({
+        type: 'GET',
+        URL: 'machine/DetailsAboutMachineAjaxHandler/1?status=temperatura',
+        data: JSON,
+        success: function (response) {
+            console.log(response);
+        }
+    });
     const data = {
     labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
     datasets: [{

@@ -553,9 +553,77 @@ public class MachineServices : IMachineService
             model.Category = machineForExtractDataForViewModel.Category.Name;
             model.StatusName = ExtractStatusNameByMachineStatus(machineForExtractDataForViewModel.Status);
             model.Model = machineForExtractDataForViewModel.Model;
-            model.RealTimeNoise = lastLogOfMachine.Noise;
-            model.RealTimeTemp = lastLogOfMachine.Temp;
-            model.RealTimeVibration = lastLogOfMachine.Vibration;
+            model.Tag = machineForExtractDataForViewModel.Tag;
+
+            if (logsOfMachines == null || !logsOfMachines.Any())
+            {
+                model.RealTimeNoise = 0;
+                model.NoiseStyle = "badge text-bg-secondary";
+                model.RealTimeTemp = 0;
+                model.VibrationStyle = "badge text-bg-secondary";
+                model.RealTimeVibration = 0;
+                model.TempStyle = "badge text-bg-secondary";
+            }
+            else
+            {
+                if ((lastLogOfMachine.Noise > machineForExtractDataForViewModel.NoiseMax * 0.8 && lastLogOfMachine.Noise < machineForExtractDataForViewModel.NoiseMax)
+                    || (lastLogOfMachine.Noise < machineForExtractDataForViewModel.NoiseMin * 1.3 && lastLogOfMachine.Noise > machineForExtractDataForViewModel.NoiseMin))
+                {
+                    model.NoiseStyle = "badge text-bg-warning";
+                }
+                else
+                {
+                    if (lastLogOfMachine.Noise >= machineForExtractDataForViewModel.NoiseMax ||
+                        lastLogOfMachine.Noise <= machineForExtractDataForViewModel.NoiseMin)
+                    {
+                        model.NoiseStyle = "badge text-bg-danger";
+                    }
+                    else
+                    {
+                        model.NoiseStyle = "badge text-bg-success";
+                    }
+                }
+
+                if ((lastLogOfMachine.Vibration > machineForExtractDataForViewModel.VibrationMax * 0.8 && lastLogOfMachine.Vibration < machineForExtractDataForViewModel.VibrationMax)
+                   || (lastLogOfMachine.Vibration < machineForExtractDataForViewModel.VibrationMin * 1.3 && lastLogOfMachine.Vibration > machineForExtractDataForViewModel.VibrationMin))
+                {
+                    model.VibrationStyle = "badge text-bg-warning";
+                }
+                else
+                {
+                    if (lastLogOfMachine.Vibration >= machineForExtractDataForViewModel.VibrationMax ||
+                        lastLogOfMachine.Vibration <= machineForExtractDataForViewModel.VibrationMin)
+                    {
+                        model.VibrationStyle = "badge text-bg-danger";
+                    }
+                    else
+                    {
+                        model.VibrationStyle = "badge text-bg-success";
+                    }
+                }
+
+                if ((lastLogOfMachine.Temp > machineForExtractDataForViewModel.TempMax * 0.8 && lastLogOfMachine.Temp < machineForExtractDataForViewModel.TempMax)
+                   || (lastLogOfMachine.Temp < machineForExtractDataForViewModel.TempMin * 1.3 && lastLogOfMachine.Temp > machineForExtractDataForViewModel.TempMin))
+                {
+                    model.NoiseStyle = "badge text-bg-warning";
+                }
+                else
+                {
+                    if (lastLogOfMachine.Temp >= machineForExtractDataForViewModel.TempMax ||
+                        lastLogOfMachine.Temp <= machineForExtractDataForViewModel.TempMin)
+                    {
+                        model.VibrationStyle = "badge text-bg-danger";
+                    }
+                    else
+                    {
+                        model.NoiseStyle = "badge text-bg-success";
+                    }
+                }
+                model.RealTimeNoise = lastLogOfMachine.Noise;
+                model.RealTimeTemp = lastLogOfMachine.Temp;
+                model.RealTimeVibration = lastLogOfMachine.Vibration;
+            }
+
 
             return model;
         }

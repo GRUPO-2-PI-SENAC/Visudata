@@ -11,6 +11,11 @@ public class MachineRepository : BaseRepository<Machine>, IMachineRepository
     {
     }
 
+    public async override Task<IEnumerable<Machine>> GetAll()
+    {
+        return _context.Machines.Include(machine => machine.Category).AsEnumerable();
+    }
+
     public async Task<List<Machine>> GetMachinesByEnterpriseCnpj(string enterpriseCnpj)
     {
         List<Machine> machinesInDb = _context.Machines.Include(machine => machine.Enterprise).ToList();
