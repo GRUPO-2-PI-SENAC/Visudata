@@ -162,11 +162,11 @@ namespace PI.Web.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Profile(int id)
+        public async Task<IActionResult> Profile()
         {
-            EnterpriseProfileViewModel currentEnterpriseForProfile = await _enterpriseService.GetEnterpriseForProfileById(id);
-
-            return View(currentEnterpriseForProfile);
+            string enterpriseCnpj = Request.Cookies["enterpriseCnpj"].ToString();
+            EnterpriseProfileViewModel currentEnterprise = await _enterpriseService.GetEnterpriseByCnpj(enterpriseCnpj);
+            return View(currentEnterprise);
         }
         #endregion
 
