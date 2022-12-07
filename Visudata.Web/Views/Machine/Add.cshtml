@@ -48,20 +48,20 @@
             <div class="flex-column p-2 flex-fill">
                 <label class="">Máx</label> <br>
                 <div class="">
-                    @Html.TextBoxFor(m =>m.MaxTemp, new {@type="number"})
+                    <input asp-for="MaxTemp" type="number" />
                     <span asp-validation-for="MaxTemp"></span>
                     <label>ºC</label>
 
                 </div>
                 <div class=" ">
-                    @Html.TextBoxFor(model => model.MaxVibration, new {@type = "number"})
+                    <input asp-for="MaxVibration" type="number" />
                     <span asp-validation-for="MaxVibration"></span>
                     <label>Hz</label>
 
                 </div>
                 <div class="">
-                    @Html.TextBoxFor(m => m.MaxNoise, new {@type="number"})
-                    <span asp-validation-for="MaxNoise">S</span>
+                    <input asp-for="MaxNoise" type="number" />
+                    <span asp-validation-for="MaxNoise"></span>
                     <label>dB</label>
 
                 </div>
@@ -69,19 +69,19 @@
             <div class="flex-column p-2 flex-fill">
                 <label class="">Mín</label> <br>
                 <div class="">
-                    @Html.TextBoxFor(m => m.MinTemp, new {@type="number"})
+                    <input asp-for="MinTemp" type="number" />
                     <span asp-validation-for="MinTemp"></span>
                     <label>ºC</label>
 
                 </div>
                 <div class="">
-                    @Html.TextBoxFor(m => m.MinVibration, new {@type="number"})
+                    <input asp-for="MinVibration" type="number" />
                     <span asp-validation-for="MinVibration"></span>
                     <label>Hz</label>
 
                 </div>
                 <div class="">
-                    @Html.TextBoxFor(m => m.MinNoise, new {@type = "number"})
+                    <input type="number" asp-for="MinNoise" />
                     <span asp-validation-for="MinNoise"></span>
                     <label>dB</label>
 

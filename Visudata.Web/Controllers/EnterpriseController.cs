@@ -168,7 +168,17 @@ namespace PI.Web.Controllers
             EnterpriseProfileViewModel currentEnterprise = await _enterpriseService.GetEnterpriseByCnpj(enterpriseCnpj);
             return View(currentEnterprise);
         }
-        #endregion
 
+        public async Task<IActionResult> Menu()
+        {
+            return View();
+        }
+
+        public async Task<IActionResult> Logout()
+        {
+            Response.Cookies.Delete("enterpriseCnpj");
+            return RedirectToAction("Login");
+        }
+        #endregion
     }
 }
