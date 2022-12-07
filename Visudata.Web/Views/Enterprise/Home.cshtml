@@ -1,21 +1,22 @@
 ﻿@model PI.Domain.ViewModel.Enterprise.AmountOfMachinesStatusByEnterpriseViewModel
 @{
-    Layout = "_Layout";
+    Layout = "_layout";
 }
+<link rel="stylesheet" href="~/wwwroot/assets/styles/home.css">
 
 
 <link rel="stylesheet" href="~/assets/styles/home.css">
 <header class="navbar header p-2">
     <div class="container-fluid">
         <a class="navbar-brand name-app" href="#">
-            <img src="../assets/Img/Logo-branco.png" alt="Logo" width="70" height="60" class="d-inline-block align-text-center">
+            <img src="~/assets/Img/Logo-branco.png" alt="Logo" width="70" height="60" class="d-inline-block align-text-center">
             VisuData
         </a>
     </div>
 </header>
 
 
-<main> 
+<main>
     <!-- Container Status maquinas -->
     <div class="container-cards" id="status-container">
         <h3> Visão Geral</h3>
@@ -130,7 +131,7 @@
             <div class="col d-flex ">
                 <div class="card rounded-3 w-100 ">
                     <div class="card-body text-center text-div">
-                        <a asp-controller="Machine" asp-action="GetMachinesForSpecificCategory" asp-route-nameOfCategory="Extratoras"><p class="text-light mb-0" >Extratoras</p></a>
+                        <a asp-controller="Machine" asp-action="GetMachinesForSpecificCategory" asp-route-nameOfCategory="Extratoras"><p class="text-light mb-0">Extratoras</p></a>
                     </div>
                 </div>
             </div>
@@ -150,14 +151,29 @@
             </div>
         </div>
     </div>
+    <footer>
+        <nav class="nav fixed-bottom nav-fill" id="navbar">
+            <li class="nav-item" id="home_button">
+                <a class="btn me-2 " asp-action="Home" asp-controller="Enterprise"> <i class="icone bi bi-house-door text-light"></i> </a>
+            </li>
+            <li class="nav-item " id="create_button">
+                <a class="btn  me-2" asp-action="Add" asp-controller="Machine"><i class="bi bi-plus-circle text-light icone"></i> </a>
+            </li>
+            <li class="nav-item" id="list_button">
+                <a class="btn  me-2" asp-action="List" asp-controller="Machine"><i class="bi bi-list-ul text-light icone"></i></a>
+            </li>
+            <li class="nav-item" id="profile_button">
+                <a class="btn  me-2" asp-action="ViewProfile" asp-controller="Enterprise"><i class="bi bi-person text-light icone"></i></a>
+            </li>
 
+        </nav>
+    </footer>
 </main>
 
-
 <script>
-    window.onload = teste ; 
+    window.onload = teste;
 
-    function teste () {
+    function teste() {
         let botao = document.getElementById('botaoVoltar');
         botao.setAttribute("hidden", "hidden");
     }

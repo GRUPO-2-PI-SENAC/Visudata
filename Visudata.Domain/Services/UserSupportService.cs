@@ -44,11 +44,9 @@ public class UserSupportService : IUserSupportService
                 AddressEmailOfRepresentativeEmployee = model.RepresentativeEmailAddress,
                 Created_at = model.Created_at,
                 Enterprise = enterpriseWhichCreateProblemReport,
-                UserProblemsCategory = await _UserProblemsCategoryRepository.GetById(model.ProblemCategoryId)
+                UserProblemsCategory = await _UserProblemsCategoryRepository.GetByName(model.ProblemsCategoryName)
             };
-
             await _UserSupportRepository.Add(userSupportForAddInDb);
-
             return true;
         }
         catch
@@ -56,4 +54,5 @@ public class UserSupportService : IUserSupportService
             return false;
         }
     }
+
 }

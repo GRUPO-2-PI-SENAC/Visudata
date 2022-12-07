@@ -1,7 +1,9 @@
 @model PI.Domain.ViewModel.UserSupport.AddUserSupportViewModel
 
+@{
 
-@Layout = "_Layout";
+    Layout= "_Layout";
+}
 
 <head>
     <meta charset="UTF-8">
@@ -31,16 +33,15 @@
 
     <!-- menu superior -->
     <header>
-        <a href="~/home/index.html">
-            <img src="~/assets/icons/volta-2.svg" alt="voltar">
-        </a>
         <div class="container" id="logo">
             <img src="~/assets/icons/Logo.svg" alt="logo">
         </div>
     </header>
-
+    <div hidden>
+        <input value="@TempData["enterpriseId"]" asp-for="EnterpriseId" />
+    </div>
     <main>
-        <form class="card p-2">
+        <form class="card p-2" asp-action="Support" asp-controller="Enterprise" method="post">
             <div class="col-md-7 col-lg-8">
                 <h2 class="mt-4"></h2>
                 <h4>Suporte Técnico</h4>
@@ -48,15 +49,15 @@
                     <div class="row g-3">
                         <div class="col-sm-6">
                             <label for="company" class="form-label">Empresa</label>
-                            <input type="text" class="form-control" value="@Model.NameOfEnterprise" id="company" required>
+                            <input type="text" class="form-control" asp-for="NameOfEnterprise" value="@Model.NameOfEnterprise" id="company" required>
                         </div>
                         <div class="col-sm-6">
                             <label for="email" class="form-label">E-mail do representante</label>
-                            <input type="text" class="form-control" id="email" required>
+                            <input type="text" asp-for="RepresentativeEmailAddress" class="form-control" id="email" required>
                         </div>
                         <div class="col-sm-5">
                             <label for="category" class="form-label">Categoria</label>
-                            <select class="selectpicker">
+                            <select class="form-select" asp-for="ProblemsCategoryName">
                                 <option selected>Selecione uma opção</option>
                                 @foreach (string item in ViewBag.userProblemsCategoriesAsString)
                                 {
@@ -64,18 +65,12 @@
                                 }
                             </select>
                         </div>
-                       @* <div class="form-check" style="margin-left: 8px;">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                            <label class="form-check-label" for="flexCheckDefault">
-                                Enviar uma cópia
-                            </label>
-                        </div>*@
                         <div class="mb-3">
                             <label for="exampleFormControlTextarea1" class="form-label">
                                 Detalhe o
                                 problema
                             </label>
-                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="6"
+                            <textarea class="form-control" asp-for="ProblemDescription" id="exampleFormControlTextarea1" rows="6"
                                       style="margin-bottom: 10px;"></textarea>
                         </div>
                         <button class="mt-5 w-100 btn btn-primary btn-lg" type="submit" id="sendButton">Enviar</button>

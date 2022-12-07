@@ -129,17 +129,11 @@ namespace PI.Web.Controllers
         [HttpGet]
         public async Task<IActionResult> Support()
         {
-
-            //string enterpriseCnpjAsString = Request.Cookies["enterpriseCnpj"].ToString();
-
-            //EnterpriseProfileViewModel model = await _enterpriseService.GetEnterpriseByCnpj(enterpriseCnpjAsString);
-
-            //EnterpriseProfileViewModel model = await _enterpriseService.GetEnterpriseForProfileById(enterpriseId);
-
             ViewBag.userProblemsCategoriesAsString = await _userProblemsCategoryService.GetNameOfAllAsString();
-
-            AddUserSupportViewModel modelForView = new AddUserSupportViewModel() { EnterpriseId = 2, NameOfEnterprise = "Rolo doido produções" };
-
+            string enterpriseCnpj = Request.Cookies["enterpriseCnpj"].ToString();
+            EnterpriseProfileViewModel currentEnterprise = await _enterpriseService.GetEnterpriseByCnpj(enterpriseCnpj);
+            AddUserSupportViewModel modelForView = new AddUserSupportViewModel() { EnterpriseId = currentEnterprise.Id, NameOfEnterprise = currentEnterprise.FantasyName };
+            TempData["enterpriseId"] = currentEnterprise.Id.ToString();
             return View(modelForView);
 
         }
@@ -149,18 +143,21 @@ namespace PI.Web.Controllers
         {
             if (ModelState.IsValid)
             {
+                string enterpriseCnpj = Request.Cookies["enterpriseCnpj"].ToString();
+                EnterpriseProfileViewModel currentEnterprise = await _enterpriseService.GetEnterpriseByCnpj(enterpriseCnpj);
+                model.EnterpriseId = currentEnterprise.Id;
                 bool isCreated = await _userSupportService.CreateUserReport(model);
 
                 if (isCreated)
                 {
                     TempData["message"] = "Relato enviado com sucesso!";
-                    return View();
+                    return RedirectToAction("Home");
                 }
                 TempData["message"] = "Näo foi possível adicionar esse relato , tente novamente mais tarde ou entre em contato aocm o administrador";
-
-                return View(); // see what's pages will be recieve this content about this problem 
+                ViewBag.userProblemsCategoriesAsString = await _userProblemsCategoryService.GetNameOfAllAsString();
+                return RedirectToAction("Support");
             }
-
+            ViewBag.userProblemsCategoriesAsString = await _userProblemsCategoryService.GetNameOfAllAsString();
             return View(model);
         }
 

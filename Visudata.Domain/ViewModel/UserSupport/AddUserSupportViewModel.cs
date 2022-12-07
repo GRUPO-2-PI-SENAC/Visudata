@@ -10,8 +10,8 @@ public class AddUserSupportViewModel
     [Required(ErrorMessage = "Campo obrigatorio")]
     [EmailAddress(ErrorMessage = "Endereço de email inválido")]
     public string RepresentativeEmailAddress { get; set; }
-    [Required(ErrorMessage = "Campo obrigatorio")]
-    public int ProblemCategoryId { get; set; }
+    [Required(ErrorMessage = "Campo obrigatório")]
+    public string ProblemsCategoryName { get; set; }
     [Required(ErrorMessage = "Campo obrigatorio")]
     [MaxLength(400, ErrorMessage = "Limite de caracteres ultrapassado")]
     public string ProblemDescription { get; set; }
