@@ -4,6 +4,7 @@ using PI.Application.Intefaces;
 using PI.Domain.Entities;
 using PI.Domain.Interfaces.Repositories;
 using PI.Domain.ViewModel.Machine;
+using System.Security.Cryptography;
 
 namespace PI.Application.Services;
 
@@ -31,15 +32,29 @@ public class MachineServices : IMachineService
         {
             IEnumerable<Log> logs = await _logRepository.GetAll();
 
-            IEnumerable<Machine> machines = _machineRepository.GetAll().Result
-                .Where(machine => machine.Enterprise.Id == enterpriseId);
+            List<Machine> machines = (await _machineRepository.GetAll())
+                .Where(machine => machine.Enterprise.Id == enterpriseId).ToList();
 
             List<MachineForListViewModel> machinesforView = new List<MachineForListViewModel>();
+            List<Log> logsInDb = (await _logRepository.GetAll()).ToList();
 
             foreach (Machine machine in machines)
             {
-                Log logOfMachine = _logRepository.GetAll().Result
-                    .Where(log => log.Machine.Id == machine.Id).MaxBy(log => log.Created_at);
+
+                bool hasAnyLogOfMachine = logsInDb.Any(log => log.Machine.Id == machine.Id);
+                double lastTempValue = 0;
+                double lastVibrationValue = 0;
+                double lastNoiseValue = 0;
+
+                if (hasAnyLogOfMachine)
+                {
+                    List<Log> logsOFMachine = logsInDb.Where(log => log.Machine.Id == machine.Id).ToList();
+                    Log lastLogOfMachine = logsOFMachine.MaxBy(log => log.Created_at);
+
+                    lastTempValue = lastLogOfMachine.Temp;
+                    lastVibrationValue = lastLogOfMachine.Vibration;
+                    lastNoiseValue = lastLogOfMachine.Noise;
+                }
 
                 machinesforView.Add(new MachineForListViewModel()
                 {
@@ -48,14 +63,13 @@ public class MachineServices : IMachineService
                     Model = machine.Model,
                     SerialNumber = machine.SerialNumber,
                     Status = GetStatusForViewFromMachineStatusEnum(machine.Status),
-                    Noise = logOfMachine.Noise,
-                    Temp = logOfMachine.Temp,
-                    Vibration = logOfMachine.Vibration,
+                    Noise = lastNoiseValue,
+                    Temp = lastTempValue,
+                    Vibration = lastVibrationValue,
                     category = machine.Category.Name
                 });
             }
-
-            return machinesforView;
+            return machinesforView; 
         }
 
         return new List<MachineForListViewModel>();

@@ -15,6 +15,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Visudata.Web", "Visudata.We
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Visudata.Test", "Visudata.Test\Visudata.Test.csproj", "{D9A3317F-2F3A-4D5C-B4E7-A77B5C269CDD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Visudata.API", "Visudata.API\Visudata.API.csproj", "{ADC40CB8-26D7-4E87-A277-ABD45CA72462}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{D9A3317F-2F3A-4D5C-B4E7-A77B5C269CDD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D9A3317F-2F3A-4D5C-B4E7-A77B5C269CDD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D9A3317F-2F3A-4D5C-B4E7-A77B5C269CDD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ADC40CB8-26D7-4E87-A277-ABD45CA72462}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ADC40CB8-26D7-4E87-A277-ABD45CA72462}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ADC40CB8-26D7-4E87-A277-ABD45CA72462}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ADC40CB8-26D7-4E87-A277-ABD45CA72462}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

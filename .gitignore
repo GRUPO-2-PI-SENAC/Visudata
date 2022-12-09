@@ -152,3 +152,8 @@ PI.Application/bin/Debug/net6.0/PI.Application.deps.json
 /Visudata.Test/obj/Debug/net6.0
 /Visudata.Test/bin
 /Visudata.Test/obj
+/Visudata.API/Visudata.API.csproj.user
+/Visudata.API/obj/Release/net6.0
+/Visudata.API/obj/Debug/net6.0
+/Visudata.API/bin/Debug/net6.0/Visudata.API.exe
+/Visudata.API/obj

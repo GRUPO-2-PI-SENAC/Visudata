@@ -26,121 +26,121 @@ public class MachineController : Controller
 
     #region Actions
 
-    [HttpGet]
-    public async Task<IActionResult> List()
-    {
-        string enterpriseOfCurrentSessionCnpj = Request.Cookies["enterpriseCnpj"];
+    //[HttpGet]
+    //public async Task<IActionResult> List()
+    //{
+    //    string enterpriseOfCurrentSessionCnpj = Request.Cookies["enterpriseCnpj"];
 
-        List<MachineForListViewModel> model = await _machineService.GetMachinesByEnterpriseCnpj(enterpriseOfCurrentSessionCnpj);
+    //    List<MachineForListViewModel> model = await _machineService.GetMachinesByEnterpriseCnpj(enterpriseOfCurrentSessionCnpj);
 
-        return View(model);
-    }
+    //    return View(model);
+    //}
 
-    [HttpGet]
-    public async Task<IActionResult> GetMachinesForSpecificCategory(string nameOfCategory)
-    {
-        string enterpriseOfCurrentSessionCnpj = Request.Cookies["enterpriseCnpj"];
-        List<MachineForListViewModel> model = await _machineService.GetMachineOfSpecificCategory(enterpriseOfCurrentSessionCnpj, nameOfCategory);
+    //[HttpGet]
+    //public async Task<IActionResult> GetMachinesForSpecificCategory(string nameOfCategory)
+    //{
+    //    string enterpriseOfCurrentSessionCnpj = Request.Cookies["enterpriseCnpj"];
+    //    List<MachineForListViewModel> model = await _machineService.GetMachineOfSpecificCategory(enterpriseOfCurrentSessionCnpj, nameOfCategory);
 
-        return View("List", model);
+    //    return View("List", model);
 
-    }
+    //}
 
-    [HttpGet]
-    public async Task<IActionResult> Add()
-    {
-        List<string> nameOfCategoriesAsStringList = await _machineCategoryService.GetNameOfCategoriesAsString();
+    //[HttpGet]
+    //public async Task<IActionResult> Add()
+    //{
+    //    List<string> nameOfCategoriesAsStringList = await _machineCategoryService.GetNameOfCategoriesAsString();
 
-        List<SelectListItem> item = new List<SelectListItem>();
+    //    List<SelectListItem> item = new List<SelectListItem>();
 
-        foreach (string variable in nameOfCategoriesAsStringList)
-        {
-            item.Add(new SelectListItem(variable, variable));
-        }
+    //    foreach (string variable in nameOfCategoriesAsStringList)
+    //    {
+    //        item.Add(new SelectListItem(variable, variable));
+    //    }
 
-        ViewBag.MachineCategoriesAsStringList = item;
-        return View(new AddMachineViewModel());
-    }
+    //    ViewBag.MachineCategoriesAsStringList = item;
+    //    return View(new AddMachineViewModel());
+    //}
 
-    [HttpPost]
-    public async Task<IActionResult> Add(AddMachineViewModel machineForAddInDb)
-    {
-        string? enterpriseCnpj = Request.Cookies["enterpriseCnpj"].ToString();
-        bool isAdded = await _machineService.Add(machineForAddInDb, enterpriseCnpj);
+    //[HttpPost]
+    //public async Task<IActionResult> Add(AddMachineViewModel machineForAddInDb)
+    //{
+    //    string? enterpriseCnpj = Request.Cookies["enterpriseCnpj"].ToString();
+    //    bool isAdded = await _machineService.Add(machineForAddInDb, enterpriseCnpj);
 
-        TempData["message"] = isAdded ? "Máquian adicionada com sucesso!!"
-            : "Occorreu um erro tente novamente mais tarde ou entre em contato com o administrador";
+    //    TempData["message"] = isAdded ? "Máquian adicionada com sucesso!!"
+    //        : "Occorreu um erro tente novamente mais tarde ou entre em contato com o administrador";
 
-        return RedirectToAction("Home", "Enterprise");
-    }
+    //    return RedirectToAction("Home", "Enterprise");
+    //}
 
-    [HttpGet]
-    public async Task<IActionResult> Edit(int id)
-    {
-        EditMachineViewModel modelForEditDataOfMachine = await _machineService.GetMachineDataForEdit(id);
+    //[HttpGet]
+    //public async Task<IActionResult> Edit(int id)
+    //{
+    //    EditMachineViewModel modelForEditDataOfMachine = await _machineService.GetMachineDataForEdit(id);
 
-        TempData["categories"] = await _machineCategoryService.GetNameOfCategoriesAsString();
+    //    TempData["categories"] = await _machineCategoryService.GetNameOfCategoriesAsString();
 
-        return View(modelForEditDataOfMachine);
-    }
+    //    return View(modelForEditDataOfMachine);
+    //}
 
-    [HttpPost]
-    public async Task<IActionResult> Edit(EditMachineViewModel model)
-    {
-        bool isUpdated = await _machineService.UpdateMachine(model);
+    //[HttpPost]
+    //public async Task<IActionResult> Edit(EditMachineViewModel model)
+    //{
+    //    bool isUpdated = await _machineService.UpdateMachine(model);
 
-        TempData["message"] = isUpdated ? "Máquina atualizada com sucesso!" :
-            "Occoreu um erro tente novamente mais tarde ou envie uma mensagem para a nossa equipe";
+    //    TempData["message"] = isUpdated ? "Máquina atualizada com sucesso!" :
+    //        "Occoreu um erro tente novamente mais tarde ou envie uma mensagem para a nossa equipe";
 
-        return RedirectToAction("List");
-    }
+    //    return RedirectToAction("List");
+    //}
 
-    [HttpGet]
-    public async Task<IActionResult> Details(int id)
-    {
-        MachineDetailsViewModel model = await _machineService.GetMachineForDetails(id);
-        return View(model);
-    }
+    //[HttpGet]
+    //public async Task<IActionResult> Details(int id)
+    //{
+    //    MachineDetailsViewModel model = await _machineService.GetMachineForDetails(id);
+    //    return View(model);
+    //}
 
-    [HttpDelete]
-    public async Task<IActionResult> Delete(int id)
-    {
-        bool isDeleted = await _machineService.RemoveMachine(id);
+    //[HttpDelete]
+    //public async Task<IActionResult> Delete(int id)
+    //{
+    //    bool isDeleted = await _machineService.RemoveMachine(id);
 
-        TempData["message"] = isDeleted ? "Máquina apagada com sucesso!" :
-            "Não foi possível deletar a máquina ,tente novamente mais tarde ou nos envie uma mensagem na tela de suporte";
+    //    TempData["message"] = isDeleted ? "Máquina apagada com sucesso!" :
+    //        "Não foi possível deletar a máquina ,tente novamente mais tarde ou nos envie uma mensagem na tela de suporte";
 
-        return RedirectToAction("List");
-    }
-    public async Task<IActionResult> SendDataFromSensors([FromBody] MachineDataRecieveFromSensorsJsonModel model)
-    {
-        bool isRegisted = await _machineService.AddRegisterOfMachineFromJson(model);
+    //    return RedirectToAction("List");
+    //}
+    //public async Task<IActionResult> SendDataFromSensors([FromBody] MachineDataRecieveFromSensorsJsonModel model)
+    //{
+    //    bool isRegisted = await _machineService.AddRegisterOfMachineFromJson(model);
 
-        return isRegisted ? Ok("Added with success!") : BadRequest("Register doesn't added with expected, contact the administrator for more details");
-    }
+    //    return isRegisted ? Ok("Added with success!") : BadRequest("Register doesn't added with expected, contact the administrator for more details");
+    //}
 
-    public async Task<IActionResult> DownloadLogDataOfMachine(int id)
-    {
-        string dataAsCsv = await _machineService.GetHistoryDataByCsvByMachineId(id);
-        EditMachineViewModel machineForEdit = await _machineService.GetMachineDataForEdit(id);
+    //public async Task<IActionResult> DownloadLogDataOfMachine(int id)
+    //{
+    //    string dataAsCsv = await _machineService.GetHistoryDataByCsvByMachineId(id);
+    //    EditMachineViewModel machineForEdit = await _machineService.GetMachineDataForEdit(id);
 
-        return File(System.Text.Encoding.UTF8.GetBytes(dataAsCsv), "text/csv", "data_da_maquina_" + machineForEdit.Model + ".csv");
-    }
-    [HttpGet]
-    public async Task<IActionResult> DetailsAboutMachine(int id)
-    {
-        MachineDetailsViewModel model = await _machineService.GetMachineForDetails(id);
+    //    return File(System.Text.Encoding.UTF8.GetBytes(dataAsCsv), "text/csv", "data_da_maquina_" + machineForEdit.Model + ".csv");
+    //}
+    //[HttpGet]
+    //public async Task<IActionResult> DetailsAboutMachine(int id)
+    //{
+    //    MachineDetailsViewModel model = await _machineService.GetMachineForDetails(id);
 
-        return View(model);
-    }
+    //    return View(model);
+    //}
 
-    [HttpGet]
-    public async Task<JsonResult> DetailsAboutMachineAjaxHandler(int id, string status)
-    {
-        string result = await _machineService.GetJsonForDetailsAboutMachineAjaxHandler(id, status);
+    //[HttpGet]
+    //public async Task<JsonResult> DetailsAboutMachineAjaxHandler(int id, string status)
+    //{
+    //    string result = await _machineService.GetJsonForDetailsAboutMachineAjaxHandler(id, status);
 
-        return Json(result);
-    }
+    //    return Json(result);
+    //}
 
     #endregion
 }
