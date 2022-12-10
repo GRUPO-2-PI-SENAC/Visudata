@@ -29,6 +29,33 @@ namespace Visudata.API.Controllers
             return isAdded ? Ok() : BadRequest("Error in create machine !");
         }
 
+        [HttpGet]
+        [Route("[controller]/{id}")]
+        public async Task<IActionResult> GetById(int id)
+        {
+            MachineDetailsViewModel machineForDetails = await _machineAppService.GetMachineForDetails(id);
+
+            return Json(machineForDetails);
+        }
+
+        [HttpPut]
+        [Route("[controller]/update")]
+        public async Task<IActionResult> Update([FromBody] EditMachineViewModel model)
+        {
+            bool isUpdated = await _machineAppService.UpdateMachine(model);
+
+            return isUpdated ? Ok("The machine are update with success!") : BadRequest("Some kind error occurred in update machine, conteact the adminsitrador");
+        }
+
+        [HttpDelete]
+        [Route("[controller]/delete/{id}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            bool isRemoved = await _machineAppService.RemoveMachine(id);
+
+            return isRemoved ? Ok() : BadRequest("Some kind of error occurred");
+        }
+
         public IActionResult Index()
         {
             return View();
