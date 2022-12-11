@@ -40,7 +40,6 @@
                     <h2 class="col-6 tag card-title">@machine.SerialNumber</h2>
                     <a asp-action="Details" class="col-1" asp-route-id="@machine.Id"><i class="bi bi-arrow-right"></i></a>
                 </div>
-                <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
                 <div class="row card-footer statusMaquina">
                     <div class="col pe-2">
                         <div class="row">
@@ -65,5 +64,10 @@
         </div>
     }
 }
-
+else
+{
+    <div class="container">
+        <h2>Não há nenhuma máquina cadastrada no sistema!</h2>
+    </div>
+}
 

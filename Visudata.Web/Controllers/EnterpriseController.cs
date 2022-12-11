@@ -123,7 +123,7 @@ namespace PI.Web.Controllers
                 return View();
             }
             TempData["message"] = "Senha ou usuario invalidos";
-            return View(enterpriseForLogin);
+            return RedirectToAction("Add");
         }
 
         [HttpGet]

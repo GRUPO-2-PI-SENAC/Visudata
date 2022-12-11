@@ -10,7 +10,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="~/assets/styles/support.css">
-    <link rel="stylesheet" href="~/assets/styles/main.css">
     <style>
 
         .nav-scroller .nav {
@@ -41,7 +40,7 @@
         <input value="@TempData["enterpriseId"]" asp-for="EnterpriseId" />
     </div>
     <main>
-        <form class="card p-2" asp-action="Support" asp-controller="Enterprise" method="post">
+        <form class="container" asp-action="Support" asp-controller="Enterprise" method="post">
             <div class="col-md-7 col-lg-8">
                 <h2 class="mt-4"></h2>
                 <h4>Suporte Técnico</h4>
@@ -49,7 +48,7 @@
                     <div class="row g-3">
                         <div class="col-sm-6">
                             <label for="company" class="form-label">Empresa</label>
-                            <input type="text" class="form-control" asp-for="NameOfEnterprise" value="@Model.NameOfEnterprise" id="company" required>
+                            <input type="text" class="form-control" asp-for="NameOfEnterprise" value="@Model.NameOfEnterprise" id="company" disabled required>
                         </div>
                         <div class="col-sm-6">
                             <label for="email" class="form-label">E-mail do representante</label>

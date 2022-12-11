@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -21,6 +22,6 @@ namespace PI.Domain.ViewModel.Machine
         public string VibrationStyle { get; set; }
         public double RealTimeNoise { get; set; }
         public string NoiseStyle { get; set; }
-
+        public string StatusNameStyle { get; set; }
     }
 }

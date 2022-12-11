@@ -1,6 +1,6 @@
 :root {
     --font-primary: "Montserrat", sans-serif;
-  }
+}
 
 body {
     margin: 0;
@@ -17,27 +17,27 @@ h5 {
     font-size: 18px;
 }
 
-.machineText{
-    font-size: 35px; 
+.machineText {
+    font-size: 35px;
     text-align: left;
 }
 
-.machineText span{
-    font-size: 30px;  
-    font-weight: bold; 
-}
+    .machineText span {
+        font-size: 30px;
+        font-weight: bold;
+    }
 
 
-.maquinasSelect .card-header{
+.maquinasSelect .card-header {
     font-weight: 500;
 }
 
-.statusMaquina span{
+.statusMaquina span {
     max-width: 16px;
     max-height: 16px;
 }
 
-.statusMaquina .num{
+.statusMaquina .num {
     max-width: 90px;
 }
 
@@ -46,17 +46,17 @@ h5 {
     border-color: #8dc0f7;
 } */
 
-.card-header{
+.card-header {
     background-color: #2b5690 !important;
     border-color: #8dc0f7;
     color: white;
 }
 
-.card-footer{
+.card-footer {
     background-color: white !important;
 }
 
-.list-container{
+.list-container {
     margin-bottom: 30%;
 }
 
@@ -72,30 +72,26 @@ h5 {
     h2 {
         font-size: 16px;
     }
+
     h5 {
         font-size: 14px;
     }
+
     .maquinasSelect i {
         font-size: 14px;
     }
 
-    .maquinasSelect span { 
+    .maquinasSelect span {
         height: 15px;
     }
 }
 
-@media (min-width:390px) and (max-width:414px){
+@media (min-width:390px) and (max-width:414px) {
     h2 {
         font-size: 18px;
     }
+
     h5 {
         font-size: 16px;
     }
 }
-
-/* 375 667 bug
-360 740 bug
-390 844 bug
-393 851 bug
-412 915 ok
-414 896 ok */

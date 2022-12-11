@@ -4,6 +4,7 @@ using PI.Application.Intefaces;
 using PI.Domain.Entities;
 using PI.Domain.Interfaces.Repositories;
 using PI.Domain.ViewModel.Machine;
+using System;
 using System.Security.Cryptography;
 
 namespace PI.Application.Services;
@@ -575,6 +576,7 @@ public class MachineServices : IMachineService
             model.StatusName = ExtractStatusNameByMachineStatus(machineForExtractDataForViewModel.Status);
             model.Model = machineForExtractDataForViewModel.Model;
             model.Tag = machineForExtractDataForViewModel.Tag;
+            model.StatusNameStyle = ExtractStatusNameStyleByStatusName(model.StatusName);
 
             if (logsOfMachines == null || !logsOfMachines.Any())
             {
@@ -626,18 +628,18 @@ public class MachineServices : IMachineService
                 if ((lastLogOfMachine.Temp > machineForExtractDataForViewModel.TempMax * 0.8 && lastLogOfMachine.Temp < machineForExtractDataForViewModel.TempMax)
                    || (lastLogOfMachine.Temp < machineForExtractDataForViewModel.TempMin * 1.3 && lastLogOfMachine.Temp > machineForExtractDataForViewModel.TempMin))
                 {
-                    model.NoiseStyle = "badge text-bg-warning";
+                    model.TempStyle = "badge text-bg-warning";
                 }
                 else
                 {
                     if (lastLogOfMachine.Temp >= machineForExtractDataForViewModel.TempMax ||
                         lastLogOfMachine.Temp <= machineForExtractDataForViewModel.TempMin)
                     {
-                        model.VibrationStyle = "badge text-bg-danger";
+                        model.TempStyle = "badge text-bg-danger";
                     }
                     else
                     {
-                        model.NoiseStyle = "badge text-bg-success";
+                        model.TempStyle = "badge text-bg-success";
                     }
                 }
                 model.RealTimeNoise = lastLogOfMachine.Noise;
@@ -655,6 +657,28 @@ public class MachineServices : IMachineService
 
     }
 
+    private string ExtractStatusNameStyleByStatusName(string statusName)
+    {
+        if (statusName == "Bom")
+        {
+            return "badge text-bg-success";
+        }
+        else
+        {
+            if (statusName == "Atênção")
+            {
+                return "badge text-bg-warning";
+            }
+            else if (statusName == "Crítico")
+            {
+                return "badge text-bg-danger";
+            }
+            else
+            {
+                return "badge text-bg-secondary";
+            }
+        }
+    }
     private string ExtractStatusNameByMachineStatus(MachineStatus status)
     {
         switch (status)
