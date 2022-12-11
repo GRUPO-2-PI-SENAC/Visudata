@@ -1,5 +1,24 @@
 ﻿@using PI.Domain.ViewModel.Machine;
 @model List<MachineForListViewModel>
+
+@{
+    Layout = "_Layout";
+}
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visudata</title>
+
+    <!-- Icone da aba -->
+    <link rel="shortcut icon" href="~/assets/Img/favicon-white.ico" type="image/x-icon" />
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="~/assets/styles/list.css" />
+
+</head>
+
 <header>
     <div class="machineText ms-4 mt-3">
         <span>Lista de Máquinas</span>
@@ -19,25 +38,25 @@
                 <div class="row card-body d-flex align-content-between">
                     <h2 class="col-5 model card-title">@machine.Model</h2>
                     <h2 class="col-6 tag card-title">@machine.SerialNumber</h2>
-                    <a asp-action="Details" asp-route-id="@machine.Id"><i class="col-1 bi bi-arrow-right"></i></a>
+                    <a asp-action="Details" class="col-1" asp-route-id="@machine.Id"><i class="bi bi-arrow-right"></i></a>
                 </div>
                 <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
                 <div class="row card-footer statusMaquina">
-                    <div class="col pe-4">
+                    <div class="col pe-2">
                         <div class="row">
-                            <h5 class="col num">@machine.Temp.ToString()ºC</h5>
+                            <h5 class="col-8 num">@machine.Temp.ToString()ºC</h5>
                             <span class=" col badge text-bg-@machine.TempStyle.ToString()"> </span>
                         </div>
                     </div>
-                    <div class="col pe-4">
+                    <div class="col pe-1">
                         <div class="row">
-                            <h5 class="col num">@machine.Noise.ToString()Hz</h5>
+                            <h5 class="col-9 num">@machine.Noise.ToString()Hz</h5>
                             <span class="col badge text-bg-@machine.NoiseStyle.ToString()"> </span>
                         </div>
                     </div>
                     <div class="col">
                         <div class="row">
-                            <h5 class="col num">@machine.Vibration.ToString()dB</h5>
+                            <h5 class="col-9 num">@machine.Vibration.ToString()dB</h5>
                             <span class="col badge text-bg-@machine.VibrationStyle.ToString()"> </span>
                         </div>
                     </div>

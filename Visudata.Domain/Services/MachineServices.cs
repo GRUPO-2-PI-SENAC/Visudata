@@ -69,7 +69,7 @@ public class MachineServices : IMachineService
                     category = machine.Category.Name
                 });
             }
-            return machinesforView; 
+            return machinesforView;
         }
 
         return new List<MachineForListViewModel>();
@@ -435,26 +435,24 @@ public class MachineServices : IMachineService
 
             if (machinesOfCurrentEnterpriseSession.Any())
             {
-                machinesOfCurrentEnterpriseSession.ForEach(machine =>
+                foreach (Machine machine in machinesOfCurrentEnterpriseSession)
                 {
                     List<Log> logsOfMachine = logs.Where(log => log.Machine.Id == machine.Id).ToList();
-
+                    MachineForListViewModel model = new MachineForListViewModel()
+                    {
+                        Id = machine.Id,
+                        Brand = machine.Brand,
+                        Model = machine.Model,
+                        SerialNumber = machine.SerialNumber,
+                        Status = GetStatusForViewFromMachineStatusEnum(machine.Status),
+                    };
                     if (logsOfMachine.Count > 0)
                     {
                         Log lastLogOfMachine = logsOfMachine.MaxBy(log => log.Created_at);
 
-                        MachineForListViewModel model = new MachineForListViewModel()
-                        {
-                            Id = machine.Id,
-                            Brand = machine.Brand,
-                            Model = machine.Model,
-                            SerialNumber = machine.SerialNumber,
-                            Status = GetStatusForViewFromMachineStatusEnum(machine.Status),
-                            Noise = lastLogOfMachine.Noise,
-                            Temp = lastLogOfMachine.Temp,
-                            Vibration = lastLogOfMachine.Vibration,
-                            category = machine.Category.Name
-                        };
+                        model.Noise = lastLogOfMachine.Noise;
+                        model.Vibration = lastLogOfMachine.Vibration;
+                        model.Temp = lastLogOfMachine.Temp;
 
                         int amountOfVibrationOccurrences = logsOfMachine.Where(log => log.Created_at.Hour > DateTime.Now.Hour - 6).Count(log => log.Vibration < machine.VibrationMin
                         || log.Vibration > machine.VibrationMax);
@@ -512,10 +510,19 @@ public class MachineServices : IMachineService
                             }
                         }
 
-                        machinesForView.Add(model);
+                    }
+                    else
+                    {
+                        model.Noise = 0;
+                        model.NoiseStyle = "secondary";
+                        model.Vibration = 0;
+                        model.VibrationStyle = "secondary";
+                        model.Temp = 0;
+                        model.TempStyle = "secondary";
                     }
 
-                });
+                    machinesForView.Add(model);
+                }
 
                 return machinesForView;
             }
