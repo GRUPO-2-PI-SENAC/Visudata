@@ -404,7 +404,7 @@ public class MachineServices : IMachineService
     public async Task<EditMachineViewModel> GetMachineDataForEdit(int machineId)
     {
         Machine machineForEditViewModel = await _machineRepository.GetById(machineId);
-
+        Machine machineForEditViewMode = (await _machineRepository.GetAll()).ToList().First(machine => machine.Id == machineId);
         EditMachineViewModel model = new EditMachineViewModel()
         {
             MachineId = machineForEditViewModel.Id,

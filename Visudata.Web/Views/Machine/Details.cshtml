@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@using PI.Domain.ViewModel.Machine;
+@model MachineDetailsViewModel
+<!DOCTYPE html>
 <html lang="pt-BR">
 
 <head>
@@ -21,13 +23,13 @@
     <header>
         <div class="row">
             <div class="col ">
-                <a onclick="window.history.go(-1); return false;">
+                <a asp-action="Home" asp-controller="Enterprise">
                     <img src="~/assets/icons/SVGIcons/volta-2.svg" alt="voltar">
                 </a>
             </div>
             <div class="col titleInfo ">Modelo: HT-670M</div>
             <div class="col ">
-                <a href="./Edit.html">
+                <a asp-action="Edit" asp-route-id="@Model.Id">
                     <img id="imgEdit" src="~/assets/icons/SVGIcons/edit.svg" alt="editar">
                 </a>
             </div>
@@ -43,16 +45,16 @@
                 <div class="col">Vibração</div>
                 <!-- apenas alterar o final da class do span -->
                 <div class="col">
-                    75 ºC
-                    <span class="badge text-bg-success"> </span>
+                    @Model.RealTimeTemp ºC
+                    <span class="@Model.TempStyle.ToString()"> </span>
                 </div>
                 <div class="col">
-                    64 Hz
-                    <span class="badge text-bg-danger"> </span>
+                    @Model.RealTimeNoise Hz
+                    <span class="@Model.NoiseStyle.ToString()"> </span>
                 </div>
                 <div class="col">
-                    220 dB
-                    <span class="badge text-bg-warning"> </span>
+                    @Model.RealTimeVibration dB
+                    <span class="@Model.VibrationStyle.ToString()"> </span>
                 </div>
             </div>
         </div>
@@ -95,7 +97,9 @@
                         <span class="badge text-bg--blue-color-bg button ">Histórico</span>
                     </div>
                     <div class="col statusAction">
-                        <span class="badge text-bg--blue-color-bg button ">Exportar</span>
+                        <a asp-action="DownloadLogDataOfMachine" asp-route-id="@Model.Id">
+                            <span class="badge text-bg--blue-color-bg button ">Exportar</span>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -105,16 +109,16 @@
             <div class="row-cols-1 container">
                 <div class="container text-center">
                     <div class="row">
-                        <div class="col statusEspe">Marca: <br> Minipa</div>
-                        <div class="col statusEspe">Modelo: <br> HT-670M</div>
-                        <div class="col statusEspe">Série: RQW34213ASDA</div>
+                        <div class="col statusEspe">Marca: <br> @Model.Brand</div>
+                        <div class="col statusEspe">Modelo: <br> @Model.Model</div>
+                        <div class="col statusEspe">Série: @Model.SerialNumber</div>
                     </div>
                     <div class="row">
-                        <div class="col statusEspe">Tag: <br> BD-01</div>
-                        <div class="col statusEspe">Categoria: <br> Injetora</div>
+                        <div class="col statusEspe">Tag: <br> @Model.Tag</div>
+                        <div class="col statusEspe">Categoria: <br> @Model.Category</div>
                         <div class="col statusEspe">
-                            Status: <br> Crítico
-                            <span class="badge text-bg-danger"> </span>
+                            Status: <br> @Model.StatusName
+                            <span class="@Model.StatusNameStyle.ToString()"> </span>
                         </div>
                     </div>
                 </div>
@@ -194,24 +198,24 @@
         }
     });
 
-        // new Chart(ctx, {
-        // type: 'line',
-        // data: {
-        //     labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-        //     datasets: [{
-        //     label: '# of Votes',
-        //     data: [12, 19, 3, 5, 2, 3],
-        //     borderWidth: 3,
-        //     borderColor: 'rgba(77, 166, 253, 0.85)',
-        //     backgroundColor: 'transparent',
-        //     }]
-        // },
-        // options: {
-        //     scales: {
-        //     y: {
-        //         beginAtZero: true
-        //     }
-        //     }
-        // }
-        // });
+                // new Chart(ctx, {
+                // type: 'line',
+                // data: {
+                //     labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                //     datasets: [{
+                //     label: '# of Votes',
+                //     data: [12, 19, 3, 5, 2, 3],
+                //     borderWidth: 3,
+                //     borderColor: 'rgba(77, 166, 253, 0.85)',
+                //     backgroundColor: 'transparent',
+                //     }]
+                // },
+                // options: {
+                //     scales: {
+                //     y: {
+                //         beginAtZero: true
+                //     }
+                //     }
+                // }
+                // });
 </script>

@@ -79,7 +79,17 @@ public class MachineController : Controller
     {
         EditMachineViewModel modelForEditDataOfMachine = await _machineService.GetMachineDataForEdit(id);
 
-        TempData["categories"] = await _machineCategoryService.GetNameOfCategoriesAsString();
+
+        List<string> nameOfCategoriesAsStringList = await _machineCategoryService.GetNameOfCategoriesAsString();
+
+        List<SelectListItem> item = new List<SelectListItem>();
+
+        foreach (string variable in nameOfCategoriesAsStringList)
+        {
+            item.Add(new SelectListItem(variable, variable));
+        }
+
+        ViewBag.MachineCategoriesAsStringList = item;
 
         return View(modelForEditDataOfMachine);
     }
