@@ -528,7 +528,7 @@ public class MachineServices : IMachineService
                 return machinesForView;
             }
             return new List<MachineForListViewModel>();
-        }
+        } 
         catch
         {
             return new List<MachineForListViewModel>();
@@ -543,7 +543,7 @@ public class MachineServices : IMachineService
 
         string csv = "";
 
-        csv += "VIBRACAO;BARULHO;TEMPERATURA\n";
+        csv += "VIBRACAO;RUIDO;TEMPERATURA\n";
 
         foreach (Log log in logsOfMachine)
         {
