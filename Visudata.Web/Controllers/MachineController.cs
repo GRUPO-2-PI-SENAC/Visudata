@@ -145,9 +145,18 @@ public class MachineController : Controller
     }
 
     [HttpGet]
-    public async Task<JsonResult> DetailsAboutMachineAjaxHandler(int id, string status)
+    public async Task<IActionResult> DetailsAboutMachineAjaxHandler(int id, string status)
     {
         string result = await _machineService.GetJsonForDetailsAboutMachineAjaxHandler(id, status);
+
+        return Json(result);
+    }
+
+    [HttpGet]
+    [Route("[controller]/DetailsAboutTempAjaxHandler/{id}")]
+    public JsonResult DetailsAboutTempAjaxHandler(int id)
+    {
+        string result = _machineService.GetJsonForDetailsAboutMachineAjaxHandler(id, "temperatura").Result;
 
         return Json(result);
     }

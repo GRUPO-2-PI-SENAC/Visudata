@@ -481,33 +481,33 @@ public class MachineServices : IMachineService
 
                         if (amountOfTempOccurrences >= 3)
                         {
-                            model.VibrationStyle = "danger";
+                            model.TempStyle = "danger";
                         }
                         else
                         {
                             if (amountOfTempOccurrences < 3 && amountOfTempOccurrences > 0)
                             {
-                                model.VibrationStyle = "warning";
+                                model.TempStyle = "warning";
                             }
                             else
                             {
-                                model.VibrationStyle = "success";
+                                model.TempStyle = "success";
                             }
                         }
 
                         if (amountOfNoiseOccurrences >= 3)
                         {
-                            model.VibrationStyle = "danger";
+                            model.NoiseStyle= "danger";
                         }
                         else
                         {
                             if (amountOfNoiseOccurrences < 3 && amountOfNoiseOccurrences > 0)
                             {
-                                model.VibrationStyle = "warning";
+                                model.NoiseStyle = "warning";
                             }
                             else
                             {
-                                model.VibrationStyle = "success";
+                                model.NoiseStyle = "success";
                             }
                         }
 
@@ -731,7 +731,7 @@ public class MachineServices : IMachineService
                 }
             }
 
-            string lastSixLogsAboutMachineAsJsonString = JsonConvert.SerializeObject(hourWithValueOfMagnitude).ToString();
+            string lastSixLogsAboutMachineAsJsonString = JsonConvert.SerializeObject(hourWithValueOfMagnitude);
 
             return lastSixLogsAboutMachineAsJsonString;
         }
