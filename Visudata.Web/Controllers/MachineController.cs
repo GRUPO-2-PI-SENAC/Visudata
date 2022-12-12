@@ -95,9 +95,9 @@ public class MachineController : Controller
     }
 
     [HttpPost]
-    public async Task<IActionResult> Edit(EditMachineViewModel model)
+    public async Task<IActionResult> Edit(EditMachineViewModel editMachine)
     {
-        bool isUpdated = await _machineService.UpdateMachine(model);
+        bool isUpdated = await _machineService.UpdateMachine(editMachine);
 
         TempData["message"] = isUpdated ? "Máquina atualizada com sucesso!" :
             "Occoreu um erro tente novamente mais tarde ou envie uma mensagem para a nossa equipe";

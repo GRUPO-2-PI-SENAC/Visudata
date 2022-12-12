@@ -13,9 +13,9 @@ namespace PI.Infra.Data.Repositories
 
         public async Task<MachineCategory> GetByName(string name)
         {
-            MachineCategory machineCategoryByName = _context.MachineCategories.FirstOrDefault(machineCategories => machineCategories.Name == name);
+            MachineCategory machineCategoryByName = _context.MachineCategories.Include(machineCategory => machineCategory.Machines).First(machineCategories => machineCategories.Name == name);
 
-            return machineCategoryByName == null ? machineCategoryByName : new MachineCategory();
+            return machineCategoryByName;
         }
 
         public async Task<IEnumerable<Machine>> GetMachinesOfCategory(int categoryId)

@@ -35,4 +35,9 @@ public class MachineRepository : BaseRepository<Machine>, IMachineRepository
     {
         return _context.Machines.Include(machine => machine.Category).Include(machine => machine.Enterprise).Include(machine => machine.Status).ToList();
     }
+
+    public async override Task<Machine> GetById(int entityId)
+    {
+        return _context.Machines.Include(machine => machine.Enterprise).Include(machine => machine.Category).ToList().First(machine => machine.Id == entityId);
+    }
 }
