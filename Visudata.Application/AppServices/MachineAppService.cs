@@ -88,7 +88,7 @@ namespace PI.Application.AppServices
             return _machineService.GetMachineForDetails(id);
         }
 
-        public Task<string> GetJsonForDetailsAboutMachineAjaxHandler(int id, string status)
+        public Task<GraphicModel> GetJsonForDetailsAboutMachineAjaxHandler(int id, string status)
         {
             return _machineService.GetJsonForDetailsAboutMachineAjaxHandler(id, status);
         }

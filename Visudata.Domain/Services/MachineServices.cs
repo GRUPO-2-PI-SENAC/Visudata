@@ -652,7 +652,6 @@ public class MachineServices : IMachineService
                 model.RealTimeVibration = lastLogOfMachine.Vibration;
             }
 
-
             return model;
         }
         catch
@@ -701,7 +700,7 @@ public class MachineServices : IMachineService
         }
     }
 
-    public async Task<string> GetJsonForDetailsAboutMachineAjaxHandler(int id, string status)
+    public async Task<GraphicModel> GetJsonForDetailsAboutMachineAjaxHandler(int id, string status)
     {
         try
         {
@@ -715,6 +714,9 @@ public class MachineServices : IMachineService
                 lastSixLogsAboutMachine.Add(logsOfMachineOrderByCreatedAt[i]);
             }
 
+            GraphicModel model = new GraphicModel();
+            model.GraphicValues = new List<GraphicValues>();
+
             Dictionary<int, double> hourWithValueOfMagnitude = new Dictionary<int, double>();
 
             foreach (Log log in lastSixLogsAboutMachine)
@@ -722,27 +724,42 @@ public class MachineServices : IMachineService
                 if (status == "temperatura")
                 {
                     hourWithValueOfMagnitude.Add(log.Created_at.Hour, log.Temp);
+                    model.GraphicValues.Add(new GraphicValues()
+                    {
+                        Hour = log.Created_at.Hour,
+                        Value = log.Temp
+                    });
                 }
                 else
                 {
                     if (status == "vibracao")
                     {
                         hourWithValueOfMagnitude.Add(log.Created_at.Hour, log.Vibration);
+                        model.GraphicValues.Add(new GraphicValues()
+                        {
+                            Hour = log.Created_at.Hour,
+                            Value = log.Vibration
+                        });
                     }
                     else
                     {
                         hourWithValueOfMagnitude.Add(log.Created_at.Hour, log.Noise);
+                        model.GraphicValues.Add(new GraphicValues()
+                        {
+                            Hour = log.Created_at.Hour,
+                            Value = log.Noise
+                        });
                     }
                 }
             }
 
             string lastSixLogsAboutMachineAsJsonString = JsonConvert.SerializeObject(hourWithValueOfMagnitude);
 
-            return lastSixLogsAboutMachineAsJsonString;
+            return model;
         }
         catch
         {
-            return "";
+            return new GraphicModel();
         }
 
 

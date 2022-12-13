@@ -169,18 +169,15 @@
         if($(this).is(':checked'))
         {
             $.ajax({
-                type:'get',
-                url: '/machine'
-            });
-            $.ajax({
-                type: 'GET',
-                URL: '/machine/DetailsAboutTempAjaxHandler/'+@Model.Id.ToString(),
-                dataType: "json",
-                contentType: 'application/json; charset=utf-8',
+                type: "GET",
+                url: "/machine/DetailsAboutTempAjaxHandler/"+@Model.Id.ToString(),
                 success: function(response){
-                    console.log(response);  
-                }   
+                    console.log(response);
+                }
             });
+            //const response =  fetch('/machine/DetailsAboutTempAjaxHandler/'+@Model.Id.ToString());
+            //const datapoints =  response.json();
+            //console.log(datapoints);
 
             fetch('/machine/DetailsAboutTempAjaxHandler/'+@Model.Id.ToString(), {
                 method: 'GET',
@@ -190,7 +187,13 @@
                 }
             }).then(function(response){
                 var result = response.json();
-                console.log(result.data)
+                let arrayLength = result.data.length;
+                console.log(result.data);
+                //const hours = result.data.graphicValues.map(function(index){
+                //    return index.hour
+                //});
+                //console.log(hours);
+                //console.log(result.data)
             });
         }
     });
