@@ -1,10 +1,17 @@
 using PI.Infra.IoC;
+using WebEssentials.AspNetCore.Pwa;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddInfrastructure(builder.Configuration);
+//builder.Services.AddProgressiveWebApp(new PwaOptions
+//{
+//    CacheId = "worker 1.1",
+//    Strategy = ServiceWorkerStrategy.CacheFirst,
+//    RoutesToPreCache = "Enterprise/Home , Machine/List , Enterprise/Support"
+//});
 
 var app = builder.Build();
 

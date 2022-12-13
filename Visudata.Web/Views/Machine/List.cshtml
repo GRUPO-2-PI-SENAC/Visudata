@@ -71,3 +71,53 @@ else
     </div>
 }
 
+@if (TempData["message"] != null)
+{
+
+    if (TempData["typeMessage"] != null)
+    {
+
+        if (TempData["typeMessage"].ToString() == "error")
+        {
+            <div class="toast-container position-fixed bottom-0 mb-5 end-0 p-3 ">
+                <div id="liveToast-danger" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+                    <div class="toast-header bg-danger">
+                        <svg class="bi flex-shrink-0 me-2 svg-icon" role="img" aria-label="Danger:">
+                            <use xlink:href="#exclamation-triangle-fill" />
+                        </svg>
+                        <p class="me-auto mt-3 text-light">@TempData["message"].ToString()</p>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast"
+                    aria-label="Close"></button>
+                    </div>
+                </div>
+            </div>
+        }
+
+        if (TempData["typeMessage"].ToString() == "success")
+        {
+            <div class="toast-container position-fixed bottom-0 mb-5 end-0 p-3 ">
+                <div id="liveToast-success" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+                    <div class="toast-header bg-success">
+                        <svg class="bi flex-shrink-0 me-2 svg-icon" role="img" aria-label="Success:">
+                            <use xlink:href="#check-circle-fill" />
+                        </svg>
+                        <p class="me-auto mt-3 text-light">@TempData["message"].ToString()</p>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast" aria-label="Close"></button>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+
+
+    <script>
+        window.onload = function () {
+            const myToast = new bootstrap.Toast('.toast');
+
+            setTimeout(() => {
+                myToast.show();
+            }, 5000);
+        }
+    </script>
+}
+

@@ -72,6 +72,7 @@ public class MachineController : Controller
 
             TempData["message"] = isAdded ? "Máquian adicionada com sucesso!!"
                 : "Occorreu um erro tente novamente mais tarde ou entre em contato com o administrador";
+            TempData["typeMessage"] = isAdded ? "success" : "error";
 
             return RedirectToAction("Home", "Enterprise");
         }
@@ -107,7 +108,7 @@ public class MachineController : Controller
 
             TempData["message"] = isUpdated ? "Máquina atualizada com sucesso!" :
                 "Occoreu um erro tente novamente mais tarde ou envie uma mensagem para a nossa equipe";
-
+            TempData["typeMessage"] = isUpdated ? "success" : "error";
             return RedirectToAction("List");
         }
         return RedirectToAction("Edit");
@@ -162,16 +163,16 @@ public class MachineController : Controller
     [HttpGet]
     public async Task<IActionResult> DetailsAboutMachineAjaxHandler(int id, string status)
     {
-        string result = await _machineService.GetJsonForDetailsAboutMachineAjaxHandler(id, status);
+        //string result = await _machineService.GetJsonForDetailsAboutMachineAjaxHandler(id, status);
 
-        return Json(result);
+        return Json("");
     }
 
     [HttpGet]
     [Route("[controller]/DetailsAboutTempAjaxHandler/{id}")]
-    public JsonResult DetailsAboutTempAjaxHandler(int id)
+    public async Task<JsonResult> DetailsAboutTempAjaxHandler(int id)
     {
-        string result = _machineService.GetJsonForDetailsAboutMachineAjaxHandler(id, "temperatura").Result;
+        GraphicModel result = await _machineService.GetJsonForDetailsAboutMachineAjaxHandler(id, "temperatura");
 
         return Json(result);
     }

@@ -26,7 +26,7 @@ namespace PI.Application.Intefaces
         Task<List<MachineForListViewModel>> GetMachinesByEnterpriseCnpj(string? enterpriseOfCurrentSessionCnpj);
         Task<string> GetHistoryDataByCsvByMachineId(int machineId);
         Task<MachineDetailsViewModel> GetMachineForDetails(int id);
-        Task<string> GetJsonForDetailsAboutMachineAjaxHandler(int id, string status);
+        Task<GraphicModel> GetJsonForDetailsAboutMachineAjaxHandler(int id, string status);
         Task<List<MachineForListViewModel>> GetMachineOfSpecificCategory(string? currentSessionEnterpriseCnpj,
             string nameOfcategory);
     }
