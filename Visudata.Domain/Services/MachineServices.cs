@@ -869,4 +869,11 @@ public class MachineServices : IMachineService
         }
 
     }
+
+    public async Task<Machine> GetMachineEntityById(int machineId)
+    {
+        List<Machine> machines = (await _machineRepository.GetAll()).ToList();
+
+        return machines.First(machine => machine.Id == machineId);
+    }
 }

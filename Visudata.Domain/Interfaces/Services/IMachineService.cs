@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using PI.Domain.Entities;
 using PI.Domain.ViewModel.Machine;
+using System.Runtime.CompilerServices;
 
 namespace PI.Application.Intefaces;
 
@@ -31,5 +32,6 @@ public interface IMachineService
     Task<List<Machine>> GetAllMachineEntity(int enterpriseId);
     Task<List<MachineForListViewModel>> GetMachinesOfSpecificCategory(string? currentSessionEnterpriseCnpj, string nameOfCategory);
     Task<List<MachineForAPIListViewModel>> GetMachinesForApiList(string enterpriseCnpj);
+    Task<Machine> GetMachineEntityById(int machineId);
 
 }

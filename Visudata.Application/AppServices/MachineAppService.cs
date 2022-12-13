@@ -115,5 +115,10 @@ namespace PI.Application.AppServices
         {
             return _machineService.GetMachinesForApiList(enterpriseCnpj);
         }
+
+        public Task<Machine> GetMachineEntityById(int machineId)
+        {
+            return _machineService.GetMachineEntityById(machineId);
+        }
     }
 }
