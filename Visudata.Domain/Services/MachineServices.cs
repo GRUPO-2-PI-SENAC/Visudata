@@ -497,7 +497,7 @@ public class MachineServices : IMachineService
 
                         if (amountOfNoiseOccurrences >= 3)
                         {
-                            model.NoiseStyle= "danger";
+                            model.NoiseStyle = "danger";
                         }
                         else
                         {
@@ -528,7 +528,7 @@ public class MachineServices : IMachineService
                 return machinesForView;
             }
             return new List<MachineForListViewModel>();
-        } 
+        }
         catch
         {
             return new List<MachineForListViewModel>();
@@ -537,17 +537,22 @@ public class MachineServices : IMachineService
 
     public async Task<string> GetHistoryDataByCsvByMachineId(int machineId)
     {
-        IEnumerable<Log> logsInDb = await _logRepository.GetAll();
+        List<Log> logsInDb = (await _logRepository.GetAll()).ToList();
 
-        IEnumerable<Log> logsOfMachine = logsInDb.Where(log => log.Machine.Id == machineId);
+        List<Log> logsOfMachine = logsInDb.Where(log => log.Machine.Id == machineId).ToList();
+
+        if (!logsOfMachine.Any() || logsOfMachine.Count() == 0)
+        {
+            return "";
+        }
 
         string csv = "";
 
-        csv += "VIBRACAO;RUIDO;TEMPERATURA\n";
+        csv += "HORA;VIBRACAO;RUIDO;TEMPERATURA\n";
 
         foreach (Log log in logsOfMachine)
         {
-            csv += log.Vibration.ToString() + ";" + log.Noise.ToString() + ";" + log.Temp.ToString() + "\n";
+            csv += log.Created_at.Hour + ";" + log.Vibration.ToString() + ";" + log.Noise.ToString() + ";" + log.Temp.ToString() + "\n";
         }
 
         return csv;
@@ -557,12 +562,12 @@ public class MachineServices : IMachineService
     {
         try
         {
-            IEnumerable<Machine> machinesInDb = await _machineRepository.GetAll();
+            List<Machine> machinesInDb = (await _machineRepository.GetAll()).ToList();
 
-            Machine machineForExtractDataForViewModel = machinesInDb.FirstOrDefault(machine => machine.Id == id);
-            IEnumerable<Log> logsOfMachines = await _logRepository.GetLogsWithMachines();
+            Machine machineForExtractDataForViewModel = machinesInDb.First(machine => machine.Id == id);
+            List<Log> logsOfMachines = (await _logRepository.GetLogsWithMachines()).ToList();
 
-            Log lastLogOfMachine = logsOfMachines.Where(log => log.Machine.Id == id).OrderBy(log => log.Created_at).FirstOrDefault();
+            Log lastLogOfMachine = logsOfMachines.Where(log => log.Machine.Id == id).OrderByDescending(log => log.Created_at).First();
 
             if (machineForExtractDataForViewModel == null)
                 return new MachineDetailsViewModel();

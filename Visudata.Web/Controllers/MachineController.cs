@@ -65,13 +65,17 @@ public class MachineController : Controller
     [HttpPost]
     public async Task<IActionResult> Add(AddMachineViewModel machineForAddInDb)
     {
-        string? enterpriseCnpj = Request.Cookies["enterpriseCnpj"].ToString();
-        bool isAdded = await _machineService.Add(machineForAddInDb, enterpriseCnpj);
+        if (ModelState.IsValid)
+        {
+            string? enterpriseCnpj = Request.Cookies["enterpriseCnpj"].ToString();
+            bool isAdded = await _machineService.Add(machineForAddInDb, enterpriseCnpj);
 
-        TempData["message"] = isAdded ? "Máquian adicionada com sucesso!!"
-            : "Occorreu um erro tente novamente mais tarde ou entre em contato com o administrador";
+            TempData["message"] = isAdded ? "Máquian adicionada com sucesso!!"
+                : "Occorreu um erro tente novamente mais tarde ou entre em contato com o administrador";
 
-        return RedirectToAction("Home", "Enterprise");
+            return RedirectToAction("Home", "Enterprise");
+        }
+        return RedirectToAction("Add");
     }
 
     [HttpGet]
@@ -97,12 +101,16 @@ public class MachineController : Controller
     [HttpPost]
     public async Task<IActionResult> Edit(EditMachineViewModel editMachine)
     {
-        bool isUpdated = await _machineService.UpdateMachine(editMachine);
+        if (ModelState.IsValid)
+        {
+            bool isUpdated = await _machineService.UpdateMachine(editMachine);
 
-        TempData["message"] = isUpdated ? "Máquina atualizada com sucesso!" :
-            "Occoreu um erro tente novamente mais tarde ou envie uma mensagem para a nossa equipe";
+            TempData["message"] = isUpdated ? "Máquina atualizada com sucesso!" :
+                "Occoreu um erro tente novamente mais tarde ou envie uma mensagem para a nossa equipe";
 
-        return RedirectToAction("List");
+            return RedirectToAction("List");
+        }
+        return RedirectToAction("Edit");
     }
 
     [HttpGet]
@@ -132,6 +140,13 @@ public class MachineController : Controller
     public async Task<IActionResult> DownloadLogDataOfMachine(int id)
     {
         string dataAsCsv = await _machineService.GetHistoryDataByCsvByMachineId(id);
+
+        if (dataAsCsv == "")
+        {
+            TempData["message"] = "A máquina não possui nenhum dado de histórico!";
+            return RedirectToAction("List");
+        }
+
         EditMachineViewModel machineForEdit = await _machineService.GetMachineDataForEdit(id);
 
         return File(System.Text.Encoding.UTF8.GetBytes(dataAsCsv), "text/csv", "data_da_maquina_" + machineForEdit.Model + ".csv");
