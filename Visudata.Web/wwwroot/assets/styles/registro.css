@@ -2,10 +2,11 @@ body {
     margin: 0;
     padding: 0;
     text-decoration: none !important;
-    height: auto;
-    width: fit-content;
 }
 
+.header{
+    width: 100%;
+}
 .header p{
     margin-top: 3%;
     font-size: 20px; 
@@ -14,12 +15,14 @@ body {
     text-align: center;
 }
 
-
+.card .card-body{
+    border: none !important;
+}
 
 .tabel-text {
     background-color: #09427D;
-    
     color: white;
+    padding: 3%;
 }
 
 .card-title{
