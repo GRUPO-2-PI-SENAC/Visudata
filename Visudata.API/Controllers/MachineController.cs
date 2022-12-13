@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using PI.Application.Intefaces;
+using PI.Domain.Entities;
 using PI.Domain.ViewModel.Machine;
 
 namespace Visudata.API.Controllers
@@ -35,7 +36,7 @@ namespace Visudata.API.Controllers
         [Route("[controller]/{id}")]
         public async Task<IActionResult> GetById(int id)
         {
-            MachineDetailsViewModel machineForDetails = await _machineAppService.GetMachineForDetails(id);
+            Machine machineForDetails = await _machineAppService.GetMachineEntityById(id);
 
             return Json(machineForDetails);
         }
