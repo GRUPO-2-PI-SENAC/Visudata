@@ -35,5 +35,7 @@ namespace PI.Application.Intefaces
         Task<List<MachineForAPIListViewModel>> GetMachinesForApiList(string enterpriseCnpj);
 
         Task<Machine> GetMachineEntityById(int machineId);
+        Task<EditMachineModel> GetEditMachineModel(int machineId);
+
     }
 }

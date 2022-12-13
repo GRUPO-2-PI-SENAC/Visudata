@@ -120,5 +120,10 @@ namespace PI.Application.AppServices
         {
             return _machineService.GetMachineEntityById(machineId);
         }
+        public Task<EditMachineModel> GetEditMachineModel(int machineId)
+        {
+            return _machineService.GetEditMachineModel(machineId);
+        }
+
     }
 }

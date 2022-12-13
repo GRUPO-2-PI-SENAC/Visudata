@@ -36,7 +36,7 @@ namespace Visudata.API.Controllers
         [Route("[controller]/{id}")]
         public async Task<IActionResult> GetById(int id)
         {
-            Machine machineForDetails = await _machineAppService.GetMachineEntityById(id);
+            var machineForDetails = await _machineAppService.GetEditMachineModel(id);
 
             return Json(machineForDetails);
         }

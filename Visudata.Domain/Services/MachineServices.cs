@@ -870,6 +870,29 @@ public class MachineServices : IMachineService
 
     }
 
+    public async Task<EditMachineModel> GetEditMachineModel(int machineId)
+    {
+        List<Machine> machines = (await _machineRepository.GetAll()).ToList();
+
+        Machine machine = machines.First(machine => machine.Id == machineId);
+
+        return new EditMachineModel()
+        {
+            MachineId = machine.Id,
+            Brand = machine.Brand,
+            Category = machine.Category.Name,
+            MaxNoise = machine.NoiseMax,
+            MinNoise = machine.NoiseMin,
+            MaxTemp = machine.TempMax,
+            MinTemp = machine.TempMin,
+            MaxVibration = machine.VibrationMax,
+            MinVibration = machine.VibrationMin,
+            Model = machine.Model,
+            SerialNumber = machine.SerialNumber,
+            Tag = machine.Tag
+        };
+    }
+
     public async Task<Machine> GetMachineEntityById(int machineId)
     {
         List<Machine> machines = (await _machineRepository.GetAll()).ToList();
