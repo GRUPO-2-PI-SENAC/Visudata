@@ -15,7 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Remove="Views\Enterprise\SuccessSignUp.cshtml" />
+    <Content Remove="Views\Enterprise\Redirect.cshtml" />
     <Content Remove="wwwroot\assets\AppLogo\android\mipmap-hdpi\logo.png" />
     <Content Remove="wwwroot\assets\AppLogo\android\mipmap-mdpi\logo.png" />
     <Content Remove="wwwroot\assets\AppLogo\android\mipmap-xhdpi\logo.png" />
@@ -612,7 +612,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="Views\Enterprise\SuccessSignUp.cshtml" />
+    <None Include="Views\Enterprise\Redirect.cshtml" />
     <None Include="wwwroot\assets\AppLogo\android\mipmap-hdpi\logo.png" />
     <None Include="wwwroot\assets\AppLogo\android\mipmap-mdpi\logo.png" />
     <None Include="wwwroot\assets\AppLogo\android\mipmap-xhdpi\logo.png" />
