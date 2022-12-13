@@ -10,18 +10,18 @@
     <title>Cadastro</title>
 
     <!-- CSS -->
-    <link rel="stylesheet" href="../../wwwroot/assets/styles/home.css">
-    <link rel="stylesheet" href="../../wwwroot/assets/styles/cad_sucess.css">
+    <link rel="stylesheet" href="~/assets/styles/home.css">
+    <link rel="stylesheet" href="~/assets/styles/cad_sucess.css">
     
     <!-- Icone da aba -->
-    <link rel="shortcut icon" href="../../wwwroot/assets/Img/favicon-white.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="~/assets/Img/favicon-white.ico" type="image/x-icon" />
 
 
     <!-- Bootstrap -->
     <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-    <link rel="stylesheet" href="../../wwwroot/assets/Icons/bootstrap-icons/bootstrap-icons.css">
+    <link rel="stylesheet" href="~/assets/Icons/bootstrap-icons/bootstrap-icons.css">
 
     <!-- Fonts -->
     <!-- Google Fonts -->
@@ -42,7 +42,7 @@
     <main>
         <div class="container main" style="width: 100%; height: 100%;"> 
             <div class="container d-flex justify-content-center">
-                <img src="../../wwwroot/assets/Img/logo-visu.png" class="logo" alt="logo">
+                <img src="~/assets/Img/logo-visu.png" class="logo" alt="logo">
             </div>
             <div class="container-fluid text-center texts">
                 <h4 style=" padding: 10px;"> <strong>Cadastro realizado com sucesso!</strong></h4>
@@ -62,5 +62,11 @@
         crossorigin="anonymous"></script>
 
 </body>
+
+<script>
+    window.setTimeout(function () {
+        window.location.href = "@Url.Action("Login","Enterprise")";
+    }, 5000);
+</script>
 
 </html>

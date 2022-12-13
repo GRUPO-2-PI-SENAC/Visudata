@@ -66,7 +66,7 @@ namespace PI.Web.Controllers
 
                     if (isValid)
                     {
-                        return View("CreateEnterpriseSuccessed");
+                        return View("SuccessSignUp");
                     }
                     ModelState.AddModelError(String.Empty, TempData["message"].ToString());
 
