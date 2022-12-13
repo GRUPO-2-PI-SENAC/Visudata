@@ -12,6 +12,11 @@ public class LogsRepository : BaseRepository<Log>, ILogsRepository
 
     }
 
+    public async override Task<IEnumerable<Log>> GetAll()
+    {
+        return _context.Logs.Include(log => log.Machine).ToList();
+    }
+
     public async Task<Log> CurrentlyLogOfMachine(int machineId)
     {
         List<Log> logsInDb = _context.Logs.ToList();
