@@ -30,4 +30,6 @@ public interface IMachineService
     Task<GraphicModel> GetJsonForDetailsAboutMachineAjaxHandler(int id, string status);
     Task<List<Machine>> GetAllMachineEntity(int enterpriseId);
     Task<List<MachineForListViewModel>> GetMachinesOfSpecificCategory(string? currentSessionEnterpriseCnpj, string nameOfCategory);
+    Task<List<MachineForAPIListViewModel>> GetMachinesForApiList(string enterpriseCnpj);
+
 }

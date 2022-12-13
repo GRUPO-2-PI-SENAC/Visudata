@@ -110,5 +110,10 @@ namespace PI.Application.AppServices
         {
             return _machineService.GetMachineList(enterpriseId);
         }
+
+        public Task<List<MachineForAPIListViewModel>> GetMachinesForApiList(string enterpriseCnpj)
+        {
+            return _machineService.GetMachinesForApiList(enterpriseCnpj);
+        }
     }
 }

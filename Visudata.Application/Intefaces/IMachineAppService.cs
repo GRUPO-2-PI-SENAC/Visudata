@@ -32,6 +32,8 @@ namespace PI.Application.Intefaces
             string nameOfcategory);
         Task<List<Machine>> GetAllMachineEntity(int enterpriseId);
         Task<List<MachineForListModelAPI>> GetMachineList(int enterpriseId);
+        Task<List<MachineForAPIListViewModel>> GetMachinesForApiList(string enterpriseCnpj);
+
 
     }
 }

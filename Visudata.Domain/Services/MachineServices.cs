@@ -836,4 +836,37 @@ public class MachineServices : IMachineService
 
 
     }
+    public async Task<List<MachineForAPIListViewModel>> GetMachinesForApiList(string enterpriseCnpj)
+    {
+        try
+        {
+            List<Machine> machinesOfEnterprise = (await _machineRepository.GetAll()).ToList().Where(machine => machine.Enterprise.Cnpj == enterpriseCnpj).ToList();
+
+            if (machinesOfEnterprise.Count() == 0)
+                return new List<MachineForAPIListViewModel>();
+
+            List<MachineForAPIListViewModel> machines = new List<MachineForAPIListViewModel>();
+
+            foreach (Machine machine in machinesOfEnterprise)
+            {
+                machines.Add(new MachineForAPIListViewModel()
+                {
+                    Id = machine.Id,
+                    Model = machine.Model,
+                    CategoryName = machine.Category.Name,
+                    SerialNumber = machine.SerialNumber,
+                    NoiseAvg = (machine.NoiseMax + machine.NoiseMin) / 2,
+                    TempAvg = (machine.TempMax + machine.TempMin) / 2,
+                    VibrationAvg = (machine.VibrationMin + machine.VibrationMin) / 2
+                });
+            }
+
+            return machines;
+        }
+        catch
+        {
+            return new List<MachineForAPIListViewModel>();
+        }
+
+    }
 }
