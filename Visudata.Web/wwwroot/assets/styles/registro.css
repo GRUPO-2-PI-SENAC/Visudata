@@ -1,0 +1,28 @@
+body {
+    margin: 0;
+    padding: 0;
+    text-decoration: none !important;
+    height: auto;
+    width: fit-content;
+}
+
+.header p{
+    margin-top: 3%;
+    font-size: 20px; 
+    color: #09427D; 
+    font-weight: bold;
+    text-align: center;
+}
+
+
+
+.tabel-text {
+    background-color: #09427D;
+    
+    color: white;
+}
+
+.card-title{
+    font-size: 16px;
+    text-align: center;
+}
