@@ -91,7 +91,7 @@ public class MachineServices : IMachineService
     {
         try
         {
-            Machine byId = await _machineRepository.GetById(model.Id);
+            Machine byId = (await _machineRepository.GetAll()).FirstOrDefault(machine => machine.Id == model.Id);
 
             if (byId != null) return false;
 

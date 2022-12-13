@@ -29,7 +29,6 @@ public class AddMachineViewModel
     [RegularExpression(@"^[a-zA-Z0-9'' ']+$", ErrorMessage = "Caracteres especieis não são permitidos")]
     public string Tag { get; set; }
     public string Brand { get; set; }
-    public string Status { get; set; }
 
     public AddMachineViewModel()
     {

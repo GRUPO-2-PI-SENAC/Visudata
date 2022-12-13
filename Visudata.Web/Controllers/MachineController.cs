@@ -72,6 +72,7 @@ public class MachineController : Controller
 
             TempData["message"] = isAdded ? "Máquian adicionada com sucesso!!"
                 : "Occorreu um erro tente novamente mais tarde ou entre em contato com o administrador";
+            TempData["typeMessage"] = isAdded ? "success" : "error";
 
             return RedirectToAction("Home", "Enterprise");
         }
@@ -107,7 +108,7 @@ public class MachineController : Controller
 
             TempData["message"] = isUpdated ? "Máquina atualizada com sucesso!" :
                 "Occoreu um erro tente novamente mais tarde ou envie uma mensagem para a nossa equipe";
-
+            TempData["typeMessage"] = isUpdated ? "success" : "error";
             return RedirectToAction("List");
         }
         return RedirectToAction("Edit");
