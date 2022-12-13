@@ -43,7 +43,7 @@ namespace Visudata.API.Controllers
 
         [HttpPut]
         [Route("[controller]/update")]
-        public async Task<IActionResult> Update([FromBody] EditMachineViewModel model)
+        public async Task<IActionResult> Update(EditMachineViewModel model)
         {
             bool isUpdated = await _machineAppService.UpdateMachine(model);
 
