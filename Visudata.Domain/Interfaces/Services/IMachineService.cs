@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using PI.Domain.Entities;
 using PI.Domain.ViewModel.Machine;
 
 namespace PI.Application.Intefaces;
@@ -16,7 +17,6 @@ public interface IMachineService
 
     #endregion
 
-
     Task<JsonResult> GetStatusAboutTemp(int machineId, int enterpriseId);
     Task<JsonResult> GetStatusAboutVibration(int machineId, int enterpriseId);
     Task<JsonResult> GetStatusAboutNoise(int machineId, int enterpriseId);
@@ -26,8 +26,8 @@ public interface IMachineService
     Task<List<MachineForListViewModel>> GetMachinesByEnterpriseCnpj(string? enterpriseOfCurrentSessionCnpj);
     Task<string> GetHistoryDataByCsvByMachineId(int machineId);
     Task<MachineDetailsViewModel> GetMachineForDetails(int id);
+    Task<List<MachineForListModelAPI>> GetMachineList(int enterpriseId);
     Task<GraphicModel> GetJsonForDetailsAboutMachineAjaxHandler(int id, string status);
-
-
+    Task<List<Machine>> GetAllMachineEntity(int enterpriseId);
     Task<List<MachineForListViewModel>> GetMachinesOfSpecificCategory(string? currentSessionEnterpriseCnpj, string nameOfCategory);
 }

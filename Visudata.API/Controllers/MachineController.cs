@@ -17,7 +17,7 @@ namespace Visudata.API.Controllers
         [Route("[controller]/getall")]
         public async Task<IActionResult> GetAll()
         {
-            return Json((await _machineAppService.GetAll(6203)).ToList());
+            return Json((await _machineAppService.GetMachineList(5453)).ToList());
         }
 
         [HttpPost]

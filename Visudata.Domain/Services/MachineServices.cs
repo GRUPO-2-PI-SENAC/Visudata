@@ -765,7 +765,41 @@ public class MachineServices : IMachineService
 
 
     }
+    public async Task<List<Machine>> GetAllMachineEntity(int enterpriseId)
+    {
+        return (await _machineRepository.GetAll()).Where(machine => machine.Enterprise.Id == enterpriseId).ToList();
+    }
 
+    public async Task<List<MachineForListModelAPI>> GetMachineList(int enterpriseId)
+    {
+        List<Machine> machines = (await _machineRepository.GetAll()).Where(machine => machine.Enterprise.Id == enterpriseId).ToList();
+
+        if (machines.Count() == 0)
+        {
+            return new List<MachineForListModelAPI>();
+        }
+        List<MachineForListModelAPI> model = new List<MachineForListModelAPI>();
+
+        foreach (Machine machine in machines)
+        {
+            model.Add(new MachineForListModelAPI()
+            {
+                Id = machine.Id,
+                NoiseMax = machine.NoiseMax,
+                NoiseMin = machine.NoiseMin,
+                VibrationMax = machine.VibrationMax,
+                VibrationMin = machine.VibrationMin,
+                TempMax = machine.TempMax,
+                TempMin = machine.TempMin,
+                Model = machine.Model,
+                Brand = machine.Brand,
+                CategoryName = machine.Category.Name,
+                SerialNumber = machine.SerialNumber
+            });
+        }
+
+        return model;
+    }
     public async Task<List<MachineForListViewModel>> GetMachinesOfSpecificCategory(string? currentSessionEnterpriseCnpj, string nameOfCategory)
     {
         try
