@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using PI.Domain.Entities;
 using PI.Domain.ViewModel.Machine;
 
 namespace PI.Application.Intefaces
@@ -29,5 +30,8 @@ namespace PI.Application.Intefaces
         Task<GraphicModel> GetJsonForDetailsAboutMachineAjaxHandler(int id, string status);
         Task<List<MachineForListViewModel>> GetMachineOfSpecificCategory(string? currentSessionEnterpriseCnpj,
             string nameOfcategory);
+        Task<List<Machine>> GetAllMachineEntity(int enterpriseId);
+        Task<List<MachineForListModelAPI>> GetMachineList(int enterpriseId);
+
     }
 }

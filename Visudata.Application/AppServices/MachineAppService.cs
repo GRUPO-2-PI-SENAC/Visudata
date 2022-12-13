@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using PI.Application.Intefaces;
+using PI.Domain.Entities;
 using PI.Domain.ViewModel.Machine;
+using System.Reflection.Metadata.Ecma335;
 
 namespace PI.Application.AppServices
 {
@@ -97,6 +99,16 @@ namespace PI.Application.AppServices
             string nameOfcategory)
         {
             return _machineService.GetMachinesOfSpecificCategory(currentSessionEnterpriseCnpj, nameOfcategory);
+        }
+
+        public Task<List<Machine>> GetAllMachineEntity(int enterpriseId)
+        {
+            return _machineService.GetAllMachineEntity(enterpriseId);
+        }
+
+        public Task<List<MachineForListModelAPI>> GetMachineList(int enterpriseId)
+        {
+            return _machineService.GetMachineList(enterpriseId);
         }
     }
 }
