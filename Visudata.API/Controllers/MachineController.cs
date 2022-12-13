@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Mvc;
 using PI.Application.Intefaces;
 using PI.Domain.ViewModel.Machine;
 
 namespace Visudata.API.Controllers
 {
+    [EnableCors("AllowOrigin")]
     public class MachineController : Controller
     {
         private readonly IMachineAppService _machineAppService;

@@ -91,6 +91,7 @@ public class MachineServices : IMachineService
     {
         try
         {
+            model.Id = new Random().Next(100, 100000);
             Machine byId = (await _machineRepository.GetAll()).FirstOrDefault(machine => machine.Id == model.Id);
 
             if (byId != null) return false;
@@ -126,7 +127,22 @@ public class MachineServices : IMachineService
 
     private async Task<MachineCategory> AddCategoryInMachine(string modelCategory)
     {
-        IEnumerable<MachineCategory> machineCategoriesInDb = await _categoryRepository.GetAll();
+        List<MachineCategory> machineCategoriesInDb = (await _categoryRepository.GetAll()).ToList();
+
+        if (!machineCategoriesInDb.Any(machineCategory => machineCategory.Name == modelCategory))
+        {
+            await _categoryRepository.Add(new MachineCategory()
+            {
+                Name = modelCategory,
+                Created_at = DateTime.Now
+            });
+
+            MachineCategory machineCategoryForAddinMachine = (await _categoryRepository.GetAll()).ToList().First(machineCategory => machineCategory.Name == modelCategory);
+
+            return machineCategoryForAddinMachine;
+
+        }
+
         MachineCategory machineCategoryForAddInmachine = machineCategoriesInDb.FirstOrDefault(machineCategory =>
             machineCategory.Name.ToLower() == modelCategory.ToLower());
 
