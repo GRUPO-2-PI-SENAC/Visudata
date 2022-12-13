@@ -179,6 +179,12 @@ namespace PI.Web.Controllers
             Response.Cookies.Delete("enterpriseCnpj");
             return RedirectToAction("Login");
         }
+
+        [HttpGet]
+        public async Task<IActionResult> SuccessSignUp()
+        {
+            return View();
+        }
         #endregion
     }
 }
