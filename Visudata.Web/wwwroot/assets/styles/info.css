@@ -3,6 +3,7 @@ body{
     position: relative;
     height: auto;
     max-height: 915px;
+    text-decoration: none !important;
 }
 
 
@@ -13,39 +14,30 @@ body{
     color: #09427D; 
     text-align:center; 
     font-weight: bold;
+    margin-top: 2%;
 }
 
-#imgEdit{
-    display: flex;
-    text-align: right;
-}
-
-#imgEdit{
-    display: flex;
-    text-align: right;
-    margin: 3% 0 0 60%;
-}
-
-.buttonEdit{
-    width: 100%;
-    background-color: #2b5690;
-    padding: 2% 0 2% 0;
-    bottom: 0;
-    border-radius: 5px;
-
+a {
+    color: #2b5690 !important;
 }
 
     /* MAIN */
-.chartArea{
+    .chartArea{
     height: 220px;
 }
 
-    /* FOOTERS */
-.statusAction{
-    padding: 5% 0 5% 0; 
+.input-group-text {
+    color: white;
+    background-color: #2b5690;
 }
 
-.statusEspe{
+/* FOOTERS */
+.statusAction {
+    padding: 5% 0 5% 0;
+    font-size: 18px;
+}
+
+.statusEspe {
     padding: 3% 0% 3% 0%;
     text-align: center;
 }
@@ -54,6 +46,7 @@ body{
     width: 110px;
     padding: 10% 0 10% 0;
     background-color: #2b5690;
+
 }
 
     /* RESPONSIVIDADE */
