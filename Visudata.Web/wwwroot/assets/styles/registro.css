@@ -20,14 +20,11 @@ body {
 
 .tabel-text {
     background-color: #09427D;
+    text-align: center;
     color: white;
     padding: 3%;
 }
 
-.card-title{
-    font-size: 16px;
-    text-align: center;
-}
 
 .card-body{
     padding: 4px;
@@ -37,11 +34,16 @@ body {
 .card-infos{
     border-radius: 0% !important;
     margin-top: 5%;
+    font-size: 14px;
 }
+
 
 .card-infos .card-body{
     margin-top: 3%;
 }
 
+.containers-values{
+    margin-left: -5%;
+}
 
 
