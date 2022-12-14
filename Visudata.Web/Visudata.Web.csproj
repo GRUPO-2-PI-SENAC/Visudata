@@ -557,6 +557,8 @@
     <Content Remove="wwwroot\assets\scss\_type.scss" />
     <Content Remove="wwwroot\assets\scss\_utilities.scss" />
     <Content Remove="wwwroot\assets\scss\_variables.scss" />
+    <Content Remove="wwwroot\assets\styles\home.css" />
+    <Content Remove="wwwroot\assets\styles\StyleSheet.css" />
     <Content Remove="wwwroot\assets\SVGIcons\arrow-left.svg" />
   </ItemGroup>
 
