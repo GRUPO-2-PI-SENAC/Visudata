@@ -56,8 +56,8 @@ h5 {
     background-color: white !important;
 }
 
-.list-container {
-    margin-bottom: 30%;
+.maquinasSelect {
+    margin-bottom: 8%;
 }
 
 #navbar {
@@ -89,6 +89,10 @@ h5 {
 
     .maquinasSelect span {
         height: 15px;
+    }
+
+    .machineText{
+        font-size: 22px
     }
 }
 

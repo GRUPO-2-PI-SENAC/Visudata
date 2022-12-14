@@ -25,51 +25,54 @@
     </div>
 </header>
 
-
-@if (Model.Count > 0)
-{
-    @foreach (MachineForListViewModel machine in Model)
+<div style="margin-bottom: 20%"> 
+    @if (Model.Count > 0)
     {
-        <div class="container-fluid">
-            <div class="card container maquinasSelect shadow-lg mt-4 mx-auto">
-                <div class="card-header row">
-                    Selecione a Maquina
-                </div>
-                <div class="row card-body d-flex align-content-between">
-                    <h2 class="col-5 model card-title">@machine.Model</h2>
-                    <h2 class="col-6 tag card-title">@machine.SerialNumber</h2>
-                    <a asp-action="Details" class="col-1" asp-route-id="@machine.Id"><i class="bi bi-arrow-right"></i></a>
-                </div>
-                <div class="row card-footer statusMaquina">
-                    <div class="col pe-2">
-                        <div class="row">
-                            <h5 class="col-8 num">@machine.Temp.ToString()ºC</h5>
-                            <span class=" col badge text-bg-@machine.TempStyle.ToString()"> </span>
-                        </div>
+        @foreach (MachineForListViewModel machine in Model)
+        {
+            <div class="container-fluid maquinasSelect mx-auto">
+                <div class="card container shadow-lg mt-4 mx-auto">
+                    <div class="card-header row">
+                        Selecione a Maquina
                     </div>
-                    <div class="col pe-1">
-                        <div class="row">
-                            <h5 class="col-9 num">@machine.Noise.ToString()Hz</h5>
-                            <span class="col badge text-bg-@machine.NoiseStyle.ToString()"> </span>
-                        </div>
+                    <div class="row card-body d-flex align-content-between">
+                        <h2 class="col-5 model card-title">@machine.Model</h2>
+                        <h2 class="col-6 tag card-title">@machine.SerialNumber</h2>
+                        <a asp-action="Details" class="col-1" asp-route-id="@machine.Id"><i class="bi bi-arrow-right"></i></a>
                     </div>
-                    <div class="col">
-                        <div class="row">
-                            <h5 class="col-9 num">@machine.Vibration.ToString()dB</h5>
-                            <span class="col badge text-bg-@machine.VibrationStyle.ToString()"> </span>
+                    <div class="row card-footer statusMaquina">
+                        <div class="col pe-2">
+                            <div class="row">
+                                <h5 class="col-8 num">@machine.Temp.ToString()ºC</h5>
+                                <span class=" col badge text-bg-@machine.TempStyle.ToString()"> </span>
+                            </div>
+                        </div>
+                        <div class="col pe-1">
+                            <div class="row">
+                                <h5 class="col-9 num">@machine.Noise.ToString()Hz</h5>
+                                <span class="col badge text-bg-@machine.NoiseStyle.ToString()"> </span>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="row">
+                                <h5 class="col-9 num">@machine.Vibration.ToString()dB</h5>
+                                <span class="col badge text-bg-@machine.VibrationStyle.ToString()"> </span>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+        }
+    }
+    else
+    {
+        <div class="container">
+            <h2>Não há nenhuma máquina cadastrada no sistema!</h2>
         </div>
     }
-}
-else
-{
-    <div class="container">
-        <h2>Não há nenhuma máquina cadastrada no sistema!</h2>
-    </div>
-}
+</div>
+
+
 
 @if (TempData["message"] != null)
 {
