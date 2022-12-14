@@ -29,10 +29,11 @@
                     <div class="card tabel-card-header">
                         <div class="card-header text-center tabel-text">
                             <div class="nav nav-tabs card-header-tabs">
+                                <p class="col " style="margin-left: -8px;">Data</p>
                                 <p class="col " style="margin-left: -8px;">Hora</p>
                                 <p class="col ">Vibração</p>
                                 <p class="col ">Ruído</p>
-                                <p class="col " style="margin-right: 4%;">Temperatura</p>
+                                <p class="col " style="margin-right: 2%;">Temperatura</p>
                             </div>
                         </div>
                     </div>
@@ -40,16 +41,17 @@
                     <!-- Card das informações -->
                     <div class="card card-infos text-center ">
                         <div class="card-body d-flex justify-content-around">
-                            <p class="col-auto p-2">@machineLogRegister.Created_at.ToString()</p>
-                            <div class="col-auto p-2  row containers-values">
+                            <p class="col-2 timeDate">@machineLogRegister.DateAsString</p>
+                            <p class="col-2 timeDate">@machineLogRegister.HourAsString</p>
+                            <div class="col-3 row containers-values">
                                 <p class="col" style="margin-right: -50%;">@machineLogRegister.Vibration.ToString()</p>
                                 <p class="col">Hz</p>
                             </div>
-                            <div class="col-auto p-2 row containers-values">
+                            <div class="col-3 row containers-values">
                                 <p class="col" style="margin-right: -50%;">@machineLogRegister.Noise.ToString()</p>
                                 <p class="col">dB</p>
                             </div>
-                            <div class="col-auto p-2 row containers-values" style="margin-right: -4px;">
+                            <div class="col-3 row containers-values" style="margin-right: -4px;">
                                 <p class="col" style="margin-right: -50%;">@machineLogRegister.Temp.ToString()</p>
                                 <p class="col">ºC</p>
                             </div>

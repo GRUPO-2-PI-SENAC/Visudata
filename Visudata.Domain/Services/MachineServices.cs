@@ -921,7 +921,8 @@ public class MachineServices : IMachineService
             {
                 registers.Add(new RegisterMachineLogsViewModel()
                 {
-                    Created_at = logEntity.Created_at,
+                    DateAsString = logEntity.Created_at.ToString("MM/dd/yy"),
+                    HourAsString = logEntity.Created_at.Hour.ToString()+":"+logEntity.Created_at.Minute.ToString()+":"+logEntity.Created_at.Second.ToString(),
                     Vibration = logEntity.Vibration,
                     Noise = logEntity.Noise,
                     Temp = logEntity.Temp

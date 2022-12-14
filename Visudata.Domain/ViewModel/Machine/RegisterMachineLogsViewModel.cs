@@ -12,6 +12,7 @@ namespace PI.Domain.ViewModel.Machine
         public double Vibration { get; set; }
         public double Noise { get; set; }
         public double Temp { get; set; }
-        public DateTime Created_at { get; set; }
+        public string DateAsString { get; set; }
+        public string HourAsString { get; set; }
     }
 }
