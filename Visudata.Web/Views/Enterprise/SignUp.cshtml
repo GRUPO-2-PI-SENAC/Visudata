@@ -132,9 +132,9 @@
                             url: '/Enterprise/SignUp/',
                             type: 'POST',
                             data: { enterpriseForRegisterAsString: f },
-                            dataType: 'string',
-                            success: function () {
-                                window.location.href = @Url.Action("Redirect","Enterprise").ToString()
+                            dataType: 'string', 
+                            success: function (result) {
+                                window.href = '@Url.Action("Redirect","Enterprise").ToString()'
                                 },
                             error: function () {
                                 function teste() {
