@@ -35,4 +35,5 @@ public interface IMachineService
     Task<Machine> GetMachineEntityById(int machineId);
     Task<EditMachineModel> GetEditMachineModel(int machineId);
     Task<List<RegisterMachineLogsViewModel>> GetRegisterAboutMachines(int id);
+    Task<List<MachineForListViewModel>> GetMachineForStatus(string? enterpriseOfCurrentSessionCnpj, string status);
 }

@@ -58,14 +58,12 @@
                 </div>
             </div>
         </div>
-        <div>
-            <canvas id="chart-line" height="320" width="400">
-            </canvas>
+        <div id="graphic" class="" style="margin-top: 300px">
         </div>
         <div class="container text-center">
             <div class="row input-group-text" style="background-color: #CCCCCC;">
                 <div class="col">
-                    <input class="form-check-input mt-1 " type="checkbox" id="tempCheckbox" value="temperatura" aria-label="Checkbox for following text input">
+                    <input class="form-check-input mt-1 " type="checkbox" id="tempCheckBox" value="temperatura" aria-label="Checkbox for following text input">
                     Temperatura
                 </div>
                 <div class="col">
@@ -77,7 +75,7 @@
                     Vibração
                 </div>
             </div>
-        </div
+        </div>
     </main>
     <footer>
         <div class=" text-center">
@@ -167,37 +165,146 @@
     //};
 
 
-    $("#tempCheckbox").click(function(){
-        if($(this).is(':checked'))
-        {
-            $.ajax({
-                type: "GET",
-                url: "/machine/DetailsAboutTempAjaxHandler/"+@Model.Id.ToString(),
-                success: function(response){
-                    console.log(response);
-                }
-            });
-            //const response =  fetch('/machine/DetailsAboutTempAjaxHandler/'+@Model.Id.ToString());
-            //const datapoints =  response.json();
-            //console.log(datapoints);
+    $("#tempCheckBox").click(function () {
+        if ($(this).is(':checked')) {
+            $("#noiseCheckbox").prop('checked', false);
+            $("#vibrationCheckbox").prop('checked', false);
 
-            fetch('/machine/DetailsAboutTempAjaxHandler/'+@Model.Id.ToString(), {
+            fetch('/machine/DetailsAboutTempAjaxHandler/' + @Model.Id.ToString(), {
                 method: 'GET',
                 headers: {
                     'Accept': 'application/json',
                     'content-type': 'application/json'
                 }
-            }).then(function(response){
-                var result = response.json();
-                let arrayLength = result.data.length;
-                console.log(result.data);
-                //const hours = result.data.graphicValues.map(function(index){
-                //    return index.hour
-                //});
-                //console.log(hours);
-                //console.log(result.data)
-            });
+            }).then((response) => response.json())
+                .then((data) => {
+                    document.getElementById('graphic').style = null;
+                    document.getElementById('graphic').innerHTML = '<canvas id="chart-line" height="320" width="400">< /canvas>';
+
+                    let arrayLength = data.graphicValues.length;
+                    console.log(data);
+                    const hours = data.graphicValues.map(function (index) {
+                        return index.hour
+                    });
+                    const tempValues = data.graphicValues.map(function (index) {
+                        return index.value
+                    });
+
+                    new Chart(
+                        document.getElementById('chart-line'),
+                        {
+                            type: 'line',
+                            data: {
+                                labels: hours,
+                                datasets: [
+                                    {
+                                        label: 'Temperatura / hora',
+                                        data: tempValues
+                                    }
+                                ]
+                            }
+                        }
+                    );
+
+
+
+                });
         }
     });
+
+    $("#noiseCheckbox").click(function () {
+        if ($(this).is(':checked')) {
+            $("#tempCheckBox").prop('checked', false);
+            $("#vibrationCheckbox").prop('checked', false);
+
+            fetch('/machine/DetailsAboutNoiseAjaxHandler/' + @Model.Id.ToString(), {
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/json',
+                    'content-type': 'application/json'
+                }
+            }).then((response) => response.json())
+                .then((data) => {
+                    document.getElementById('graphic').style = null;
+                    document.getElementById('graphic').innerHTML = '<canvas id="chart-line" height="320" width="400">< /canvas>';
+
+                    let arrayLength = data.graphicValues.length;
+                    console.log(data);
+                    const hours = data.graphicValues.map(function (index) {
+                        return index.hour
+                    });
+                    const tempValues = data.graphicValues.map(function (index) {
+                        return index.value
+                    });
+
+                    console.log(hours);
+
+                    new Chart(
+                        document.getElementById('chart-line'),
+                        {
+                            type: 'line',
+                            data: {
+                                labels: hours,
+                                datasets: [
+                                    {
+                                        label: 'Ruído / hora',
+                                        data: tempValues
+                                    }
+                                ]
+                            }
+                        }
+                    );
+
+                });
+        }
+    });
+
+    $("#vibrationCheckbox").click(function () {
+        if ($(this).is(':checked')) {
+            $("#noiseCheckbox").prop('checked', false);
+            $("#tempCheckBox").prop('checked', false);
+
+            fetch('/machine/DetailsAboutVibrationAjaxHandler/' + @Model.Id.ToString(), {
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/json',
+                    'content-type': 'application/json'
+                }
+            }).then((response) => response.json())
+                .then((data) => {
+                    document.getElementById('graphic').style = null;
+                    document.getElementById('graphic').innerHTML = '<canvas id="chart-line" height="320" width="400">< /canvas>';
+
+                    let arrayLength = data.graphicValues.length;
+                    console.log(data);
+                    const hours = data.graphicValues.map(function (index) {
+                        return index.hour
+                    });
+                    const tempValues = data.graphicValues.map(function (index) {
+                        return index.value
+                    });
+
+                    console.log(hours);
+
+                    new Chart(
+                        document.getElementById('chart-line'),
+                        {
+                            type: 'line',
+                            data: {
+                                labels: hours,
+                                datasets: [
+                                    {
+                                        label: 'Vibração / hora',
+                                        data: tempValues
+                                    }
+                                ]
+                            }
+                        }
+                    );
+
+                });
+        }
+    });
+
 
 </script>

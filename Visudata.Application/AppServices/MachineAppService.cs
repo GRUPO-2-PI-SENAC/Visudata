@@ -129,5 +129,10 @@ namespace PI.Application.AppServices
         {
             return _machineService.GetRegisterAboutMachines(id);
         }
+
+        public Task<List<MachineForListViewModel>> GetMachineForStatus(string? enterpriseOfCurrentSessionCnpj, string status)
+        {
+            return _machineService.GetMachineForStatus(enterpriseOfCurrentSessionCnpj, status);
+        }
     }
 }

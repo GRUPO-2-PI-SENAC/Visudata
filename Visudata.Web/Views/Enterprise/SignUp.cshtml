@@ -37,7 +37,7 @@
 <body>
 
     <header>
-        <a href="~/Enterprise/login.html">
+        <a asp-action="Login" asp-controller="Enterprise">
             <img src="~/assets/icons/SVGIcons/volta-2.svg" alt="voltar">
         </a>
         <div class="container mt-4 ms-2">
@@ -54,18 +54,18 @@
                 <div class="forms">
                     <div class="mb-3">
                         <label for="inputCNPJ" class="form-label">CNPJ</label>
-                        <input type="number" class="form-control" id="inputCNPJ">
+                        <input type="number" class="form-control" id="inputCNPJ" required>
                         <span asp-validation-for="CNPJ"></span>
                     </div>
                     <div class="mb-3">
                         <label for="inputSenha" class="form-label">Senha</label>
-                        <input type="password" class="form-control" id="inputSenha" aria-describedby="senhaHelp">
+                        <input type="password" class="form-control" id="inputSenha" aria-describedby="senhaHelp" required>
                         <span asp-validation-for="Password"></span>
                         <div id="senhaHelp" class="form-text">Sua senha deve ter 6 a 8 caracteres</div>
                     </div>
                     <div class="mb-3">
                         <label for="inputConfirm" class="form-label">Confirmar Senha</label>
-                        <input type="password" class="form-control" id="inputConfirm">
+                        <input type="password" class="form-control" id="inputConfirm" required>
                         <span asp-validation-for="ConfirmPassword"></span>
                         <div id="senhaHelp" class="form-text">A confirmação deve ser igual a senha</div>
                     </div>
@@ -119,6 +119,15 @@
                         dataType: 'string',
                         success: function () {
                             alert('criada com sucesso');
+                        },
+                        error: function () {
+                            function teste() {
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Ops...',
+                                    text: 'Ocorreu um erro no nosso sistema ,tente novamente mais tarde ou entre em contato com o admin!',
+                                })
+                            }
                         }
                     });
 

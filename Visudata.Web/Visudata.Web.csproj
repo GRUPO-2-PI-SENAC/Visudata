@@ -338,27 +338,6 @@
     <Content Remove="wwwroot\assets\assets\styles\noscript.css" />
     <Content Remove="wwwroot\assets\assets\styles\support.css" />
     <Content Remove="wwwroot\assets\assets\styles\users.css" />
-    <Content Remove="wwwroot\assets\Icons\Alerta.png" />
-    <Content Remove="wwwroot\assets\Icons\Cad_active.png" />
-    <Content Remove="wwwroot\assets\Icons\Cad_maquina.png" />
-    <Content Remove="wwwroot\assets\Icons\Config.png" />
-    <Content Remove="wwwroot\assets\Icons\Config_active.png" />
-    <Content Remove="wwwroot\assets\Icons\entrar.svg" />
-    <Content Remove="wwwroot\assets\Icons\home.png" />
-    <Content Remove="wwwroot\assets\Icons\home_active.png" />
-    <Content Remove="wwwroot\assets\Icons\List.png" />
-    <Content Remove="wwwroot\assets\Icons\List_active.png" />
-    <Content Remove="wwwroot\assets\Icons\Logo.svg" />
-    <Content Remove="wwwroot\assets\Icons\meus_dados.svg" />
-    <Content Remove="wwwroot\assets\Icons\Obs.png" />
-    <Content Remove="wwwroot\assets\Icons\Ok.png" />
-    <Content Remove="wwwroot\assets\Icons\perfil.html" />
-    <Content Remove="wwwroot\assets\Icons\sair.svg" />
-    <Content Remove="wwwroot\assets\Icons\suporte.svg" />
-    <Content Remove="wwwroot\assets\Icons\User.png" />
-    <Content Remove="wwwroot\assets\Icons\User_active.png" />
-    <Content Remove="wwwroot\assets\Icons\volta-2.svg" />
-    <Content Remove="wwwroot\assets\Icons\voltar.svg" />
     <Content Remove="wwwroot\assets\js\dist\alert.js" />
     <Content Remove="wwwroot\assets\js\dist\alert.js.map" />
     <Content Remove="wwwroot\assets\js\dist\base-component.js" />
@@ -579,14 +558,6 @@
     <Content Remove="wwwroot\assets\scss\_type.scss" />
     <Content Remove="wwwroot\assets\scss\_utilities.scss" />
     <Content Remove="wwwroot\assets\scss\_variables.scss" />
-    <Content Remove="wwwroot\assets\styles\colors.css" />
-    <Content Remove="wwwroot\assets\styles\create.css" />
-    <Content Remove="wwwroot\assets\styles\fontawesome-all.min.css" />
-    <Content Remove="wwwroot\assets\styles\home.css" />
-    <Content Remove="wwwroot\assets\styles\list.css" />
-    <Content Remove="wwwroot\assets\styles\menu_profile.css" />
-    <Content Remove="wwwroot\assets\styles\noscript.css" />
-    <Content Remove="wwwroot\assets\styles\support.css" />
     <Content Remove="wwwroot\assets\SVGIcons\arrow-left.svg" />
   </ItemGroup>
 
@@ -936,27 +907,6 @@
     <None Include="wwwroot\assets\assets\styles\noscript.css" />
     <None Include="wwwroot\assets\assets\styles\support.css" />
     <None Include="wwwroot\assets\assets\styles\users.css" />
-    <None Include="wwwroot\assets\Icons\Alerta.png" />
-    <None Include="wwwroot\assets\Icons\Cad_active.png" />
-    <None Include="wwwroot\assets\Icons\Cad_maquina.png" />
-    <None Include="wwwroot\assets\Icons\Config.png" />
-    <None Include="wwwroot\assets\Icons\Config_active.png" />
-    <None Include="wwwroot\assets\Icons\entrar.svg" />
-    <None Include="wwwroot\assets\Icons\home.png" />
-    <None Include="wwwroot\assets\Icons\home_active.png" />
-    <None Include="wwwroot\assets\Icons\List.png" />
-    <None Include="wwwroot\assets\Icons\List_active.png" />
-    <None Include="wwwroot\assets\Icons\Logo.svg" />
-    <None Include="wwwroot\assets\Icons\meus_dados.svg" />
-    <None Include="wwwroot\assets\Icons\Obs.png" />
-    <None Include="wwwroot\assets\Icons\Ok.png" />
-    <None Include="wwwroot\assets\Icons\perfil.html" />
-    <None Include="wwwroot\assets\Icons\sair.svg" />
-    <None Include="wwwroot\assets\Icons\suporte.svg" />
-    <None Include="wwwroot\assets\Icons\User.png" />
-    <None Include="wwwroot\assets\Icons\User_active.png" />
-    <None Include="wwwroot\assets\Icons\volta-2.svg" />
-    <None Include="wwwroot\assets\Icons\voltar.svg" />
     <None Include="wwwroot\assets\js\dist\alert.js" />
     <None Include="wwwroot\assets\js\dist\alert.js.map" />
     <None Include="wwwroot\assets\js\dist\base-component.js" />
@@ -1177,14 +1127,6 @@
     <None Include="wwwroot\assets\scss\_type.scss" />
     <None Include="wwwroot\assets\scss\_utilities.scss" />
     <None Include="wwwroot\assets\scss\_variables.scss" />
-    <None Include="wwwroot\assets\styles\colors.css" />
-    <None Include="wwwroot\assets\styles\create.css" />
-    <None Include="wwwroot\assets\styles\fontawesome-all.min.css" />
-    <None Include="wwwroot\assets\styles\home.css" />
-    <None Include="wwwroot\assets\styles\list.css" />
-    <None Include="wwwroot\assets\styles\menu_profile.css" />
-    <None Include="wwwroot\assets\styles\noscript.css" />
-    <None Include="wwwroot\assets\styles\support.css" />
     <None Include="wwwroot\assets\SVGIcons\arrow-left.svg" />
   </ItemGroup>
 

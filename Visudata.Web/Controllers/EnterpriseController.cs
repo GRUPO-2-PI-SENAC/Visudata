@@ -66,7 +66,7 @@ namespace PI.Web.Controllers
 
                     if (isValid)
                     {
-                        return RedirectToAction("SuccessSignUp");
+                        return View("Redirect");
                     }
                     ModelState.AddModelError(String.Empty, TempData["message"].ToString());
 
@@ -184,7 +184,7 @@ namespace PI.Web.Controllers
         [HttpGet]
         public async Task<IActionResult> Redirect()
         {
-            return View("RedirectSignUp");
+            return View();
         }
         #endregion
     }

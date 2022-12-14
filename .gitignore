@@ -157,3 +157,5 @@ PI.Application/bin/Debug/net6.0/PI.Application.deps.json
 /Visudata.API/obj/Debug/net6.0
 /Visudata.API/bin/Debug/net6.0/Visudata.API.exe
 /Visudata.API/obj
+/Visudata.Web/bin/Release/net6.0
+/Visudata.Web/Properties/PublishProfiles

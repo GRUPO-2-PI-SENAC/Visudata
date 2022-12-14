@@ -45,7 +45,14 @@ public class MachineController : Controller
         return View("List", model);
 
     }
+    [HttpGet]
+    public async Task<IActionResult> GetMachineForStatus(string status)
+    {
+        string enterpriseOfCurrentSessionCnpj = Request.Cookies["enterpriseCnpj"];
+        List<MachineForListViewModel> machinesForList = await _machineService.GetMachineForStatus(enterpriseOfCurrentSessionCnpj, status);
 
+        return View("List", machinesForList);
+    }
     [HttpGet]
     public async Task<IActionResult> Add()
     {
@@ -173,6 +180,20 @@ public class MachineController : Controller
     public async Task<JsonResult> DetailsAboutTempAjaxHandler(int id)
     {
         GraphicModel result = await _machineService.GetJsonForDetailsAboutMachineAjaxHandler(id, "temperatura");
+
+        return Json(result);
+    }
+    [HttpGet]
+    public async Task<JsonResult> DetailsAboutVibrationAjaxHandler(int id)
+    {
+        GraphicModel result = await _machineService.GetJsonForDetailsAboutMachineAjaxHandler(id, "vibracao");
+
+        return Json(result);
+    }
+    [HttpGet]
+    public async Task<JsonResult> DetailsAboutNoiseAjaxHandler(int id)
+    {
+        GraphicModel result = await _machineService.GetJsonForDetailsAboutMachineAjaxHandler(id, "ruido");
 
         return Json(result);
     }

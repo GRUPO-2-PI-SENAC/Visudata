@@ -2,7 +2,7 @@
 @{
     Layout = "_layout";
 }
-<link rel="stylesheet" href="~/wwwroot/assets/styles/home.css">
+<link rel="stylesheet" href="~/assets/styles/home.css">
 
 
 <link rel="stylesheet" href="~/assets/styles/home.css">
@@ -27,7 +27,7 @@
                 <div class="card border-left-primary shadow-lg h-100 py-2" style="border-left-color: #0d9b5b;">
                     <div class="card-body">
                         <div class="row no-gutters align-items-center">
-                            <a href="~/Machine/list.html" class="text-decoration-none text-dark">
+                            <a asp-action="List" class="text-decoration-none text-dark">
                                 <div class="col mr-2">
                                     <div class="text-xs font-weight-bold text-uppercase mb-1">
                                         Funcionando
@@ -45,7 +45,7 @@
                 <div class="card border-left-success shadow-lg h-100 py-2" style="border-left-color: #f6c23e;">
                     <div class="card-body">
                         <div class="row no-gutters align-items-center">
-                            <a href="~/Machine/list.html" class="text-decoration-none text-dark">
+                            <a asp-action="GetMachinesForSpecificCategory" asp-route-nameOfCategory="" class="text-decoration-none text-dark">
                                 <div class="col mr-2">
                                     <div class="text-xs font-weight-bold text-uppercase mb-1">
                                         Funcionando Em alerta
