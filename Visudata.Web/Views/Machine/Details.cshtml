@@ -16,7 +16,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <link href="~/assets/Icons/bootstrap-icons/bootstrap-icons.css" rel="stylesheet" />
-    <link rel="stylesheet" href="~/assets/styles/info.css"/>
+    <link rel="stylesheet" href="~/assets/styles/StyleSheet.css" />
     <!-- Font Awesome -->
     <script src="https://kit.fontawesome.com/dfbf29b648.js" crossorigin="anonymous"></script>
 
@@ -43,19 +43,19 @@
         <div class="container text-center">
             <div class="row row-cols-3">
                 <!-- Não remover os espaços do span-->
-                <div class="col" >Temperatura</div>
+                <div class="col">Temperatura</div>
                 <div class="col">Ruído</div>
                 <div class="col">Vibração</div>
                 <!-- apenas alterar o final da class do span -->
-                <div class="col">
+                <div class="col buttons">
                     @Model.RealTimeTemp ºC
                     <span class="@Model.TempStyle.ToString()"> </span>
                 </div>
-                <div class="col"> 
+                <div class="col buttons">
                     @Model.RealTimeNoise Hz
                     <span class="@Model.NoiseStyle.ToString()"> </span>
                 </div>
-                <div class="col">
+                <div class="col buttons">
                     @Model.RealTimeVibration dB
                     <span class="@Model.VibrationStyle.ToString()"> </span>
                 </div>
@@ -64,9 +64,9 @@
         <div id="graphic" class="" style="margin-top: 300px">
         </div>
         <div class="container text-center">
-            <div class="row input-group-text" style="background-color: #CCCCCC;">
+            <div class="row input-group-text">
                 <div class="col">
-                    <input class="form-check-input mt-1 " type="checkbox" id="tempCheckBox" value="temperatura" aria-label="Checkbox for following text input" checked>
+                    <input class="form-check-input mt-1 " type="checkbox" id="tempCheckBox" value="temperatura" aria-label="Checkbox for following text input">
                     Temperatura
                 </div>
                 <div class="col">
@@ -99,7 +99,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row-cols-1 container">
+            <div class="row-cols-1 container especContainer">
                 <div class="container text-center">
                     <div class="row">
                         <div class="col statusEspe"><p>Marca:</p>  @Model.Brand</div>
@@ -127,7 +127,6 @@
 <script type="module" src="~/lib/chart.js/dist/chart.js"> </script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
-
     const ctx = document.getElementById('chart-line');
     //console.log(ctx);
     //$.ajax({
@@ -166,13 +165,10 @@
     //        borderWidth: 1
     //    }]
     //};
-
-
     $("#tempCheckBox").click(function () {
         if ($(this).is(':checked')) {
             $("#noiseCheckbox").prop('checked', false);
             $("#vibrationCheckbox").prop('checked', false);
-
             fetch('/machine/DetailsAboutTempAjaxHandler/' + @Model.Id.ToString(), {
                 method: 'GET',
                 headers: {
@@ -183,7 +179,6 @@
                 .then((data) => {
                     document.getElementById('graphic').style = null;
                     document.getElementById('graphic').innerHTML = '<canvas id="chart-line" height="320" width="400">< /canvas>';
-
                     let arrayLength = data.graphicValues.length;
                     console.log(data);
                     const hours = data.graphicValues.map(function (index) {
@@ -192,7 +187,6 @@
                     const tempValues = data.graphicValues.map(function (index) {
                         return index.value
                     });
-
                     new Chart(
                         document.getElementById('chart-line'),
                         {
@@ -208,18 +202,13 @@
                             }
                         }
                     );
-
-
-
                 });
         }
     });
-
     $("#noiseCheckbox").click(function () {
         if ($(this).is(':checked')) {
             $("#tempCheckBox").prop('checked', false);
             $("#vibrationCheckbox").prop('checked', false);
-
             fetch('/machine/DetailsAboutNoiseAjaxHandler/' + @Model.Id.ToString(), {
                 method: 'GET',
                 headers: {
@@ -230,7 +219,6 @@
                 .then((data) => {
                     document.getElementById('graphic').style = null;
                     document.getElementById('graphic').innerHTML = '<canvas id="chart-line" height="320" width="400">< /canvas>';
-
                     let arrayLength = data.graphicValues.length;
                     console.log(data);
                     const hours = data.graphicValues.map(function (index) {
@@ -239,9 +227,7 @@
                     const tempValues = data.graphicValues.map(function (index) {
                         return index.value
                     });
-
                     console.log(hours);
-
                     new Chart(
                         document.getElementById('chart-line'),
                         {
@@ -257,16 +243,13 @@
                             }
                         }
                     );
-
                 });
         }
     });
-
     $("#vibrationCheckbox").click(function () {
         if ($(this).is(':checked')) {
             $("#noiseCheckbox").prop('checked', false);
             $("#tempCheckBox").prop('checked', false);
-
             fetch('/machine/DetailsAboutVibrationAjaxHandler/' + @Model.Id.ToString(), {
                 method: 'GET',
                 headers: {
@@ -277,7 +260,6 @@
                 .then((data) => {
                     document.getElementById('graphic').style = null;
                     document.getElementById('graphic').innerHTML = '<canvas id="chart-line" height="320" width="400">< /canvas>';
-
                     let arrayLength = data.graphicValues.length;
                     console.log(data);
                     const hours = data.graphicValues.map(function (index) {
@@ -286,9 +268,7 @@
                     const tempValues = data.graphicValues.map(function (index) {
                         return index.value
                     });
-
                     console.log(hours);
-
                     new Chart(
                         document.getElementById('chart-line'),
                         {
@@ -304,10 +284,7 @@
                             }
                         }
                     );
-
                 });
         }
     });
-
-
 </script>
