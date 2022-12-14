@@ -80,7 +80,9 @@ public class MachineServices : IMachineService
     public async Task<List<MachineForListViewModel>> GetMachinesForSpecificCategory(int enterpriseId,
         string categoryName)
     {
-        List<MachineForListViewModel> task = await GetAll(enterpriseId);
+        Enterprise enterprise = await _enterpriseRepository.GetById(enterpriseId);
+
+        List<MachineForListViewModel> task = await GetMachinesByEnterpriseCnpj(enterprise.Cnpj);
 
         List<MachineForListViewModel> machinesWithCateogry =
             task.Where(machine => machine.category == categoryName).ToList();
@@ -465,6 +467,7 @@ public class MachineServices : IMachineService
                         Model = machine.Model,
                         SerialNumber = machine.SerialNumber,
                         Status = GetStatusForViewFromMachineStatusEnum(machine.Status),
+                        category = machine.Category.Name,
                     };
                     if (logsOfMachine.Count > 0)
                     {
@@ -827,7 +830,7 @@ public class MachineServices : IMachineService
             Enterprise enterpriseCurretnSession = enterprises
                 .Where(enterprise => enterprise.Cnpj == currentSessionEnterpriseCnpj).FirstOrDefault();
             List<MachineForListViewModel>
-                machinesForView = await GetMachinesByEnterpriseId(enterpriseCurretnSession.Id);
+                machinesForView = await GetMachinesByEnterpriseCnpj(enterpriseCurretnSession.Cnpj);
 
             return machinesForView.Where(machine => machine.category == nameOfCategory).ToList();
         }
