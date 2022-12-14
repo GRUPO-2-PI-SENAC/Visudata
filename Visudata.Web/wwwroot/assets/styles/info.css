@@ -1,13 +1,23 @@
 body{
     bottom: 0;
     position: relative;
+    padding: 0;
     height: auto;
     max-height: 915px;
     text-decoration: none !important;
 }
+/* HEADER */
 
+.backButton{
+    margin-left: 0 !important;
+    padding-left: 0 !important;
+}
+.editBox{
+    padding-right: 0 !important;
+    margin-right: 0 !important;
+}
 
-    /* HEADER */
+    
 .titleInfo{
     display: inline; 
     font-size: 20px; 
@@ -22,6 +32,10 @@ a {
 }
 
     /* MAIN */
+
+.container {
+    margin-top: 5% !important;
+}
     .chartArea{
     height: 220px;
 }
@@ -29,12 +43,18 @@ a {
 .input-group-text {
     color: white;
     background-color: #2b5690;
+    border-radius: 0 !important;
 }
 
 /* FOOTERS */
 .statusAction {
-    padding: 5% 0 5% 0;
-    font-size: 18px;
+    padding: 2% 0 2% 0;
+    font-size: 20px;
+   
+}
+
+.statusAction span{
+    font-weight: 400 !important;
 }
 
 .statusEspe {
@@ -42,11 +62,20 @@ a {
     text-align: center;
 }
 
+.statusEspe p{
+    font-size: 18px;
+    font-weight: 500;
+}
+
 .button{
     width: 110px;
     padding: 10% 0 10% 0;
     background-color: #2b5690;
 
+}
+
+.especContainer {
+    margin-bottom: 8%;
 }
 
     /* RESPONSIVIDADE */
@@ -69,6 +98,7 @@ a {
     .statusAction{
         padding: 8% 0 8% 0; 
     }
+
 }
 
 /* Galaxy S8+ */
