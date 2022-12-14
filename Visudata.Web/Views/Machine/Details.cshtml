@@ -47,15 +47,15 @@
                 <div class="col">Ruído</div>
                 <div class="col">Vibração</div>
                 <!-- apenas alterar o final da class do span -->
-                <div class="col buttons">
+                <div class="col">
                     @Model.RealTimeTemp ºC
                     <span class="@Model.TempStyle.ToString()"> </span>
                 </div>
-                <div class="col buttons"> 
+                <div class="col"> 
                     @Model.RealTimeNoise Hz
                     <span class="@Model.NoiseStyle.ToString()"> </span>
                 </div>
-                <div class="col buttons">
+                <div class="col">
                     @Model.RealTimeVibration dB
                     <span class="@Model.VibrationStyle.ToString()"> </span>
                 </div>
@@ -64,9 +64,9 @@
         <div id="graphic" class="" style="margin-top: 300px">
         </div>
         <div class="container text-center">
-            <div class="row input-group-text">
+            <div class="row input-group-text" style="background-color: #CCCCCC;">
                 <div class="col">
-                    <input class="form-check-input mt-1 " type="checkbox" id="tempCheckBox" value="temperatura" aria-label="Checkbox for following text input">
+                    <input class="form-check-input mt-1 " type="checkbox" id="tempCheckBox" value="temperatura" aria-label="Checkbox for following text input" checked>
                     Temperatura
                 </div>
                 <div class="col">
@@ -99,7 +99,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row-cols-1 container especContainer">
+            <div class="row-cols-1 container">
                 <div class="container text-center">
                     <div class="row">
                         <div class="col statusEspe"><p>Marca:</p>  @Model.Brand</div>

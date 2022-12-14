@@ -132,18 +132,17 @@
                             url: '/Enterprise/SignUp/',
                             type: 'POST',
                             data: { enterpriseForRegisterAsString: f },
-                            dataType: 'string', 
+                            //dataType: 'string',
                             success: function (result) {
-                                window.href = '@Url.Action("Redirect","Enterprise").ToString()'
-                                },
-                            error: function () {
-                                function teste() {
-                                    Swal.fire({
-                                        icon: 'error',
-                                        title: 'Ops...',
-                                        text: 'Ocorreu um erro no nosso sistema ,tente novamente mais tarde ou entre em contato com o admin!',
-                                    })
-                                }
+                                window.location.href = '@Url.Action("Redirect","Enterprise").ToString()'
+                            },
+                            error: function (ex) {
+                                console.log(ex.responseText);
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Ops...',
+                                    text: 'Ocorreu um erro no nosso sistema ,tente novamente mais tarde ou entre em contato com o admin!',
+                                });
                             }
                         });
 

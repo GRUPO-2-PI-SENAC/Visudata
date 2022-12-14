@@ -68,7 +68,7 @@ namespace PI.Web.Controllers
                     {
                         return View("Redirect");
                     }
-                    ModelState.AddModelError(String.Empty, TempData["message"].ToString());
+                   // ModelState.AddModelError(String.Empty, TempData["message"].ToString());
 
                     return View();
                 }
@@ -183,7 +183,7 @@ namespace PI.Web.Controllers
 
         [HttpGet]
         public async Task<IActionResult> Redirect()
-        {
+            {
             return View();
         }
         #endregion
