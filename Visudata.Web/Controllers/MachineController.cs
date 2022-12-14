@@ -76,7 +76,7 @@ public class MachineController : Controller
 
             return RedirectToAction("Home", "Enterprise");
         }
-        return RedirectToAction("Add");
+        return RedirectToAction("Add", machineForAddInDb);
     }
 
     [HttpGet]

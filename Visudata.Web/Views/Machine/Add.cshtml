@@ -15,30 +15,30 @@
             <div class="col">
                 <div class="brandName itens" style="margin-left: 6%">
                     <label class="texto">Marca</label>
-                    @Html.TextBoxFor(m => m.Brand, new {@type ="text", @placeHolder="Digite a marca", @class = "form-control"})
+                    @Html.TextBoxFor(m => m.Brand, new {@type ="text", @placeHolder="Digite a marca", @class = "form-control", @required="required"})
                     <span asp-validation-for="Brand"></span>
                 </div>
                 <div class="categoryName itens" style="margin-left: 6%">
                     <label> Categoria</label>
-                    @Html.DropDownList("Category", (IEnumerable<SelectListItem>)ViewBag.MachineCategoriesAsStringList, new {@class = "form-select"})
+                    @Html.DropDownList("Category", (IEnumerable<SelectListItem>)ViewBag.MachineCategoriesAsStringList, new {@class = "form-select", @required="required"})
                     <span asp-validation-for="Category"></span>
                 </div>
             </div>
             <div class="col pb-5">
                 <div class="modelName itens" style="margin-left: 6%">
                     <label> Modelo</label>
-                    @Html.TextBoxFor(m => m.Model, new {@class="form-control", @type="text", @placeholder="Digite o modelo"})
+                    @Html.TextBoxFor(m => m.Model, new {@class="form-control", @type="text", @placeholder="Digite o modelo", @required="required"})
                     <span asp-validation-for="Model"></span>
                 </div>
                 <div class="tagName itens" style="margin-left: 6%">
                     <label>Tag</label>
-                    @Html.TextBoxFor(m => m.Tag, new {@class="form-control", type="text", @placeholder="Digite a Tag"})
+                    @Html.TextBoxFor(m => m.Tag, new {@class="form-control", type="text", @placeholder="Digite a Tag", @required="required"})
                     <span asp-validation-for="Tag"></span>
                 </div>
             </div>
             <div class="itens" style="margin-left: 6%">
                 <label class="texto">Número de Série</label>
-                @Html.TextBoxFor(m => m.SerialNumber, new {@class="form-control", @type="text", @placeholder="Digite o número de série"})
+                @Html.TextBoxFor(m => m.SerialNumber, new {@class="form-control", @type="text", @placeholder="Digite o número de série", @required="required"})
                 <span asp-validation-for="SerialNumber"></span>
             </div>
         </div>
@@ -48,19 +48,19 @@
             <div class="flex-column p-2 flex-fill">
                 <label class="">Máx</label> <br>
                 <div class="">
-                    <input asp-for="MaxTemp" type="number" />
+                    <input asp-for="MaxTemp" type="number" required />
                     <span asp-validation-for="MaxTemp"></span>
                     <label>ºC</label>
 
                 </div>
                 <div class=" ">
-                    <input asp-for="MaxVibration" type="number" />
+                    <input asp-for="MaxVibration" type="number" required />
                     <span asp-validation-for="MaxVibration"></span>
                     <label>Hz</label>
 
                 </div>
                 <div class="">
-                    <input asp-for="MaxNoise" type="number" />
+                    <input asp-for="MaxNoise" type="number" required />
                     <span asp-validation-for="MaxNoise"></span>
                     <label>dB</label>
 
@@ -69,19 +69,19 @@
             <div class="flex-column p-2 flex-fill">
                 <label class="">Mín</label> <br>
                 <div class="">
-                    <input asp-for="MinTemp" type="number" />
+                    <input asp-for="MinTemp" type="number" required />
                     <span asp-validation-for="MinTemp"></span>
                     <label>ºC</label>
 
                 </div>
                 <div class="">
-                    <input asp-for="MinVibration" type="number" />
+                    <input asp-for="MinVibration" type="number" required />
                     <span asp-validation-for="MinVibration"></span>
                     <label>Hz</label>
 
                 </div>
                 <div class="">
-                    <input type="number" asp-for="MinNoise" />
+                    <input type="number" asp-for="MinNoise" required />
                     <span asp-validation-for="MinNoise"></span>
                     <label>dB</label>
 

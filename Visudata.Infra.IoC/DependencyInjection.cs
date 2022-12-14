@@ -18,7 +18,7 @@ public static class DependencyInjection
         #region Connectiondb
 
         services.AddDbContext<VisudataDbContext>(options => options.UseMySql(
-            "Server=localhost;UserID = root;Password=root;Database=visudata_db;",
+            "Server=visudatadbserver.mysql.database.azure.com;UserID = admintata;Password=visudata@12!;Database=visudata_db;",
             ServerVersion.Parse("8.0.30-mysql", ServerType.MySql), m => m.MigrationsAssembly(typeof(VisudataDbContext).Assembly.FullName)));
         services.AddDbContext<VisudataDbContext>();
 
