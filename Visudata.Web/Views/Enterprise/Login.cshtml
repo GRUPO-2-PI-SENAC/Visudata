@@ -52,7 +52,7 @@
             <img src="~/assets/Img/Logo.png" alt="Logo" width="150" height="130" class="">
         </div>
         <div class="container mt-3 d-flex justify-content-center">
-            <h1 class="">VISU<span style="color: #0E56A0;">DATA</span></h1>
+            <h1 class="">VISU<span style="color: #0E56A0 !important;">DATA</span></h1>
         </div>
     </header>
 
@@ -61,15 +61,15 @@
             <div class="container mt-4 main">
                 <div class="form-container container-fluid">
                     <div class="forms">
-                        <div class="mb-3">
+                        <div class="mb-3 input-login">
                             <label for="cnpjEnterprise" class="form-label">CNPJ da Empresa</label>
                             @Html.TextBoxFor(m => m.Login, new {@class="form-control", @placeholder="Digite o CNPJ"})
-                            <span asp-validation-for="Login"></span>
+                            <span asp-validation-for="Login" style="color: red"></span>
                         </div>
-                        <div class="mb-3">
+                        <div class="mb-3 input-login">
                             <label for="cnpjEnterprise" class="form-label">Senha</label>
                             @Html.TextBoxFor(m => m.Password, new {@class="form-control", @placeholder="Digite a senha" , @type = "password"})
-                            <span asp-validation-for="Password"></span>
+                            <span asp-validation-for="Password" style="color: red"></span>
                         </div>
                     </div>
                 </div>
@@ -78,7 +78,7 @@
                 </div>
                 <div class="container links-container d-grid justify-content-center ">
                     <a>Esqueceu sua senha?</a>
-                    <a asp-action="SignUp" class="link">Não tem cadastro? <span style="color: #0E56A0;">Cadastre-se</span></a>
+                    <a asp-action="SignUp" class="link">Não tem cadastro? <span style="color: #0E56A0 !important;">Cadastre-se</span></a>
                 </div>
             </div>
         </form>
