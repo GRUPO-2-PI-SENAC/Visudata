@@ -935,124 +935,123 @@ public class MachineServices : IMachineService
 
     public async Task<List<MachineForListViewModel>> GetMachineForStatus(string? enterpriseOfCurrentSessionCnpj, string status)
     {
-        //try
-        //{
-        //    IEnumerable<Machine> machinesInDb = await _machineRepository.GetAll();
-        //    IEnumerable<Log> logs = await _logRepository.GetAll();
-        //    List<Machine> machinesOfEnterprise = machinesInDb.Where(machine => machine.Enterprise.Cnpj == enterpriseOfCurrentSessionCnpj).ToList();
+        try
+        {
+            IEnumerable<Machine> machinesInDb = await _machineRepository.GetAll();
+            IEnumerable<Log> logs = await _logRepository.GetAll();
+            List<Machine> machinesOfEnterprise = machinesInDb.Where(machine => machine.Enterprise.Cnpj == enterpriseOfCurrentSessionCnpj).ToList();
 
-        //    if (!machinesOfEnterprise.Any() || machinesOfEnterprise.Count() == 0)
-        //        return new List<MachineForListViewModel>();
+            if (!machinesOfEnterprise.Any() || machinesOfEnterprise.Count() == 0)
+                return new List<MachineForListViewModel>();
 
-        //    List<Machine> machineOfRequiredStatus = new List<Machine>();
+            List<Machine> machineOfRequiredStatus = new List<Machine>();
 
-        //    machinesOfEnterprise.ForEach(machine =>
-        //    {
-        //        string machineStatusAsString = ExtractStatusNameByMachineStatus(machine.Status);
+            machinesOfEnterprise.ForEach(machine =>
+            {
+                string machineStatusAsString = ExtractStatusNameByMachineStatus(machine.Status);
 
-        //        if (machineStatusAsString == status)
-        //            machineOfRequiredStatus.Add(machine);
-        //    });
+                if (machineStatusAsString == status)
+                    machineOfRequiredStatus.Add(machine);
+            });
 
-        //    if (machineOfRequiredStatus.Count() == 0 || !machineOfRequiredStatus.Any())
-        //        return new List<MachineForListViewModel>();
+            if (machineOfRequiredStatus.Count() == 0 || !machineOfRequiredStatus.Any())
+                return new List<MachineForListViewModel>();
 
-        //    List<MachineForListViewModel> modelForView = new List<MachineForListViewModel>();
+            List<MachineForListViewModel> modelForView = new List<MachineForListViewModel>();
 
-        //    foreach (Machine machine in machineOfRequiredStatus)
-        //    {
-        //        List<Log> logsOfMachine = logs.Where(log => log.Machine.Id == machine.Id).ToList();
-        //        MachineForListViewModel model = new MachineForListViewModel()
-        //        {
-        //            Id = machine.Id,
-        //            Brand = machine.Brand,
-        //            Model = machine.Model,
-        //            SerialNumber = machine.SerialNumber,
-        //            Status = GetStatusForViewFromMachineStatusEnum(machine.Status),
-        //        };
-        //        if (logsOfMachine.Count > 0)
-        //        {
-        //            Log lastLogOfMachine = logsOfMachine.MaxBy(log => log.Created_at);
+            foreach (Machine machine in machineOfRequiredStatus)
+            {
+                List<Log> logsOfMachine = logs.Where(log => log.Machine.Id == machine.Id).ToList();
+                MachineForListViewModel model = new MachineForListViewModel()
+                {
+                    Id = machine.Id,
+                    Brand = machine.Brand,
+                    Model = machine.Model,
+                    SerialNumber = machine.SerialNumber,
+                    Status = GetStatusForViewFromMachineStatusEnum(machine.Status),
+                };
+                if (logsOfMachine.Count > 0)
+                {
+                    Log lastLogOfMachine = logsOfMachine.MaxBy(log => log.Created_at);
 
-        //            model.Noise = lastLogOfMachine.Noise;
-        //            model.Vibration = lastLogOfMachine.Vibration;
-        //            model.Temp = lastLogOfMachine.Temp;
+                    model.Noise = lastLogOfMachine.Noise;
+                    model.Vibration = lastLogOfMachine.Vibration;
+                    model.Temp = lastLogOfMachine.Temp;
 
-        //            int amountOfVibrationOccurrences = logsOfMachine.Where(log => log.Created_at.Hour > DateTime.Now.Hour - 6).Count(log => log.Vibration < machine.VibrationMin
-        //            || log.Vibration > machine.VibrationMax);
-        //            int amountOfTempOccurrences = logsOfMachine.Where(log => log.Created_at.Hour > DateTime.Now.Hour - 6).Count(log => log.Temp < machine.TempMin
-        //            || log.Temp > machine.TempMax);
+                    int amountOfVibrationOccurrences = logsOfMachine.Where(log => log.Created_at.Hour > DateTime.Now.Hour - 6).Count(log => log.Vibration < machine.VibrationMin
+                    || log.Vibration > machine.VibrationMax);
+                    int amountOfTempOccurrences = logsOfMachine.Where(log => log.Created_at.Hour > DateTime.Now.Hour - 6).Count(log => log.Temp < machine.TempMin
+                    || log.Temp > machine.TempMax);
 
-        //            int amountOfNoiseOccurrences = logsOfMachine.Where(log => log.Created_at.Hour > DateTime.Now.Hour - 6).Count(log => log.Noise < machine.NoiseMin
-        //            || log.Noise > machine.NoiseMax);
+                    int amountOfNoiseOccurrences = logsOfMachine.Where(log => log.Created_at.Hour > DateTime.Now.Hour - 6).Count(log => log.Noise < machine.NoiseMin
+                    || log.Noise > machine.NoiseMax);
 
-        //            if (amountOfVibrationOccurrences >= 3)
-        //            {
-        //                model.VibrationStyle = "danger";
-        //            }
-        //            else
-        //            {
-        //                if (amountOfNoiseOccurrences < 3 && amountOfNoiseOccurrences > 0)
-        //                {
-        //                    model.VibrationStyle = "warning";
-        //                }
-        //                else
-        //                {
-        //                    model.VibrationStyle = "success";
-        //                }
-        //            }
+                    if (amountOfVibrationOccurrences >= 3)
+                    {
+                        model.VibrationStyle = "danger";
+                    }
+                    else
+                    {
+                        if (amountOfNoiseOccurrences < 3 && amountOfNoiseOccurrences > 0)
+                        {
+                            model.VibrationStyle = "warning";
+                        }
+                        else
+                        {
+                            model.VibrationStyle = "success";
+                        }
+                    }
 
-        //            if (amountOfTempOccurrences >= 3)
-        //            {
-        //                model.TempStyle = "danger";
-        //            }
-        //            else
-        //            {
-        //                if (amountOfTempOccurrences < 3 && amountOfTempOccurrences > 0)
-        //                {
-        //                    model.TempStyle = "warning";
-        //                }
-        //                else
-        //                {
-        //                    model.TempStyle = "success";
-        //                }
-        //            }
+                    if (amountOfTempOccurrences >= 3)
+                    {
+                        model.TempStyle = "danger";
+                    }
+                    else
+                    {
+                        if (amountOfTempOccurrences < 3 && amountOfTempOccurrences > 0)
+                        {
+                            model.TempStyle = "warning";
+                        }
+                        else
+                        {
+                            model.TempStyle = "success";
+                        }
+                    }
 
-        //            if (amountOfNoiseOccurrences >= 3)
-        //            {
-        //                model.NoiseStyle = "danger";
-        //            }
-        //            else
-        //            {
-        //                if (amountOfNoiseOccurrences < 3 && amountOfNoiseOccurrences > 0)
-        //                {
-        //                    model.NoiseStyle = "warning";
-        //                }
-        //                else
-        //                {
-        //                    model.NoiseStyle = "success";
-        //                }
-        //            }
+                    if (amountOfNoiseOccurrences >= 3)
+                    {
+                        model.NoiseStyle = "danger";
+                    }
+                    else
+                    {
+                        if (amountOfNoiseOccurrences < 3 && amountOfNoiseOccurrences > 0)
+                        {
+                            model.NoiseStyle = "warning";
+                        }
+                        else
+                        {
+                            model.NoiseStyle = "success";
+                        }
+                    }
 
-        //        }
-        //        else
-        //        {
-        //            model.Noise = 0;
-        //            model.NoiseStyle = "secondary";
-        //            model.Vibration = 0;
-        //            model.VibrationStyle = "secondary";
-        //            model.Temp = 0;
-        //            model.TempStyle = "secondary";
-        //        }
+                }
+                else
+                {
+                    model.Noise = 0;
+                    model.NoiseStyle = "secondary";
+                    model.Vibration = 0;
+                    model.VibrationStyle = "secondary";
+                    model.Temp = 0;
+                    model.TempStyle = "secondary";
+                }
 
-        //        machinesForView.Add(model);
-        //    }
-        //}
-        //}
-        //catch
-        //{
-        //    return new List<MachineForListViewModel>();
-        //}
-        return new List<MachineForListViewModel>();
+                modelForView.Add(model);
+            }
+            return modelForView;
+        }
+        catch
+        {
+            return new List<MachineForListViewModel>();
+        }
     }
 }
