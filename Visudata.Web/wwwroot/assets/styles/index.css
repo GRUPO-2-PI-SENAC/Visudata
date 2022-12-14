@@ -1,0 +1,62 @@
+﻿* {
+    font-family: system-ui !important;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    text-decoration: none !important;
+}
+
+a {
+    text-decoration: none !important;
+}
+
+.header {
+    height: 80px;
+    background-color: #2b5690;
+    border-radius: 0px 0px 10px 10px;
+}
+
+    .header img {
+        margin-top: -5px;
+    }
+
+header .name-app {
+    font-size: 25px;
+    color: white !important;
+}
+
+#status-container {
+    padding: 15px;
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+
+.visao-card .card {
+    border-width: 0px 0px 0px 5px;
+    color: black !important;
+}
+
+.container-categories {
+    padding: 0px 20px 30px 20px;
+}
+
+.categories-group {
+    padding: 10px;
+}
+
+.text-div {
+    background-color: #2b5690;
+    border-radius: 8px;
+}
+
+#navbar {
+    background-color: #2b5690 !important;
+    padding: 6px;
+}
+
+.icone {
+    font-size: 25px;
+}
