@@ -267,7 +267,7 @@ public class MachineServices : IMachineService
 
             if (enterpriseForViewMachineStatus == null)
                 return new AmountOfMachineByStatusViewModel()
-                { AmountOfAttentionStatus = 0, AmountOfGoodStatus = 0, AmountOfCriticalStatus = 0 };
+                { AmountOfAttentionStatus = 0, AmountOfGoodStatus = 0, AmountOfCriticalStatus = 0, AmountOfAllMachines = 0 };
 
             IEnumerable<Machine> machineFromEnterprise =
                 await _machineRepository.GetMachinesByEnterpriseId(enterpriseId);
@@ -275,13 +275,14 @@ public class MachineServices : IMachineService
             int amountOfMachinesWithGoodStatus = machineFromEnterprise.Where(machine => machine.Status == MachineStatus.Good).Count();
             int amountOfMachinesWithAttentionStatus = machineFromEnterprise.Where(machine => machine.Status == MachineStatus.Warning).Count();
             int amountOfMachinesWithCriticalStatus = machineFromEnterprise.Where(machine => machine.Status == MachineStatus.Critical).Count();
-
+            int amountOfAllMachineOfEnterprise = machineFromEnterprise.Count();
 
             return new AmountOfMachineByStatusViewModel()
             {
                 AmountOfGoodStatus = amountOfMachinesWithGoodStatus,
                 AmountOfAttentionStatus = amountOfMachinesWithAttentionStatus,
-                AmountOfCriticalStatus = amountOfMachinesWithCriticalStatus
+                AmountOfCriticalStatus = amountOfMachinesWithCriticalStatus,
+                AmountOfAllMachines = 0
             };
         }
         catch
@@ -290,7 +291,8 @@ public class MachineServices : IMachineService
             {
                 AmountOfAttentionStatus = 0,
                 AmountOfGoodStatus = 0,
-                AmountOfCriticalStatus = 0
+                AmountOfCriticalStatus = 0,
+                AmountOfAllMachines = 0
             };
         }
     }
@@ -581,9 +583,9 @@ public class MachineServices : IMachineService
             List<Machine> machinesInDb = (await _machineRepository.GetAll()).ToList();
 
             Machine machineForExtractDataForViewModel = machinesInDb.First(machine => machine.Id == id);
-            List<Log> logsOfMachines = (await _logRepository.GetLogsWithMachines()).ToList();
+            List<Log> logsOfMachine = (await _logRepository.GetLogsWithMachines()).Where(log => log.Machine.Id == id).ToList();
 
-            Log lastLogOfMachine = logsOfMachines.Where(log => log.Machine.Id == id).OrderByDescending(log => log.Created_at).First();
+            Log lastLogOfMachine = logsOfMachine.OrderByDescending(log => log.Created_at).FirstOrDefault();
 
             if (machineForExtractDataForViewModel == null)
                 return new MachineDetailsViewModel();
@@ -599,7 +601,7 @@ public class MachineServices : IMachineService
             model.Tag = machineForExtractDataForViewModel.Tag;
             model.StatusNameStyle = ExtractStatusNameStyleByStatusName(model.StatusName);
 
-            if (logsOfMachines == null || !logsOfMachines.Any())
+            if (logsOfMachine == null || !logsOfMachine.Any())
             {
                 model.RealTimeNoise = 0;
                 model.NoiseStyle = "badge text-bg-secondary";
@@ -898,5 +900,35 @@ public class MachineServices : IMachineService
         List<Machine> machines = (await _machineRepository.GetAll()).ToList();
 
         return machines.First(machine => machine.Id == machineId);
+    }
+
+    public async Task<List<RegisterMachineLogsViewModel>> GetRegisterAboutMachines(int id)
+    {
+        try
+        {
+            List<RegisterMachineLogsViewModel> registers = new List<RegisterMachineLogsViewModel>();
+
+            List<Log> logsOfMachine = (await _logRepository.GetAll()).ToList().Where(log => log.Machine.Id == id).ToList();
+
+            if (logsOfMachine.Count() == 0 || logsOfMachine == null)
+                return new List<RegisterMachineLogsViewModel>();
+
+            foreach (Log logEntity in logsOfMachine)
+            {
+                registers.Add(new RegisterMachineLogsViewModel()
+                {
+                    Created_at = logEntity.Created_at,
+                    Vibration = logEntity.Vibration,
+                    Noise = logEntity.Noise,
+                    Temp = logEntity.Temp
+                });
+            }
+
+            return registers;
+        }
+        catch
+        {
+            return new List<RegisterMachineLogsViewModel>();
+        }
     }
 }

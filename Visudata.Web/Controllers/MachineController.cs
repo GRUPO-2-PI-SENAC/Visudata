@@ -176,6 +176,13 @@ public class MachineController : Controller
 
         return Json(result);
     }
+    [HttpGet]
+    public async Task<IActionResult> Register(int id)
+    {
+        List<RegisterMachineLogsViewModel> registers = await _machineService.GetRegisterAboutMachine(id);
+
+        return View(registers);
+    }
 
     #endregion
 }

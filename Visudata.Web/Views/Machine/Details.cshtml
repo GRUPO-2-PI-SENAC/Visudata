@@ -87,7 +87,9 @@
                         <span class="badge text-bg--blue-color-bg button ">Tempo real</span>
                     </div>
                     <div class="col statusAction">
-                        <span class="badge text-bg--blue-color-bg button ">Histórico</span>
+                        <a asp-action="Register" asp-controller="Machine" asp-route-id="@Model.Id">
+                            <span class="badge text-bg--blue-color-bg button ">Histórico</span>
+                        </a>
                     </div>
                     <div class="col statusAction">
                         <a asp-action="DownloadLogDataOfMachine" asp-route-id="@Model.Id">

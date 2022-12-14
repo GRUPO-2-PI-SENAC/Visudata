@@ -34,6 +34,5 @@ public interface IMachineService
     Task<List<MachineForAPIListViewModel>> GetMachinesForApiList(string enterpriseCnpj);
     Task<Machine> GetMachineEntityById(int machineId);
     Task<EditMachineModel> GetEditMachineModel(int machineId);
-
-
+    Task<List<RegisterMachineLogsViewModel>> GetRegisterAboutMachines(int id);
 }

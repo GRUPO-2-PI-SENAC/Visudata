@@ -53,6 +53,7 @@
                         <div class="col-sm-6">
                             <label for="email" class="form-label">E-mail do representante</label>
                             <input type="text" asp-for="RepresentativeEmailAddress" class="form-control" id="email" required>
+                            <span asp-validation-for="RepresentativeEmailAddress"></span>
                         </div>
                         <div class="col-sm-5">
                             <label for="category" class="form-label">Categoria</label>
@@ -63,6 +64,7 @@
                                     <option value="@item">@item</option>
                                 }
                             </select>
+                            <span asp-validation-for="ProblemsCategoryName"></span>
                         </div>
                         <div class="mb-3">
                             <label for="exampleFormControlTextarea1" class="form-label">
@@ -70,7 +72,8 @@
                                 problema
                             </label>
                             <textarea class="form-control" asp-for="ProblemDescription" id="exampleFormControlTextarea1" rows="6"
-                                      style="margin-bottom: 10px;"></textarea>
+                                      style="margin-bottom: 10px;" required></textarea>
+                            <span asp-validation-for="ProblemDescription"></span>
                             <button class="mt-3 w-100 btn btn-primary btn-lg" type="submit" id="sendButton">Enviar</button>
 
                         </div>

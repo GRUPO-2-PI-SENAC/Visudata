@@ -122,8 +122,8 @@ namespace PI.Web.Controllers
 
                 return View();
             }
-            TempData["message"] = "Senha ou usuario invalidos";
-            return RedirectToAction("Add");
+            ModelState.AddModelError(nameof(enterpriseForLogin.Login), "Usuário ou senha inválidos");
+            return View(enterpriseForLogin);
         }
 
         [HttpGet]
@@ -157,6 +157,7 @@ namespace PI.Web.Controllers
                 ViewBag.userProblemsCategoriesAsString = await _userProblemsCategoryService.GetNameOfAllAsString();
                 return RedirectToAction("Support");
             }
+            ModelState.AddModelError(nameof(model.ProblemDescription), "Por favor insira valores válidos!");
             ViewBag.userProblemsCategoriesAsString = await _userProblemsCategoryService.GetNameOfAllAsString();
             return View(model);
         }

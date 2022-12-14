@@ -36,6 +36,6 @@ namespace PI.Application.Intefaces
 
         Task<Machine> GetMachineEntityById(int machineId);
         Task<EditMachineModel> GetEditMachineModel(int machineId);
-
+        Task<List<RegisterMachineLogsViewModel>> GetRegisterAboutMachine(int id);
     }
 }

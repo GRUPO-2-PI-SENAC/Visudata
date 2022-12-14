@@ -125,5 +125,9 @@ namespace PI.Application.AppServices
             return _machineService.GetEditMachineModel(machineId);
         }
 
+        public Task<List<RegisterMachineLogsViewModel>> GetRegisterAboutMachine(int id)
+        {
+            return _machineService.GetRegisterAboutMachines(id);
+        }
     }
 }
