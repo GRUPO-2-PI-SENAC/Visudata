@@ -1,5 +1,5 @@
 ﻿@using PI.Domain.ViewModel.Enterprise;
-@model CreateEnterpriseViewModel
+@model SignUpEnterpriseViewModel
 @{
     Layout = "";
 }
@@ -54,18 +54,18 @@
                 <div class="forms">
                     <div class="mb-3">
                         <label for="inputCNPJ" class="form-label">CNPJ</label>
-                        <input type="number" class="form-control" id="inputCNPJ" required>
-                        <span asp-validation-for="CNPJ"></span>
+                        <input type="number" asp-for="Cnpj" class="form-control" id="inputCNPJ" required>
+                        <span asp-validation-for="Cnpj"></span>
                     </div>
                     <div class="mb-3">
                         <label for="inputSenha" class="form-label">Senha</label>
-                        <input type="password" class="form-control" id="inputSenha" aria-describedby="senhaHelp" required>
+                        <input type="password" class="form-control" asp-for="Password" id="inputSenha" aria-describedby="senhaHelp" required minLength="6" maxlength="8">
                         <span asp-validation-for="Password"></span>
                         <div id="senhaHelp" class="form-text">Sua senha deve ter 6 a 8 caracteres</div>
                     </div>
                     <div class="mb-3">
                         <label for="inputConfirm" class="form-label">Confirmar Senha</label>
-                        <input type="password" class="form-control" id="inputConfirm" required>
+                        <input type="password" class="form-control" id="inputConfirm" asp-for="ConfirmPassword" required minLength="6" maxlength="8">
                         <span asp-validation-for="ConfirmPassword"></span>
                         <div id="senhaHelp" class="form-text">A confirmação deve ser igual a senha</div>
                     </div>
@@ -90,50 +90,68 @@
 </body>
 
 <script lang="javascript">
-    $("#sendButton").click(function () {
-        var valor = $('#inputCNPJ').val();
-        $.ajax({
-            url: 'https://receitaws.com.br/v1/cnpj/' + valor,
-            type: 'GET',
-            dataType: 'jsonp',
-            success: function (dado) {
-                if (dado.nome == undefined) {
-                    function teste() {
-                        Swal.fire({
-                            icon: 'error',
-                            title: 'Ops...',
-                            text: 'Digite um CNPJ válido',
-                        })
-                    }
-                    teste()
-                }
-                else {
-                    var dataForDb = { Id: Math.round(Math.random() * 10000), CNPJ: valor, SocialReason: dado.nome, FantasyName: dado.fantasia, Password: document.getElementById('inputSenha').value, ConfirmPassword: document.getElementById('inputConfirm').value, Address: dado.logradouro + '' + dado.numero, City: dado.municipio, State: dado.uf, NumberOfLocation: dado.cep, Sector: dado.atividade_principal[0].text };
-                    var f = JSON.stringify({ Id: Math.round(Math.random() * 10000), CNPJ: valor, SocialReason: dado.nome, FantasyName: dado.fantasia, Password: document.getElementById('inputSenha').value, ConfirmPassword: document.getElementById('inputConfirm').value, Address: dado.logradouro + '' + dado.numero, City: dado.municipio, State: dado.uf, NumberOfLocation: dado.cep, Sector: dado.atividade_principal[0].text });
-                    //console.log(dataForDb);
-                    console.log(f);
-                    $.ajax({
-                        url: '/Enterprise/SignUp/',
-                        type: 'POST',
-                        data: { enterpriseForRegisterAsString: f },
-                        dataType: 'string',
-                        success: function () {
-                            alert('criada com sucesso');
-                        },
-                        error: function () {
-                            function teste() {
-                                Swal.fire({
-                                    icon: 'error',
-                                    title: 'Ops...',
-                                    text: 'Ocorreu um erro no nosso sistema ,tente novamente mais tarde ou entre em contato com o admin!',
-                                })
-                            }
-                        }
-                    });
 
+
+    var password = document.getElementById("inputSenha")
+        , confirm_password = document.getElementById("inputConfirm");
+
+    function validatePassword() {
+        if (password.value != confirm_password.value) {
+            confirm_password.setCustomValidity("As senhas estão diferentes!");
+        } else {
+            confirm_password.setCustomValidity('');
+        }
+    }
+
+    password.onchange = validatePassword;
+    confirm_password.onkeyup = validatePassword;
+    if (document.getElementById("inputCNPJ").value.length == 0 && document.getElementById("inputSenha").value.length == 0 && (document.getElementById("inputConfirm").value.length == 0 && document.getElementById('inputSenha').value == document.getElementById('inputConfirm').value)) {
+        $("#sendButton").click(function () {
+            var valor = $('#inputCNPJ').val();
+            $.ajax({
+                url: 'https://receitaws.com.br/v1/cnpj/' + valor,
+                type: 'GET',
+                dataType: 'jsonp',
+                success: function (dado) {
+                    if (dado.nome == undefined) {
+                        function teste() {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Ops...',
+                                text: 'Digite um CNPJ válido',
+                            })
+                        }
+                        teste()
+                    }
+                    else {
+                        var dataForDb = { Id: Math.round(Math.random() * 10000), CNPJ: valor, SocialReason: dado.nome, FantasyName: dado.fantasia, Password: document.getElementById('inputSenha').value, ConfirmPassword: document.getElementById('inputConfirm').value, Address: dado.logradouro + '' + dado.numero, City: dado.municipio, State: dado.uf, NumberOfLocation: dado.cep, Sector: dado.atividade_principal[0].text };
+                        var f = JSON.stringify({ Id: Math.round(Math.random() * 10000), CNPJ: valor, SocialReason: dado.nome, FantasyName: dado.fantasia, Password: document.getElementById('inputSenha').value, ConfirmPassword: document.getElementById('inputConfirm').value, Address: dado.logradouro + '' + dado.numero, City: dado.municipio, State: dado.uf, NumberOfLocation: dado.cep, Sector: dado.atividade_principal[0].text });
+                        //console.log(dataForDb);
+                        console.log(f);
+                        $.ajax({
+                            url: '/Enterprise/SignUp/',
+                            type: 'POST',
+                            data: { enterpriseForRegisterAsString: f },
+                            dataType: 'string',
+                            success: function () {
+                                window.location.href = @Url.Action("Redirect","Enterprise").ToString()
+                                },
+                            error: function () {
+                                function teste() {
+                                    Swal.fire({
+                                        icon: 'error',
+                                        title: 'Ops...',
+                                        text: 'Ocorreu um erro no nosso sistema ,tente novamente mais tarde ou entre em contato com o admin!',
+                                    })
+                                }
+                            }
+                        });
+
+                    }
+                    console.log(dado);
                 }
-                console.log(dado);
-            }
+            });
         });
-    });
+    }
+
 </script>
