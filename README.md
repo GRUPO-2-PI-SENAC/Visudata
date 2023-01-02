@@ -24,18 +24,11 @@ O sistema vai ser projetado usando mockup de dados e através disso vai ser dese
   <img align="center" alt="PI-Python" height="30" width="40" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg">
   <img align="center" alt="PI-C#" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/csharp/csharp-original.svg" alt="csharp" width="40" height="30"/> -->
   <img align="center" alt="PI-Figma" src="https://www.vectorlogo.zone/logos/figma/figma-icon.svg" alt="figma" width="40" height="30"/> 
+  <img align="center" alt="PI-dotnet" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dotnetcore/dotnetcore-original.svg" alt="dotnet" width="40" height="30"/>
 </div>
 
 ## Outras ferramentas:
 
-> ### Artigos: 
->  • [Google Acadêmico](https://scholar.google.com.br/?hl=pt)
->
->  • [Google Notícias](https://news.google.com.br/)
-  
-> ### Template do Termo de Abertura de Projeto: 
->  • [Termo de Abertura do Projeto](https://docs.google.com/document/d/1o66sIrLNT4oXBxt6Sg-Rws7UAl57YWcV4JADrQTMayo/edit?usp=sharing)
-  
 > ### Trello:
 >  • [Trello](https://trello.com/pt-BR)
   
@@ -43,10 +36,7 @@ O sistema vai ser projetado usando mockup de dados e através disso vai ser dese
 >  • [Figma](https://www.figma.com/)
 >  
 >  • [Figma | Community](https://www.figma.com/community)
->  
->  • [Miro](https://miro.com/app/dashboard/)
->  
->  • [UIStore](https://www.uistore.design/types/figma/)
+
   
   
 ## Integrantes: 
