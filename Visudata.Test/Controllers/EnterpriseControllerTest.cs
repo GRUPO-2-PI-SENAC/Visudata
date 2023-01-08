@@ -5,6 +5,9 @@ using System.Runtime.CompilerServices;
 using System.Web.Http.ModelBinding;
 using PI.Domain.ViewModel.Enterprise;
 using PI.Domain.ViewModel.UserSupport;
+using FluentAssertions;
+using Bogus;
+using Bogus.Extensions.Brazil;
 
 namespace Visudata.Test.Controllers
 {
@@ -13,12 +16,15 @@ namespace Visudata.Test.Controllers
         private readonly IEnterpriseService _enterpriseService;
         private readonly IUserSupportService _userSupportService;
         private readonly IUserProblemsCategoryService _userProblemsCategoryService;
-        
+        private readonly Faker _fake;
+
         public EnterpriseControllerTest()
         {
             _enterpriseService = A.Fake<IEnterpriseService>();
             _userSupportService = A.Fake<IUserSupportService>();
             _userProblemsCategoryService = A.Fake<IUserProblemsCategoryService>();
+            _fake = new Faker();
+
         }
 
         [Fact]
@@ -49,8 +55,18 @@ namespace Visudata.Test.Controllers
         public async Task Post_SupportWorks()
         {
             AddUserSupportViewModel model = A.Fake<AddUserSupportViewModel>();
-            bool isAdded = await _userSupportService.CreateUserReport(model);
-            Assert.True(isAdded);
+            string enterpriseCnpj = _fake.Company.Cnpj();
+            EnterpriseProfileViewModel enterpriseModel = A.Fake<EnterpriseProfileViewModel>();
+            A.CallTo(() => _enterpriseService.GetEnterpriseByCnpj(enterpriseCnpj)).Returns(enterpriseModel);
+            model.EnterpriseId = enterpriseModel.Id;
+            bool isUpdated = _fake.Random.Bool();
+            A.CallTo(() => _userSupportService.CreateUserReport(model)).Returns(isUpdated);
+            var result = await _userSupportService.CreateUserReport(model);
+
+            result.Should().BeTrue();
+
+
+
         }
 
         [Fact]

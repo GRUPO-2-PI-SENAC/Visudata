@@ -94,8 +94,7 @@ public class MachineServices : IMachineService
     {
         try
         {
-            model.Id = new Random().Next(100, 100000);
-            Machine byId = (await _machineRepository.GetAll()).FirstOrDefault(machine => machine.Id == model.Id);
+            Machine byId = (await _machineRepository.GetAll()).FirstOrDefault(machine => machine.Brand == model.Brand && machine.Model == model.Model && machine.SerialNumber == model.SerialNumber);
 
             if (byId != null) return false;
 
@@ -922,7 +921,7 @@ public class MachineServices : IMachineService
                 registers.Add(new RegisterMachineLogsViewModel()
                 {
                     DateAsString = logEntity.Created_at.ToString("MM/dd/yy"),
-                    HourAsString = logEntity.Created_at.Hour.ToString()+":"+logEntity.Created_at.Minute.ToString()+":"+logEntity.Created_at.Second.ToString(),
+                    HourAsString = logEntity.Created_at.Hour.ToString() + ":" + logEntity.Created_at.Minute.ToString() + ":" + logEntity.Created_at.Second.ToString(),
                     Vibration = logEntity.Vibration,
                     Noise = logEntity.Noise,
                     Temp = logEntity.Temp
