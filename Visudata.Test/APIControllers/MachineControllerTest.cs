@@ -88,8 +88,6 @@ namespace Visudata.Test.APIControllers
             EditMachineModel controllerResult = result.Value as EditMachineModel;
 
             Assert.Equal(controllerResult, model);
-
-
         }
 
         [Fact]
@@ -116,6 +114,30 @@ namespace Visudata.Test.APIControllers
             var result = _machineController.Update(machine);
 
             result.Should().BeOfType<Task<IActionResult>>();
+        }
+
+        [Fact]
+        public async void MachineMustBeUpdated()
+        {
+            EditMachineViewModel model = A.Fake<EditMachineViewModel>();
+
+            A.CallTo(() => _machineAppService.UpdateMachine(model)).Returns(true);
+
+            var result = await _machineController.Update(model);
+
+            result.Should().BeOfType<OkObjectResult>();
+        }
+
+        [Fact]
+        public async void GetAllMustHas10Machines()
+        {
+            List<MachineForListViewModel> model = A.Fake<List<MachineForListViewModel>>();
+            int enterpriseId = _fake.Random.Int(1);
+
+            A.CallTo(() => _machineAppService.GetAll(enterpriseId)).Returns(model);
+
+            model.Should().HaveCount(10);
+
         }
 
 

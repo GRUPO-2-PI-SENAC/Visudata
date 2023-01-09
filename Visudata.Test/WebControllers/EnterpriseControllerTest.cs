@@ -64,9 +64,6 @@ namespace Visudata.Test.Controllers
             var result = await _userSupportService.CreateUserReport(model);
 
             result.Should().BeTrue();
-
-
-
         }
 
         [Fact]
@@ -76,5 +73,6 @@ namespace Visudata.Test.Controllers
             model.EnterpriseId = 0;
             Assert.False((await _userSupportService.CreateUserReport(model)));
         }
+
     }
 }
