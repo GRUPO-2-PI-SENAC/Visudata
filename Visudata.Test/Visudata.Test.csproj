@@ -28,6 +28,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Visudata.API\Visudata.API.csproj" />
     <ProjectReference Include="..\Visudata.Application\Visudata.Application.csproj" />
+    <ProjectReference Include="..\Visudata.Web\Visudata.Web.csproj"/>
   </ItemGroup>
 
 </Project>

@@ -38,7 +38,7 @@ public class MachineServices : IMachineService
                 .Where(machine => machine.Enterprise.Id == enterpriseId).ToList();
 
             List<MachineForListViewModel> machinesforView = new List<MachineForListViewModel>();
-            List<Log> logsInDb = (await _logRepository.GetAll()).ToList();
+            List<Log> logsInDb = _logRepository.GetAll().Result.ToList();
 
             foreach (Machine machine in machines)
             {
