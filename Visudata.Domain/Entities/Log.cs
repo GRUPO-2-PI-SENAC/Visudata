@@ -2,7 +2,7 @@
 
 namespace PI.Domain.Entities
 {
-    public class Log 
+    public class Log
     {
         [Key]
         [Required(ErrorMessage = "Required field")]
@@ -16,6 +16,7 @@ namespace PI.Domain.Entities
         [Required(ErrorMessage = "Required field")]
         public DateTime Created_at { get; set; }
         [Required(ErrorMessage = "Required field")]
-        public Machine Machine { get; set; }
+        public virtual Machine Machine { get; set; }
+        public virtual OutlierRegister OutlierRegister { get; set; }
     }
 }

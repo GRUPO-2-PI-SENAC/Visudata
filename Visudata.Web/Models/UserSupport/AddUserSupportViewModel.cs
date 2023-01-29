@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using PI.Domain.Entities;
+using System.ComponentModel.DataAnnotations;
 
 namespace PI.Web.ViewModel.UserSupport;
 
@@ -16,5 +17,17 @@ public class AddUserSupportViewModel
     [MaxLength(400, ErrorMessage = "Limite de caracteres ultrapassado")]
     public string ProblemDescription { get; set; }
     public DateTime Created_at = DateTime.Now;
+
+
+    internal void ConvertToEntity(Domain.Entities.UserSupport entity)
+    {
+        entity.Enterprise = new Domain.Entities.Enterprise();
+        entity.UserProblemsCategory = new UserProblemsCategory();
+
+        entity.Enterprise.Id = this.EnterpriseId;
+        entity.AddressEmailOfRepresentativeEmployee = this.RepresentativeEmailAddress;
+        entity.UserProblemsCategory.Name = this.ProblemsCategoryName;
+        entity.Description = this.ProblemDescription;
+    }
 
 }

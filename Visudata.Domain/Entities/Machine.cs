@@ -19,6 +19,7 @@ namespace PI.Domain.Entities
         public virtual MachineCategory Category { get; set; }
         public virtual MachineStatus Status { get; set; }
         public virtual Enterprise Enterprise { get; set; }
+        public virtual List<Log> Logs { get; set; }
 
         #endregion
 

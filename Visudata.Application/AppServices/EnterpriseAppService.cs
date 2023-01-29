@@ -1,6 +1,5 @@
 ﻿using PI.Application.Intefaces;
-using PI.Domain.ViewModel.Enterpriqse;
-using PI.Domain.ViewModel.Enterprise;
+using PI.Domain.Entities;
 
 namespace PI.Application.AppServices
 {
@@ -13,39 +12,29 @@ namespace PI.Application.AppServices
             _enterpriseService = enterpriseService;
         }
 
-        public Task<bool> Login(EnterpriseLoginViewModel model)
+        public Task<Enterprise> GetByCnpj(string enterpriseCnpj)
         {
-            return _enterpriseService.Login(model);
+            return _enterpriseService.GetByCnpj(enterpriseCnpj);
         }
 
-        public Task<bool> SignUp(CreateEnterpriseViewModel model)
+        public Task<bool> Login(string login, string password)
+        {
+            return _enterpriseService.Login(login, password);
+        }
+
+        public Task<bool> Remove(string enterpriseCnpj)
+        {
+            return _enterpriseService.DeleteByCnpj(enterpriseCnpj);
+        }
+
+        public Task<bool> SignUp(Enterprise model)
         {
             return _enterpriseService.SignUp(model);
         }
 
-        public Task<bool> Update(UpdateEnterpriseViewModel model)
+        public Task<bool> Update(Enterprise model)
         {
             return _enterpriseService.Update(model);
-        }
-
-        public Task<bool> Remove(int enterpriseId)
-        {
-            return _enterpriseService.Remove(enterpriseId);
-        }
-
-        public Task<EnterpriseProfileViewModel> GetEnterpriseForProfileById(int enterpriseId)
-        {
-            return _enterpriseService.GetEnterpriseForProfileById(enterpriseId);
-        }
-
-        public Task<EnterpriseProfileViewModel> GetEnterpriseByCnpj(string enterpriseCnpj)
-        {
-            return _enterpriseService.GetEnterpriseByCnpj(enterpriseCnpj);
-        }
-
-        public Task<AmountOfMachinesStatusByEnterpriseViewModel> GetMachinesStatusByEnterpriseCnpj(string enterpriseCnpj)
-        {
-            return _enterpriseService.GetMachinesStatusByEnterpriseCnpj(enterpriseCnpj);
         }
     }
 }

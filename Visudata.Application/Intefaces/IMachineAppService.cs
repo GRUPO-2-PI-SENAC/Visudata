@@ -1,42 +1,18 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using PI.Domain.Entities;
-using PI.Domain.ViewModel.Machine;
 
 namespace PI.Application.Intefaces
 {
     public interface IMachineAppService
     {
-        #region CRUD
+        Task<bool> Add(Machine machineEntity, string enterpriseCnpj);
+        Task<bool> AddRegister(int machineId, double temp, double noise, double vibration);
+        Task<bool> Delete(int id);
+        Task<Machine> GetById(int id);
+        Task<List<Machine>> GetByStatus(string? enterpriseOfCurrentSessionCnpj, string status);
 
-        Task<List<MachineForListViewModel>> GetAll(int enterpriseId);
-        Task<List<MachineForListViewModel>> GetMachinesForSpecificCategory(int enterpriseId, string categoryName);
-        Task<bool> Add(AddMachineViewModel model, string enterpriseCnpj);
-        Task<bool> UpdateMachine(EditMachineViewModel model);
-        Task<bool> RemoveMachine(int machineId);
-        Task<List<MachineForListViewModel>> GetMachinesByEnterpriseId(int enterpriseId);
-
-        #endregion
-
-
-        Task<JsonResult> GetStatusAboutTemp(int machineId, int enterpriseId);
-        Task<JsonResult> GetStatusAboutVibration(int machineId, int enterpriseId);
-        Task<JsonResult> GetStatusAboutNoise(int machineId, int enterpriseId);
-        Task<AmountOfMachineByStatusViewModel> GetAmountOfMachinesByStatusWithEnterpriseId(int enterpriseId);
-        Task<bool> AddRegisterOfMachineFromJson(MachineDataRecieveFromSensorsJsonModel model);
-        Task<EditMachineViewModel> GetMachineDataForEdit(int machineId);
-        Task<List<MachineForListViewModel>> GetMachinesByEnterpriseCnpj(string? enterpriseOfCurrentSessionCnpj);
-        Task<string> GetHistoryDataByCsvByMachineId(int machineId);
-        Task<MachineDetailsViewModel> GetMachineForDetails(int id);
-        Task<GraphicModel> GetJsonForDetailsAboutMachineAjaxHandler(int id, string status);
-        Task<List<MachineForListViewModel>> GetMachineOfSpecificCategory(string? currentSessionEnterpriseCnpj,
-            string nameOfcategory);
-        Task<List<Machine>> GetAllMachineEntity(int enterpriseId);
-        Task<List<MachineForListModelAPI>> GetMachineList(int enterpriseId);
-        Task<List<MachineForAPIListViewModel>> GetMachinesForApiList(string enterpriseCnpj);
-
-        Task<Machine> GetMachineEntityById(int machineId);
-        Task<EditMachineModel> GetEditMachineModel(int machineId);
-        Task<List<RegisterMachineLogsViewModel>> GetRegisterAboutMachine(int id);
-        Task<List<MachineForListViewModel>> GetMachineForStatus(string? enterpriseOfCurrentSessionCnpj, string status);
+        Task<List<Machine>> GetAllByCnpj(string? enterpriseOfCurrentSessionCnpj);
+        Task<List<Machine>> GetAllByCategory(string? enterpriseOfCurrentSessionCnpj, string nameOfCategory);
+        Task<bool> Update(Machine machine);
     }
 }

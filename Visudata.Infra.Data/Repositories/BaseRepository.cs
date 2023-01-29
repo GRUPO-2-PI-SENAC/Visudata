@@ -19,7 +19,7 @@ public class BaseRepository<T> : IBaseRepository<T>  where T : class
         _context.SaveChanges();
     }
 
-    public virtual async Task RemoveById(int entityId)
+    public virtual async Task Delete(int entityId)
     {
         _context.Set<T>().Remove(await GetById(entityId));
         _context.SaveChanges();

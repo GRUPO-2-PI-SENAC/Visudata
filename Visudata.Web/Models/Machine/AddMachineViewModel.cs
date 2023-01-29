@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using PI.Domain.Entities;
+using System.ComponentModel.DataAnnotations;
 
 namespace PI.Web.ViewModel.Machine;
 
@@ -33,6 +34,21 @@ public class AddMachineViewModel
     public AddMachineViewModel()
     {
         Id = new Random().Next(1000, 100000);
+    }
+
+    public void ConvertToEntity(Domain.Entities.Machine machineEntity)
+    {
+        machineEntity.NoiseMax = this.MaxNoise;
+        machineEntity.NoiseMin = this.MinNoise;
+        machineEntity.Model = this.Model;
+        machineEntity.Brand = this.Brand;
+        machineEntity.VibrationMax = this.MaxVibration;
+        machineEntity.VibrationMin = this.MinVibration;
+        machineEntity.TempMax = this.MaxTemp;
+        machineEntity.TempMin = this.MinTemp;
+        machineEntity.Tag = this.Tag;
+        machineEntity.SerialNumber = this.SerialNumber;
+        machineEntity.Created_at = DateTime.Now;
     }
 
 }

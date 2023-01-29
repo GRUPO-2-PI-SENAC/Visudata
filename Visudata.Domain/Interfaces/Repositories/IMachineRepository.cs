@@ -7,5 +7,6 @@ namespace PI.Domain.Interfaces.Repositories
         Task<IEnumerable<Machine>> GetMachinesWithRelationShips();
         Task<IEnumerable<Machine>> GetMachinesByEnterpriseId(int enterpriseId);
         Task<List<Machine>> GetMachinesByEnterpriseCnpj(string enterpriseCnpj);
+        Task<List<Machine>> GetAllByCnpjAndCategory(string cnpj, string category);
     }
 }

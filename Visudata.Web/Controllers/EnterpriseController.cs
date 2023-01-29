@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using PI.Application.Intefaces;
-using PI.Domain.ViewModel.Enterpriqse;
-using PI.Domain.ViewModel.Enterprise;
-using PI.Domain.ViewModel.UserSupport;
+using PI.Domain.Entities;
+using PI.Web.ViewModel.Enterprise;
+using PI.Web.ViewModel.UserSupport;
 
 namespace PI.Web.Controllers
 {
@@ -13,14 +13,16 @@ namespace PI.Web.Controllers
         private IEnterpriseAppService _enterpriseService;
         private readonly IUserSupportAppService _userSupportService;
         private readonly IUserProblemsCategoryAppService _userProblemsCategoryService;
+        private readonly IMachineAppService _machineAppService;
         #endregion
 
         #region DIP
-        public EnterpriseController(IEnterpriseAppService enterpriseService, IUserSupportAppService userSupportService, IUserProblemsCategoryAppService userProblemsCategoryService)
+        public EnterpriseController(IEnterpriseAppService enterpriseService, IUserSupportAppService userSupportService, IUserProblemsCategoryAppService userProblemsCategoryService, IMachineAppService machineAppService)
         {
             _enterpriseService = enterpriseService;
             _userSupportService = userSupportService;
             _userProblemsCategoryService = userProblemsCategoryService;
+            _machineAppService = machineAppService;
         }
         #endregion
 
@@ -30,7 +32,9 @@ namespace PI.Web.Controllers
         public async Task<IActionResult> Home()
         {
             string enterpriseCnpj = Request.Cookies["enterpriseCnpj"].ToString();
-            AmountOfMachinesStatusByEnterpriseViewModel model = await _enterpriseService.GetMachinesStatusByEnterpriseCnpj(enterpriseCnpj);
+            List<Machine> machines = await _machineAppService.GetAllByCnpj(enterpriseCnpj);
+            AmountOfMachinesStatusByEnterpriseViewModel model = new();
+            model.ExtractDataFromMachines(machines);
 
             return View(model);
         }
@@ -61,14 +65,14 @@ namespace PI.Web.Controllers
 
                         return View();
                     }
-
-                    bool isValid = await _enterpriseService.SignUp(create);
+                    Domain.Entities.Enterprise entity = new();
+                    create.ConvertToEntity(entity);
+                    bool isValid = await _enterpriseService.SignUp(entity);
 
                     if (isValid)
                     {
                         return View("Redirect");
                     }
-                   // ModelState.AddModelError(String.Empty, TempData["message"].ToString());
 
                     return View();
                 }
@@ -92,7 +96,9 @@ namespace PI.Web.Controllers
         [HttpPost]
         public async Task<IActionResult> UpdateEnterprise(UpdateEnterpriseViewModel model)
         {
-            bool isUpdated = await _enterpriseService.Update(model);
+            Enterprise entity = new();
+            model.ConvertToEntity(entity);
+            bool isUpdated = await _enterpriseService.Update(entity);
 
             TempData["message"] = isUpdated ? "Seus dados foram atualizados com sucesso !" : "Não foi possível fazer a alteração de seus dados tente novamente mais tarde ou mande um recado na tela de suporte";
 
@@ -110,7 +116,7 @@ namespace PI.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                bool isLogin = await _enterpriseService.Login(enterpriseForLogin);
+                bool isLogin = await _enterpriseService.Login(enterpriseForLogin.Login, enterpriseForLogin.Password);
                 if (isLogin)
                 {
                     TempData["message"] = "Usuario adicionado com sucesso!";
@@ -131,7 +137,7 @@ namespace PI.Web.Controllers
         {
             ViewBag.userProblemsCategoriesAsString = await _userProblemsCategoryService.GetNameOfAllAsString();
             string enterpriseCnpj = Request.Cookies["enterpriseCnpj"].ToString();
-            EnterpriseProfileViewModel currentEnterprise = await _enterpriseService.GetEnterpriseByCnpj(enterpriseCnpj);
+            Enterprise currentEnterprise = await _enterpriseService.GetByCnpj(enterpriseCnpj);
             AddUserSupportViewModel modelForView = new AddUserSupportViewModel() { EnterpriseId = currentEnterprise.Id, NameOfEnterprise = currentEnterprise.FantasyName };
             TempData["enterpriseId"] = currentEnterprise.Id.ToString();
             return View(modelForView);
@@ -144,9 +150,11 @@ namespace PI.Web.Controllers
             if (ModelState.IsValid)
             {
                 string enterpriseCnpj = Request.Cookies["enterpriseCnpj"].ToString();
-                EnterpriseProfileViewModel currentEnterprise = await _enterpriseService.GetEnterpriseByCnpj(enterpriseCnpj);
+                Enterprise currentEnterprise = await _enterpriseService.GetByCnpj(enterpriseCnpj);
                 model.EnterpriseId = currentEnterprise.Id;
-                bool isCreated = await _userSupportService.CreateUserReport(model);
+                UserSupport entity = new();
+                model.ConvertToEntity(entity);
+                bool isCreated = await _userSupportService.CreateUserReport(entity);
 
                 if (isCreated)
                 {
@@ -166,8 +174,12 @@ namespace PI.Web.Controllers
         public async Task<IActionResult> Profile()
         {
             string enterpriseCnpj = Request.Cookies["enterpriseCnpj"].ToString();
-            EnterpriseProfileViewModel currentEnterprise = await _enterpriseService.GetEnterpriseByCnpj(enterpriseCnpj);
-            return View(currentEnterprise);
+            Enterprise entity = await _enterpriseService.GetByCnpj(enterpriseCnpj);
+
+            //EnterpriseProfileViewModel currentEnterprise = await _enterpriseService.GetEnterpriseByCnpj(enterpriseCnpj);
+            EnterpriseProfileViewModel viewModel = new();
+            viewModel.GetDataFromEntity(entity);
+            return View(viewModel);
         }
 
         public async Task<IActionResult> Menu()
@@ -183,7 +195,7 @@ namespace PI.Web.Controllers
 
         [HttpGet]
         public async Task<IActionResult> Redirect()
-            {
+        {
             return View();
         }
         #endregion

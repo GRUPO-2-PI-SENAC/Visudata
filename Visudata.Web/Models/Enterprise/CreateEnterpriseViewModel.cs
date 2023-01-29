@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using PI.Domain.Entities;
+using System.ComponentModel.DataAnnotations;
 
 namespace PI.Web.ViewModel.Enterprise;
 
@@ -20,8 +21,18 @@ public class CreateEnterpriseViewModel
     public string NumberOfLocation { get; set; }
     public string Sector { get; set; }
 
-    public CreateEnterpriseViewModel()
+
+    internal void ConvertToEntity(Domain.Entities.Enterprise entity)
     {
-        Id = new Random().Next(10000, 1000000);
+        entity.City = this.City;
+        entity.SocialReason = this.SocialReason;
+        entity.NumberOfLocation = this.NumberOfLocation;
+        entity.Address = this.Address;
+        entity.Cnpj = this.CNPJ;
+        entity.FantasyName = this.FantasyName;
+        entity.Sector = this.Sector;
+        entity.State = this.State;
+        entity.Created_at = DateTime.Now;
+        entity.Password = this.Password;
     }
 }

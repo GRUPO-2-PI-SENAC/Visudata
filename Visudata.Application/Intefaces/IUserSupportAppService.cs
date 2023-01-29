@@ -1,9 +1,9 @@
-﻿using PI.Domain.ViewModel.UserSupport;
+﻿using PI.Domain.Entities;
 
 namespace PI.Application.Intefaces
 {
     public interface IUserSupportAppService
     {
-        Task<bool> CreateUserReport(AddUserSupportViewModel model);
+        Task<bool> CreateUserReport(UserSupport model);
     }
 }

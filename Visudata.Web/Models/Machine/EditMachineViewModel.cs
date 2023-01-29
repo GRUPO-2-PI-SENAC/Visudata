@@ -29,5 +29,19 @@ namespace PI.Web.ViewModel.Machine
         [Required(ErrorMessage = "Campo obrigatório")]
         public double MinNoise { get; set; }
 
+        public void ConvertToEntity(Domain.Entities.Machine machineEntity)
+        {
+            machineEntity.NoiseMax = this.MaxNoise;
+            machineEntity.NoiseMin = this.MinNoise;
+            machineEntity.Model = this.Model;
+            machineEntity.Brand = this.Brand;
+            machineEntity.VibrationMax = this.MaxVibration;
+            machineEntity.VibrationMin = this.MinVibration;
+            machineEntity.TempMax = this.MaxTemp;
+            machineEntity.TempMin = this.MinTemp;
+            machineEntity.Tag = this.Tag;
+            machineEntity.SerialNumber = this.SerialNumber;
+            machineEntity.Created_at = DateTime.Now;
+        }
     }
 }

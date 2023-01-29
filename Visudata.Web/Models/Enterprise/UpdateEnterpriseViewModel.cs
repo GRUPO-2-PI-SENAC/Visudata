@@ -14,7 +14,7 @@ namespace PI.Web.ViewModel.Enterprise
         [Required(ErrorMessage = "Campo obrigatório")]
         public string FantasyName { get; set; }
         [Required(ErrorMessage = "Campo obrigatório")]
-        public string Scctor { get; set; }
+        public string Sector { get; set; }
         [Required(ErrorMessage = "Campo obrigatório")]
         public string State { get; set; }
         [Required(ErrorMessage = "Campo obrigatório")]
@@ -26,5 +26,17 @@ namespace PI.Web.ViewModel.Enterprise
         [Compare("Password", ErrorMessage = "As senhas devem ser iguais !")]
         [Required(ErrorMessage = "Campo obrigatório")]
         public string ConfirmPassword { get; set; }
+
+        internal void ConvertToEntity(Domain.Entities.Enterprise entity)
+        {
+            entity.Id = this.Id;
+            entity.City = this.City;
+            entity.Address = this.Address;
+            entity.FantasyName = this.FantasyName;
+            entity.Sector = this.Sector;
+            entity.State = this.State;
+            entity.Created_at = DateTime.Now;
+            entity.Password = this.Password;
+        }
     }
 }

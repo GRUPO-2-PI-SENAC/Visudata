@@ -13,7 +13,11 @@ public class MachineRepository : BaseRepository<Machine>, IMachineRepository
 
     public async override Task<IEnumerable<Machine>> GetAll()
     {
-        return _context.Machines.Include(machine => machine.Category).Include(machine => machine.Enterprise).AsEnumerable();
+        return _context.Machines
+            .Include(machine => machine.Category)
+            .Include(machine => machine.Enterprise)
+            .Include(machine => machine.Logs)
+            .AsEnumerable();
     }
 
     public async Task<List<Machine>> GetMachinesByEnterpriseCnpj(string enterpriseCnpj)
@@ -39,5 +43,21 @@ public class MachineRepository : BaseRepository<Machine>, IMachineRepository
     public async override Task<Machine> GetById(int entityId)
     {
         return _context.Machines.Include(machine => machine.Enterprise).Include(machine => machine.Category).ToList().First(machine => machine.Id == entityId);
+    }
+
+    public async Task<List<Machine>> GetAllByCnpjAndCategory(string cnpj, string category)
+    {
+        List<Machine> machines = _context
+            .Machines
+            .Include(machine => machine.Category)
+            .Include(machine => machine.Enterprise)
+            .Include(machine => machine.Logs)
+            .Include(machine => machine.Category)
+            .ToList()
+            .Where(machine => machine.Enterprise.Cnpj == cnpj)
+            .Where(machine => machine.Category.Name == category)
+            .ToList();
+
+        return machines;
     }
 }

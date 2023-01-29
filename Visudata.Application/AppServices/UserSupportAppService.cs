@@ -1,6 +1,5 @@
 ﻿using PI.Application.Intefaces;
-using PI.Domain.ViewModel.Enterpriqse;
-using PI.Domain.ViewModel.UserSupport;
+using PI.Domain.Entities;
 
 namespace PI.Application.AppServices
 {
@@ -13,7 +12,7 @@ namespace PI.Application.AppServices
             _userSupportService = userSupportService;
         }
 
-        public Task<bool> CreateUserReport(AddUserSupportViewModel model)
+        public Task<bool> CreateUserReport(UserSupport model)
         {
             return _userSupportService.CreateUserReport(model);
         }

@@ -1,4 +1,4 @@
-namespace Visudata.Test
+namespace Visudata.Domain.Test
 {
     public class UnitTest1
     {

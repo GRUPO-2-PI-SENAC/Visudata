@@ -1,7 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using PI.Application.Intefaces;
-using PI.Domain.ViewModel.Machine;
+using PI.Domain.Entities;
+using PI.Web.Util;
+using PI.Web.ViewModel.Machine;
+using System.Reflection.PortableExecutable;
+using Machine = PI.Domain.Entities.Machine;
 
 namespace PI.Web.Controllers;
 
@@ -31,7 +35,14 @@ public class MachineController : Controller
     {
         string enterpriseOfCurrentSessionCnpj = Request.Cookies["enterpriseCnpj"];
 
-        List<MachineForListViewModel> model = await _machineService.GetMachinesByEnterpriseCnpj(enterpriseOfCurrentSessionCnpj);
+        List<Machine> machinesEntity = await _machineService.GetAllByCnpj(enterpriseOfCurrentSessionCnpj);
+
+        List<MachineForListViewModel> model = new();
+
+        machinesEntity.ForEach(machine =>
+        {
+            model.Add(HelperFunction.ConvertMachineToListViewModel(machine));
+        });
 
         return View(model);
     }
@@ -40,7 +51,9 @@ public class MachineController : Controller
     public async Task<IActionResult> GetMachinesForSpecificCategory(string nameOfCategory)
     {
         string enterpriseOfCurrentSessionCnpj = Request.Cookies["enterpriseCnpj"];
-        List<MachineForListViewModel> model = await _machineService.GetMachineOfSpecificCategory(enterpriseOfCurrentSessionCnpj, nameOfCategory);
+        List<Machine> model = await _machineService.GetAllByCategory(enterpriseOfCurrentSessionCnpj, nameOfCategory);
+
+
 
         return View("List", model);
 
@@ -49,9 +62,17 @@ public class MachineController : Controller
     public async Task<IActionResult> GetMachineForStatus(string status)
     {
         string enterpriseOfCurrentSessionCnpj = Request.Cookies["enterpriseCnpj"];
-        List<MachineForListViewModel> machinesForList = await _machineService.GetMachineForStatus(enterpriseOfCurrentSessionCnpj, status);
+        List<Machine> machinesForList = await _machineService.GetByStatus(enterpriseOfCurrentSessionCnpj, status);
 
-        return View("List", machinesForList);
+
+        List<MachineForListViewModel> model = new();
+
+        machinesForList.ForEach(machine =>
+        {
+            model.Add(HelperFunction.ConvertMachineToListViewModel(machine));
+        });
+
+        return View("List", model);
     }
     [HttpGet]
     public async Task<IActionResult> Add()
@@ -75,7 +96,9 @@ public class MachineController : Controller
         if (ModelState.IsValid)
         {
             string? enterpriseCnpj = Request.Cookies["enterpriseCnpj"].ToString();
-            bool isAdded = await _machineService.Add(machineForAddInDb, enterpriseCnpj);
+            Machine machineEntity = new();
+            machineForAddInDb.ConvertToEntity(machineEntity);
+            bool isAdded = await _machineService.Add(machineEntity, enterpriseCnpj);
 
             TempData["message"] = isAdded ? "Máquian adicionada com sucesso!!"
                 : "Occorreu um erro tente novamente mais tarde ou entre em contato com o administrador";
@@ -89,7 +112,7 @@ public class MachineController : Controller
     [HttpGet]
     public async Task<IActionResult> Edit(int id)
     {
-        EditMachineViewModel modelForEditDataOfMachine = await _machineService.GetMachineDataForEdit(id);
+        Machine modelForEditDataOfMachine = await _machineService.GetById(id);
 
 
         List<string> nameOfCategoriesAsStringList = await _machineCategoryService.GetNameOfCategoriesAsString();
@@ -111,7 +134,8 @@ public class MachineController : Controller
     {
         if (ModelState.IsValid)
         {
-            bool isUpdated = await _machineService.UpdateMachine(editMachine);
+            Machine machine = new();
+            bool isUpdated = await _machineService.Update(machine);
 
             TempData["message"] = isUpdated ? "Máquina atualizada com sucesso!" :
                 "Occoreu um erro tente novamente mais tarde ou envie uma mensagem para a nossa equipe";
@@ -124,14 +148,13 @@ public class MachineController : Controller
     [HttpGet]
     public async Task<IActionResult> Details(int id)
     {
-        MachineDetailsViewModel model = await _machineService.GetMachineForDetails(id);
+        Machine model = await _machineService.GetById(id);
         return View(model);
     }
-
     [HttpDelete]
     public async Task<IActionResult> Delete(int id)
     {
-        bool isDeleted = await _machineService.RemoveMachine(id);
+        bool isDeleted = await _machineService.Delete(id);
 
         TempData["message"] = isDeleted ? "Máquina apagada com sucesso!" :
             "Não foi possível deletar a máquina ,tente novamente mais tarde ou nos envie uma mensagem na tela de suporte";
@@ -140,69 +163,108 @@ public class MachineController : Controller
     }
     public async Task<IActionResult> SendDataFromSensors([FromBody] MachineDataRecieveFromSensorsJsonModel model)
     {
-        bool isRegisted = await _machineService.AddRegisterOfMachineFromJson(model);
+        bool isRegisted = await _machineService.AddRegister(model.MachineId, model.Temp, model.Noise, model.Vibration);
 
         return isRegisted ? Ok("Added with success!") : BadRequest("Register doesn't added with expected, contact the administrator for more details");
     }
-
     public async Task<IActionResult> DownloadLogDataOfMachine(int id)
     {
-        string dataAsCsv = await _machineService.GetHistoryDataByCsvByMachineId(id);
+        Domain.Entities.Machine machineEntity = await _machineService.GetById(id);
 
-        if (dataAsCsv == "")
+        string machineDataAsCsv = GetMachineLogDataAsCsvString(machineEntity);
+
+        if (machineDataAsCsv == "")
         {
             TempData["message"] = "A máquina não possui nenhum dado de histórico!";
             return RedirectToAction("List");
         }
 
-        EditMachineViewModel machineForEdit = await _machineService.GetMachineDataForEdit(id);
-
-        return File(System.Text.Encoding.UTF8.GetBytes(dataAsCsv), "text/csv", "data_da_maquina_" + machineForEdit.Model + ".csv");
+        return File(System.Text.Encoding.UTF8.GetBytes(machineDataAsCsv), "text/csv", "data_da_maquina_" + machineEntity.Model + ".csv");
     }
     [HttpGet]
     public async Task<IActionResult> DetailsAboutMachine(int id)
     {
-        MachineDetailsViewModel model = await _machineService.GetMachineForDetails(id);
+        Domain.Entities.Machine model = await _machineService.GetById(id);
 
-        return View(model);
+        MachineDetailsViewModel viewModel = new();
+
+        viewModel.ReceiveDataFromEntity(model);
+
+        return View(viewModel);
     }
-
-    [HttpGet]
-    public async Task<IActionResult> DetailsAboutMachineAjaxHandler(int id, string status)
-    {
-        //string result = await _machineService.GetJsonForDetailsAboutMachineAjaxHandler(id, status);
-
-        return Json("");
-    }
-
     [HttpGet]
     [Route("[controller]/DetailsAboutTempAjaxHandler/{id}")]
     public async Task<JsonResult> DetailsAboutTempAjaxHandler(int id)
     {
-        GraphicModel result = await _machineService.GetJsonForDetailsAboutMachineAjaxHandler(id, "temperatura");
-
+        Machine machineEntity = await _machineService.GetById(id);
+        GraphicModel result = new();
+        result.GetDataFromMachine("temp", machineEntity);
         return Json(result);
     }
     [HttpGet]
     public async Task<JsonResult> DetailsAboutVibrationAjaxHandler(int id)
     {
-        GraphicModel result = await _machineService.GetJsonForDetailsAboutMachineAjaxHandler(id, "vibracao");
-
+        Machine machineEntity = await _machineService.GetById(id);
+        GraphicModel result = new();
+        result.GetDataFromMachine("vibration", machineEntity);
         return Json(result);
     }
     [HttpGet]
     public async Task<JsonResult> DetailsAboutNoiseAjaxHandler(int id)
     {
-        GraphicModel result = await _machineService.GetJsonForDetailsAboutMachineAjaxHandler(id, "ruido");
+        Machine machineEntity = await _machineService.GetById(id);
+        GraphicModel result = new();
+        result.GetDataFromMachine("vibration", machineEntity);
 
         return Json(result);
     }
     [HttpGet]
     public async Task<IActionResult> Register(int id)
     {
-        List<RegisterMachineLogsViewModel> registers = await _machineService.GetRegisterAboutMachine(id);
+        Machine machineForRegister = await _machineService.GetById(id);
 
-        return View(registers);
+        List<RegisterMachineLogsViewModel> viewModel = ConvertToLogs(machineForRegister);
+
+        return View(viewModel);
+    }
+    private List<RegisterMachineLogsViewModel> ConvertToLogs(Machine machineEntity)
+    {
+        List<RegisterMachineLogsViewModel> machineLogs = new();
+
+        machineEntity.Logs.ForEach(log =>
+        {
+            machineLogs.Add(new RegisterMachineLogsViewModel
+            {
+                Vibration = log.Vibration,
+                Noise = log.Noise,
+                Temp = log.Temp,
+                DateAsString = log.Created_at.ToString("dd/MM/yyyy"),
+                HourAsString = log.Created_at.ToString("HH/mm")
+            });
+        });
+
+        return machineLogs;
+    }
+    private string GetMachineLogDataAsCsvString(Domain.Entities.Machine machineEntity)
+    {
+
+        List<Log> logsOfMachine = machineEntity.Logs;
+
+        if (!logsOfMachine.Any() || logsOfMachine.Count() == 0)
+        {
+            return "";
+        }
+
+        string csv = "";
+
+        csv += "HORA;VIBRACAO;RUIDO;TEMPERATURA\n";
+
+        foreach (Log log in logsOfMachine)
+        {
+            csv += log.Created_at.Hour + ";" + log.Vibration.ToString() + ";" + log.Noise.ToString() + ";" + log.Temp.ToString() + "\n";
+        }
+
+        return csv;
     }
 
     #endregion
