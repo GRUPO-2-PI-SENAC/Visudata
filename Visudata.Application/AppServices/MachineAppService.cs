@@ -34,17 +34,17 @@ namespace PI.Application.AppServices
             return _machineService.GetById(id);
         }
 
-        public Task<List<Machine>> GetByStatus(string? enterpriseCnpj, string status)
+        public Task<List<Machine>> GetByStatus(string enterpriseCnpj, string status)
         {
             return _machineService.GetByStatus(enterpriseCnpj, status);
         }
 
-        public Task<List<Machine>> GetAllByCnpj(string? enterpriseOfCurrentSessionCnpj)
+        public Task<List<Machine>> GetAllByCnpj(string enterpriseOfCurrentSessionCnpj)
         {
             return _machineService.GetAllByCnpj(enterpriseOfCurrentSessionCnpj);
         }
 
-        public Task<List<Machine>> GetAllByCategory(string? enterpriseOfCurrentSessionCnpj, string nameOfCategory)
+        public Task<List<Machine>> GetAllByCategory(string enterpriseOfCurrentSessionCnpj, string nameOfCategory)
         {
             return _machineService.GetByCategory(enterpriseOfCurrentSessionCnpj, nameOfCategory);
         }

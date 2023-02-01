@@ -34,12 +34,12 @@ public class MachineServices : IMachineService
         return machines;
     }
 
-    public Task<List<Machine>> GetByCategory(string? enterpriseOfCurrentSessionCnpj, string nameOfCategory)
+    public Task<List<Machine>> GetByCategory(string enterpriseOfCurrentSessionCnpj, string nameOfCategory)
     {
         return _machineRepository.GetAllByCnpjAndCategory(enterpriseOfCurrentSessionCnpj, nameOfCategory);
     }
 
-    public Task<List<Machine>> GetAllByCnpj(string? enterpriseOfCurrentSessionCnpj)
+    public Task<List<Machine>> GetAllByCnpj(string enterpriseOfCurrentSessionCnpj)
     {
         return _machineRepository.GetMachinesByEnterpriseCnpj(enterpriseOfCurrentSessionCnpj);
     }
