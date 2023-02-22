@@ -135,6 +135,7 @@ public class MachineController : Controller
         if (ModelState.IsValid)
         {
             Machine machine = new();
+            editMachine.ConvertToEntity(machine);
             bool isUpdated = await _machineService.Update(machine);
 
             TempData["message"] = isUpdated ? "Máquina atualizada com sucesso!" :

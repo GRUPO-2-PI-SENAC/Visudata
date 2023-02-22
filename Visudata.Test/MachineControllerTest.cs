@@ -33,9 +33,10 @@ namespace Visudata.Web.Test
             _machineCategoryAppService = A.Fake<IMachineCategoryAppService>();
             this.EnterpriseCnpj = _faker.Company.Cnpj();
             _fixture = new Fixture().Customize(new IgnoreVirtualMembersCustomisation());
-            _controller.Response.Cookies.Append("enterpriseCnpj", EnterpriseCnpj);
             _controller = new MachineController(_machineAppService, _machineCategoryAppService);
             _controller.ControllerContext.HttpContext = new DefaultHttpContext();
+            _controller.Response.Cookies.Append("enterpriseCnpj", EnterpriseCnpj);
+
         }
 
         [Fact]
@@ -85,6 +86,7 @@ namespace Visudata.Web.Test
 
             response.Should().BeEquivalentTo(viewModels);
         }
+
         [Fact]
         public async void ThrowsExceptionOnConvertToviewModelForLogs()
         {
@@ -94,5 +96,18 @@ namespace Visudata.Web.Test
             A.CallTo(() => _machineAppService.GetAllByCnpj(EnterpriseCnpj)).WithAnyArguments().Returns(models);
             await Assert.ThrowsAsync<ArgumentNullException>(() => _controller.List());
         }
+
+        //[Fact]
+        //public async void MachineMustBeEditedOnPost()
+        //{
+        //    _fixture.Customize<EditMachineViewModel>(editViewModel => editViewModel.With(c => c.));
+        //    EditMachineViewModel editMachineViewModel = _fixture.Create<EditMachineViewModel>();
+
+        //    Machine entity = A.Fake<Machine>();
+        //    A.CallTo(() => _machineAppService.Update(entity)).Returns(true);
+        //    var result = await _controller.Edit(editMachineViewModel);
+
+        //    result.Should().BeOfType<RedirectToActionResult>();
+        //}
     }
 }
