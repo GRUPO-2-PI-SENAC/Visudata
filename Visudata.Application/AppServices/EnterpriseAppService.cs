@@ -17,7 +17,7 @@ namespace PI.Application.AppServices
             return _enterpriseService.GetByCnpj(enterpriseCnpj);
         }
 
-        public Task<bool> Login(string login, string password)
+        public Task<Enterprise?> Login(string login, string password)
         {
             return _enterpriseService.Login(login, password);
         }

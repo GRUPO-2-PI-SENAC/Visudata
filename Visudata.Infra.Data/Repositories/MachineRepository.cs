@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Dapper;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage;
 using PI.Domain.Entities;
 using PI.Domain.Interfaces.Repositories;
 using PI.Infra.Data.Context;
@@ -13,19 +15,39 @@ public class MachineRepository : BaseRepository<Machine>, IMachineRepository
 
     public async override Task<IEnumerable<Machine>> GetAll()
     {
-        return _context.Machines
-            .Include(machine => machine.Category)
-            .Include(machine => machine.Enterprise)
-            .Include(machine => machine.Logs)
-            .AsEnumerable();
+        return await Task.Run(async () =>
+        {
+            var query = @"select * from machines inner join enterprises on machines.EnterpriseId = enterprises.Id
+            inner join machine_category mc on machines.CategoryId = mc.Id";
+
+            IEnumerable<Machine> machinesAsEnumerable = await _databaseConnection.QueryAsync<Machine, Enterprise, MachineCategory, Machine>(query, map: (machineEntity, enterpriseEntity, categoryEntity) =>
+            {
+                machineEntity.Category = categoryEntity;
+                machineEntity.Enterprise = enterpriseEntity;
+
+                return machineEntity;
+            });
+            return machinesAsEnumerable;
+        });
     }
 
     public async Task<List<Machine>> GetMachinesByEnterpriseCnpj(string enterpriseCnpj)
     {
-        List<Machine> machinesInDb = _context.Machines.Include(machine => machine.Enterprise).ToList();
-        List<Machine> machinesOfEnterpriseFromCnpj = machinesInDb.Where(machine => machine.Enterprise.Cnpj == enterpriseCnpj).ToList();
+        return await Task.Run(async () =>
+        {
+            var query = @"select * from machines inner join enterprises e on machines.EnterpriseId = e.Id 
+            inner join machine_category mc on machines.CategoryId = mc.Id where e.Cnpj = @cnpj;";
 
-        return machinesOfEnterpriseFromCnpj;
+            IEnumerable<Machine> machinesAsEnumerable = await _databaseConnection.QueryAsync<Machine, Enterprise, MachineCategory, Machine>(query, map: (machine, enterprise, category) =>
+            {
+                machine.Enterprise = enterprise;
+                machine.Category = category;
+                return machine;
+            },
+            new { cnpj = enterpriseCnpj }
+            );
+            return machinesAsEnumerable.ToList();
+        });
     }
 
     public async Task<IEnumerable<Machine>> GetMachinesByEnterpriseId(int enterpriseId)
@@ -40,24 +62,47 @@ public class MachineRepository : BaseRepository<Machine>, IMachineRepository
         return _context.Machines.Include(machine => machine.Category).Include(machine => machine.Enterprise).Include(machine => machine.Status).ToList();
     }
 
-    public async override Task<Machine> GetById(int entityId)
+    public async override Task<Machine> GetById(int machineId)
     {
-        return _context.Machines.Include(machine => machine.Enterprise).Include(machine => machine.Category).ToList().First(machine => machine.Id == entityId);
+        return await Task.Run(async () =>
+        {
+            var query = @"select * from machines inner join enterprises e on machines.EnterpriseId = e.Id
+            inner join machine_category mc on machines.CategoryId = mc.Id where machines.Id = @id;";
+
+            Machine machines = (await _databaseConnection.QueryAsync<Machine, Enterprise, MachineCategory, Machine>(query,
+                (machine, enterprise, category) =>
+                {
+                    machine.Enterprise = enterprise;
+                    machine.Category = category;
+                    return machine;
+                },
+                new { id = machineId }
+                )).First();
+            return machines;
+        });
     }
 
     public async Task<List<Machine>> GetAllByCnpjAndCategory(string cnpj, string category)
     {
-        List<Machine> machines = _context
-            .Machines
-            .Include(machine => machine.Category)
-            .Include(machine => machine.Enterprise)
-            .Include(machine => machine.Logs)
-            .Include(machine => machine.Category)
-            .ToList()
-            .Where(machine => machine.Enterprise.Cnpj == cnpj)
-            .Where(machine => machine.Category.Name == category)
-            .ToList();
+        return await Task.Run(async () =>
+        {
+            var query = @"select * from machines inner join machine_category mc on machines.CategoryId = mc.Id 
+            inner join enterprises e on machines.EnterpriseId = e.Id where e.Cnpj = @enterpriseCnpj and mc.Name = @categoryName";
 
-        return machines;
+            IEnumerable<Machine> machinesAsIEnumerable = await _databaseConnection.QueryAsync<Machine, Enterprise, MachineCategory, Machine>(query,
+                (machine, enterprise, category) =>
+                {
+                    machine.Enterprise = enterprise;
+                    machine.Category = category;
+                    return machine;
+                },
+                new
+                {
+                    enterpriseCnpj = cnpj,
+                    categoryName = category
+                });
+
+            return machinesAsIEnumerable.ToList();
+        });
     }
 }

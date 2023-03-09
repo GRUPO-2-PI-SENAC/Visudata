@@ -53,5 +53,10 @@ namespace PI.Application.AppServices
         {
             return _machineService.Update(machine);
         }
+
+        public Task<List<Machine>> GetAll()
+        {
+            return _machineService.GetAll();
+        }
     }
 }

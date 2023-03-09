@@ -49,6 +49,8 @@ public class AddMachineViewModel
         machineEntity.Tag = this.Tag;
         machineEntity.SerialNumber = this.SerialNumber;
         machineEntity.Created_at = DateTime.Now;
+        machineEntity.Category = new();
+        machineEntity.Category.Name = Category;
     }
 
 }

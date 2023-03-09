@@ -2,12 +2,13 @@
 using Newtonsoft.Json;
 using PI.Application.Intefaces;
 using PI.Domain.Entities;
+using PI.Web.Util;
 using PI.Web.ViewModel.Enterprise;
 using PI.Web.ViewModel.UserSupport;
 
 namespace PI.Web.Controllers
 {
-    public class EnterpriseController : Controller
+    public class EnterpriseController : BaseController
     {
         #region Properties
         private IEnterpriseAppService _enterpriseService;
@@ -31,7 +32,7 @@ namespace PI.Web.Controllers
         [HttpGet]
         public async Task<IActionResult> Home()
         {
-            string enterpriseCnpj = Request.Cookies["enterpriseCnpj"].ToString();
+            string enterpriseCnpj = CurrentEnterprise.Cnpj;
             List<Machine> machines = await _machineAppService.GetAllByCnpj(enterpriseCnpj);
             AmountOfMachinesStatusByEnterpriseViewModel model = new();
             model.ExtractDataFromMachines(machines);
@@ -116,11 +117,12 @@ namespace PI.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                bool isLogin = await _enterpriseService.Login(enterpriseForLogin.Login, enterpriseForLogin.Password);
-                if (isLogin)
+                Enterprise? currentEnterprise = await _enterpriseService.Login(enterpriseForLogin.Login, enterpriseForLogin.Password);
+                if (currentEnterprise != null)
                 {
+
                     TempData["message"] = "Usuario adicionado com sucesso!";
-                    Response.Cookies.Append("enterpriseCnpj", enterpriseForLogin.Login);
+                    HttpContext.Session.SetString("currentEnterprise", JsonConvert.SerializeObject(currentEnterprise));
                     return RedirectToAction("Home");
                 }
 
@@ -136,8 +138,7 @@ namespace PI.Web.Controllers
         public async Task<IActionResult> Support()
         {
             ViewBag.userProblemsCategoriesAsString = await _userProblemsCategoryService.GetNameOfAllAsString();
-            string enterpriseCnpj = Request.Cookies["enterpriseCnpj"].ToString();
-            Enterprise currentEnterprise = await _enterpriseService.GetByCnpj(enterpriseCnpj);
+            Enterprise currentEnterprise = await _enterpriseService.GetByCnpj(CurrentEnterprise.Cnpj);
             AddUserSupportViewModel modelForView = new AddUserSupportViewModel() { EnterpriseId = currentEnterprise.Id, NameOfEnterprise = currentEnterprise.FantasyName };
             TempData["enterpriseId"] = currentEnterprise.Id.ToString();
             return View(modelForView);
@@ -149,8 +150,7 @@ namespace PI.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                string enterpriseCnpj = Request.Cookies["enterpriseCnpj"].ToString();
-                Enterprise currentEnterprise = await _enterpriseService.GetByCnpj(enterpriseCnpj);
+                Enterprise currentEnterprise = await _enterpriseService.GetByCnpj(CurrentEnterprise.Cnpj);
                 model.EnterpriseId = currentEnterprise.Id;
                 UserSupport entity = new();
                 model.ConvertToEntity(entity);
@@ -173,10 +173,7 @@ namespace PI.Web.Controllers
         [HttpGet]
         public async Task<IActionResult> Profile()
         {
-            string enterpriseCnpj = Request.Cookies["enterpriseCnpj"].ToString();
-            Enterprise entity = await _enterpriseService.GetByCnpj(enterpriseCnpj);
-
-            //EnterpriseProfileViewModel currentEnterprise = await _enterpriseService.GetEnterpriseByCnpj(enterpriseCnpj);
+            Enterprise entity = await _enterpriseService.GetByCnpj(CurrentEnterprise.Cnpj);
             EnterpriseProfileViewModel viewModel = new();
             viewModel.GetDataFromEntity(entity);
             return View(viewModel);
@@ -189,7 +186,7 @@ namespace PI.Web.Controllers
 
         public async Task<IActionResult> Logout()
         {
-            Response.Cookies.Delete("enterpriseCnpj");
+            HttpContext.Session.Clear();
             return RedirectToAction("Login");
         }
 

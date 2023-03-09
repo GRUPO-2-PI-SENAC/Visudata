@@ -11,7 +11,6 @@ namespace PI.Domain.Entities
         public double Temp { get; set; }
         [Required(ErrorMessage = "Required field")]
         public double Noise { get; set; }
-        public Log Log { get; set; }
         public Machine Machine { get; set; }
         [Required(ErrorMessage = "Required field")]
         public DateTime Time { get; set; }

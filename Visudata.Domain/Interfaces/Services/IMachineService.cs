@@ -14,4 +14,5 @@ public interface IMachineService
     Task<bool> AddRegister(int machineId, double temp, double noise, double vibration);
     Task<bool> Update(Machine machine);
     Task<List<Machine>> GetByStatus(string enterpriseCnpj, string status);
+    Task<List<Machine>> GetAll();
 }

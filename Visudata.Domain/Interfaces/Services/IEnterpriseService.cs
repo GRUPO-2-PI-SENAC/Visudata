@@ -4,7 +4,7 @@ namespace PI.Application.Intefaces;
 
 public interface IEnterpriseService
 {
-    Task<bool> Login(string login, string password);
+    Task<Enterprise?> Login(string login, string password);
     Task<bool> SignUp(Enterprise model);
     Task<bool> Update(Enterprise model);
     Task<bool> DeleteByCnpj(string enterpriseCnpj);

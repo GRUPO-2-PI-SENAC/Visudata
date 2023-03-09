@@ -1,12 +1,21 @@
-﻿using PI.Domain.Interfaces;
+﻿using Microsoft.EntityFrameworkCore;
+using PI.Domain.Interfaces;
 using PI.Domain.Interfaces.Repositories;
 using PI.Infra.Data.Context;
+using System.Data.Common;
 
 namespace PI.Infra.Data.Repositories;
 
 public class BaseRepository<T> : IBaseRepository<T>  where T : class
 {
     protected readonly VisudataDbContext _context;
+    protected DbConnection _databaseConnection
+    {
+        get
+        {
+            return _context.Database.GetDbConnection();
+        }
+    }
 
     public BaseRepository(VisudataDbContext visudataDbContext)
     {

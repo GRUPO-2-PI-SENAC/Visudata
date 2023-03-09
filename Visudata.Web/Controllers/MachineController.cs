@@ -9,7 +9,7 @@ using Machine = PI.Domain.Entities.Machine;
 
 namespace PI.Web.Controllers;
 
-public class MachineController : Controller
+public class MachineController : BaseController
 {
     #region Properties
 
@@ -33,9 +33,8 @@ public class MachineController : Controller
     [HttpGet]
     public async Task<IActionResult> List()
     {
-        string enterpriseOfCurrentSessionCnpj = Request.Cookies["enterpriseCnpj"];
 
-        List<Machine> machinesEntity = await _machineService.GetAllByCnpj(enterpriseOfCurrentSessionCnpj);
+        List<Machine> machinesEntity = await _machineService.GetAllByCnpj(CurrentEnterprise.Cnpj);
 
         List<MachineForListViewModel> model = new();
 
@@ -50,23 +49,16 @@ public class MachineController : Controller
     [HttpGet]
     public async Task<IActionResult> GetMachinesForSpecificCategory(string nameOfCategory)
     {
-        string enterpriseOfCurrentSessionCnpj = Request.Cookies["enterpriseCnpj"];
-        List<Machine> model = await _machineService.GetAllByCategory(enterpriseOfCurrentSessionCnpj, nameOfCategory);
-
-
-
+        List<Machine> model = await _machineService.GetAllByCategory(CurrentEnterprise.Cnpj, nameOfCategory);
         return View("List", model);
 
     }
+
     [HttpGet]
     public async Task<IActionResult> GetMachineForStatus(string status)
     {
-        string enterpriseOfCurrentSessionCnpj = Request.Cookies["enterpriseCnpj"];
-        List<Machine> machinesForList = await _machineService.GetByStatus(enterpriseOfCurrentSessionCnpj, status);
-
-
+        List<Machine> machinesForList = await _machineService.GetByStatus(CurrentEnterprise.Cnpj, status);
         List<MachineForListViewModel> model = new();
-
         machinesForList.ForEach(machine =>
         {
             model.Add(HelperFunction.ConvertMachineToListViewModel(machine));
@@ -74,6 +66,7 @@ public class MachineController : Controller
 
         return View("List", model);
     }
+
     [HttpGet]
     public async Task<IActionResult> Add()
     {
@@ -95,10 +88,9 @@ public class MachineController : Controller
     {
         if (ModelState.IsValid)
         {
-            string? enterpriseCnpj = Request.Cookies["enterpriseCnpj"].ToString();
             Machine machineEntity = new();
             machineForAddInDb.ConvertToEntity(machineEntity);
-            bool isAdded = await _machineService.Add(machineEntity, enterpriseCnpj);
+            bool isAdded = await _machineService.Add(machineEntity, CurrentEnterprise.Cnpj);
 
             TempData["message"] = isAdded ? "Máquian adicionada com sucesso!!"
                 : "Occorreu um erro tente novamente mais tarde ou entre em contato com o administrador";

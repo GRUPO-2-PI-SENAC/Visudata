@@ -14,5 +14,6 @@ namespace PI.Application.Intefaces
         Task<List<Machine>> GetAllByCnpj(string enterpriseOfCurrentSessionCnpj);
         Task<List<Machine>> GetAllByCategory(string enterpriseOfCurrentSessionCnpj, string nameOfCategory);
         Task<bool> Update(Machine machine);
+        Task<List<Machine>> GetAll();
     }
 }

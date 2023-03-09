@@ -104,17 +104,18 @@ public class EnterpriseService : IEnterpriseService
 
     //}
 
-    public async Task<bool> Login(string login, string password)
+    public async Task<Enterprise?> Login(string login, string password)
     {
         try
         {
             IEnumerable<Enterprise> enterprises = await _enterpriseRepository.GetAll();
-            bool isInDb = enterprises.Any(enterprise => enterprise.Cnpj == login && Encrypt.DecryptPassword(enterprise.Password) == password && enterprise.Status == Enterprise_Status.ACTIVE);
-            return isInDb;
+            Enterprise currentEnterprise = enterprises.First(enterprise => enterprise.Cnpj == login && Encrypt.DecryptPassword(enterprise.Password) == password && enterprise.Status == Enterprise_Status.ACTIVE);
+            return currentEnterprise;
+
         }
-        catch
+        catch (Exception ex)
         {
-            return false;
+            return null;
         }
     }
 

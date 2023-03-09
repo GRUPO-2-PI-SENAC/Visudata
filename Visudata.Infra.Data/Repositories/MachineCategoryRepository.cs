@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Dapper;
+using Microsoft.EntityFrameworkCore;
 using PI.Domain.Entities;
 using PI.Domain.Interfaces.Repositories;
 using PI.Infra.Data.Context;
@@ -13,16 +14,46 @@ namespace PI.Infra.Data.Repositories
 
         public async Task<MachineCategory> GetByName(string name)
         {
-            MachineCategory machineCategoryByName = _context.MachineCategories.Include(machineCategory => machineCategory.Machines).First(machineCategories => machineCategories.Name == name);
+            return await Task.Run(async () =>
+            {
+                var query = @"select * from machine_category inner join machines m on machine_category.Id = m.CategoryId where machine_category.Name = @categoryName;";
+                MachineCategory machineCategoryByName = (await _databaseConnection.QueryAsync<MachineCategory, IEnumerable<Machine>, MachineCategory>(query
+                    , (mc, machines) =>
+                    {
+                        mc.Machines = machines;
+                        return mc;
+                    },
+                    new
+                    {
+                        @categoryName = name
+                    }
+                    ))
+                    .First();
 
-            return machineCategoryByName;
+                return machineCategoryByName;
+            });
         }
 
         public async Task<IEnumerable<Machine>> GetMachinesOfCategory(int categoryId)
         {
-            List<Machine> machines = _context.Machines.Include(machine => machine.Category).ToList();
-            IEnumerable<Machine>? machinesOfspecificyCategoryById = machines.Where(machine => machine.Category.Id == categoryId);
-            return machinesOfspecificyCategoryById;
+            return await Task.Run(async () =>
+            {
+                var query = @"select * from machines inner join machine_category mc on machines.CategoryId = mc.Id where mc.Id = @idcategory;";
+
+                IEnumerable<Machine> machinesFromCategory = await _databaseConnection.QueryAsync<Machine, MachineCategory, Machine>(query,
+                    (machine, machineCategory) =>
+                    {
+                        machine.Category = machineCategory;
+                        return machine;
+                    },
+                    new
+                    {
+                        idcategory = categoryId
+                    });
+
+                return machinesFromCategory;
+
+            });
         }
     }
 }

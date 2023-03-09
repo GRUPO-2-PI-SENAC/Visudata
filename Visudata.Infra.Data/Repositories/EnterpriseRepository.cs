@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Dapper;
+using Microsoft.EntityFrameworkCore;
 using PI.Domain.Entities;
 using PI.Domain.Interfaces.Repositories;
 using PI.Infra.Data.Context;
@@ -13,16 +14,38 @@ public class EnterpriseRepository : BaseRepository<Enterprise>, IEnterpriseRepos
 
     public async Task<IEnumerable<Enterprise>> GetAllWithRelationships()
     {
-        List<Enterprise> enterprises = _context.Enterprises.Include(enterprise => enterprise.Machines).ToList();
-        return enterprises;
+        return await Task.Run(async () =>
+        {
+            string query = @"select * from enterprises inner join machines m on enterprises.Id = m.EnterpriseId;";
+            IEnumerable<Enterprise> enterprises = await _databaseConnection.QueryAsync<Enterprise, IEnumerable<Machine>, Enterprise>(query,
+                (enterprise, machines) =>
+                {
+                    enterprise.Machines = machines;
+                    return enterprise;
+                });
+            return enterprises;
+        });
     }
 
     public async Task<Enterprise> GetEnterpriseByCnpj(string cnpj)
     {
-        List<Enterprise> enterprisesInDb = _context.Enterprises.ToList();
-        Enterprise? enterpriseFromCnpj = enterprisesInDb.FirstOrDefault(enterprise => enterprise.Cnpj == cnpj);
+        return await Task.Run(async () =>
+        {
+            string query = @"select * from enterprises inner join machines m on enterprises.Id = m.EnterpriseId where enterprises.Cnpj = @enterpriseCnpj";
+            Enterprise fromCnpj = (await _databaseConnection.QueryAsync<Enterprise, IEnumerable<Machine>, Enterprise>(query,
+                (enterprise, machines) =>
+                {
+                    enterprise.Machines = machines;
+                    return enterprise;
+                },
+                new
+                {
+                    enterpriseCnpj = cnpj
+                }
+                )).First();
 
-        return enterpriseFromCnpj == null ? new Enterprise() : enterpriseFromCnpj;
+            return fromCnpj;
+        });
     }
 
     public Enterprise GetEnterpriseByIdWithoutAsync(int enterpriseId)
