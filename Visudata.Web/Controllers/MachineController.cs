@@ -70,16 +70,8 @@ public class MachineController : BaseController
     [HttpGet]
     public async Task<IActionResult> Add()
     {
-        List<string> nameOfCategoriesAsStringList = await _machineCategoryService.GetNameOfCategoriesAsString();
 
-        List<SelectListItem> item = new List<SelectListItem>();
-
-        foreach (string variable in nameOfCategoriesAsStringList)
-        {
-            item.Add(new SelectListItem(variable, variable));
-        }
-
-        ViewBag.MachineCategoriesAsStringList = item;
+        ViewBag.MachineCategoriesAsStringList = await GetCategoriesAsSelectListItemList();
         return View(new AddMachineViewModel());
     }
 
@@ -98,7 +90,9 @@ public class MachineController : BaseController
 
             return RedirectToAction("Home", "Enterprise");
         }
-        return RedirectToAction("Add", machineForAddInDb);
+        ViewBag.MachineCategoriesAsStringList = await GetCategoriesAsSelectListItemList();
+
+        return View("Add", machineForAddInDb);
     }
 
     [HttpGet]
@@ -106,17 +100,7 @@ public class MachineController : BaseController
     {
         Machine modelForEditDataOfMachine = await _machineService.GetById(id);
 
-
-        List<string> nameOfCategoriesAsStringList = await _machineCategoryService.GetNameOfCategoriesAsString();
-
-        List<SelectListItem> item = new List<SelectListItem>();
-
-        foreach (string variable in nameOfCategoriesAsStringList)
-        {
-            item.Add(new SelectListItem(variable, variable));
-        }
-
-        ViewBag.MachineCategoriesAsStringList = item;
+        ViewBag.MachineCategoriesAsStringList = await GetCategoriesAsSelectListItemList();
 
         return View(modelForEditDataOfMachine);
     }
@@ -135,7 +119,9 @@ public class MachineController : BaseController
             TempData["typeMessage"] = isUpdated ? "success" : "error";
             return RedirectToAction("List");
         }
-        return RedirectToAction("Edit");
+        ViewBag.MachineCategoriesAsStringList = await GetCategoriesAsSelectListItemList();
+
+        return View("Edit",editMachine);
     }
 
     [HttpGet]
@@ -260,5 +246,20 @@ public class MachineController : BaseController
         return csv;
     }
 
+    private async Task<List<SelectListItem>> GetCategoriesAsSelectListItemList()
+    {
+        return await Task.Run(async () =>
+        {
+            List<string> nameOfCategoriesAsStringList = await _machineCategoryService.GetNameOfCategoriesAsString();
+
+            List<SelectListItem> item = new List<SelectListItem>();
+
+            foreach (string variable in nameOfCategoriesAsStringList)
+            {
+                item.Add(new SelectListItem(variable, variable));
+            }
+            return item;
+        });
+    }
     #endregion
 }

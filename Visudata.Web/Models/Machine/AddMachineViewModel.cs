@@ -7,9 +7,9 @@ public class AddMachineViewModel
 {
     public int Id { get; set; }
     [Required(ErrorMessage = "Campo obrigatório")]
-    [RegularExpression(@"^[a-zA-Z0-9'' ']+$", ErrorMessage = "Caracteres especieis não são permitidos")]
+    [RegularExpression(@"^[a-zA-Z0-9'' ']+$", ErrorMessage = "Caracteres especiais não são permitidos")]
     public string Model { get; set; }
-    [RegularExpression(@"^[a-zA-Z0-9'' ']+$", ErrorMessage = "Caracteres especieis não são permitidos")]
+    [RegularExpression(@"^[a-zA-Z0-9'' ']+$", ErrorMessage = "Caracteres especiais não são permitidos")]
     [Required(ErrorMessage = "Campo obrigatório")]
     public string SerialNumber { get; set; }
     [Required(ErrorMessage = "Campo obrigatório")]
